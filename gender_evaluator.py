@@ -41,14 +41,11 @@ class GenderEvaluator(object):
         result = result.rename(columns={"gender": "gender_infered"})
         self.test_data = self.test_data.merge(result, left_on="first_name", right_on="name")
         self.test_data.drop("name", axis=1, inplace=True)
+        self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", None: "u"}}, inplace=True)
         self.gender_evaluator = 'genderize_io'
 
-    def add_infered_gender(self):
-        """TODO: implement method which merges df with data with column gender_infered"""
-        self.is_gender_infered = True
-
     def compute_confusion_matrix(self):
-        if self.is_gender_infered is True:
+        if self.gender_evaluator is not None:
             f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
             f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
             f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
