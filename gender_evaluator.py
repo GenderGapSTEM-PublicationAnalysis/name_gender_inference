@@ -39,7 +39,10 @@ class GenderEvaluator(object):
 
         result = pd.DataFrame(result)
         result = result.rename(columns={"gender": "gender_infered"})
-        self.test_data = self.test_data.merge(result, left_on="first_name", right_on="name")
+        if len(result) == len(self.test_data):
+            self.test_data = pd.concat([self.test_data, result], axis=1)
+        else:
+            print("response from genderize.io contains less results than request. Try again?")
         self.test_data.drop("name", axis=1, inplace=True)
         self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", None: "u"}}, inplace=True)
         self.gender_evaluator = 'genderize_io'
