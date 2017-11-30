@@ -1,6 +1,6 @@
 # TODO: document methods
 import pandas as pd
-from genderize import Genderize
+from genderize import Genderize, GenderizeException
 
 
 class GenderEvaluator(object):
@@ -33,19 +33,22 @@ class GenderEvaluator(object):
         names = self.test_data.first_name.tolist()
         result = []
         i = 0
-        while i < len(names):
-            result.extend(Genderize().get(names[i: i + 10]))
-            i += 10
+        try:
+            while i < len(names):
+                result.extend(Genderize().get(names[i: i + 10]))
+                i += 10
 
-        result = pd.DataFrame(result)
-        result = result.rename(columns={"gender": "gender_infered"})
-        if len(result) == len(self.test_data):
-            self.test_data = pd.concat([self.test_data, result], axis=1)
-        else:
-            print("response from genderize.io contains less results than request. Try again?")
-        self.test_data.drop("name", axis=1, inplace=True)
-        self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", None: "u"}}, inplace=True)
-        self.gender_evaluator = 'genderize_io'
+            result = pd.DataFrame(result)
+            result = result.rename(columns={"gender": "gender_infered"})
+            if len(result) == len(self.test_data):
+                self.test_data = pd.concat([self.test_data, result], axis=1)
+            else:
+                print("response from genderize.io contains less results than request. Try again?")
+            self.test_data.drop("name", axis=1, inplace=True)
+            self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", None: "u"}}, inplace=True)
+            self.gender_evaluator = 'genderize_io'
+        except GenderizeException as e:
+            print(e)
 
     def compute_confusion_matrix(self):
         if self.gender_evaluator is not None:
