@@ -5,11 +5,11 @@ import csv
 
 
 class GenderEvaluator(object):
-    def __init__(self, file_path):
+    def __init__(self, file_path, gender_evaluator=None):
         self.file_path = file_path
         self.test_data = pd.DataFrame()
         self.is_test_data_schema_correct = None
-        self.gender_evaluator = None
+        self.gender_evaluator = gender_evaluator
         self.confusion_matrix = None
         self.error_without_unknown = None
         self.error_with_unknown = None
@@ -23,22 +23,46 @@ class GenderEvaluator(object):
             print("File not found")
 
     def dump_test_data_with_gender_inference_to_file(self):
-        if self.gender_evaluator is not None:
-            self.test_data.to_csv(self.file_path.rstrip('.csv') + '_' + self.gender_evaluator + '.csv', index=False,
+        # Decide that evaluation exists if column gender_infered is in test_data
+        if 'gender_infered' in self.test_data.columns:
+            self.test_data.to_csv(self.file_path.rstrip('.csv') + '_' + \
+                                  self.gender_evaluator + '.csv', index=False,
                                   quoting=csv.QUOTE_NONNUMERIC)
         else:
-            print("Test data has not been evaluated yet")
+            print("Test data has not been evaluated yet, won't dump")
 
     def check_data_columns(self):
         expected_columns = ['first_name', 'middle_name', 'last_name', 'gender']
-        if sum([item in self.test_data.columns for item in expected_columns]) == len(expected_columns):
+        if sum([item in self.test_data.columns for item in expected_columns]) == \
+               len(expected_columns):
             self.is_test_data_schema_correct = True
 
     def compare_ground_truth_with_inference(self, true_gender, gender_infered):
         """'true_gender' and 'infered_gender' should be one of the strings 'u', 'm', 'f'.
         Displays rows of 'test_data' where inference differed from ground truth."""
         return self.test_data[
-            (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
+            (self.test_data.gender == true_gender) & \
+            (self.test_data.gender_infered == gender_infered)]
+
+    def fetch_gender(self, save_to_dump=True):
+        """Fetches gender predictions, either from dump if present or from API if not
+        It relies on the dump file having a particular naming convention consistent with 
+        self.dump_test_data_with_gender_inference_to_file"""
+        if self.gender_evaluator is None: 
+            raise ValueError("Missing gender_evaluator needed to fetch the gender")
+        dump_file = self.file_path.rstrip('.csv') + '_' + self.gender_evaluator + '.csv'
+        # Try opening the dump file, else resort to calling the API
+        try:
+            self.test_data = pd.read_csv(dump_file)
+            print('Reading data from dump file {}'.format(dump_file))
+        except FileNotFoundError:
+            print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
+            # TODO: abstract this from genderizeio and call a custom function depending
+            # on self.gender_evaluator    
+            self.fetch_gender_from_genderizeio()
+            if save_to_dump:
+                print('Saving data to dump file {}'.format(dump_file))
+                self.dump_test_data_with_gender_inference_to_file()
 
     def fetch_gender_from_genderizeio(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name
@@ -59,7 +83,8 @@ class GenderEvaluator(object):
             else:
                 print("response from genderize.io contains less results than request. Try again?")
             self.test_data.drop("name", axis=1, inplace=True)
-            self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", None: "u"}}, inplace=True)
+            self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", 
+                                                                  None: "u"}}, inplace=True)
             self.gender_evaluator = 'genderize_io'
         except GenderizeException as e:
             print(e)
