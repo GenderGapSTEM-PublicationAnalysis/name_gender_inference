@@ -1,6 +1,7 @@
 # TODO: document methods
 import pandas as pd
 from genderize import Genderize, GenderizeException
+import csv
 
 
 class GenderEvaluator(object):
@@ -20,6 +21,13 @@ class GenderEvaluator(object):
             self.test_data = pd.read_csv(self.file_path)
         except FileNotFoundError:
             print("File not found")
+
+    def dump_test_data_with_gender_inference_to_file(self):
+        if self.gender_evaluator is not None:
+            self.test_data.to_csv(self.file_path + '_' + self.gender_evaluator, index=False,
+                                  quoting=csv.QUOTE_NONNUMERIC)
+        else:
+            print("Test data has not been evaluated yet")
 
     def check_data_columns(self):
         expected_columns = ['first_name', 'middle_name', 'last_name', 'gender']
