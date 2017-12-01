@@ -11798,17 +11798,16 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Double-names-(where-the-order-matters)">Double names (where the order matters)<a class="anchor-link" href="#Double-names-(where-the-order-matters)">&#182;</a></h3>
+<h3 id="Can-it-handle-surnames?">Can it handle surnames?<a class="anchor-link" href="#Can-it-handle-surnames?">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;Hans Joachim&#39;</span><span class="p">,</span> <span class="s1">&#39;Hans-Joachim&#39;</span><span class="p">,</span> <span class="s1">&#39;Maria-José&#39;</span><span class="p">,</span> <span class="s1">&#39;José Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Jose Maria&#39;</span><span class="p">,</span> 
-                           <span class="s1">&#39;José-Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Josémaria&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;Hans Joachim Schmidt&#39;</span><span class="p">,</span> <span class="s1">&#39;Anna Meier&#39;</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -11818,7 +11817,60 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[{&#39;name&#39;: &#39;Hans Joachim Schmidt&#39;, &#39;gender&#39;: None}, {&#39;name&#39;: &#39;Anna Meier&#39;, &#39;gender&#39;: None}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Double-names-(where-the-order-matters)">Double names (where the order matters)<a class="anchor-link" href="#Double-names-(where-the-order-matters)">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;Hans Joachim&#39;</span><span class="p">,</span> <span class="s1">&#39;Hans-Joachim&#39;</span><span class="p">,</span> <span class="s1">&#39;Maria-José&#39;</span><span class="p">,</span> <span class="s1">&#39;José Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Jose Maria&#39;</span><span class="p">,</span> 
+                           <span class="s1">&#39;José-Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Josémaria&#39;</span><span class="p">,</span> <span class="s1">&#39;theo c. m&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
@@ -11846,6 +11898,7 @@ div#notebook {
 {&#39;name&#39;: &#39;Jose Maria&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.99, &#39;count&#39;: 125}
 {&#39;name&#39;: &#39;José-Maria&#39;, &#39;gender&#39;: None}
 {&#39;name&#39;: &#39;Josémaria&#39;, &#39;gender&#39;: None}
+{&#39;name&#39;: &#39;theo c. m&#39;, &#39;gender&#39;: None}
 </pre>
 </div>
 </div>
@@ -11879,7 +11932,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;Nicola&#39;</span><span class="p">,</span> <span class="s1">&#39;Andrea&#39;</span><span class="p">,</span> <span class="s1">&#39;Alex&#39;</span><span class="p">,</span> <span class="s1">&#39;Mika&#39;</span><span class="p">,</span> <span class="s1">&#39;Addison&#39;</span><span class="p">,</span> <span class="s1">&#39;Ash&#39;</span><span class="p">,</span> <span class="s1">&#39;Dakota&#39;</span><span class="p">])</span>
@@ -11892,7 +11945,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
@@ -11951,7 +12004,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;with&#39;</span><span class="p">,</span> <span class="s1">&#39;an&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;my&#39;</span><span class="p">])</span>
@@ -11964,7 +12017,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
@@ -12018,7 +12071,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span> <span class="o">=</span> <span class="n">GenderEvaluator</span><span class="p">(</span><span class="s2">&quot;test_data/test_data_zbmath.csv&quot;</span><span class="p">)</span>
@@ -12033,7 +12086,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12049,7 +12102,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -12127,7 +12180,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">fetch_gender_from_genderizeio</span><span class="p">()</span>
@@ -12140,7 +12193,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12156,7 +12209,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -12221,23 +12274,23 @@ div#notebook {
     </tr>
     <tr>
       <th>3</th>
-      <td>michael</td>
+      <td>yumiko</td>
       <td>NaN</td>
-      <td>szarek</td>
-      <td>m</td>
-      <td>11094.0</td>
-      <td>m</td>
+      <td>watanabe</td>
+      <td>f</td>
+      <td>50.0</td>
+      <td>f</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>michael</td>
-      <td>p</td>
-      <td>robertson</td>
-      <td>u</td>
-      <td>11094.0</td>
+      <td>shaoqing</td>
+      <td>NaN</td>
+      <td>liu</td>
       <td>m</td>
-      <td>1.00</td>
+      <td>NaN</td>
+      <td>u</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -12250,17 +12303,50 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(100, 7)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Compute-metrics">Compute metrics<a class="anchor-link" href="#Compute-metrics">&#182;</a></h2>
+<h3 id="Compute-metrics-on-zbMATH-data">Compute metrics on zbMATH data<a class="anchor-link" href="#Compute-metrics-on-zbMATH-data">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compute_confusion_matrix</span><span class="p">()</span>
@@ -12273,7 +12359,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">confusion_matrix</span>
@@ -12289,25 +12375,12 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[15]:</div>
 
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12327,13 +12400,13 @@ div#notebook {
     <tr>
       <th>m</th>
       <td>1</td>
-      <td>53</td>
+      <td>46</td>
       <td>9</td>
     </tr>
     <tr>
       <th>u</th>
       <td>5</td>
-      <td>13</td>
+      <td>12</td>
       <td>16</td>
     </tr>
   </tbody>
@@ -12349,7 +12422,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># show names for which human said &#39;u&#39; but algorithm said &#39;m&#39; or &#39;f&#39;</span>
@@ -12366,25 +12439,12 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12410,27 +12470,7 @@ div#notebook {
       <td>0.99</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>michael</td>
-      <td>p</td>
-      <td>robertson</td>
-      <td>u</td>
-      <td>11094.0</td>
-      <td>m</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>michael</td>
-      <td>p</td>
-      <td>robertson</td>
-      <td>u</td>
-      <td>11094.0</td>
-      <td>m</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>12</th>
+      <th>9</th>
       <td>po</td>
       <td>NaN</td>
       <td>zhang</td>
@@ -12440,7 +12480,7 @@ div#notebook {
       <td>0.89</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>10</th>
       <td>hon</td>
       <td>kit</td>
       <td>wai</td>
@@ -12450,7 +12490,7 @@ div#notebook {
       <td>0.81</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>11</th>
       <td>bao</td>
       <td>wen</td>
       <td>sun</td>
@@ -12460,7 +12500,7 @@ div#notebook {
       <td>0.79</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>12</th>
       <td>byoung</td>
       <td>chan</td>
       <td>lee</td>
@@ -12470,7 +12510,7 @@ div#notebook {
       <td>1.00</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>15</th>
       <td>rosario</td>
       <td>NaN</td>
       <td>di-nardo</td>
@@ -12480,7 +12520,7 @@ div#notebook {
       <td>0.75</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>20</th>
       <td>jacques</td>
       <td>NaN</td>
       <td>pontier</td>
@@ -12490,7 +12530,17 @@ div#notebook {
       <td>0.99</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>24</th>
+      <td>michael</td>
+      <td>p</td>
+      <td>robertson</td>
+      <td>u</td>
+      <td>11094.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>33</th>
       <td>chao</td>
       <td>zhu</td>
       <td>zhang</td>
@@ -12500,7 +12550,7 @@ div#notebook {
       <td>0.81</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>47</th>
       <td>wai</td>
       <td>king</td>
       <td>ching</td>
@@ -12510,7 +12560,7 @@ div#notebook {
       <td>0.77</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>57</th>
       <td>cai</td>
       <td>gui</td>
       <td>liu</td>
@@ -12520,7 +12570,7 @@ div#notebook {
       <td>0.76</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>62</th>
       <td>dae</td>
       <td>NaN</td>
       <td>jong</td>
@@ -12530,7 +12580,7 @@ div#notebook {
       <td>0.75</td>
     </tr>
     <tr>
-      <th>83</th>
+      <th>73</th>
       <td>cheng</td>
       <td>wei</td>
       <td>chen</td>
@@ -12540,7 +12590,7 @@ div#notebook {
       <td>0.57</td>
     </tr>
     <tr>
-      <th>84</th>
+      <th>74</th>
       <td>yahya</td>
       <td>NaN</td>
       <td>mezroui</td>
@@ -12550,7 +12600,7 @@ div#notebook {
       <td>1.00</td>
     </tr>
     <tr>
-      <th>92</th>
+      <th>82</th>
       <td>yamin</td>
       <td>NaN</td>
       <td>ma</td>
@@ -12560,7 +12610,7 @@ div#notebook {
       <td>0.50</td>
     </tr>
     <tr>
-      <th>99</th>
+      <th>89</th>
       <td>tack</td>
       <td>wang</td>
       <td>lee</td>
@@ -12570,7 +12620,7 @@ div#notebook {
       <td>0.50</td>
     </tr>
     <tr>
-      <th>105</th>
+      <th>96</th>
       <td>francis</td>
       <td>j</td>
       <td>leahy</td>
@@ -12601,7 +12651,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
@@ -12617,7 +12667,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
@@ -12640,10 +12690,2027 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.193548387097
-error ignoring prediction as &#39;unknown gender&#39; :  0.015873015873
-error counting proportion of names with unpredicted gender:  0.148648648649
-error where negative value suggestes that more women than men are missclassified:  0.015873015873
+<pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.218181818182
+error ignoring prediction as &#39;unknown gender&#39; :  0.0178571428571
+error counting proportion of names with unpredicted gender:  0.164179104478
+error where negative value suggestes that more women than men are missclassified:  0.0178571428571
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-on-zbMATH-data---full-300-records">Test on zbMATH data - full 300 records<a class="anchor-link" href="#Test-on-zbMATH-data---full-300-records">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span> <span class="o">=</span> <span class="n">GenderEvaluator</span><span class="p">(</span><span class="s2">&quot;test_data/test_data_zbmath_full.csv&quot;</span><span class="p">)</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">check_data_columns</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[38]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pierre</td>
+      <td>paul</td>
+      <td>grivel</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>raul</td>
+      <td>p</td>
+      <td>serapioni</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>adriano</td>
+      <td>a</td>
+      <td>moura</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ralf</td>
+      <td>NaN</td>
+      <td>kieser</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>teppei</td>
+      <td>NaN</td>
+      <td>ariyoshi</td>
+      <td>u</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">fetch_gender_from_genderizeio</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(&#39;Request limit too low to process request&#39;, 429, {&#39;Server&#39;: &#39;nginx/1.10.3 (Ubuntu)&#39;, &#39;Date&#39;: &#39;Fri, 01 Dec 2017 04:10:18 GMT&#39;, &#39;Content-Type&#39;: &#39;application/json; charset=utf-8&#39;, &#39;Content-Length&#39;: &#39;52&#39;, &#39;Connection&#39;: &#39;keep-alive&#39;, &#39;X-Powered-By&#39;: &#39;Express&#39;, &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;, &#39;Access-Control-Allow-Methods&#39;: &#39;GET&#39;, &#39;Access-Control-Allow-Headers&#39;: &#39;Content-Type&#39;, &#39;ETag&#39;: &#39;W/&#34;34-/B8VM4bRkG3nA11Ecw4Kpw&#34;&#39;})
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[36]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pierre-paul</td>
+      <td>NaN</td>
+      <td>grivel</td>
+      <td>m</td>
+      <td>5.0</td>
+      <td>m</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>raul-p</td>
+      <td>NaN</td>
+      <td>serapioni</td>
+      <td>m</td>
+      <td>NaN</td>
+      <td>u</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>adriano-a</td>
+      <td>NaN</td>
+      <td>moura</td>
+      <td>m</td>
+      <td>NaN</td>
+      <td>u</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ralf</td>
+      <td>NaN</td>
+      <td>kieser</td>
+      <td>m</td>
+      <td>86.0</td>
+      <td>m</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>teppei</td>
+      <td>NaN</td>
+      <td>ariyoshi</td>
+      <td>u</td>
+      <td>NaN</td>
+      <td>u</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Compute-metrics-on-zbMATH-data">Compute metrics on zbMATH data<a class="anchor-link" href="#Compute-metrics-on-zbMATH-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compute_confusion_matrix</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">confusion_matrix</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[15]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>f_pred</th>
+      <th>m_pred</th>
+      <th>u_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>f</th>
+      <td>9</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>1</td>
+      <td>46</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td>5</td>
+      <td>12</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># show names for which human said &#39;u&#39; but algorithm said &#39;m&#39; or &#39;f&#39;</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="p">[(</span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">gender</span><span class="o">==</span><span class="s1">&#39;u&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zbmath</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">gender_infered</span> <span class="o">!=</span><span class="s1">&#39;u&#39;</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ben</td>
+      <td>da</td>
+      <td>zhou</td>
+      <td>u</td>
+      <td>3363.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>po</td>
+      <td>NaN</td>
+      <td>zhang</td>
+      <td>u</td>
+      <td>45.0</td>
+      <td>m</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>hon</td>
+      <td>kit</td>
+      <td>wai</td>
+      <td>u</td>
+      <td>16.0</td>
+      <td>m</td>
+      <td>0.81</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>bao</td>
+      <td>wen</td>
+      <td>sun</td>
+      <td>u</td>
+      <td>42.0</td>
+      <td>m</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>byoung</td>
+      <td>chan</td>
+      <td>lee</td>
+      <td>u</td>
+      <td>1.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>rosario</td>
+      <td>NaN</td>
+      <td>di-nardo</td>
+      <td>u</td>
+      <td>343.0</td>
+      <td>f</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>jacques</td>
+      <td>NaN</td>
+      <td>pontier</td>
+      <td>u</td>
+      <td>280.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>michael</td>
+      <td>p</td>
+      <td>robertson</td>
+      <td>u</td>
+      <td>11094.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>chao</td>
+      <td>zhu</td>
+      <td>zhang</td>
+      <td>u</td>
+      <td>16.0</td>
+      <td>m</td>
+      <td>0.81</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>wai</td>
+      <td>king</td>
+      <td>ching</td>
+      <td>u</td>
+      <td>78.0</td>
+      <td>m</td>
+      <td>0.77</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>cai</td>
+      <td>gui</td>
+      <td>liu</td>
+      <td>u</td>
+      <td>54.0</td>
+      <td>f</td>
+      <td>0.76</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>dae</td>
+      <td>NaN</td>
+      <td>jong</td>
+      <td>u</td>
+      <td>4.0</td>
+      <td>m</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>cheng</td>
+      <td>wei</td>
+      <td>chen</td>
+      <td>u</td>
+      <td>84.0</td>
+      <td>f</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>yahya</td>
+      <td>NaN</td>
+      <td>mezroui</td>
+      <td>u</td>
+      <td>116.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>yamin</td>
+      <td>NaN</td>
+      <td>ma</td>
+      <td>u</td>
+      <td>2.0</td>
+      <td>f</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>tack</td>
+      <td>wang</td>
+      <td>lee</td>
+      <td>u</td>
+      <td>2.0</td>
+      <td>f</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>francis</td>
+      <td>j</td>
+      <td>leahy</td>
+      <td>u</td>
+      <td>680.0</td>
+      <td>m</td>
+      <td>0.89</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The API returns 'm' for most of the Chinese names in the list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_without_unknown</span><span class="p">()</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_unknown</span><span class="p">()</span>
+<span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_gender_bias</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error ignoring prediction as &#39;unknown gender&#39; : &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_without_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting proportion of names with unpredicted gender: &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error where negative value suggestes that more women than men are missclassified: &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_gender_bias</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.218181818182
+error ignoring prediction as &#39;unknown gender&#39; :  0.0178571428571
+error counting proportion of names with unpredicted gender:  0.164179104478
+error where negative value suggestes that more women than men are missclassified:  0.0178571428571
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-on-genderizeR-paper-data">Test on genderizeR paper data<a class="anchor-link" href="#Test-on-genderizeR-paper-data">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Uncomment cell below if you want to use data with infered gender instead of calling the API. Then do not execute the other cells in this section.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># genderizeR = GenderEvaluator(&quot;test_data/test_data_genderizeR_genderize_io.csv&quot;)</span>
+<span class="c1"># genderizeR.load_data()</span>
+<span class="c1"># genderizeR.gender_evaluator=&#39;genderize_io&#39;</span>
+<span class="c1"># genderizeR.file_path = &quot;test_data/test_data_genderizeR.csv&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span> <span class="o">=</span> <span class="n">GenderEvaluator</span><span class="p">(</span><span class="s2">&quot;test_data/test_data_genderizeR.csv&quot;</span><span class="p">)</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">check_data_columns</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thayer, Ann</td>
+      <td>ann</td>
+      <td>NaN</td>
+      <td>thayer</td>
+      <td>u</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chiesa, Paolo</td>
+      <td>paolo</td>
+      <td>NaN</td>
+      <td>chiesa</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Abbate, Ernesto</td>
+      <td>ernesto</td>
+      <td>NaN</td>
+      <td>abbate</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Epstein, John H.</td>
+      <td>john</td>
+      <td>NaN</td>
+      <td>epstein</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cotroneo, Margaret</td>
+      <td>margaret</td>
+      <td>NaN</td>
+      <td>cotroneo</td>
+      <td>f</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">fetch_gender_from_genderizeio</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thayer, Ann</td>
+      <td>ann</td>
+      <td>NaN</td>
+      <td>thayer</td>
+      <td>u</td>
+      <td>1818.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chiesa, Paolo</td>
+      <td>paolo</td>
+      <td>NaN</td>
+      <td>chiesa</td>
+      <td>m</td>
+      <td>781.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Abbate, Ernesto</td>
+      <td>ernesto</td>
+      <td>NaN</td>
+      <td>abbate</td>
+      <td>m</td>
+      <td>381.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Epstein, John H.</td>
+      <td>john</td>
+      <td>NaN</td>
+      <td>epstein</td>
+      <td>m</td>
+      <td>9931.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cotroneo, Margaret</td>
+      <td>margaret</td>
+      <td>NaN</td>
+      <td>cotroneo</td>
+      <td>f</td>
+      <td>1101.0</td>
+      <td>f</td>
+      <td>0.98</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">dump_test_data_with_gender_inference_to_file</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Compute-metrics-on-genderizeR-paper-data">Compute metrics on genderizeR paper data<a class="anchor-link" href="#Compute-metrics-on-genderizeR-paper-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_confusion_matrix</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">confusion_matrix</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>f_pred</th>
+      <th>m_pred</th>
+      <th>u_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>f</th>
+      <td>83</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>13</td>
+      <td>303</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td>51</td>
+      <td>94</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thayer, Ann</td>
+      <td>ann</td>
+      <td>NaN</td>
+      <td>thayer</td>
+      <td>u</td>
+      <td>1818.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Schmid, Judith Louisa</td>
+      <td>judith</td>
+      <td>louisa</td>
+      <td>schmid</td>
+      <td>u</td>
+      <td>750.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Haight, Molly I.</td>
+      <td>molly</td>
+      <td>NaN</td>
+      <td>haight</td>
+      <td>u</td>
+      <td>780.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Harlow, Lisa L.</td>
+      <td>lisa</td>
+      <td>NaN</td>
+      <td>harlow</td>
+      <td>u</td>
+      <td>6394.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>Reid, Sarah</td>
+      <td>sarah</td>
+      <td>NaN</td>
+      <td>reid</td>
+      <td>u</td>
+      <td>8371.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>Canning-Glass, Judy</td>
+      <td>judy</td>
+      <td>NaN</td>
+      <td>canning-glass</td>
+      <td>u</td>
+      <td>1375.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>Lo, Selina</td>
+      <td>selina</td>
+      <td>NaN</td>
+      <td>lo</td>
+      <td>u</td>
+      <td>176.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Oray, Linda Esther</td>
+      <td>linda</td>
+      <td>esther</td>
+      <td>oray</td>
+      <td>u</td>
+      <td>4323.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>Money, Anita</td>
+      <td>anita</td>
+      <td>NaN</td>
+      <td>money</td>
+      <td>u</td>
+      <td>1519.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>Giesecke, Robin</td>
+      <td>robin</td>
+      <td>NaN</td>
+      <td>giesecke</td>
+      <td>u</td>
+      <td>1628.0</td>
+      <td>f</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>Sampson, Karen</td>
+      <td>karen</td>
+      <td>NaN</td>
+      <td>sampson</td>
+      <td>u</td>
+      <td>5462.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>Panniker, Jean</td>
+      <td>jean</td>
+      <td>NaN</td>
+      <td>panniker</td>
+      <td>u</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>Siggers, Diana</td>
+      <td>diana</td>
+      <td>NaN</td>
+      <td>siggers</td>
+      <td>u</td>
+      <td>2885.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>Wood, GA</td>
+      <td>ga</td>
+      <td>NaN</td>
+      <td>wood</td>
+      <td>u</td>
+      <td>47.0</td>
+      <td>f</td>
+      <td>0.85</td>
+    </tr>
+    <tr>
+      <th>165</th>
+      <td>Alovert, Nina</td>
+      <td>nina</td>
+      <td>NaN</td>
+      <td>alovert</td>
+      <td>u</td>
+      <td>1434.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>Pavicevic, Dusanka Savic</td>
+      <td>dusanka</td>
+      <td>savic</td>
+      <td>pavicevic</td>
+      <td>u</td>
+      <td>3.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>Romac, Stanka</td>
+      <td>stanka</td>
+      <td>NaN</td>
+      <td>romac</td>
+      <td>u</td>
+      <td>7.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>194</th>
+      <td>Cooke, Elizabeth</td>
+      <td>elizabeth</td>
+      <td>NaN</td>
+      <td>cooke</td>
+      <td>u</td>
+      <td>3508.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>200</th>
+      <td>Cazauran, Nicole</td>
+      <td>nicole</td>
+      <td>NaN</td>
+      <td>cazauran</td>
+      <td>u</td>
+      <td>4042.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>257</th>
+      <td>Cassel, Edith</td>
+      <td>edith</td>
+      <td>NaN</td>
+      <td>cassel</td>
+      <td>u</td>
+      <td>373.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>Ross, Constance A. C.</td>
+      <td>constance</td>
+      <td>NaN</td>
+      <td>ross</td>
+      <td>u</td>
+      <td>120.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>Lambert, Florence D.</td>
+      <td>florence</td>
+      <td>NaN</td>
+      <td>lambert</td>
+      <td>u</td>
+      <td>538.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>299</th>
+      <td>Amin, Isabelle</td>
+      <td>isabelle</td>
+      <td>NaN</td>
+      <td>amin</td>
+      <td>u</td>
+      <td>867.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>301</th>
+      <td>Brazil, Gladys</td>
+      <td>gladys</td>
+      <td>NaN</td>
+      <td>brazil</td>
+      <td>u</td>
+      <td>382.0</td>
+      <td>f</td>
+      <td>0.97</td>
+    </tr>
+    <tr>
+      <th>303</th>
+      <td>Brun, Ellen</td>
+      <td>ellen</td>
+      <td>NaN</td>
+      <td>brun</td>
+      <td>u</td>
+      <td>942.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>309</th>
+      <td>Desai, Rajani X.</td>
+      <td>rajani</td>
+      <td>NaN</td>
+      <td>desai</td>
+      <td>u</td>
+      <td>9.0</td>
+      <td>f</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>Marzani, Charlotte Pomerantz</td>
+      <td>charlotte</td>
+      <td>pomerantz</td>
+      <td>marzani</td>
+      <td>u</td>
+      <td>1926.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>333</th>
+      <td>Singer, Jeanne</td>
+      <td>jeanne</td>
+      <td>NaN</td>
+      <td>singer</td>
+      <td>u</td>
+      <td>449.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>Sweezy, Martha</td>
+      <td>martha</td>
+      <td>NaN</td>
+      <td>sweezy</td>
+      <td>u</td>
+      <td>1169.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>380</th>
+      <td>Marino, Melissa</td>
+      <td>melissa</td>
+      <td>NaN</td>
+      <td>marino</td>
+      <td>u</td>
+      <td>4400.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>385</th>
+      <td>Metzger, Chantal</td>
+      <td>chantal</td>
+      <td>NaN</td>
+      <td>metzger</td>
+      <td>u</td>
+      <td>473.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>387</th>
+      <td>Pain, Elisabeth</td>
+      <td>elisabeth</td>
+      <td>NaN</td>
+      <td>pain</td>
+      <td>u</td>
+      <td>570.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>Cash, Stephanie</td>
+      <td>stephanie</td>
+      <td>NaN</td>
+      <td>cash</td>
+      <td>u</td>
+      <td>4114.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>411</th>
+      <td>Sprott, Margaret</td>
+      <td>margaret</td>
+      <td>NaN</td>
+      <td>sprott</td>
+      <td>u</td>
+      <td>1101.0</td>
+      <td>f</td>
+      <td>0.98</td>
+    </tr>
+    <tr>
+      <th>414</th>
+      <td>Cash, Stephanie</td>
+      <td>stephanie</td>
+      <td>NaN</td>
+      <td>cash</td>
+      <td>u</td>
+      <td>4114.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>416</th>
+      <td>Lai, Jules</td>
+      <td>jules</td>
+      <td>NaN</td>
+      <td>lai</td>
+      <td>u</td>
+      <td>210.0</td>
+      <td>f</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>426</th>
+      <td>Bigby, Christine</td>
+      <td>christine</td>
+      <td>NaN</td>
+      <td>bigby</td>
+      <td>u</td>
+      <td>3115.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>446</th>
+      <td>Zurbrigg, Eleanor</td>
+      <td>eleanor</td>
+      <td>NaN</td>
+      <td>zurbrigg</td>
+      <td>u</td>
+      <td>263.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>466</th>
+      <td>Mukhopadiyay, Atri</td>
+      <td>atri</td>
+      <td>NaN</td>
+      <td>mukhopadiyay</td>
+      <td>u</td>
+      <td>1.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>474</th>
+      <td>Pukl, Pavla</td>
+      <td>pavla</td>
+      <td>NaN</td>
+      <td>pukl</td>
+      <td>u</td>
+      <td>40.0</td>
+      <td>f</td>
+      <td>0.98</td>
+    </tr>
+    <tr>
+      <th>480</th>
+      <td>Campling, Angela</td>
+      <td>angela</td>
+      <td>NaN</td>
+      <td>campling</td>
+      <td>u</td>
+      <td>3511.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>494</th>
+      <td>Clee, Patricia</td>
+      <td>patricia</td>
+      <td>NaN</td>
+      <td>clee</td>
+      <td>u</td>
+      <td>3488.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>Couper, Mary Rose</td>
+      <td>mary</td>
+      <td>rose</td>
+      <td>couper</td>
+      <td>u</td>
+      <td>4440.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>508</th>
+      <td>Jordan, Dawne</td>
+      <td>dawne</td>
+      <td>NaN</td>
+      <td>jordan</td>
+      <td>u</td>
+      <td>16.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>529</th>
+      <td>Cook, Alison</td>
+      <td>alison</td>
+      <td>NaN</td>
+      <td>cook</td>
+      <td>u</td>
+      <td>1288.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>Helpern, Alice</td>
+      <td>alice</td>
+      <td>NaN</td>
+      <td>helpern</td>
+      <td>u</td>
+      <td>1414.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>544</th>
+      <td>Iskric, Sonja</td>
+      <td>sonja</td>
+      <td>NaN</td>
+      <td>iskric</td>
+      <td>u</td>
+      <td>372.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>546</th>
+      <td>Wrischer, Mercedes</td>
+      <td>mercedes</td>
+      <td>NaN</td>
+      <td>wrischer</td>
+      <td>u</td>
+      <td>429.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>552</th>
+      <td>Lawrence, Una</td>
+      <td>una</td>
+      <td>NaN</td>
+      <td>lawrence</td>
+      <td>u</td>
+      <td>69.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>559</th>
+      <td>Mascone, Cindy Fabian</td>
+      <td>cindy</td>
+      <td>fabian</td>
+      <td>mascone</td>
+      <td>u</td>
+      <td>2477.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>564</th>
+      <td>Kolenc, Olga</td>
+      <td>olga</td>
+      <td>NaN</td>
+      <td>kolenc</td>
+      <td>u</td>
+      <td>898.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The names look like typical female names. This means that human evaluators could not find exactly those persons online.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>325</th>
+      <td>Parvati, Comrade</td>
+      <td>comrade</td>
+      <td>NaN</td>
+      <td>parvati</td>
+      <td>f</td>
+      <td>1.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>327</th>
+      <td>Quick, Paddy</td>
+      <td>paddy</td>
+      <td>NaN</td>
+      <td>quick</td>
+      <td>f</td>
+      <td>91.0</td>
+      <td>m</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <th>542</th>
+      <td>Ljubesic, Nikola</td>
+      <td>nikola</td>
+      <td>NaN</td>
+      <td>ljubesic</td>
+      <td>f</td>
+      <td>301.0</td>
+      <td>m</td>
+      <td>0.83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>error in 'ground truth data':  'Nikola Ljubešić' is 'm':</strong> <a href="https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en">https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>98</th>
+      <td>Shakeshaft, Robin</td>
+      <td>robin</td>
+      <td>NaN</td>
+      <td>shakeshaft</td>
+      <td>m</td>
+      <td>1628.0</td>
+      <td>f</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>Ji, Lilien</td>
+      <td>lilien</td>
+      <td>NaN</td>
+      <td>ji</td>
+      <td>m</td>
+      <td>1.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>285</th>
+      <td>Bianco, Andrea</td>
+      <td>andrea</td>
+      <td>NaN</td>
+      <td>bianco</td>
+      <td>m</td>
+      <td>5794.0</td>
+      <td>f</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>Kovacs, Kalman</td>
+      <td>kalman</td>
+      <td>NaN</td>
+      <td>kovacs</td>
+      <td>m</td>
+      <td>19.0</td>
+      <td>f</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>400</th>
+      <td>Pujol, Jean-Louis</td>
+      <td>jean</td>
+      <td>louis</td>
+      <td>pujol</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>439</th>
+      <td>Bardon, Jean-Pierre</td>
+      <td>jean</td>
+      <td>pierre</td>
+      <td>bardon</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>451</th>
+      <td>Shupnik, Margaret A.</td>
+      <td>margaret</td>
+      <td>NaN</td>
+      <td>shupnik</td>
+      <td>m</td>
+      <td>1101.0</td>
+      <td>f</td>
+      <td>0.98</td>
+    </tr>
+    <tr>
+      <th>483</th>
+      <td>Hartmann, Gerd K.</td>
+      <td>gerd</td>
+      <td>NaN</td>
+      <td>hartmann</td>
+      <td>m</td>
+      <td>54.0</td>
+      <td>f</td>
+      <td>0.52</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>Franks, Sharon E. R.</td>
+      <td>sharon</td>
+      <td>NaN</td>
+      <td>franks</td>
+      <td>m</td>
+      <td>2760.0</td>
+      <td>f</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>504</th>
+      <td>Weary, Peyton E.</td>
+      <td>peyton</td>
+      <td>NaN</td>
+      <td>weary</td>
+      <td>m</td>
+      <td>37.0</td>
+      <td>f</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>553</th>
+      <td>Milton, Kimball A.</td>
+      <td>kimball</td>
+      <td>NaN</td>
+      <td>milton</td>
+      <td>m</td>
+      <td>1.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>561</th>
+      <td>Michael, Enid</td>
+      <td>enid</td>
+      <td>NaN</td>
+      <td>michael</td>
+      <td>m</td>
+      <td>39.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>570</th>
+      <td>Goldberg-Gist, Arlene</td>
+      <td>arlene</td>
+      <td>NaN</td>
+      <td>goldberg-gist</td>
+      <td>m</td>
+      <td>271.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;jean-louis&#39;</span><span class="p">,</span> <span class="s1">&#39;jean-pierre&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;count&#39;: 43, &#39;gender&#39;: &#39;male&#39;, &#39;name&#39;: &#39;jean-louis&#39;, &#39;probability&#39;: 1.0},
+ {&#39;count&#39;: 122, &#39;gender&#39;: &#39;male&#39;, &#39;name&#39;: &#39;jean-pierre&#39;, &#39;probability&#39;: 1.0}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>The examples above show that the performance can be improved when full name is used.</strong></p>
+<p><strong>Another error in ground truth data: 'Shupnik, Margaret A.' is 'f':</strong> <a href="https://med.virginia.edu/faculty/faculty-listing/mas3x/">https://med.virginia.edu/faculty/faculty-listing/mas3x/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_without_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_gender_bias</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error ignoring prediction as &#39;unknown gender&#39; : &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_without_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting proportion of names with unpredicted gender: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error where negative value suggestes that more women than men are missclassified: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_gender_bias</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.0932642487047
+error ignoring prediction as &#39;unknown gender&#39; :  0.0398009950249
+error counting proportion of names with unpredicted gender:  0.0473933649289
+error where negative value suggestes that more women than men are missclassified:  0.0398009950249
 </pre>
 </div>
 </div>
@@ -12678,7 +14745,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
