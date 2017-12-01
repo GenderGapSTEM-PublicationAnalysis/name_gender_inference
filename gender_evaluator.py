@@ -34,6 +34,12 @@ class GenderEvaluator(object):
         if sum([item in self.test_data.columns for item in expected_columns]) == len(expected_columns):
             self.is_test_data_schema_correct = True
 
+    def compare_ground_truth_with_inference(self, true_gender, gender_infered):
+        """'true_gender' and 'infered_gender' should be one of the strings 'u', 'm', 'f'.
+        Displays rows of 'test_data' where inference differed from ground truth."""
+        return self.test_data[
+            (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
+
     def fetch_gender_from_genderizeio(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name
         and merges them with self.test_data."""
