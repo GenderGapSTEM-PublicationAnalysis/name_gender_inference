@@ -24,7 +24,7 @@ class GenderEvaluator(object):
 
     def dump_test_data_with_gender_inference_to_file(self):
         if self.gender_evaluator is not None:
-            self.test_data.to_csv(self.file_path + '_' + self.gender_evaluator, index=False,
+            self.test_data.to_csv(self.file_path.rstrip('.csv') + '_' + self.gender_evaluator + '.csv', index=False,
                                   quoting=csv.QUOTE_NONNUMERIC)
         else:
             print("Test data has not been evaluated yet")
