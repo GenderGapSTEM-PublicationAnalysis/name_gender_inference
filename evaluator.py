@@ -1,15 +1,14 @@
 # TODO: document methods
 import pandas as pd
-from genderize import Genderize, GenderizeException
 import os
 import csv
 
-NAMEAPI_KEY = "bbbd8f9ba16f58f69ef21f8b6509aac8-user1"
-EVALUATORS = ["genderize_io", "names_api"]  # TODO: add new services
 
+class Evaluator(object):
+    """Class-level properties"""
+    gender_evaluator = None
 
-class GenderEvaluator(object):
-    def __init__(self, file_path, gender_evaluator=None):
+    def __init__(self, file_path):
         self.file_path = file_path
         self.test_data = pd.DataFrame()
         self.is_test_data_schema_correct = None
@@ -18,11 +17,6 @@ class GenderEvaluator(object):
         self.error_with_unknown = None
         self.error_unknown = None
         self.error_gender_bias = None
-
-        if gender_evaluator in EVALUATORS or gender_evaluator is None:
-            self.gender_evaluator = gender_evaluator
-        else:
-            raise ValueError("invalid gender_evaluator value. Attribute set to None.")
 
     def load_data(self):
         try:
@@ -55,8 +49,7 @@ class GenderEvaluator(object):
         """'true_gender' and 'infered_gender' should be one of the strings 'u', 'm', 'f'.
         Displays rows of 'test_data' where inference differed from ground truth."""
         return self.test_data[
-            (self.test_data.gender == true_gender) & \
-            (self.test_data.gender_infered == gender_infered)]
+            (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
 
     def fetch_gender(self, save_to_dump=True):
         """Fetches gender predictions, either from dump if present or from API if not
@@ -75,75 +68,13 @@ class GenderEvaluator(object):
             print('Reading data from dump file {}'.format(dump_file))
         except FileNotFoundError:
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
-            # TODO: abstract this from genderizeio and call a custom function depending on self.gender_evaluator
-            self.fetch_gender_from_genderizeio()
+            self._fetch_gender_from_api()
             if save_to_dump:
                 print('Saving data to dump file {}'.format(dump_file))
                 self.dump_test_data_with_gender_inference_to_file()
 
-    def fetch_gender_from_genderizeio(self):
-        """Fetches gender predictions from genderize.io using self.test_data.first_name
-        and merges them with self.test_data."""
-        # TODO: genderize.io is sensitive towards non-word characters.
-        names = self.test_data.first_name.tolist()
-        result = []
-        i = 0
-        try:
-            while i < len(names):
-                result.extend(Genderize().get(names[i: i + 10]))
-                i += 10
-
-            result = pd.DataFrame(result)
-            result = result.rename(columns={"gender": "gender_infered"})
-            if len(result) == len(self.test_data):
-                self.test_data = pd.concat([self.test_data, result], axis=1)
-            else:
-                print("response from genderize.io contains less results than request. Try again?")
-            self.test_data.drop("name", axis=1, inplace=True)
-            self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f",
-                                                                  None: "u"}}, inplace=True)
-            self.gender_evaluator = 'genderize_io'
-        except GenderizeException as e:
-            print(e)
-
-    # def fetch_gender_from_nameapi(self):
-    #     names = self.test_data.
-    #     def build_json(name):
-    #         return {
-    #             "inputPerson": {
-    #                 "type": "NaturalInputPerson",
-    #                 "personName": {
-    #                     "nameFields": [
-    #                         {
-    #                             "string": name,
-    #                             "fieldType": "FULLNAME"
-    #                         }
-    #                     ]
-    #                 }
-    #             }
-    #         }
-    #
-    #     def build_url(api_key=NAMEAPI_KEY):
-    #         return "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey=" + api_key
-    #
-    #     responses = []
-    #     error_response = {'gender': 'error', 'confidence': 1.0}
-    #     url = build_url()
-    #     for n in names:
-    #         try:
-    #             query = build_json(n)
-    #             resp = requests.post(url, json=query)
-    #             resp.raise_for_status()
-    #             # Decode JSON response into a Python dict:
-    #             resp_dict = resp.json()
-    #             print(resp_dict)
-    #             responses.append(resp_dict)
-    #         except requests.exceptions.HTTPError as e:
-    #             print("Bad HTTP status code:", e)
-    #             responses.append(error_response)
-    #         except requests.exceptions.RequestException as e:
-    #             print("Network error:", e)
-    #             responses.append(error_response)
+    def _fetch_gender_from_api(self):
+        pass
 
     def compute_confusion_matrix(self):
         if self.gender_evaluator is not None:
