@@ -50,7 +50,10 @@ class GenderEvaluator(object):
         self.dump_test_data_with_gender_inference_to_file"""
         if self.gender_evaluator is None: 
             raise ValueError("Missing gender_evaluator needed to fetch the gender")
-        dump_file = self.file_path.rstrip('.csv') + '_' + self.gender_evaluator + '.csv'
+        # Name the dump file like the original but adding a _genderevaluator qualifier
+        # This works with all extensions, but later we sort of assume that the file is .csv 
+        filename, extension = os.path.splitext(self.file_path)
+        dump_file = filename + '_' + self.gender_evaluator + extension
         # Try opening the dump file, else resort to calling the API
         try:
             self.test_data = pd.read_csv(dump_file)
