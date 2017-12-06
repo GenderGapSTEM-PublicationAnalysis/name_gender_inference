@@ -22,7 +22,6 @@ class GenderEvaluator(object):
         if gender_evaluator in EVALUATORS or gender_evaluator is None:
             self.gender_evaluator = gender_evaluator
         else:
-            self.gender_evaluator = None
             raise ValueError("invalid gender_evaluator value. Attribute set to None.")
 
     def load_data(self):
