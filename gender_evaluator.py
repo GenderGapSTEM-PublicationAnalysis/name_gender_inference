@@ -5,6 +5,7 @@ import os
 import csv
 
 NAMEAPI_KEY = "bbbd8f9ba16f58f69ef21f8b6509aac8-user1"
+EVALUATORS = ["genderize_io", "names_api"]  # TODO: add new services
 
 
 class GenderEvaluator(object):
@@ -12,12 +13,17 @@ class GenderEvaluator(object):
         self.file_path = file_path
         self.test_data = pd.DataFrame()
         self.is_test_data_schema_correct = None
-        self.gender_evaluator = gender_evaluator
         self.confusion_matrix = None
         self.error_without_unknown = None
         self.error_with_unknown = None
         self.error_unknown = None
         self.error_gender_bias = None
+
+        if gender_evaluator in EVALUATORS or gender_evaluator is None:
+            self.gender_evaluator = gender_evaluator
+        else:
+            self.gender_evaluator = None
+            raise ValueError("invalid gender_evaluator value. Attribute set to None.")
 
     def load_data(self):
         try:
@@ -70,8 +76,7 @@ class GenderEvaluator(object):
             print('Reading data from dump file {}'.format(dump_file))
         except FileNotFoundError:
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
-            # TODO: abstract this from genderizeio and call a custom function depending
-            # on self.gender_evaluator    
+            # TODO: abstract this from genderizeio and call a custom function depending on self.gender_evaluator
             self.fetch_gender_from_genderizeio()
             if save_to_dump:
                 print('Saving data to dump file {}'.format(dump_file))
