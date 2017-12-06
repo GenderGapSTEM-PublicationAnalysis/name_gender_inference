@@ -1,6 +1,7 @@
 # TODO: document methods
 import pandas as pd
 from genderize import Genderize, GenderizeException
+import os
 import csv
 
 
@@ -25,8 +26,9 @@ class GenderEvaluator(object):
     def dump_test_data_with_gender_inference_to_file(self):
         # Decide that evaluation exists if column gender_infered is in test_data
         if 'gender_infered' in self.test_data.columns:
-            self.test_data.to_csv(self.file_path.rstrip('.csv') + '_' + \
-                                  self.gender_evaluator + '.csv', index=False,
+            filename, extension = os.path.splitext(self.file_path)
+            dump_file = filename + '_' + self.gender_evaluator + extension
+            self.test_data.to_csv(dump_file, index=False,
                                   quoting=csv.QUOTE_NONNUMERIC)
         else:
             print("Test data has not been evaluated yet, won't dump")
