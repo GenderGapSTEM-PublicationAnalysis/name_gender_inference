@@ -11784,7 +11784,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">genderize</span> <span class="k">import</span> <span class="n">Genderize</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">genderize</span> <span class="k">import</span> <span class="n">Genderize</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">gender_evaluator</span> <span class="k">import</span> <span class="n">GenderEvaluator</span>
 </pre></div>
@@ -11837,7 +11838,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[{&#39;name&#39;: &#39;Hans Joachim Schmidt&#39;, &#39;gender&#39;: None}, {&#39;name&#39;: &#39;Anna Meier&#39;, &#39;gender&#39;: None}]
+<pre>[{&#39;gender&#39;: None, &#39;name&#39;: &#39;Hans Joachim Schmidt&#39;}, {&#39;gender&#39;: None, &#39;name&#39;: &#39;Anna Meier&#39;}]
 </pre>
 </div>
 </div>
@@ -11891,14 +11892,14 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;name&#39;: &#39;Hans Joachim&#39;, &#39;gender&#39;: None}
-{&#39;name&#39;: &#39;Hans-Joachim&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 1}
-{&#39;name&#39;: &#39;Maria-José&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 2}
-{&#39;name&#39;: &#39;José Maria&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 3}
-{&#39;name&#39;: &#39;Jose Maria&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.99, &#39;count&#39;: 125}
-{&#39;name&#39;: &#39;José-Maria&#39;, &#39;gender&#39;: None}
-{&#39;name&#39;: &#39;Josémaria&#39;, &#39;gender&#39;: None}
-{&#39;name&#39;: &#39;theo c. m&#39;, &#39;gender&#39;: None}
+<pre>{&#39;gender&#39;: None, &#39;name&#39;: &#39;Hans Joachim&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 1, &#39;name&#39;: &#39;Hans-Joachim&#39;}
+{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 2, &#39;name&#39;: &#39;Maria-José&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 3, &#39;name&#39;: &#39;José Maria&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.99, &#39;count&#39;: 125, &#39;name&#39;: &#39;Jose Maria&#39;}
+{&#39;gender&#39;: None, &#39;name&#39;: &#39;José-Maria&#39;}
+{&#39;gender&#39;: None, &#39;name&#39;: &#39;Josémaria&#39;}
+{&#39;gender&#39;: None, &#39;name&#39;: &#39;theo c. m&#39;}
 </pre>
 </div>
 </div>
@@ -11966,13 +11967,13 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;name&#39;: &#39;Nicola&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.71, &#39;count&#39;: 1226}
-{&#39;name&#39;: &#39;Andrea&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.79, &#39;count&#39;: 5794}
-{&#39;name&#39;: &#39;Alex&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.87, &#39;count&#39;: 5856}
-{&#39;name&#39;: &#39;Mika&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.51, &#39;count&#39;: 182}
-{&#39;name&#39;: &#39;Addison&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.64, &#39;count&#39;: 11}
-{&#39;name&#39;: &#39;Ash&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.56, &#39;count&#39;: 243}
-{&#39;name&#39;: &#39;Dakota&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.75, &#39;count&#39;: 139}
+<pre>{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.71, &#39;count&#39;: 1226, &#39;name&#39;: &#39;Nicola&#39;}
+{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.79, &#39;count&#39;: 5794, &#39;name&#39;: &#39;Andrea&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.87, &#39;count&#39;: 5856, &#39;name&#39;: &#39;Alex&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.51, &#39;count&#39;: 182, &#39;name&#39;: &#39;Mika&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.64, &#39;count&#39;: 11, &#39;name&#39;: &#39;Addison&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.56, &#39;count&#39;: 243, &#39;name&#39;: &#39;Ash&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.75, &#39;count&#39;: 139, &#39;name&#39;: &#39;Dakota&#39;}
 </pre>
 </div>
 </div>
@@ -12038,12 +12039,12 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;name&#39;: &#39;the&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 1}
-{&#39;name&#39;: &#39;a&#39;, &#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.59, &#39;count&#39;: 56}
-{&#39;name&#39;: &#39;with&#39;, &#39;gender&#39;: None}
-{&#39;name&#39;: &#39;an&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.83, &#39;count&#39;: 170}
-{&#39;name&#39;: &#39;I&#39;, &#39;gender&#39;: None}
-{&#39;name&#39;: &#39;my&#39;, &#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.73, &#39;count&#39;: 44}
+<pre>{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 1.0, &#39;count&#39;: 1, &#39;name&#39;: &#39;the&#39;}
+{&#39;gender&#39;: &#39;male&#39;, &#39;probability&#39;: 0.59, &#39;count&#39;: 56, &#39;name&#39;: &#39;a&#39;}
+{&#39;gender&#39;: None, &#39;name&#39;: &#39;with&#39;}
+{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.83, &#39;count&#39;: 170, &#39;name&#39;: &#39;an&#39;}
+{&#39;gender&#39;: None, &#39;name&#39;: &#39;I&#39;}
+{&#39;gender&#39;: &#39;female&#39;, &#39;probability&#39;: 0.73, &#39;count&#39;: 44, &#39;name&#39;: &#39;my&#39;}
 </pre>
 </div>
 </div>
@@ -12127,6 +12128,7 @@ div#notebook {
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
     </tr>
   </thead>
@@ -12136,20 +12138,23 @@ div#notebook {
       <td>pierre</td>
       <td>paul</td>
       <td>grivel</td>
+      <td>pierre paul grivel</td>
       <td>m</td>
     </tr>
     <tr>
       <th>1</th>
       <td>raul</td>
-      <td>p</td>
+      <td>NaN</td>
       <td>serapioni</td>
+      <td>raul serapioni</td>
       <td>m</td>
     </tr>
     <tr>
       <th>2</th>
       <td>adriano</td>
-      <td>a</td>
+      <td>NaN</td>
       <td>moura</td>
+      <td>adriano moura</td>
       <td>m</td>
     </tr>
     <tr>
@@ -12157,6 +12162,7 @@ div#notebook {
       <td>ralf</td>
       <td>NaN</td>
       <td>kieser</td>
+      <td>ralf kieser</td>
       <td>m</td>
     </tr>
     <tr>
@@ -12164,6 +12170,7 @@ div#notebook {
       <td>teppei</td>
       <td>NaN</td>
       <td>ariyoshi</td>
+      <td>teppei ariyoshi</td>
       <td>u</td>
     </tr>
   </tbody>
@@ -12232,8 +12239,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Fetching gender data from API of service genderize_io
-Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
+<pre>Reading data from dump file test_data/test_data_zbmath_full_genderize_io.csv
 </pre>
 </div>
 </div>
@@ -12286,6 +12292,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
       <th>count</th>
       <th>gender_infered</th>
@@ -12298,6 +12305,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>pierre</td>
       <td>paul</td>
       <td>grivel</td>
+      <td>pierre paul grivel</td>
       <td>m</td>
       <td>852.0</td>
       <td>m</td>
@@ -12306,8 +12314,9 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
     <tr>
       <th>1</th>
       <td>raul</td>
-      <td>p</td>
+      <td>NaN</td>
       <td>serapioni</td>
+      <td>raul  serapioni</td>
       <td>m</td>
       <td>821.0</td>
       <td>m</td>
@@ -12316,8 +12325,9 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
     <tr>
       <th>2</th>
       <td>adriano</td>
-      <td>a</td>
+      <td>NaN</td>
       <td>moura</td>
+      <td>adriano  moura</td>
       <td>m</td>
       <td>166.0</td>
       <td>m</td>
@@ -12328,6 +12338,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>ralf</td>
       <td>NaN</td>
       <td>kieser</td>
+      <td>ralf  kieser</td>
       <td>m</td>
       <td>86.0</td>
       <td>m</td>
@@ -12338,6 +12349,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>teppei</td>
       <td>NaN</td>
       <td>ariyoshi</td>
+      <td>teppei  ariyoshi</td>
       <td>u</td>
       <td>NaN</td>
       <td>u</td>
@@ -12462,10 +12474,233 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>65</th>
+      <td>jungmin</td>
+      <td>NaN</td>
+      <td>ahn</td>
+      <td>jungmin  ahn</td>
+      <td>m</td>
+      <td>9.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>taro</td>
+      <td>NaN</td>
+      <td>takimoto</td>
+      <td>taro  takimoto</td>
+      <td>m</td>
+      <td>19.0</td>
+      <td>f</td>
+      <td>0.58</td>
+    </tr>
+    <tr>
+      <th>326</th>
+      <td>yuan</td>
+      <td>NaN</td>
+      <td>xu</td>
+      <td>yuan  xu</td>
+      <td>m</td>
+      <td>69.0</td>
+      <td>f</td>
+      <td>0.71</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Show names for which human said 'u' but algorithm said 'f' or 'm'</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>315</th>
+      <td>rosario</td>
+      <td>NaN</td>
+      <td>di-nardo</td>
+      <td>rosario  di-nardo</td>
+      <td>u</td>
+      <td>343.0</td>
+      <td>f</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>357</th>
+      <td>cai</td>
+      <td>gui</td>
+      <td>liu</td>
+      <td>cai gui liu</td>
+      <td>u</td>
+      <td>54.0</td>
+      <td>f</td>
+      <td>0.76</td>
+    </tr>
+    <tr>
+      <th>373</th>
+      <td>cheng</td>
+      <td>wei</td>
+      <td>chen</td>
+      <td>cheng wei chen</td>
+      <td>u</td>
+      <td>84.0</td>
+      <td>f</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>382</th>
+      <td>yamin</td>
+      <td>NaN</td>
+      <td>ma</td>
+      <td>yamin  ma</td>
+      <td>u</td>
+      <td>2.0</td>
+      <td>f</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>tack</td>
+      <td>wang</td>
+      <td>lee</td>
+      <td>tack wang lee</td>
+      <td>u</td>
+      <td>2.0</td>
+      <td>f</td>
+      <td>0.50</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12504,219 +12739,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
-      <th>gender</th>
-      <th>count</th>
-      <th>gender_infered</th>
-      <th>probability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>65</th>
-      <td>jungmin</td>
-      <td>NaN</td>
-      <td>ahn</td>
-      <td>m</td>
-      <td>9.0</td>
-      <td>f</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>176</th>
-      <td>taro</td>
-      <td>NaN</td>
-      <td>takimoto</td>
-      <td>m</td>
-      <td>19.0</td>
-      <td>f</td>
-      <td>0.58</td>
-    </tr>
-    <tr>
-      <th>326</th>
-      <td>yuan</td>
-      <td>NaN</td>
-      <td>xu</td>
-      <td>m</td>
-      <td>69.0</td>
-      <td>f</td>
-      <td>0.71</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Show names for which human said 'u' but algorithm said 'f' or 'm'</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[20]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>first_name</th>
-      <th>middle_name</th>
-      <th>last_name</th>
-      <th>gender</th>
-      <th>count</th>
-      <th>gender_infered</th>
-      <th>probability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>315</th>
-      <td>rosario</td>
-      <td>NaN</td>
-      <td>di-nardo</td>
-      <td>u</td>
-      <td>343.0</td>
-      <td>f</td>
-      <td>0.75</td>
-    </tr>
-    <tr>
-      <th>357</th>
-      <td>cai</td>
-      <td>gui</td>
-      <td>liu</td>
-      <td>u</td>
-      <td>54.0</td>
-      <td>f</td>
-      <td>0.76</td>
-    </tr>
-    <tr>
-      <th>373</th>
-      <td>cheng</td>
-      <td>wei</td>
-      <td>chen</td>
-      <td>u</td>
-      <td>84.0</td>
-      <td>f</td>
-      <td>0.57</td>
-    </tr>
-    <tr>
-      <th>382</th>
-      <td>yamin</td>
-      <td>NaN</td>
-      <td>ma</td>
-      <td>u</td>
-      <td>2.0</td>
-      <td>f</td>
-      <td>0.50</td>
-    </tr>
-    <tr>
-      <th>389</th>
-      <td>tack</td>
-      <td>wang</td>
-      <td>lee</td>
-      <td>u</td>
-      <td>2.0</td>
-      <td>f</td>
-      <td>0.50</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[21]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>first_name</th>
-      <th>middle_name</th>
-      <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
       <th>count</th>
       <th>gender_infered</th>
@@ -12727,8 +12750,9 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
     <tr>
       <th>10</th>
       <td>sushil</td>
-      <td>k</td>
+      <td>NaN</td>
       <td>singh</td>
+      <td>sushil  singh</td>
       <td>u</td>
       <td>91.0</td>
       <td>m</td>
@@ -12739,6 +12763,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>seiya</td>
       <td>NaN</td>
       <td>haze</td>
+      <td>seiya  haze</td>
       <td>u</td>
       <td>5.0</td>
       <td>m</td>
@@ -12749,6 +12774,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>jae</td>
       <td>il</td>
       <td>lee</td>
+      <td>jae il lee</td>
       <td>u</td>
       <td>90.0</td>
       <td>m</td>
@@ -12759,6 +12785,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>koji</td>
       <td>NaN</td>
       <td>okuguchi</td>
+      <td>koji  okuguchi</td>
       <td>u</td>
       <td>10.0</td>
       <td>m</td>
@@ -12769,6 +12796,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>takashi</td>
       <td>NaN</td>
       <td>amisaki</td>
+      <td>takashi  amisaki</td>
       <td>u</td>
       <td>16.0</td>
       <td>m</td>
@@ -12779,6 +12807,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>shoichi</td>
       <td>NaN</td>
       <td>suzuki</td>
+      <td>shoichi  suzuki</td>
       <td>u</td>
       <td>5.0</td>
       <td>m</td>
@@ -12789,6 +12818,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>makoto</td>
       <td>NaN</td>
       <td>idzumi</td>
+      <td>makoto  idzumi</td>
       <td>u</td>
       <td>28.0</td>
       <td>m</td>
@@ -12799,6 +12829,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>lutfi</td>
       <td>NaN</td>
       <td>avazpour</td>
+      <td>lutfi  avazpour</td>
       <td>u</td>
       <td>25.0</td>
       <td>m</td>
@@ -12809,6 +12840,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>cuong</td>
       <td>NaN</td>
       <td>le</td>
+      <td>cuong  le</td>
       <td>u</td>
       <td>53.0</td>
       <td>m</td>
@@ -12819,6 +12851,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>sung</td>
       <td>hoon</td>
       <td>hong</td>
+      <td>sung hoon hong</td>
       <td>u</td>
       <td>31.0</td>
       <td>m</td>
@@ -12829,6 +12862,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>rama</td>
       <td>NaN</td>
       <td>shankar</td>
+      <td>rama  shankar</td>
       <td>u</td>
       <td>62.0</td>
       <td>m</td>
@@ -12839,6 +12873,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>asim</td>
       <td>kumar</td>
       <td>mandal</td>
+      <td>asim kumar mandal</td>
       <td>u</td>
       <td>75.0</td>
       <td>m</td>
@@ -12849,6 +12884,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>ori</td>
       <td>NaN</td>
       <td>kfir</td>
+      <td>ori  kfir</td>
       <td>u</td>
       <td>46.0</td>
       <td>m</td>
@@ -12859,6 +12895,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>abdel</td>
       <td>hadi</td>
       <td>ahmed</td>
+      <td>abdel hadi ahmed</td>
       <td>u</td>
       <td>84.0</td>
       <td>m</td>
@@ -12869,6 +12906,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>huy</td>
       <td>thang</td>
       <td>cao</td>
+      <td>huy thang cao</td>
       <td>u</td>
       <td>40.0</td>
       <td>m</td>
@@ -12879,6 +12917,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>ben</td>
       <td>da</td>
       <td>zhou</td>
+      <td>ben da zhou</td>
       <td>u</td>
       <td>3363.0</td>
       <td>m</td>
@@ -12889,6 +12928,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>po</td>
       <td>NaN</td>
       <td>zhang</td>
+      <td>po  zhang</td>
       <td>u</td>
       <td>45.0</td>
       <td>m</td>
@@ -12899,6 +12939,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>hon</td>
       <td>kit</td>
       <td>wai</td>
+      <td>hon kit wai</td>
       <td>u</td>
       <td>16.0</td>
       <td>m</td>
@@ -12909,6 +12950,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>bao</td>
       <td>wen</td>
       <td>sun</td>
+      <td>bao wen sun</td>
       <td>u</td>
       <td>42.0</td>
       <td>m</td>
@@ -12919,6 +12961,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>byoung</td>
       <td>chan</td>
       <td>lee</td>
+      <td>byoung chan lee</td>
       <td>u</td>
       <td>1.0</td>
       <td>m</td>
@@ -12929,6 +12972,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>jacques</td>
       <td>NaN</td>
       <td>pontier</td>
+      <td>jacques  pontier</td>
       <td>u</td>
       <td>280.0</td>
       <td>m</td>
@@ -12937,8 +12981,9 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
     <tr>
       <th>324</th>
       <td>michael</td>
-      <td>p</td>
+      <td>NaN</td>
       <td>robertson</td>
+      <td>michael  robertson</td>
       <td>u</td>
       <td>11094.0</td>
       <td>m</td>
@@ -12949,6 +12994,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>chao</td>
       <td>zhu</td>
       <td>zhang</td>
+      <td>chao zhu zhang</td>
       <td>u</td>
       <td>16.0</td>
       <td>m</td>
@@ -12959,6 +13005,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>wai</td>
       <td>king</td>
       <td>ching</td>
+      <td>wai king ching</td>
       <td>u</td>
       <td>78.0</td>
       <td>m</td>
@@ -12969,6 +13016,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>dae</td>
       <td>NaN</td>
       <td>jong</td>
+      <td>dae  jong</td>
       <td>u</td>
       <td>4.0</td>
       <td>m</td>
@@ -12979,6 +13027,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
       <td>yahya</td>
       <td>NaN</td>
       <td>mezroui</td>
+      <td>yahya  mezroui</td>
       <td>u</td>
       <td>116.0</td>
       <td>m</td>
@@ -12987,8 +13036,9 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
     <tr>
       <th>396</th>
       <td>francis</td>
-      <td>j</td>
+      <td>NaN</td>
       <td>leahy</td>
+      <td>francis  leahy</td>
       <td>u</td>
       <td>680.0</td>
       <td>m</td>
@@ -13016,7 +13066,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zbmath</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
@@ -13032,7 +13082,7 @@ Saving data to dump file test_data/test_data_zbmath_full_genderize_io.csv
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">zbmath</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
@@ -13077,7 +13127,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span> <span class="o">=</span> <span class="n">GenderEvaluator</span><span class="p">(</span><span class="s2">&quot;test_data/test_data_genderizeR.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;genderize_io&quot;</span><span class="p">)</span>
@@ -13085,6 +13135,143 @@ error where negative value suggestes that more women than men are missclassified
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Thayer, Ann</td>
+      <td>ann</td>
+      <td>NaN</td>
+      <td>thayer</td>
+      <td>ann thayer</td>
+      <td>u</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chiesa, Paolo</td>
+      <td>paolo</td>
+      <td>NaN</td>
+      <td>chiesa</td>
+      <td>paolo chiesa</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Abbate, Ernesto</td>
+      <td>ernesto</td>
+      <td>NaN</td>
+      <td>abbate</td>
+      <td>ernesto abbate</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Epstein, John H.</td>
+      <td>john</td>
+      <td>NaN</td>
+      <td>epstein</td>
+      <td>john epstein</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cotroneo, Margaret</td>
+      <td>margaret</td>
+      <td>NaN</td>
+      <td>cotroneo</td>
+      <td>margaret cotroneo</td>
+      <td>f</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">fetch_gender</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Reading data from dump file test_data/test_data_genderizeR_genderize_io.csv
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13134,137 +13321,7 @@ error where negative value suggestes that more women than men are missclassified
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
-      <th>gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Thayer, Ann</td>
-      <td>ann</td>
-      <td>NaN</td>
-      <td>thayer</td>
-      <td>u</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Chiesa, Paolo</td>
-      <td>paolo</td>
-      <td>NaN</td>
-      <td>chiesa</td>
-      <td>m</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Abbate, Ernesto</td>
-      <td>ernesto</td>
-      <td>NaN</td>
-      <td>abbate</td>
-      <td>m</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Epstein, John H.</td>
-      <td>john</td>
-      <td>NaN</td>
-      <td>epstein</td>
-      <td>m</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Cotroneo, Margaret</td>
-      <td>margaret</td>
-      <td>NaN</td>
-      <td>cotroneo</td>
-      <td>f</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">fetch_gender</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Reading data from dump file test_data/test_data_genderizeR_genderize_io.csv
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[27]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>raw_name</th>
-      <th>first_name</th>
-      <th>middle_name</th>
-      <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
       <th>count</th>
       <th>gender_infered</th>
@@ -13278,6 +13335,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>ann</td>
       <td>NaN</td>
       <td>thayer</td>
+      <td>ann thayer</td>
       <td>u</td>
       <td>1818.0</td>
       <td>f</td>
@@ -13289,6 +13347,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>paolo</td>
       <td>NaN</td>
       <td>chiesa</td>
+      <td>paolo chiesa</td>
       <td>m</td>
       <td>781.0</td>
       <td>m</td>
@@ -13300,6 +13359,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>ernesto</td>
       <td>NaN</td>
       <td>abbate</td>
+      <td>ernesto abbate</td>
       <td>m</td>
       <td>381.0</td>
       <td>m</td>
@@ -13311,6 +13371,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>john</td>
       <td>NaN</td>
       <td>epstein</td>
+      <td>john epstein</td>
       <td>m</td>
       <td>9931.0</td>
       <td>m</td>
@@ -13322,6 +13383,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>margaret</td>
       <td>NaN</td>
       <td>cotroneo</td>
+      <td>margaret cotroneo</td>
       <td>f</td>
       <td>1101.0</td>
       <td>f</td>
@@ -13348,7 +13410,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_confusion_matrix</span><span class="p">()</span>
@@ -13361,7 +13423,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">confusion_matrix</span>
@@ -13377,7 +13439,7 @@ error where negative value suggestes that more women than men are missclassified
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -13437,7 +13499,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
@@ -13453,12 +13515,25 @@ error where negative value suggestes that more women than men are missclassified
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[28]:</div>
 
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13467,6 +13542,7 @@ error where negative value suggestes that more women than men are missclassified
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
       <th>count</th>
       <th>gender_infered</th>
@@ -13480,6 +13556,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>ann</td>
       <td>NaN</td>
       <td>thayer</td>
+      <td>ann thayer</td>
       <td>u</td>
       <td>1818.0</td>
       <td>f</td>
@@ -13491,6 +13568,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>judith</td>
       <td>louisa</td>
       <td>schmid</td>
+      <td>judith louisa schmid</td>
       <td>u</td>
       <td>750.0</td>
       <td>f</td>
@@ -13502,6 +13580,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>molly</td>
       <td>NaN</td>
       <td>haight</td>
+      <td>molly haight</td>
       <td>u</td>
       <td>780.0</td>
       <td>f</td>
@@ -13513,6 +13592,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>lisa</td>
       <td>NaN</td>
       <td>harlow</td>
+      <td>lisa harlow</td>
       <td>u</td>
       <td>6394.0</td>
       <td>f</td>
@@ -13524,6 +13604,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>sarah</td>
       <td>NaN</td>
       <td>reid</td>
+      <td>sarah reid</td>
       <td>u</td>
       <td>8371.0</td>
       <td>f</td>
@@ -13535,6 +13616,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>judy</td>
       <td>NaN</td>
       <td>canning-glass</td>
+      <td>judy canning-glass</td>
       <td>u</td>
       <td>1375.0</td>
       <td>f</td>
@@ -13546,6 +13628,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>selina</td>
       <td>NaN</td>
       <td>lo</td>
+      <td>selina lo</td>
       <td>u</td>
       <td>176.0</td>
       <td>f</td>
@@ -13557,6 +13640,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>linda</td>
       <td>esther</td>
       <td>oray</td>
+      <td>linda esther oray</td>
       <td>u</td>
       <td>4323.0</td>
       <td>f</td>
@@ -13568,6 +13652,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>anita</td>
       <td>NaN</td>
       <td>money</td>
+      <td>anita money</td>
       <td>u</td>
       <td>1519.0</td>
       <td>f</td>
@@ -13579,6 +13664,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>robin</td>
       <td>NaN</td>
       <td>giesecke</td>
+      <td>robin giesecke</td>
       <td>u</td>
       <td>1628.0</td>
       <td>f</td>
@@ -13590,6 +13676,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>karen</td>
       <td>NaN</td>
       <td>sampson</td>
+      <td>karen sampson</td>
       <td>u</td>
       <td>5462.0</td>
       <td>f</td>
@@ -13601,6 +13688,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>jean</td>
       <td>NaN</td>
       <td>panniker</td>
+      <td>jean panniker</td>
       <td>u</td>
       <td>1523.0</td>
       <td>f</td>
@@ -13612,6 +13700,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>diana</td>
       <td>NaN</td>
       <td>siggers</td>
+      <td>diana siggers</td>
       <td>u</td>
       <td>2885.0</td>
       <td>f</td>
@@ -13623,6 +13712,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>ga</td>
       <td>NaN</td>
       <td>wood</td>
+      <td>ga wood</td>
       <td>u</td>
       <td>47.0</td>
       <td>f</td>
@@ -13634,6 +13724,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>nina</td>
       <td>NaN</td>
       <td>alovert</td>
+      <td>nina alovert</td>
       <td>u</td>
       <td>1434.0</td>
       <td>f</td>
@@ -13645,6 +13736,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>dusanka</td>
       <td>savic</td>
       <td>pavicevic</td>
+      <td>dusanka savic pavicevic</td>
       <td>u</td>
       <td>3.0</td>
       <td>f</td>
@@ -13656,6 +13748,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>stanka</td>
       <td>NaN</td>
       <td>romac</td>
+      <td>stanka romac</td>
       <td>u</td>
       <td>7.0</td>
       <td>f</td>
@@ -13667,6 +13760,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>elizabeth</td>
       <td>NaN</td>
       <td>cooke</td>
+      <td>elizabeth cooke</td>
       <td>u</td>
       <td>3508.0</td>
       <td>f</td>
@@ -13678,6 +13772,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>nicole</td>
       <td>NaN</td>
       <td>cazauran</td>
+      <td>nicole cazauran</td>
       <td>u</td>
       <td>4042.0</td>
       <td>f</td>
@@ -13689,6 +13784,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>edith</td>
       <td>NaN</td>
       <td>cassel</td>
+      <td>edith cassel</td>
       <td>u</td>
       <td>373.0</td>
       <td>f</td>
@@ -13700,6 +13796,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>constance</td>
       <td>NaN</td>
       <td>ross</td>
+      <td>constance ross</td>
       <td>u</td>
       <td>120.0</td>
       <td>f</td>
@@ -13711,6 +13808,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>florence</td>
       <td>NaN</td>
       <td>lambert</td>
+      <td>florence lambert</td>
       <td>u</td>
       <td>538.0</td>
       <td>f</td>
@@ -13722,6 +13820,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>isabelle</td>
       <td>NaN</td>
       <td>amin</td>
+      <td>isabelle amin</td>
       <td>u</td>
       <td>867.0</td>
       <td>f</td>
@@ -13733,6 +13832,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>gladys</td>
       <td>NaN</td>
       <td>brazil</td>
+      <td>gladys brazil</td>
       <td>u</td>
       <td>382.0</td>
       <td>f</td>
@@ -13744,6 +13844,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>ellen</td>
       <td>NaN</td>
       <td>brun</td>
+      <td>ellen brun</td>
       <td>u</td>
       <td>942.0</td>
       <td>f</td>
@@ -13755,6 +13856,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>rajani</td>
       <td>NaN</td>
       <td>desai</td>
+      <td>rajani desai</td>
       <td>u</td>
       <td>9.0</td>
       <td>f</td>
@@ -13766,6 +13868,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>charlotte</td>
       <td>pomerantz</td>
       <td>marzani</td>
+      <td>charlotte pomerantz marzani</td>
       <td>u</td>
       <td>1926.0</td>
       <td>f</td>
@@ -13777,6 +13880,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>jeanne</td>
       <td>NaN</td>
       <td>singer</td>
+      <td>jeanne singer</td>
       <td>u</td>
       <td>449.0</td>
       <td>f</td>
@@ -13788,6 +13892,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>martha</td>
       <td>NaN</td>
       <td>sweezy</td>
+      <td>martha sweezy</td>
       <td>u</td>
       <td>1169.0</td>
       <td>f</td>
@@ -13799,6 +13904,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>melissa</td>
       <td>NaN</td>
       <td>marino</td>
+      <td>melissa marino</td>
       <td>u</td>
       <td>4400.0</td>
       <td>f</td>
@@ -13810,6 +13916,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>chantal</td>
       <td>NaN</td>
       <td>metzger</td>
+      <td>chantal metzger</td>
       <td>u</td>
       <td>473.0</td>
       <td>f</td>
@@ -13821,6 +13928,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>elisabeth</td>
       <td>NaN</td>
       <td>pain</td>
+      <td>elisabeth pain</td>
       <td>u</td>
       <td>570.0</td>
       <td>f</td>
@@ -13832,6 +13940,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>stephanie</td>
       <td>NaN</td>
       <td>cash</td>
+      <td>stephanie cash</td>
       <td>u</td>
       <td>4114.0</td>
       <td>f</td>
@@ -13843,6 +13952,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>margaret</td>
       <td>NaN</td>
       <td>sprott</td>
+      <td>margaret sprott</td>
       <td>u</td>
       <td>1101.0</td>
       <td>f</td>
@@ -13854,6 +13964,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>stephanie</td>
       <td>NaN</td>
       <td>cash</td>
+      <td>stephanie cash</td>
       <td>u</td>
       <td>4114.0</td>
       <td>f</td>
@@ -13865,6 +13976,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>jules</td>
       <td>NaN</td>
       <td>lai</td>
+      <td>jules lai</td>
       <td>u</td>
       <td>210.0</td>
       <td>f</td>
@@ -13876,6 +13988,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>christine</td>
       <td>NaN</td>
       <td>bigby</td>
+      <td>christine bigby</td>
       <td>u</td>
       <td>3115.0</td>
       <td>f</td>
@@ -13887,6 +14000,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>eleanor</td>
       <td>NaN</td>
       <td>zurbrigg</td>
+      <td>eleanor zurbrigg</td>
       <td>u</td>
       <td>263.0</td>
       <td>f</td>
@@ -13898,6 +14012,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>atri</td>
       <td>NaN</td>
       <td>mukhopadiyay</td>
+      <td>atri mukhopadiyay</td>
       <td>u</td>
       <td>1.0</td>
       <td>f</td>
@@ -13909,6 +14024,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>pavla</td>
       <td>NaN</td>
       <td>pukl</td>
+      <td>pavla pukl</td>
       <td>u</td>
       <td>40.0</td>
       <td>f</td>
@@ -13920,6 +14036,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>angela</td>
       <td>NaN</td>
       <td>campling</td>
+      <td>angela campling</td>
       <td>u</td>
       <td>3511.0</td>
       <td>f</td>
@@ -13931,6 +14048,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>patricia</td>
       <td>NaN</td>
       <td>clee</td>
+      <td>patricia clee</td>
       <td>u</td>
       <td>3488.0</td>
       <td>f</td>
@@ -13942,6 +14060,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>mary</td>
       <td>rose</td>
       <td>couper</td>
+      <td>mary rose couper</td>
       <td>u</td>
       <td>4440.0</td>
       <td>f</td>
@@ -13953,6 +14072,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>dawne</td>
       <td>NaN</td>
       <td>jordan</td>
+      <td>dawne jordan</td>
       <td>u</td>
       <td>16.0</td>
       <td>f</td>
@@ -13964,6 +14084,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>alison</td>
       <td>NaN</td>
       <td>cook</td>
+      <td>alison cook</td>
       <td>u</td>
       <td>1288.0</td>
       <td>f</td>
@@ -13975,6 +14096,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>alice</td>
       <td>NaN</td>
       <td>helpern</td>
+      <td>alice helpern</td>
       <td>u</td>
       <td>1414.0</td>
       <td>f</td>
@@ -13986,6 +14108,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>sonja</td>
       <td>NaN</td>
       <td>iskric</td>
+      <td>sonja iskric</td>
       <td>u</td>
       <td>372.0</td>
       <td>f</td>
@@ -13997,6 +14120,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>mercedes</td>
       <td>NaN</td>
       <td>wrischer</td>
+      <td>mercedes wrischer</td>
       <td>u</td>
       <td>429.0</td>
       <td>f</td>
@@ -14008,6 +14132,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>una</td>
       <td>NaN</td>
       <td>lawrence</td>
+      <td>una lawrence</td>
       <td>u</td>
       <td>69.0</td>
       <td>f</td>
@@ -14019,6 +14144,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>cindy</td>
       <td>fabian</td>
       <td>mascone</td>
+      <td>cindy fabian mascone</td>
       <td>u</td>
       <td>2477.0</td>
       <td>f</td>
@@ -14030,6 +14156,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>olga</td>
       <td>NaN</td>
       <td>kolenc</td>
+      <td>olga kolenc</td>
       <td>u</td>
       <td>898.0</td>
       <td>f</td>
@@ -14057,10 +14184,119 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>325</th>
+      <td>Parvati, Comrade</td>
+      <td>comrade</td>
+      <td>NaN</td>
+      <td>parvati</td>
+      <td>comrade parvati</td>
+      <td>f</td>
+      <td>1.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>327</th>
+      <td>Quick, Paddy</td>
+      <td>paddy</td>
+      <td>NaN</td>
+      <td>quick</td>
+      <td>paddy quick</td>
+      <td>f</td>
+      <td>91.0</td>
+      <td>m</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <th>542</th>
+      <td>Ljubesic, Nikola</td>
+      <td>nikola</td>
+      <td>NaN</td>
+      <td>ljubesic</td>
+      <td>nikola ljubesic</td>
+      <td>f</td>
+      <td>301.0</td>
+      <td>m</td>
+      <td>0.83</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>error in 'ground truth data':  'Nikola Ljubešić' is 'm':</strong> <a href="https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en">https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14100,111 +14336,7 @@ error where negative value suggestes that more women than men are missclassified
       <th>first_name</th>
       <th>middle_name</th>
       <th>last_name</th>
-      <th>gender</th>
-      <th>count</th>
-      <th>gender_infered</th>
-      <th>probability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>325</th>
-      <td>Parvati, Comrade</td>
-      <td>comrade</td>
-      <td>NaN</td>
-      <td>parvati</td>
-      <td>f</td>
-      <td>1.0</td>
-      <td>m</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>327</th>
-      <td>Quick, Paddy</td>
-      <td>paddy</td>
-      <td>NaN</td>
-      <td>quick</td>
-      <td>f</td>
-      <td>91.0</td>
-      <td>m</td>
-      <td>0.89</td>
-    </tr>
-    <tr>
-      <th>542</th>
-      <td>Ljubesic, Nikola</td>
-      <td>nikola</td>
-      <td>NaN</td>
-      <td>ljubesic</td>
-      <td>f</td>
-      <td>301.0</td>
-      <td>m</td>
-      <td>0.83</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>error in 'ground truth data':  'Nikola Ljubešić' is 'm':</strong> <a href="https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en">https://scholar.google.hr/citations?user=zto4fTQAAAAJ&amp;hl=en</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[31]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>raw_name</th>
-      <th>first_name</th>
-      <th>middle_name</th>
-      <th>last_name</th>
+      <th>full_name</th>
       <th>gender</th>
       <th>count</th>
       <th>gender_infered</th>
@@ -14218,6 +14350,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>robin</td>
       <td>NaN</td>
       <td>shakeshaft</td>
+      <td>robin shakeshaft</td>
       <td>m</td>
       <td>1628.0</td>
       <td>f</td>
@@ -14229,6 +14362,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>lilien</td>
       <td>NaN</td>
       <td>ji</td>
+      <td>lilien ji</td>
       <td>m</td>
       <td>1.0</td>
       <td>f</td>
@@ -14240,6 +14374,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>andrea</td>
       <td>NaN</td>
       <td>bianco</td>
+      <td>andrea bianco</td>
       <td>m</td>
       <td>5794.0</td>
       <td>f</td>
@@ -14251,6 +14386,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>kalman</td>
       <td>NaN</td>
       <td>kovacs</td>
+      <td>kalman kovacs</td>
       <td>m</td>
       <td>19.0</td>
       <td>f</td>
@@ -14262,6 +14398,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>jean</td>
       <td>louis</td>
       <td>pujol</td>
+      <td>jean louis pujol</td>
       <td>m</td>
       <td>1523.0</td>
       <td>f</td>
@@ -14273,6 +14410,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>jean</td>
       <td>pierre</td>
       <td>bardon</td>
+      <td>jean pierre bardon</td>
       <td>m</td>
       <td>1523.0</td>
       <td>f</td>
@@ -14284,6 +14422,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>margaret</td>
       <td>NaN</td>
       <td>shupnik</td>
+      <td>margaret shupnik</td>
       <td>m</td>
       <td>1101.0</td>
       <td>f</td>
@@ -14295,6 +14434,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>gerd</td>
       <td>NaN</td>
       <td>hartmann</td>
+      <td>gerd hartmann</td>
       <td>m</td>
       <td>54.0</td>
       <td>f</td>
@@ -14306,6 +14446,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>sharon</td>
       <td>NaN</td>
       <td>franks</td>
+      <td>sharon franks</td>
       <td>m</td>
       <td>2760.0</td>
       <td>f</td>
@@ -14317,6 +14458,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>peyton</td>
       <td>NaN</td>
       <td>weary</td>
+      <td>peyton weary</td>
       <td>m</td>
       <td>37.0</td>
       <td>f</td>
@@ -14328,6 +14470,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>kimball</td>
       <td>NaN</td>
       <td>milton</td>
+      <td>kimball milton</td>
       <td>m</td>
       <td>1.0</td>
       <td>f</td>
@@ -14339,6 +14482,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>enid</td>
       <td>NaN</td>
       <td>michael</td>
+      <td>enid michael</td>
       <td>m</td>
       <td>39.0</td>
       <td>f</td>
@@ -14350,6 +14494,7 @@ error where negative value suggestes that more women than men are missclassified
       <td>arlene</td>
       <td>NaN</td>
       <td>goldberg-gist</td>
+      <td>arlene goldberg-gist</td>
       <td>m</td>
       <td>271.0</td>
       <td>f</td>
@@ -14368,7 +14513,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;jean-louis&#39;</span><span class="p">,</span> <span class="s1">&#39;jean-pierre&#39;</span><span class="p">])</span>
@@ -14384,7 +14529,7 @@ error where negative value suggestes that more women than men are missclassified
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -14412,7 +14557,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
@@ -14428,13 +14573,13 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error ignoring prediction as &#39;unknown gender&#39; : &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_without_unknown</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting proportion of names with unpredicted gender: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_unknown</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error where negative value suggestes that more women than men are missclassified: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_gender_bias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error where negative value suggests that more women than men are missclassified: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_gender_bias</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14454,7 +14599,920 @@ error where negative value suggestes that more women than men are missclassified
 <pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.0932642487047
 error ignoring prediction as &#39;unknown gender&#39; :  0.0398009950249
 error counting proportion of names with unpredicted gender:  0.0473933649289
-error where negative value suggestes that more women than men are missclassified:  0.0398009950249
+error where negative value suggests that more women than men are missclassified:  0.0398009950249
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-on-genderizeR-paper-data---titles-data">Test on genderizeR paper data - titles data<a class="anchor-link" href="#Test-on-genderizeR-paper-data---titles-data">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span> <span class="o">=</span> <span class="n">GenderEvaluator</span><span class="p">(</span><span class="s2">&quot;test_data/test_data_genderizeR_titles.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;genderize_io&quot;</span><span class="p">)</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[35]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nancy Mary Adams</td>
+      <td>nancy</td>
+      <td>mary</td>
+      <td>adams</td>
+      <td>nancy mary adams</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lloyd R Sutherland</td>
+      <td>lloyd</td>
+      <td>NaN</td>
+      <td>sutherland</td>
+      <td>lloyd  sutherland</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>John H. Hubbell</td>
+      <td>john</td>
+      <td>NaN</td>
+      <td>hubbell</td>
+      <td>john  hubbell</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Frank Kyte</td>
+      <td>frank</td>
+      <td>NaN</td>
+      <td>kyte</td>
+      <td>frank  kyte</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Nobuo Tanaka</td>
+      <td>nobuo</td>
+      <td>NaN</td>
+      <td>tanaka</td>
+      <td>nobuo  tanaka</td>
+      <td>m</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">fetch_gender</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Reading data from dump file test_data/test_data_genderizeR_titles_genderize_io.csv
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">test_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[37]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nancy Mary Adams</td>
+      <td>nancy</td>
+      <td>mary</td>
+      <td>adams</td>
+      <td>nancy mary adams</td>
+      <td>f</td>
+      <td>2716.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lloyd R Sutherland</td>
+      <td>lloyd</td>
+      <td>NaN</td>
+      <td>sutherland</td>
+      <td>lloyd  sutherland</td>
+      <td>m</td>
+      <td>159.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>John H. Hubbell</td>
+      <td>john</td>
+      <td>NaN</td>
+      <td>hubbell</td>
+      <td>john  hubbell</td>
+      <td>m</td>
+      <td>9931.0</td>
+      <td>m</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Frank Kyte</td>
+      <td>frank</td>
+      <td>NaN</td>
+      <td>kyte</td>
+      <td>frank  kyte</td>
+      <td>m</td>
+      <td>1565.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Nobuo Tanaka</td>
+      <td>nobuo</td>
+      <td>NaN</td>
+      <td>tanaka</td>
+      <td>nobuo  tanaka</td>
+      <td>m</td>
+      <td>NaN</td>
+      <td>u</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Compute-metrics-on-genderizeR-paper-data">Compute metrics on genderizeR paper data<a class="anchor-link" href="#Compute-metrics-on-genderizeR-paper-data">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_confusion_matrix</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">confusion_matrix</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[39]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>f_pred</th>
+      <th>m_pred</th>
+      <th>u_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>f</th>
+      <td>57</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>15</td>
+      <td>398</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>u</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[40]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[41]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>142</th>
+      <td>Kennedy Shriver</td>
+      <td>kennedy</td>
+      <td>NaN</td>
+      <td>shriver</td>
+      <td>kennedy  shriver</td>
+      <td>f</td>
+      <td>37.0</td>
+      <td>m</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>Smith Taylor</td>
+      <td>smith</td>
+      <td>NaN</td>
+      <td>taylor</td>
+      <td>smith  taylor</td>
+      <td>f</td>
+      <td>28.0</td>
+      <td>m</td>
+      <td>0.68</td>
+    </tr>
+    <tr>
+      <th>233</th>
+      <td>Wang Xiaotang</td>
+      <td>wang</td>
+      <td>NaN</td>
+      <td>xiaotang</td>
+      <td>wang  xiaotang</td>
+      <td>f</td>
+      <td>54.0</td>
+      <td>m</td>
+      <td>0.74</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>Carlson Muyskens</td>
+      <td>carlson</td>
+      <td>NaN</td>
+      <td>muyskens</td>
+      <td>carlson  muyskens</td>
+      <td>f</td>
+      <td>1.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>Edwin B. Newman</td>
+      <td>edwin</td>
+      <td>NaN</td>
+      <td>newman</td>
+      <td>edwin  newman</td>
+      <td>f</td>
+      <td>819.0</td>
+      <td>m</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>418</th>
+      <td>Levi Montalcini</td>
+      <td>levi</td>
+      <td>NaN</td>
+      <td>montalcini</td>
+      <td>levi  montalcini</td>
+      <td>f</td>
+      <td>139.0</td>
+      <td>m</td>
+      <td>0.95</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compare_ground_truth_with_inference</span><span class="p">(</span><span class="n">true_gender</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[42]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_name</th>
+      <th>first_name</th>
+      <th>middle_name</th>
+      <th>last_name</th>
+      <th>full_name</th>
+      <th>gender</th>
+      <th>count</th>
+      <th>gender_infered</th>
+      <th>probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Ma Ting Ying</td>
+      <td>ma</td>
+      <td>ting</td>
+      <td>ying</td>
+      <td>ma ting ying</td>
+      <td>m</td>
+      <td>251.0</td>
+      <td>f</td>
+      <td>0.62</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Sason Shaik</td>
+      <td>sason</td>
+      <td>NaN</td>
+      <td>shaik</td>
+      <td>sason  shaik</td>
+      <td>m</td>
+      <td>1.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>Lavett Smith</td>
+      <td>lavett</td>
+      <td>NaN</td>
+      <td>smith</td>
+      <td>lavett  smith</td>
+      <td>m</td>
+      <td>1.0</td>
+      <td>f</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>Marian Cehelnik</td>
+      <td>marian</td>
+      <td>NaN</td>
+      <td>cehelnik</td>
+      <td>marian  cehelnik</td>
+      <td>m</td>
+      <td>404.0</td>
+      <td>f</td>
+      <td>0.82</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>Ashley Morris</td>
+      <td>ashley</td>
+      <td>NaN</td>
+      <td>morris</td>
+      <td>ashley  morris</td>
+      <td>m</td>
+      <td>3897.0</td>
+      <td>f</td>
+      <td>0.90</td>
+    </tr>
+    <tr>
+      <th>202</th>
+      <td>Aubrey Gorbman</td>
+      <td>aubrey</td>
+      <td>NaN</td>
+      <td>gorbman</td>
+      <td>aubrey  gorbman</td>
+      <td>m</td>
+      <td>113.0</td>
+      <td>f</td>
+      <td>0.82</td>
+    </tr>
+    <tr>
+      <th>240</th>
+      <td>Jean Glenisson</td>
+      <td>jean</td>
+      <td>NaN</td>
+      <td>glenisson</td>
+      <td>jean  glenisson</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>266</th>
+      <td>Kari Sajavaara</td>
+      <td>kari</td>
+      <td>NaN</td>
+      <td>sajavaara</td>
+      <td>kari  sajavaara</td>
+      <td>m</td>
+      <td>467.0</td>
+      <td>f</td>
+      <td>0.91</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>Leslie Alan Shepard</td>
+      <td>leslie</td>
+      <td>alan</td>
+      <td>shepard</td>
+      <td>leslie alan shepard</td>
+      <td>m</td>
+      <td>1173.0</td>
+      <td>f</td>
+      <td>0.88</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>Robin Mckenzie</td>
+      <td>robin</td>
+      <td>NaN</td>
+      <td>mckenzie</td>
+      <td>robin  mckenzie</td>
+      <td>m</td>
+      <td>1628.0</td>
+      <td>f</td>
+      <td>0.59</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>Jean Schmets</td>
+      <td>jean</td>
+      <td>NaN</td>
+      <td>schmets</td>
+      <td>jean  schmets</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>363</th>
+      <td>Pax Allan Chingawale</td>
+      <td>pax</td>
+      <td>allan</td>
+      <td>chingawale</td>
+      <td>pax allan chingawale</td>
+      <td>m</td>
+      <td>2.0</td>
+      <td>f</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>Jean Potocki</td>
+      <td>jean</td>
+      <td>NaN</td>
+      <td>potocki</td>
+      <td>jean  potocki</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>477</th>
+      <td>Jean Chesneaux</td>
+      <td>jean</td>
+      <td>NaN</td>
+      <td>chesneaux</td>
+      <td>jean  chesneaux</td>
+      <td>m</td>
+      <td>1523.0</td>
+      <td>f</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <th>502</th>
+      <td>Yury Akhmetovich Aminov</td>
+      <td>yury</td>
+      <td>akhmetovich</td>
+      <td>aminov</td>
+      <td>yury akhmetovich aminov</td>
+      <td>m</td>
+      <td>39.0</td>
+      <td>f</td>
+      <td>0.87</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Genderize</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s1">&#39;leslie alan&#39;</span><span class="p">,</span> <span class="s1">&#39;leslie-alan&#39;</span><span class="p">,</span> <span class="s1">&#39;leslie&#39;</span><span class="p">,</span> <span class="s1">&#39;alan&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[43]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;gender&#39;: None, &#39;name&#39;: &#39;leslie alan&#39;},
+ {&#39;gender&#39;: None, &#39;name&#39;: &#39;leslie-alan&#39;},
+ {&#39;count&#39;: 1173, &#39;gender&#39;: &#39;female&#39;, &#39;name&#39;: &#39;leslie&#39;, &#39;probability&#39;: 0.88},
+ {&#39;count&#39;: 2079, &#39;gender&#39;: &#39;male&#39;, &#39;name&#39;: &#39;alan&#39;, &#39;probability&#39;: 1.0}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_without_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_unknown</span><span class="p">()</span>
+<span class="n">genderizeR</span><span class="o">.</span><span class="n">compute_error_gender_bias</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting prediction as &#39;unknown gender&#39; as classification errors: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_with_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error ignoring prediction as &#39;unknown gender&#39; : &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_without_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error counting proportion of names with unpredicted gender: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_unknown</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error where negative value suggests that more women than men are missclassified: &quot;</span><span class="p">,</span> <span class="n">genderizeR</span><span class="o">.</span><span class="n">error_gender_bias</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>error counting prediction as &#39;unknown gender&#39; as classification errors:  0.107692307692
+error ignoring prediction as &#39;unknown gender&#39; :  0.0441176470588
+error counting proportion of names with unpredicted gender:  0.0555555555556
+error where negative value suggests that more women than men are missclassified:  0.0441176470588
 </pre>
 </div>
 </div>
@@ -14489,7 +15547,7 @@ error where negative value suggestes that more women than men are missclassified
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
