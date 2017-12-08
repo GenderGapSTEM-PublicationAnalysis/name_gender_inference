@@ -12,7 +12,7 @@ class GenderizeIoEvaluator(Evaluator):
     def _fetch_gender_from_api(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name
                 and merges them with self.test_data."""
-        print("Calling the right method")  # TODO: remove after testing the notebook
+        # TODO: if we decide to use genderize.io then we need to be more flexible with the name parts
         names = self.test_data.first_name.tolist()
         result = []
         i = 0
@@ -30,6 +30,5 @@ class GenderizeIoEvaluator(Evaluator):
             self.test_data.drop("name", axis=1, inplace=True)
             self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f",
                                                                   None: "u"}}, inplace=True)
-            self.gender_evaluator = 'genderize_io'
         except GenderizeException as e:
             print(e)
