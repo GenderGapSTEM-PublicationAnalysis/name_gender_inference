@@ -52,6 +52,7 @@ class Evaluator(object):
             (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
 
     def fetch_gender(self, save_to_dump=True):
+        # TODO: fetching from API needs a caching decorator in order to be more efficient with quotas
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
         self.dump_test_data_with_gender_inference_to_file"""
@@ -74,6 +75,8 @@ class Evaluator(object):
                 self.dump_test_data_with_gender_inference_to_file()
 
     def _fetch_gender_from_api(self):
+        """Method is implemented in the classes inheriting from this. """
+        # TODO: check if this needs a change.
         pass
 
     def compute_confusion_matrix(self):
