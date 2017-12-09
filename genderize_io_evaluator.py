@@ -1,8 +1,9 @@
 from evaluator import Evaluator
 from genderize import Genderize, GenderizeException
-import pandas as pd
+from collections import OrderedDict
 
 
+# TODO: get API key
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
 
@@ -12,23 +13,29 @@ class GenderizeIoEvaluator(Evaluator):
     def _fetch_gender_from_api(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name
                 and merges them with self.test_data."""
-        # TODO: if we decide to use genderize.io then we need to be more flexible with the name parts
-        names = self.test_data.first_name.tolist()
-        result = []
-        i = 0
-        try:
-            while i < len(names):
-                result.extend(Genderize().get(names[i: i + 10]))
-                i += 10
 
-            result = pd.DataFrame(result)
-            result = result.rename(columns={"gender": "gender_infered"})
-            if len(result) == len(self.test_data):
-                self.test_data = pd.concat([self.test_data, result], axis=1)
-            else:
-                print("response from genderize.io contains less results than request. Try again?")
-            self.test_data.drop("name", axis=1, inplace=True)
-            self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f",
-                                                                  None: "u"}}, inplace=True)
+        responses = []
+        try:
+            for row in self.test_data.itertuples():
+                if row.middle_name == '':
+                    responses.extend(Genderize().get([row.first_name]))
+                else:  # if middle_name exists then try various variations of full name
+                    connectors = ['', ' ', '-']
+                    names = [row.first_name + c + row.middle_name for c in connectors]
+                    responses = Genderize().get(names)
+                    if set([r['gender'] for r in responses]) == {None}:
+                        responses.extend(Genderize().get([row.first_name]))
+                    else:  # if usage of middle name leads to female or male then take assignment with highest count
+                        for item in responses:
+                            if item['gender'] is None:
+                                item['count'], item['probability'] = 0, 0.0
+                        names_to_responses = dict(zip(names, responses))
+                        names_to_responses = OrderedDict(
+                            sorted(names_to_responses.items(), key=lambda x: x[1]['count'], reverse=True))
+                        responses.append(next(iter(names_to_responses.values())))  # select first item in ordered dict
+
+            self.api_response = responses
+            self.extend_test_data_by_api_response(responses, {'male': 'm', "female": "f", None: "u"})
+
         except GenderizeException as e:
             print(e)

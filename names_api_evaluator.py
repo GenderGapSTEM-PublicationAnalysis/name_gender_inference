@@ -1,7 +1,9 @@
 from evaluator import Evaluator
-import pandas as pd
 import requests
 
+
+# Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
+# linked from the API's website: https://www.nameapi.org/en/developer/downloads/
 
 class NamesAPIEvaluator(Evaluator):
     api_key = "725a6a1ddf0d0f16f7dc3a6a73a9ac5b-user1"
@@ -31,11 +33,6 @@ class NamesAPIEvaluator(Evaluator):
         def build_url(key=self.api_key):
             return "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey=" + key
 
-        def build_dataframe_from_response(data, result):
-            result = pd.DataFrame(result).rename(columns={"gender": "gender_infered"})
-            data = pd.concat([data, result], axis=1)
-            return data.replace(to_replace={"gender_infered": {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u'}})
-
         responses = []
         error_response = {'gender': 'error', 'confidence': 1.0}
         url = build_url()
@@ -54,5 +51,5 @@ class NamesAPIEvaluator(Evaluator):
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
                 responses.append(error_response)
-
-        self.test_data = build_dataframe_from_response(self.test_data, responses)
+        self.api_response = responses
+        self.extend_test_data_by_api_response(responses, {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})
