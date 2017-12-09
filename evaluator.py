@@ -11,6 +11,7 @@ class Evaluator(object):
     def __init__(self, file_path):
         self.file_path = file_path
         self.test_data = pd.DataFrame()
+        self.api_response = None
         self.is_test_data_schema_correct = None
         self.confusion_matrix = None
         self.error_without_unknown = None
@@ -27,7 +28,7 @@ class Evaluator(object):
                 self.test_data = test_data
                 self.is_test_data_schema_correct = True
                 for col in expected_columns:
-                    self.test_data[col].fillna('')
+                    self.test_data[col].fillna('', inplace=True)
             else:
                 print("Some expected columns are missing; data not loaded.")
 
@@ -73,6 +74,15 @@ class Evaluator(object):
             if save_to_dump:
                 print('Saving data to dump file {}'.format(dump_file))
                 self.dump_test_data_with_gender_inference_to_file()
+
+    def extend_test_data_by_api_response(self, api_response, gender_mapping):
+        api_response = pd.DataFrame(api_response).rename(columns={"gender": "gender_infered"})
+        if len(api_response) == len(self.test_data):
+            self.test_data = pd.concat([self.test_data, api_response], axis=1)
+        else:
+            print("response from API contains less results than request. Try again?")
+
+        self.test_data.replace(to_replace={"gender_infered": gender_mapping}, inplace=True)
 
     def _fetch_gender_from_api(self):
         """Method is implemented in the classes inheriting from this. """
