@@ -136,3 +136,16 @@ class Evaluator(object):
                                   self.confusion_matrix.loc['f', 'm_pred']) / \
                                  (self.confusion_matrix.loc['f', 'f_pred'] + self.confusion_matrix.loc['f', 'm_pred'] +
                                   self.confusion_matrix.loc['m', 'f_pred'] + self.confusion_matrix.loc['m', 'm_pred'])
+
+    def compute_all_errors(self):
+        self.compute_confusion_matrix()
+        self.compute_error_with_unknown()
+        self.compute_error_without_unknown()
+        self.compute_error_unknown()
+        self.compute_error_gender_bias()
+
+        print("error counting prediction as 'unknown gender' as classification errors: ", self.error_with_unknown)
+        print("error ignoring prediction as 'unknown gender' : ", self.error_without_unknown)
+        print("error counting proportion of names with unpredicted gender: ", self.error_unknown)
+        print("error where negative value suggestes that more women than men are missclassified: ",
+              self.error_gender_bias)
