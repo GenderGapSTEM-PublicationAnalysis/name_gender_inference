@@ -22,14 +22,14 @@ class GenderizeIoEvaluator(Evaluator):
                 else:  # if middle_name exists then try various variations of full name
                     connectors = ['', ' ', '-']
                     names = [row.first_name + c + row.middle_name for c in connectors]
-                    responses = Genderize().get(names)
-                    if set([r['gender'] for r in responses]) == {None}:
+                    api_resp = Genderize().get(names)
+                    if set([r['gender'] for r in api_resp]) == {None}:
                         responses.extend(Genderize().get([row.first_name]))
                     else:  # if usage of middle name leads to female or male then take assignment with highest count
-                        for item in responses:
+                        for item in api_resp:
                             if item['gender'] is None:
                                 item['count'], item['probability'] = 0, 0.0
-                        names_to_responses = dict(zip(names, responses))
+                        names_to_responses = dict(zip(names, api_resp))
                         names_to_responses = OrderedDict(
                             sorted(names_to_responses.items(), key=lambda x: x[1]['count'], reverse=True))
                         responses.append(next(iter(names_to_responses.values())))  # select first item in ordered dict
