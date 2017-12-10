@@ -1,4 +1,4 @@
-def clean_middle_names(df):
+def clean_name_part(df, name_part="middle_name"):
     """keep the string in column 'middle_name' if it has more than one character.
     Otherwise replace by ''. """
 
@@ -11,7 +11,7 @@ def clean_middle_names(df):
         except:
             return ''
 
-    df.middle_name = df.middle_name.map(lambda x: try_to_simplify(x))
+    df[name_part] = df[name_part].map(lambda x: try_to_simplify(x))
 
 
 def build_full_name(df):
