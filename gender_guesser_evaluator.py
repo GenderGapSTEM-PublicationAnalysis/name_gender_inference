@@ -22,6 +22,9 @@ class GenderGuesserEvaluator(Evaluator):
                 else:
                     name = row.first_name.title()
                     responses.append(gender.Detector().get_gender(name))
+            else:
+                name = row.first_name.title()
+                responses.append(gender.Detector().get_gender(name))
 
         self.api_response = responses
 
