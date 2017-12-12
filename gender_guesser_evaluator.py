@@ -11,25 +11,22 @@ class GenderGuesserEvaluator(Evaluator):
     def _fetch_gender_from_api(self):
         # exact response stored in column `response`. This can be tuned using training data
         # TODO: implement training
-        responses = []
 
         for row in self.test_data.itertuples():
             if row.middle_name != '':
                 name = row.first_name.title() + '-' + row.middle_name.title()
                 g = gender.Detector().get_gender(name)
                 if g != "unknown":
-                    responses.append(g)
+                    self.api_response.append(g)
                 else:
                     name = row.first_name.title()
-                    responses.append(gender.Detector().get_gender(name))
+                    self.api_response.append(gender.Detector().get_gender(name))
             else:
                 name = row.first_name.title()
-                responses.append(gender.Detector().get_gender(name))
+                self.api_response.append(gender.Detector().get_gender(name))
 
-        self.api_response = responses
-
-        self.test_data["gender_infered"] = responses
-        self.test_data["response"] = responses
+        self.test_data["gender_infered"] = self.api_response
+        self.test_data["response"] = self.api_response
         self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", "mostly_male": "m",
                                                               "mostly_female": "f", "unknown": "u", "andy": "u"}},
                                inplace=True)

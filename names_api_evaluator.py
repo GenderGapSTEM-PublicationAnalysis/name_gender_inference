@@ -22,7 +22,7 @@ class NamesAPIEvaluator(Evaluator):
                     "personName": {
                         "nameFields": [
                             {
-                                "string": name,
+                                "string": name.title(),
                                 "fieldType": "FULLNAME"
                             }
                         ]
@@ -33,7 +33,6 @@ class NamesAPIEvaluator(Evaluator):
         def build_url(key=self.api_key):
             return "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey=" + key
 
-        responses = []
         error_response = {'gender': 'error', 'confidence': 1.0}
         url = build_url()
         for n in names:
@@ -44,12 +43,12 @@ class NamesAPIEvaluator(Evaluator):
                 # Decode JSON response into a Python dict:
                 resp_dict = resp.json()
                 print(resp_dict)
-                responses.append(resp_dict)
+                self.api_response.append(resp_dict)
             except requests.exceptions.HTTPError as e:
                 print("Bad HTTP status code:", e)
-                responses.append(error_response)
+                self.api_response.append(error_response)
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
-                responses.append(error_response)
-        self.api_response = responses
-        self.extend_test_data_by_api_response(responses, {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})
+                self.api_response.append(error_response)
+        self.extend_test_data_by_api_response(self.api_response,
+                                              {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})
