@@ -143,7 +143,7 @@ class Evaluator(object):
         self.compute_error_without_unknown()
         self.compute_error_unknown()
         self.compute_error_gender_bias()
-
+        print(self.confusion_matrix)
         print("error counting prediction as 'unknown gender' as classification errors: ", self.error_with_unknown)
         print("error ignoring prediction as 'unknown gender' : ", self.error_without_unknown)
         print("error counting proportion of names with unpredicted gender: ", self.error_unknown)

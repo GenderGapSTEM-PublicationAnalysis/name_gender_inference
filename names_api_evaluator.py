@@ -43,11 +43,12 @@ class NamesAPIEvaluator(Evaluator):
                 resp.raise_for_status()
                 # Decode JSON response into a Python dict:
                 resp_dict = resp.json()
-                print(resp_dict)
                 self.api_response.append(resp_dict)
             except requests.exceptions.HTTPError as e:
                 print("Bad HTTP status code:", e)
+                break
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
+                break
         self.extend_test_data_by_api_response(self.api_response,
                                               {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})

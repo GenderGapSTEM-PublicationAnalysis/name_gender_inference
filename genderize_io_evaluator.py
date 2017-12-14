@@ -37,5 +37,6 @@ class GenderizeIoEvaluator(Evaluator):
 
             except GenderizeException as e:
                 print(e)
+                break
 
             self.extend_test_data_by_api_response(self.api_response, {'male': 'm', "female": "f", None: "u"})
