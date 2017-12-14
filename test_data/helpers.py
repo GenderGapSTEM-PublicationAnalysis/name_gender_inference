@@ -5,7 +5,7 @@ def clean_name_part(df, name_part="middle_name"):
     def try_to_simplify(s):
         try:
             if len(s) > 1:
-                return s
+                return s.lower()
             else:
                 return ''
         except:
