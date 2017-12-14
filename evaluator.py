@@ -11,7 +11,7 @@ class Evaluator(object):
     def __init__(self, file_path):
         self.file_path = file_path
         self.test_data = pd.DataFrame()
-        self.api_response = None
+        self.api_response = []
         self.is_test_data_schema_correct = None
         self.confusion_matrix = None
         self.error_without_unknown = None
