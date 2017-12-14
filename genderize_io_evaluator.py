@@ -39,4 +39,4 @@ class GenderizeIoEvaluator(Evaluator):
                 print(e)
                 break
 
-            self.extend_test_data_by_api_response(self.api_response, {'male': 'm', "female": "f", None: "u"})
+        self.extend_test_data_by_api_response(self.api_response, {'male': 'm', "female": "f", None: "u"})
