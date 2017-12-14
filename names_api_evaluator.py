@@ -13,7 +13,6 @@ class NamesAPIEvaluator(Evaluator):
         Evaluator.__init__(self, file_path)
 
     def _fetch_gender_from_api(self):
-        names = self.test_data.full_name.tolist()
 
         def build_json(name):
             return {
@@ -34,6 +33,9 @@ class NamesAPIEvaluator(Evaluator):
             return "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey=" + key
 
         url = build_url()
+        start_position = len(
+            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        names = self.test_data[start_position:].full_name.tolist()
         for n in names:
             try:
                 query = build_json(n)
