@@ -10,7 +10,6 @@ class GenderGuesserEvaluator(Evaluator):
 
     def _fetch_gender_from_api(self):
         # exact response stored in column `response`. This can be tuned using training data
-        # TODO: implement training
 
         for row in self.test_data.itertuples():
             if row.middle_name != '':

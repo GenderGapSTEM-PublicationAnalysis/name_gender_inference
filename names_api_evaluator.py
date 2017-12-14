@@ -33,7 +33,6 @@ class NamesAPIEvaluator(Evaluator):
         def build_url(key=self.api_key):
             return "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey=" + key
 
-        error_response = {'gender': 'error', 'confidence': 1.0}
         url = build_url()
         for n in names:
             try:
@@ -46,9 +45,7 @@ class NamesAPIEvaluator(Evaluator):
                 self.api_response.append(resp_dict)
             except requests.exceptions.HTTPError as e:
                 print("Bad HTTP status code:", e)
-                self.api_response.append(error_response)
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
-                self.api_response.append(error_response)
         self.extend_test_data_by_api_response(self.api_response,
                                               {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})
