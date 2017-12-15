@@ -39,8 +39,10 @@ class Evaluator(object):
         # TODO: make file path creation prettier
         # Decide that evaluation exists if column gender_infered is in test_data
         if 'gender_infered' in self.test_data.columns:
-            filename, extension = os.path.splitext(self.file_path)
-            dump_file = filename + '_' + self.gender_evaluator + extension
+            path, filename = os.path.split(self.file_path)
+            filebase, extension = os.path.splitext(filename)
+            dump_file = ''.join(['test_data/', self.gender_evaluator, '/', filebase, '_', 
+                                 self.gender_evaluator, extension])
             self.test_data.to_csv(dump_file, index=False,
                                   quoting=csv.QUOTE_NONNUMERIC)
         else:
@@ -60,15 +62,19 @@ class Evaluator(object):
         if self.gender_evaluator is None:
             raise ValueError("Missing gender_evaluator needed to fetch the gender")
         # Name the dump file like the original but adding a _genderevaluator qualifier
+        # Note that after the clean-up, the dump file is in subfolder test_data/$gender_evaluator 
         # This works with all extensions, but later we sort of assume that the file is .csv 
-        filename, extension = os.path.splitext(self.file_path)
-        dump_file = filename + '_' + self.gender_evaluator + extension
+        path, filename = os.path.split(self.file_path)
+        filebase, extension = os.path.splitext(filename)
+        dump_file = ''.join(['test_data/', self.gender_evaluator, '/', filebase, '_', 
+                             self.gender_evaluator, extension])
         # Try opening the dump file, else resort to calling the API
         try:
             # TODO: replace by load method above
             self.test_data = pd.read_csv(dump_file)
             print('Reading data from dump file {}'.format(dump_file))
         except FileNotFoundError:
+            print('Did not find {} dump file'.format(dump_file))
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
             self._fetch_gender_from_api()
             if save_to_dump:
@@ -80,7 +86,7 @@ class Evaluator(object):
         if len(api_response) == len(self.test_data):
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
         else:
-            print("response from API contains less results than request. Try again?")
+            print("Response from API contains less results than request. Try again?")
 
         self.test_data.replace(to_replace={"gender_infered": gender_mapping}, inplace=True)
 
