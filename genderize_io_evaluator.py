@@ -1,3 +1,4 @@
+import sys
 from evaluator import Evaluator
 from genderize import Genderize, GenderizeException
 from collections import OrderedDict
@@ -15,7 +16,11 @@ class GenderizeIoEvaluator(Evaluator):
         self.test_data.middle_name. Results are stored in self.api_response as a list.
         If result list complete then they are merged with self.test_data."""
 
-        for row in self.test_data.itertuples():
+        for i, row in enumerate(self.test_data.itertuples()):
+            # Print sort of progress bar
+            if i % 100 == 0:
+                sys.stdout.write('{}...'.format(i))
+                sys.stdout.flush()
             try:
                 if row.middle_name == '':
                     self.api_response.extend(Genderize().get([row.first_name]))
