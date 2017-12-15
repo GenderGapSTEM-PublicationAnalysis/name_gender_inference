@@ -76,7 +76,7 @@ class Evaluator(object):
         if len(api_response) == len(self.test_data):
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
         else:
-            print("response from API contains less results than request. Try again?")
+            print("Response from API contains less results than request. Try again?")
 
         self.test_data.replace(to_replace={"gender_infered": gender_mapping}, inplace=True)
 
