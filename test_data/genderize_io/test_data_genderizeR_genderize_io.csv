@@ -194,7 +194,6 @@
 "Davidson, Jake","jake","","davidson","jake davidson","u",1410.0,"m","jake",0.99
 "Lamb, John","john","","lamb","john lamb","m",9931.0,"m","john",0.99
 "Cooke, Elizabeth","elizabeth","","cooke","elizabeth cooke","u",3508.0,"f","elizabeth",1.0
-"Wang, Linda","linda","","wang","linda wang","f",4323.0,"f","linda",1.0
 "Yamate, Jyoji","jyoji","","yamate","jyoji yamate","m","","u","jyoji",""
 "Awodey, Steve","steve","","awodey","steve awodey","m",3965.0,"m","steve",1.0
 "Booth, Brian J.","brian","","booth","brian booth","m",4600.0,"m","brian",1.0
@@ -297,7 +296,7 @@
 "Zeman, David","david","","zeman","david zeman","m",12593.0,"m","david",1.0
 "Johnson, Richard I.","richard","","johnson","richard johnson","m",4381.0,"m","richard",1.0
 "McChesney, Robert W.","robert","","mcchesney","robert mcchesney","m",5222.0,"m","robert",1.0
-"Amin, Samir Isabelle","samir","isabelle","amin","samir isabelle amin","m",377.0,"m","samir",0.99
+"Amin, Samir","samir","","amin","samir amin","m",377.0,"m","samir",0.99
 "Amin, Isabelle","isabelle","","amin","isabelle amin","u",867.0,"f","isabelle",1.0
 "Baran, Nicholas","nicholas","","baran","nicholas baran","u",1176.0,"m","nicholas",1.0
 "Brazil, Gladys","gladys","","brazil","gladys brazil","u",382.0,"f","gladys",0.97
@@ -356,7 +355,6 @@
 "Cobb, Matthew","matthew","","cobb","matthew cobb","m",3338.0,"m","matthew",1.0
 "Eschapasse, Baudouin","baudouin","","eschapasse","baudouin eschapasse","m",4.0,"m","baudouin",1.0
 "Pukazhenthi, Budhan","budhan","","pukazhenthi","budhan pukazhenthi","m","","u","budhan",""
-"Wang, Linda","linda","","wang","linda wang","f",4323.0,"f","linda",1.0
 "Munk-Jorgensen, Povl","povl","","munk-jorgensen","povl munk-jorgensen","m","","u","povl",""
 "Davis, Alan","alan","","davis","alan davis","u",2079.0,"m","alan",1.0
 "Gartner, Wolfgang","wolfgang","","gartner","wolfgang gartner","u",95.0,"m","wolfgang",1.0
@@ -390,13 +388,10 @@
 "Nowak, Andrzej","andrzej","","nowak","andrzej nowak","m",50.0,"m","andrzej",0.98
 "Kovacs, Kalman","kalman","","kovacs","kalman kovacs","m",19.0,"f","kalman",0.79
 "Murphy, Agnes","agnes","","murphy","agnes murphy","f",332.0,"f","agnes",1.0
-"Cash, Stephanie","stephanie","","cash","stephanie cash","u",4114.0,"f","stephanie",1.0
-"Ebony, David","david","","ebony","david ebony","m",12593.0,"m","david",1.0
 "Costabile-Heming, Carol Anne","carol","anne","costabile-heming","carol anne costabile-heming","f",13.0,"f","carolanne",1.0
 "Umlauf, Konrad","konrad","","umlauf","konrad umlauf","m",62.0,"m","konrad",1.0
 "De Vivo, Darryl C.","darryl","","de vivo","darryl de vivo","m",202.0,"m","darryl",0.99
 "DiMauro, Salvatore","salvatore","","dimauro","salvatore dimauro","m",409.0,"m","salvatore",1.0
-"Ouellette, Dan","dan","","ouellette","dan ouellette","m",3240.0,"m","dan",0.98
 "Westeel, Virginie","virginie","","westeel","virginie westeel","f",437.0,"f","virginie",1.0
 "Quoix, Elisabeth","elisabeth","","quoix","elisabeth quoix","f",570.0,"f","elisabeth",1.0
 "Pujol, Jean-Louis","jean","louis","pujol","jean louis pujol","m",43.0,"m","jean-louis",1.0
@@ -413,7 +408,6 @@
 "Sprott, Margaret","margaret","","sprott","margaret sprott","u",1101.0,"f","margaret",0.98
 "Schoenfeld, Bernd","bernd","","schoenfeld","bernd schoenfeld","m",34.0,"m","bernd",1.0
 "Wochner, Peter","peter","","wochner","peter wochner","u",4373.0,"m","peter",1.0
-"Cash, Stephanie","stephanie","","cash","stephanie cash","u",4114.0,"f","stephanie",1.0
 "Franken, Klaus","klaus","","franken","klaus franken","m",177.0,"m","klaus",0.98
 "Lai, Jules","jules","","lai","jules lai","u",210.0,"f","jules",0.59
 "McBurney, Gerard","gerard","","mcburney","gerard mcburney","m",460.0,"m","gerard",1.0
@@ -450,7 +444,6 @@
 "Haspelmath, Martin","martin","","haspelmath","martin haspelmath","m",3568.0,"m","martin",1.0
 "Konig, Ekkehard","ekkehard","","konig","ekkehard konig","m","","u","ekkehard",""
 "Rubery, Matthew","matthew","","rubery","matthew rubery","m",3338.0,"m","matthew",1.0
-"Shupnik, Margaret A.","margaret","","shupnik","margaret shupnik","m",1101.0,"f","margaret",0.98
 "Bronks, Ian","ian","","bronks","ian bronks","u",2159.0,"m","ian",0.99
 "Lachman, Ralph S.","ralph","","lachman","ralph lachman","m",314.0,"m","ralph",1.0
 "Ratner, Mark","mark","","ratner","mark ratner","m",6176.0,"m","mark",1.0
@@ -498,7 +491,7 @@
 "Volden, Tore","tore","","volden","tore volden","u",33.0,"m","tore",0.97
 "Rein, Amund","amund","","rein","amund rein","u",7.0,"m","amund",1.0
 "Reimann, Clemens","clemens","","reimann","clemens reimann","m",20.0,"m","clemens",1.0
-"Franks, Sharon E. R.","sharon","","franks","sharon franks","m",2760.0,"f","sharon",0.99
+"Franks, Sharon E. R.","sharon","","franks","sharon franks","f",2760.0,"f","sharon",0.99
 "Elvin, Violetta","violetta","","elvin","violetta elvin","f",41.0,"f","violetta",1.0
 "Loewenberg, Samuel","samuel","","loewenberg","samuel loewenberg","m",1409.0,"m","samuel",1.0
 "Schuez, Almut","almut","","schuez","almut schuez","f",8.0,"f","almut",1.0
@@ -569,7 +562,7 @@
 "Lynn, Richard","richard","","lynn","richard lynn","m",4381.0,"m","richard",1.0
 "Pertold, Zdenek","zdenek","","pertold","zdenek pertold","m",33.0,"m","zdenek",1.0
 "Bolton, Laura","laura","","bolton","laura bolton","f",7953.0,"f","laura",1.0
-"Goldberg-Gist, Arlene","arlene","","goldberg-gist","arlene goldberg-gist","m",271.0,"f","arlene",1.0
+"Goldberg-Gist, Arlene","arlene","","goldberg-gist","arlene goldberg-gist","f",271.0,"f","arlene",1.0
 "Morison, Ian","ian","","morison","ian morison","m",2159.0,"m","ian",0.99
 "Hughes, David","david","","hughes","david hughes","m",12593.0,"m","david",1.0
 "Higson, Roger","roger","","higson","roger higson","m",1220.0,"m","roger",1.0
