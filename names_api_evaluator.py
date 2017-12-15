@@ -9,8 +9,8 @@ class NamesAPIEvaluator(Evaluator):
     api_key = "725a6a1ddf0d0f16f7dc3a6a73a9ac5b-user1"
     gender_evaluator = 'names_api'
 
-    def __init__(self, file_path):
-        Evaluator.__init__(self, file_path)
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
 
     def _fetch_gender_from_api(self):
 

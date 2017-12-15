@@ -5,8 +5,8 @@ import gender_guesser.detector as gender
 class GenderGuesserEvaluator(Evaluator):
     gender_evaluator = 'gender_guesser'  # based on Joerg Michael's C-program `gender`
 
-    def __init__(self, file_path):
-        Evaluator.__init__(self, file_path)
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
 
     def _fetch_gender_from_api(self):
         # exact response stored in column `response`. This can be tuned using training data

@@ -6,10 +6,15 @@ import csv
 
 class Evaluator(object):
     """Class-level properties"""
-    gender_evaluator = None
+    gender_evaluator = ''
+    raw_data_prefix = 'test_data/raw_data/test_data_'
+    data_suffix = '.csv'
 
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, data_source):
+        self.data_source = data_source
+        self.file_path_raw_data = self.raw_data_prefix + self.data_source + self.data_suffix
+        self.file_path_evaluated_data = 'test_data/' + self.gender_evaluator + '/test_data_' + \
+                                        self.data_source + '_' + self.gender_evaluator + self.data_suffix
         self.test_data = pd.DataFrame()
         self.api_response = []
         self.is_test_data_schema_correct = None
@@ -21,7 +26,7 @@ class Evaluator(object):
 
     def load_data(self):
         try:
-            test_data = pd.read_csv(self.file_path)
+            test_data = pd.read_csv(self.file_path_raw_data)
             expected_columns = ['first_name', 'middle_name', 'last_name', 'full_name', 'gender']
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
@@ -36,13 +41,8 @@ class Evaluator(object):
             print("File not found")
 
     def dump_test_data_with_gender_inference_to_file(self):
-        # TODO: make file path creation prettier
-        # Decide that evaluation exists if column gender_infered is in test_data
         if 'gender_infered' in self.test_data.columns:
-            filename, extension = os.path.splitext(self.file_path)
-            dump_file = filename + '_' + self.gender_evaluator + extension
-            self.test_data.to_csv(dump_file, index=False,
-                                  quoting=csv.QUOTE_NONNUMERIC)
+            self.test_data.to_csv(self.file_path_evaluated_data, index=False, quoting=csv.QUOTE_NONNUMERIC)
         else:
             print("Test data has not been evaluated yet, won't dump")
 
@@ -57,22 +57,18 @@ class Evaluator(object):
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
         self.dump_test_data_with_gender_inference_to_file"""
-        if self.gender_evaluator is None:
+        if self.gender_evaluator == '':
             raise ValueError("Missing gender_evaluator needed to fetch the gender")
-        # Name the dump file like the original but adding a _genderevaluator qualifier
-        # This works with all extensions, but later we sort of assume that the file is .csv 
-        filename, extension = os.path.splitext(self.file_path)
-        dump_file = filename + '_' + self.gender_evaluator + extension
         # Try opening the dump file, else resort to calling the API
         try:
             # TODO: replace by load method above
-            self.test_data = pd.read_csv(dump_file)
-            print('Reading data from dump file {}'.format(dump_file))
+            self.test_data = pd.read_csv(self.file_path_evaluated_data)
+            print('Reading data from dump file {}'.format(self.file_path_evaluated_data))
         except FileNotFoundError:
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
             self._fetch_gender_from_api()
             if save_to_dump:
-                print('Saving data to dump file {}'.format(dump_file))
+                print('Saving data to dump file {}'.format(self.file_path_evaluated_data))
                 self.dump_test_data_with_gender_inference_to_file()
 
     def extend_test_data_by_api_response(self, api_response, gender_mapping):
@@ -90,7 +86,7 @@ class Evaluator(object):
         pass
 
     def compute_confusion_matrix(self):
-        if self.gender_evaluator is not None:
+        if self.gender_evaluator != '':
             f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
             f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
             f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])

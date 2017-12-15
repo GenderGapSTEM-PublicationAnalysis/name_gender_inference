@@ -7,15 +7,16 @@ from collections import OrderedDict
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
 
-    def __init__(self, file_path):
-        Evaluator.__init__(self, file_path)
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
 
     def _fetch_gender_from_api(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name and
         self.test_data.middle_name. Results are stored in self.api_response as a list.
         If result list complete then they are merged with self.test_data."""
 
-        for row in self.test_data.itertuples():
+        start_position = len(self.api_response)
+        for row in self.test_data[start_position:].itertuples():
             try:
                 if row.middle_name == '':
                     self.api_response.extend(Genderize().get([row.first_name]))
