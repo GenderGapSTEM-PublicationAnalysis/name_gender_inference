@@ -8,6 +8,13 @@ from genderize import Genderize, GenderizeException
 from evaluator import Evaluator
 
 
+def show_progress(row_index):
+    """Shows a progress bar"""
+    if row_index % 100 == 0:
+        sys.stdout.write('{}...'.format(row_index))
+        sys.stdout.flush()
+
+
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
 
@@ -42,11 +49,8 @@ class NamesAPIEvaluator(Evaluator):
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
         names = self.test_data[start_position:].full_name.tolist()
-        for i, n in evaluate(names):
-            # Print sort of progress bar
-            if i % 100 == 0:
-                sys.stdout.write('{}...'.format(i))
-                sys.stdout.flush()
+        for i, n in enumerate(names):
+            show_progress(i)
             try:
                 query = build_json(n)
                 resp = requests.post(url, json=query)
@@ -74,10 +78,7 @@ class GenderGuesserEvaluator(Evaluator):
         # exact response stored in column `response`. This can be tuned using training data
         start_position = len(self.api_response)
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            # Print sort of progress bar
-            if i % 100 == 0:
-                sys.stdout.write('{}...'.format(i))
-                sys.stdout.flush()
+            show_progress(i)
             if row.middle_name != '':
                 name = row.first_name.title() + '-' + row.middle_name.title()
                 g = gender.Detector().get_gender(name)
@@ -112,9 +113,7 @@ class GenderizeIoEvaluator(Evaluator):
         start_position = len(self.api_response)
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             # Print sort of progress bar
-            if i % 100 == 0:
-                sys.stdout.write('{}...'.format(i))
-                sys.stdout.flush()
+            show_progress(i)
             try:
                 if row.middle_name == '':
                     self.api_response.extend(Genderize().get([row.first_name]))
