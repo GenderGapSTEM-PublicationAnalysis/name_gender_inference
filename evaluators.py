@@ -1,3 +1,4 @@
+import sys
 from collections import OrderedDict
 
 import gender_guesser.detector as gender
@@ -41,7 +42,11 @@ class NamesAPIEvaluator(Evaluator):
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
         names = self.test_data[start_position:].full_name.tolist()
-        for n in names:
+        for i, n in evaluate(names):
+            # Print sort of progress bar
+            if i % 100 == 0:
+                sys.stdout.write('{}...'.format(i))
+                sys.stdout.flush()
             try:
                 query = build_json(n)
                 resp = requests.post(url, json=query)
@@ -68,7 +73,11 @@ class GenderGuesserEvaluator(Evaluator):
     def _fetch_gender_from_api(self):
         # exact response stored in column `response`. This can be tuned using training data
         start_position = len(self.api_response)
-        for row in self.test_data[start_position:].itertuples():
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            # Print sort of progress bar
+            if i % 100 == 0:
+                sys.stdout.write('{}...'.format(i))
+                sys.stdout.flush()
             if row.middle_name != '':
                 name = row.first_name.title() + '-' + row.middle_name.title()
                 g = gender.Detector().get_gender(name)
@@ -101,7 +110,11 @@ class GenderizeIoEvaluator(Evaluator):
         If result list complete then they are merged with self.test_data."""
 
         start_position = len(self.api_response)
-        for row in self.test_data[start_position:].itertuples():
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            # Print sort of progress bar
+            if i % 100 == 0:
+                sys.stdout.write('{}...'.format(i))
+                sys.stdout.flush()
             try:
                 if row.middle_name == '':
                     self.api_response.extend(Genderize().get([row.first_name]))
