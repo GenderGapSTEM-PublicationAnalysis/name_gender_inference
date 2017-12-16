@@ -1,8 +1,11 @@
 import sys
+import json
 from collections import OrderedDict
 
 import gender_guesser.detector as gender
 import requests
+from urllib.request import urlopen
+from urllib.parse import urlencode
 from genderize import Genderize, GenderizeException
 
 from evaluator import Evaluator
@@ -15,14 +18,84 @@ def show_progress(row_index):
         sys.stdout.flush()
 
 class GenderAPIEvaluator(Evaluator):
-    api_key = "TMbKcgUmgSpBtnjWoT"
     gender_evaluator = 'gender_api'
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
 
     def _fetch_gender_from_api(self):
-        pass
+        # TODO: obfuscate key if we make package open
+        api_key = 'TMbKcgUmgSpBtnjWoT'
+        
+        # if api_response already contains partial results then do not re-evaluate them
+        start_position = len(self.api_response)  
+        names = self.test_data[start_position:].full_name.tolist()
+        for i, n in enumerate(names):
+            show_progress(i)
+
+            # This implementation is for full_name
+            urlpars = urlencode({'key': api_key, 'split': n})
+            url = 'https://gender-api.com/get?{}'.format(urlpars)
+            response = urlopen(url)
+            decoded = response.read().decode('utf-8')
+            data = json.loads(decoded)
+            if 'errmsg' not in data.keys():
+                self.api_response.append(data)
+            else:
+                break
+        self.extend_test_data_by_api_response(self.api_response,
+                                              {'male': 'm', 'female': 'f', 'unknown': 'u'})
+
+class GenderAPIPieceEvaluator(Evaluator):
+    gender_evaluator = 'gender_api_piece'
+
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
+
+    def _fetch_gender_from_api(self):
+
+        def fetch_from_gender_api(name):
+            # TODO: obfuscate if we post code in the open
+            api_key = 'TMbKcgUmgSpBtnjWoT'
+            urlpars = urlencode({'key': api_key, 'name': name})
+            url = 'https://gender-api.com/get?{}'.format(urlpars)
+            response = urlopen(url)
+            decoded = response.read().decode('utf-8')
+            data = json.loads(decoded)
+            return data
+        
+        # if api_response already contains partial results then do not re-evaluate them
+        start_position = len(self.api_response)  
+
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            # Print sort of progress bar
+            show_progress(i)
+
+            # This implementation is for name pieces
+            if row.middle_name == '' or row.first_name == '':
+                # If one of the forenames is missing, try just the other
+                name = row.middle_name or row.first_name
+                data = fetch_from_gender_api(name)
+            else:
+                # If middle name, try various combinations
+                connectors = ['', ' ', '-']
+                names = [c.join([row.first_name, row.middle_name]) for c in connectors]
+                api_resp = [fetch_from_gender_api(n) for n in names]
+                if set([r['gender'] for r in api_resp]) == {None}:
+                    # If no gender with both names, try first only
+                    data = fetch_from_gender_api(row.first_name)
+                    self.api_response.append(data)
+                else:  
+                    # if usage of middle name leads to female or male then take assignment with highest samples
+                    data = max(api_resp, key=lambda x: x['samples'])
+                    self.api_response.append(data)
+            if 'errmsg' not in data.keys():
+                self.api_response.append(data)
+            else:
+                break
+        self.extend_test_data_by_api_response(self.api_response,
+                                              {'male': 'm', 'female': 'f', 'unknown': 'u'})
+
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
