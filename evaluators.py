@@ -14,10 +14,18 @@ def show_progress(row_index):
         sys.stdout.write('{}...'.format(row_index))
         sys.stdout.flush()
 
+class GenderAPIEvaluator(Evaluator):
+    api_key = "TMbKcgUmgSpBtnjWoT"
+    gender_evaluator = 'gender_api'
+
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
+
+    def _fetch_gender_from_api(self):
+        pass
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
-
 class NamesAPIEvaluator(Evaluator):
     api_key = "725a6a1ddf0d0f16f7dc3a6a73a9ac5b-user1"
     gender_evaluator = 'names_api'
