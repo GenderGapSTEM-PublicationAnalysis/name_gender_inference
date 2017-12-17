@@ -72,16 +72,15 @@ class GenderAPIPieceEvaluator(Evaluator):
             show_progress(i)
 
             # This implementation is for name pieces
-            if row.middle_name == '' or row.first_name == '':
-                # If one of the forenames is missing, try just the other
-                name = row.middle_name or row.first_name
-                data = fetch_from_gender_api(name)
+            if row.middle_name == '':
+                # If middle name is missing, try just first_name alone
+                data = fetch_from_gender_api(row.first_name)
             else:
                 # If middle name, try various combinations
                 connectors = ['', ' ', '-']
                 names = [c.join([row.first_name, row.middle_name]) for c in connectors]
                 api_resp = [fetch_from_gender_api(n) for n in names]
-                if set([r['gender'] for r in api_resp]) == {None}:
+                if set([r['gender'] for r in api_resp]) == {'unknown'}:
                     # If no gender with both names, try first only
                     data = fetch_from_gender_api(row.first_name)
                     self.api_response.append(data)
