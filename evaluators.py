@@ -19,6 +19,7 @@ def show_progress(row_index):
         sys.stdout.write('{}...'.format(row_index))
         sys.stdout.flush()
 
+
 class GenderAPIEvaluator(Evaluator):
     gender_evaluator = 'gender_api'
     api_key = 'HjmUptFvSCCbSlHPkP'  # TODO: obfuscate key if we make package open
@@ -28,7 +29,7 @@ class GenderAPIEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def call_api(n, verb='name'):
+    def _call_api(n, verb='name'):
         urlpars = urlencode({'key': GenderAPIEvaluator.api_key, verb: n})
         url = 'https://gender-api.com/get?{}'.format(urlpars)
         response = urlopen(url)
@@ -47,20 +48,20 @@ class GenderAPIEvaluator(Evaluator):
             # This implementation is for name pieces
             if row.middle_name == '':
                 # If middle name is missing, try just first_name alone
-                data = GenderAPIEvaluator.call_api(row.first_name)
+                data = GenderAPIEvaluator._call_api(row.first_name)
             else:
                 # If middle name, try various combinations
                 connectors = ['', ' ', '-']
                 names = [c.join([row.first_name, row.middle_name]) for c in connectors]
-                api_resp = [GenderAPIEvaluator.call_api(n) for n in names]
+                api_resp = [GenderAPIEvaluator._call_api(n) for n in names]
                 if set([r['gender'] for r in api_resp]) == {'unknown'}:
                     # If no gender with both names, try first only
-                    data = GenderAPIEvaluator.call_api(row.first_name)
-                    #self.api_response.extend(data)
+                    data = GenderAPIEvaluator._call_api(row.first_name)
+                    # self.api_response.extend(data)
                 else:
                     # if usage of middle name leads to female or male then take assignment with highest samples
                     data = max(api_resp, key=lambda x: x['samples'])
-                    #self.api_response.append(data)
+                    # self.api_response.append(data)
             if 'errmsg' not in data.keys():
                 self.api_response.append(data)
             else:
@@ -83,7 +84,7 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
             show_progress(i)
 
             # This implementation is for full_name
-            data = GenderAPIEvaluator.call_api(n, verb='split')
+            data = GenderAPIEvaluator._call_api(n, verb='split')
             if 'errmsg' not in data.keys():
                 self.api_response.append(data)
             else:
@@ -104,7 +105,7 @@ class NamesAPIEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def call_api(name):
+    def _call_api(name):
         def build_json(name):
             return {
                 "inputPerson": {
@@ -134,7 +135,7 @@ class NamesAPIEvaluator(Evaluator):
         for i, n in enumerate(names):
             show_progress(i)
             try:
-                self.api_response.append(NamesAPIEvaluator.call_api(n))
+                self.api_response.append(NamesAPIEvaluator._call_api(n))
             except requests.exceptions.HTTPError as e:
                 print("Bad HTTP status code:", e)
                 break
@@ -153,7 +154,7 @@ class GenderGuesserEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def call_api(n):
+    def _call_api(n):
         return gender.Detector().get_gender(n)
 
     def _fetch_gender_from_api(self):
@@ -163,15 +164,15 @@ class GenderGuesserEvaluator(Evaluator):
             show_progress(i)
             if row.middle_name != '':
                 name = row.first_name.title() + '-' + row.middle_name.title()
-                g = GenderGuesserEvaluator.call_api(name)
+                g = GenderGuesserEvaluator._call_api(name)
                 if g != "unknown":
                     self.api_response.append(g)
                 else:
                     name = row.first_name.title()
-                    self.api_response.append(GenderGuesserEvaluator.call_api(name))
+                    self.api_response.append(GenderGuesserEvaluator._call_api(name))
             else:
                 name = row.first_name.title()
-                self.api_response.append(GenderGuesserEvaluator.call_api(name))
+                self.api_response.append(GenderGuesserEvaluator._call_api(name))
 
         self.test_data["gender_infered"] = self.api_response
         self.test_data["response"] = self.api_response
@@ -188,7 +189,7 @@ class GenderizeIoEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def call_api(names):
+    def _call_api(names):
         return Genderize().get(names)
 
     def _fetch_gender_from_api(self):
@@ -202,13 +203,13 @@ class GenderizeIoEvaluator(Evaluator):
             show_progress(i)
             try:
                 if row.middle_name == '':
-                    self.api_response.extend(GenderizeIoEvaluator.call_api([row.first_name]))
+                    self.api_response.extend(GenderizeIoEvaluator._call_api([row.first_name]))
                 else:  # if middle_name exists then try various variations of full name
                     connectors = ['', ' ', '-']
                     names = [row.first_name + c + row.middle_name for c in connectors]
-                    api_resp = GenderizeIoEvaluator.call_api(names)
+                    api_resp = GenderizeIoEvaluator._call_api(names)
                     if set([r['gender'] for r in api_resp]) == {None}:
-                        self.api_response.extend(GenderizeIoEvaluator.call_api([row.first_name]))
+                        self.api_response.extend(GenderizeIoEvaluator._call_api([row.first_name]))
                     else:  # if usage of middle name leads to female or male then take assignment with highest count
                         for item in api_resp:
                             if item['gender'] is None:
