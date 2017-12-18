@@ -213,13 +213,13 @@ class GenderizeIoEvaluator(Evaluator):
             show_progress(i)
             try:
                 if row.middle_name == '':
-                    self.api_response.extend(GenderizeIoEvaluator._call_api([row.first_name]))
+                    self.api_response.extend(GenderizeIoEvaluator._call_api((row.first_name,)))
                 else:  # if middle_name exists then try various variations of full name
                     connectors = ['', ' ', '-']
-                    names = [row.first_name + c + row.middle_name for c in connectors]
+                    names = tuple([row.first_name + c + row.middle_name for c in connectors])
                     api_resp = GenderizeIoEvaluator._call_api(names)
                     if set([r['gender'] for r in api_resp]) == {None}:
-                        self.api_response.extend(GenderizeIoEvaluator._call_api([row.first_name]))
+                        self.api_response.extend(GenderizeIoEvaluator._call_api((row.first_name,)))
                     else:  # if usage of middle name leads to female or male then take assignment with highest count
                         for item in api_resp:
                             if item['gender'] is None:
