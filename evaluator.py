@@ -85,6 +85,11 @@ class Evaluator(object):
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module"""
 
+    @staticmethod
+    @abc.abstractmethod
+    def _call_api():
+        """Sends a request with one name to an API and returns a response."""
+
     def compute_confusion_matrix(self):
         if self.gender_evaluator != '':
             f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
