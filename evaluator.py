@@ -87,8 +87,8 @@ class Evaluator(object):
 
     @staticmethod
     @abc.abstractmethod
-    def _call_api():
-        """Sends a request with one name to an API and returns a response."""
+    def _call_api(name, **kwargs):
+        """Sends a request with one or more names to an API and returns a response."""
 
     def compute_confusion_matrix(self):
         if self.gender_evaluator != '':
