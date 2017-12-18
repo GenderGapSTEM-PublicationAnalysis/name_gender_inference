@@ -27,9 +27,7 @@ class memoize:
 
     def __call__(self, *args):
         try:
-            print("used cache", self.memoized[args])
             return self.memoized[args]
         except KeyError:
             self.memoized[args] = self.function(*args)
-            print("called function", self.memoized[args])
             return self.memoized[args]
