@@ -1,3 +1,4 @@
+# TODO: check error messages when catching exceptions before publishing code
 import sys
 import json
 from collections import OrderedDict
@@ -21,6 +22,7 @@ def show_progress(row_index):
 
 
 class GenderAPIEvaluator(Evaluator):
+    """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
     api_key = 'HjmUptFvSCCbSlHPkP'  # TODO: obfuscate key if we make package open
 
@@ -37,39 +39,39 @@ class GenderAPIEvaluator(Evaluator):
         return json.loads(decoded)
 
     def _fetch_gender_from_api(self):
-
-        # if api_response already contains partial results then do not re-evaluate them
         start_position = len(self.api_response)
 
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
-
-            # This implementation is for name pieces
-            if row.middle_name == '':
-                # If middle name is missing, try just first_name alone
-                data = GenderAPIEvaluator._call_api(row.first_name)
-            else:
-                # If middle name, try various combinations
-                connectors = ['', ' ', '-']
-                names = [c.join([row.first_name, row.middle_name]) for c in connectors]
-                api_resp = [GenderAPIEvaluator._call_api(n) for n in names]
-                if set([r['gender'] for r in api_resp]) == {'unknown'}:
-                    # If no gender with both names, try first only
+            try:
+                if row.middle_name == '':
+                    # If middle name is missing, try just first_name alone
                     data = GenderAPIEvaluator._call_api(row.first_name)
-                    # self.api_response.extend(data)
                 else:
-                    # if usage of middle name leads to female or male then take assignment with highest samples
-                    data = max(api_resp, key=lambda x: x['samples'])
-                    # self.api_response.append(data)
-            if 'errmsg' not in data.keys():
-                self.api_response.append(data)
-            else:
-                break
+                    # If middle name, try various combinations
+                    connectors = ['', ' ', '-']
+                    names = [c.join([row.first_name, row.middle_name]) for c in connectors]
+                    api_resp = [GenderAPIEvaluator._call_api(n) for n in names]
+                    if set([r['gender'] for r in api_resp]) == {'unknown'}:
+                        # If no gender with both names, try first only
+                        data = GenderAPIEvaluator._call_api(row.first_name)
+                        # self.api_response.extend(data)
+                    else:
+                        # if usage of middle name leads to female or male then take assignment with highest samples
+                        data = max(api_resp, key=lambda x: x['samples'])
+                        # self.api_response.append(data)
+                if 'errmsg' not in data.keys():
+                    self.api_response.append(data)
+                else:
+                    break
+            except:
+                print("Some unexpected error occured")
         self.extend_test_data_by_api_response(self.api_response,
                                               {'male': 'm', 'female': 'f', 'unknown': 'u'})
 
 
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
+    """This implementation is for full_name"""
     gender_evaluator = 'gender_api_full'
 
     def __init__(self, data_source):
@@ -85,18 +87,18 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
         return json.loads(decoded)
 
     def _fetch_gender_from_api(self):
-        # if api_response already contains partial results then do not re-evaluate them
         start_position = len(self.api_response)
         names = self.test_data[start_position:].full_name.tolist()
         for i, n in enumerate(names):
             show_progress(i)
-
-            # This implementation is for full_name
-            data = GenderAPIEvaluator._call_api(n)
-            if 'errmsg' not in data.keys():
-                self.api_response.append(data)
-            else:
-                break
+            try:
+                data = GenderAPIEvaluator._call_api(n)
+                if 'errmsg' not in data.keys():
+                    self.api_response.append(data)
+                else:
+                    break
+            except:
+                print("An unexpected error occured")
         self.extend_test_data_by_api_response(self.api_response,
                                               {'male': 'm', 'female': 'f', 'unknown': 'u'})
 
