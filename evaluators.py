@@ -29,8 +29,8 @@ class GenderAPIEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def _call_api(n, verb='name'):
-        urlpars = urlencode({'key': GenderAPIEvaluator.api_key, verb: n})
+    def _call_api(n):
+        urlpars = urlencode({'key': GenderAPIEvaluator.api_key, 'name': n})
         url = 'https://gender-api.com/get?{}'.format(urlpars)
         response = urlopen(url)
         decoded = response.read().decode('utf-8')
@@ -42,7 +42,6 @@ class GenderAPIEvaluator(Evaluator):
         start_position = len(self.api_response)
 
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            # Print sort of progress bar
             show_progress(i)
 
             # This implementation is for name pieces
@@ -76,6 +75,15 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
     def __init__(self, data_source):
         GenderAPIEvaluator.__init__(self, data_source)
 
+    @staticmethod
+    @memoize
+    def _call_api(n):
+        urlpars = urlencode({'key': GenderAPIEvaluator.api_key, 'split': n})
+        url = 'https://gender-api.com/get?{}'.format(urlpars)
+        response = urlopen(url)
+        decoded = response.read().decode('utf-8')
+        return json.loads(decoded)
+
     def _fetch_gender_from_api(self):
         # if api_response already contains partial results then do not re-evaluate them
         start_position = len(self.api_response)
@@ -84,7 +92,7 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
             show_progress(i)
 
             # This implementation is for full_name
-            data = GenderAPIEvaluator._call_api(n, verb='split')
+            data = GenderAPIEvaluator._call_api(n)
             if 'errmsg' not in data.keys():
                 self.api_response.append(data)
             else:
