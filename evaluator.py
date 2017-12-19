@@ -1,10 +1,11 @@
 # TODO: document methods
 import pandas as pd
-import os
+import abc
 import csv
 
 
 class Evaluator(object):
+    __metaclass__ = abc.ABCMeta
     """Class-level properties"""
     gender_evaluator = ''
     raw_data_prefix = 'test_data/raw_data/test_data_'
@@ -80,10 +81,14 @@ class Evaluator(object):
 
         self.test_data.replace(to_replace={"gender_infered": gender_mapping}, inplace=True)
 
+    @abc.abstractmethod
     def _fetch_gender_from_api(self):
-        """Method is implemented in the classes inheriting from this. """
-        # TODO: check if this needs a change.
-        pass
+        """Fetches gender assignments from an API or Python module"""
+
+    @staticmethod
+    @abc.abstractmethod
+    def _call_api(name):
+        """Sends a request with one or more names to an API and returns a response."""
 
     def compute_confusion_matrix(self):
         if self.gender_evaluator != '':
