@@ -4,12 +4,15 @@ import abc
 import csv
 
 
-class Evaluator(object):
-    __metaclass__ = abc.ABCMeta
-    """Class-level properties"""
-    gender_evaluator = ''
+class Evaluator(abc.ABC):
+    """Constant class-level properties; same for all inheriting classes"""
     raw_data_prefix = 'test_data/raw_data/test_data_'
     data_suffix = '.csv'
+
+    @property
+    @abc.abstractmethod
+    def gender_evaluator(self):
+        return 'Should never reach here'
 
     def __init__(self, data_source):
         self.data_source = data_source
