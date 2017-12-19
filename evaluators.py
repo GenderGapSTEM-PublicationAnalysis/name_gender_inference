@@ -57,11 +57,9 @@ class GenderAPIEvaluator(Evaluator):
                     if set([r['gender'] for r in api_resp]) == {'unknown'}:
                         # If no gender with both names, try first only
                         data = GenderAPIEvaluator._call_api(row.first_name)
-                        # self.api_response.extend(data)
                     else:
                         # if usage of middle name leads to female or male then take assignment with highest samples
                         data = max(api_resp, key=lambda x: x['samples'])
-                        # self.api_response.append(data)
                 if 'errmsg' not in data.keys():
                     self.api_response.append(data)
                 else:
@@ -118,14 +116,14 @@ class NamesAPIEvaluator(Evaluator):
     @staticmethod
     @memoize
     def _call_api(name):
-        def build_json(name):
+        def build_json(n):
             return {
                 "inputPerson": {
                     "type": "NaturalInputPerson",
                     "personName": {
                         "nameFields": [
                             {
-                                "string": name.title(),
+                                "string": n.title(),
                                 "fieldType": "FULLNAME"
                             }
                         ]
@@ -143,11 +141,48 @@ class NamesAPIEvaluator(Evaluator):
 
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            show_progress(i)
+
+            try:
+                if row.middle_name == '':
+                    self.api_response.append(self._call_api(row.first_name))
+                else:  # if middle_name exists then try various variations of full name
+                    connectors = ['', ' ', '-']
+                    names = [row.first_name + c + row.middle_name for c in connectors]
+                    api_resp = [self._call_api(name) for name in names]
+                    api_resp_genders = set([r['gender'] for r in api_resp])
+                    if 'MALE' not in api_resp_genders and 'FEMALE' not in api_resp_genders:
+                        self.api_response.append(self._call_api(row.first_name))
+                    else:  # if usage of middle name leads to female or male then take response with highest confidence
+                        self.api_response.append(sorted(api_resp, key=lambda x: x['confidence'], reverse=True)[0])
+
+            except requests.exceptions.HTTPError as e:
+                print("Bad HTTP status code:", e)
+                break
+            except requests.exceptions.RequestException as e:
+                print("Network error:", e)
+                break
+        self.extend_test_data_by_api_response(self.api_response,
+                                              {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
+                                               'CONFLICT': 'u'})
+
+
+class NamesAPIFullEvaluator(NamesAPIEvaluator):
+    gender_evaluator = 'names_api_full'
+
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
+
+    def _fetch_gender_from_api(self):
+
+        start_position = len(
+            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
         names = self.test_data[start_position:].full_name.tolist()
         for i, n in enumerate(names):
             show_progress(i)
             try:
-                self.api_response.append(NamesAPIEvaluator._call_api(n))
+                self.api_response.append(self._call_api(n))
             except requests.exceptions.HTTPError as e:
                 print("Bad HTTP status code:", e)
                 break
@@ -159,7 +194,8 @@ class NamesAPIEvaluator(Evaluator):
 
 
 class GenderGuesserEvaluator(Evaluator):
-    gender_evaluator = 'gender_guesser'  # based on Joerg Michael's C-program `gender`
+    """# Python wrapper of Joerg Michael's C-program `gender`"""
+    gender_evaluator = 'gender_guesser'
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -215,13 +251,13 @@ class GenderizeIoEvaluator(Evaluator):
             show_progress(i)
             try:
                 if row.middle_name == '':
-                    self.api_response.extend(GenderizeIoEvaluator._call_api((row.first_name,)))
+                    self.api_response.extend(self._call_api((row.first_name,)))
                 else:  # if middle_name exists then try various variations of full name
                     connectors = ['', ' ', '-']
                     names = tuple([row.first_name + c + row.middle_name for c in connectors])
-                    api_resp = GenderizeIoEvaluator._call_api(names)
+                    api_resp = self._call_api(names)
                     if set([r['gender'] for r in api_resp]) == {None}:
-                        self.api_response.extend(GenderizeIoEvaluator._call_api((row.first_name,)))
+                        self.api_response.extend(self._call_api((row.first_name,)))
                     else:  # if usage of middle name leads to female or male then take assignment with highest count
                         for item in api_resp:
                             if item['gender'] is None:
