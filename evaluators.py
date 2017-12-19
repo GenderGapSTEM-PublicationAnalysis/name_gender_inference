@@ -13,6 +13,8 @@ from genderize import Genderize, GenderizeException
 from evaluator import Evaluator
 from helpers import memoize
 
+from api_keys import API_KEYS
+
 
 def show_progress(row_index):
     """Shows a progress bar"""
@@ -24,7 +26,7 @@ def show_progress(row_index):
 class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
-    api_key = 'HjmUptFvSCCbSlHPkP'  # TODO: obfuscate key if we make package open
+    api_key = API_KEYS[gender_evaluator]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -106,8 +108,8 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
 class NamesAPIEvaluator(Evaluator):
-    api_key = "725a6a1ddf0d0f16f7dc3a6a73a9ac5b-user1"
     gender_evaluator = 'names_api'
+    api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
 
     def __init__(self, data_source):
