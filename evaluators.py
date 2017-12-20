@@ -241,7 +241,6 @@ class GenderizeIoEvaluator(Evaluator):
 
         start_position = len(self.api_response)
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            # Print sort of progress bar
             show_progress(i)
             try:
                 if row.middle_name == '':

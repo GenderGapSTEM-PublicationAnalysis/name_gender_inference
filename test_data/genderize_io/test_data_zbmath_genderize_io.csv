@@ -1,4 +1,4 @@
-"first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability","gender_response"
+"first_name","middle_name","last_name","full_name","gender","api_count","gender_infered","api_name","api_probability","api_gender"
 "pierre","paul","grivel","pierre paul grivel","m",5.0,"m","pierre-paul",1.0,"male"
 "raul","","serapioni","raul serapioni","m",821.0,"m","raul",1.0,"male"
 "adriano","","moura","adriano moura","m",166.0,"m","adriano",0.99,"male"

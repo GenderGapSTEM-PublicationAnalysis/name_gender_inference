@@ -1,4 +1,4 @@
-"first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability","gender_response"
+"first_name","middle_name","last_name","full_name","gender","api_count","gender_infered","api_name","api_probability","api_gender"
 "peter","","aaby","peter aaby","m",4373.0,"m","peter",1.0,"male"
 "shawn","","aaron","shawn aaron","m",1059.0,"m","shawn",0.9,"male"
 "kevin","","abbott","kevin abbott","m",5362.0,"m","kevin",1.0,"male"

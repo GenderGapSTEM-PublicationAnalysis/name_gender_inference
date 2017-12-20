@@ -65,12 +65,10 @@ class Evaluator(abc.ABC):
             (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
 
     def fetch_gender(self, save_to_dump=True):
-        # TODO: fetching from API needs a caching decorator in order to be more efficient with quotas
+        # TODO: change try-except structure to if-else since it is not real exception handling
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
         self.dump_test_data_with_gender_inference_to_file"""
-        if self.gender_evaluator == '':
-            raise ValueError("Missing gender_evaluator needed to fetch the gender")
         # Try opening the dump file, else resort to calling the API
         try:
             # TODO: replace by load method above
@@ -87,9 +85,9 @@ class Evaluator(abc.ABC):
 
     def extend_test_data_by_api_response(self):
         """Add response from service to self.test_data if number of responses equals number of rows in self.test_data.
-        Hereby rename the column with gender assignment from service to 'gender_response'."""
+        Hereby rename the column with gender assignment from service to 'api_gender'."""
         if len(self.api_response) == len(self.test_data):
-            api_response = pd.DataFrame(self.api_response).rename(columns={self.api_gender_key_name: "gender_response"})
+            api_response = pd.DataFrame(self.api_response).add_prefix('api_')
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
         else:
             print("Response from API contains less results than request. Try again?")
@@ -97,7 +95,7 @@ class Evaluator(abc.ABC):
     def _translate_api_response(self):
         """Create new column 'gender_infered' in self.test_data which translates gender assignments from the
         service to 'f', 'm' and 'u'."""
-        self.test_data['gender_infered'] = self.test_data['gender_response']
+        self.test_data['gender_infered'] = self.test_data['api_gender']
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
 
     @abc.abstractmethod
@@ -110,20 +108,19 @@ class Evaluator(abc.ABC):
         """Sends a request with one or more names to an API and returns a response."""
 
     def compute_confusion_matrix(self):
-        if self.gender_evaluator != '':
-            f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
-            f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
-            f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
-            m_f = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'f')])
-            m_m = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'm')])
-            m_u = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'u')])
-            u_f = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'f')])
-            u_m = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'm')])
-            u_u = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'u')])
+        f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
+        f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
+        f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
+        m_f = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'f')])
+        m_m = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'm')])
+        m_u = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'u')])
+        u_f = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'f')])
+        u_m = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'm')])
+        u_u = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'u')])
 
-            self.confusion_matrix = pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]],
-                                                 index=['f', 'm', 'u'],
-                                                 columns=['f_pred', 'm_pred', 'u_pred'])
+        self.confusion_matrix = pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]],
+                                             index=['f', 'm', 'u'],
+                                             columns=['f_pred', 'm_pred', 'u_pred'])
 
     """Error metrics from paper on genderizeR; see p.26 and p.27 (Table 2) for an explanation of the errors"""
 

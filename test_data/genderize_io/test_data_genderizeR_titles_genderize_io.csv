@@ -1,4 +1,4 @@
-"raw_name","first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability","gender_response"
+"raw_name","first_name","middle_name","last_name","full_name","gender","api_count","gender_infered","api_name","api_probability","api_gender"
 "Nancy Mary Adams","nancy","mary","adams","nancy mary adams","f",2716.0,"f","nancy",1.0,"female"
 "Lloyd R Sutherland","lloyd","r","sutherland","lloyd r sutherland","m",159.0,"m","lloyd",0.99,"male"
 "John H. Hubbell","john","h","hubbell","john h. hubbell","m",1.0,"m","john h",1.0,"male"

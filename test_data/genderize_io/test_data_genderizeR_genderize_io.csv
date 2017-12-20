@@ -1,4 +1,4 @@
-"raw_name","first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability","gender_response"
+"raw_name","first_name","middle_name","last_name","full_name","gender","api_count","gender_infered","api_name","api_probability","api_gender"
 "Thayer, Ann","ann","","thayer","ann thayer","u",1818.0,"f","ann",0.99,"female"
 "Chiesa, Paolo","paolo","","chiesa","paolo chiesa","m",781.0,"m","paolo",0.99,"male"
 "Abbate, Ernesto","ernesto","","abbate","ernesto abbate","m",381.0,"m","ernesto",1.0,"male"
