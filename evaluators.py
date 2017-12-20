@@ -230,6 +230,9 @@ class GenderizeIoEvaluator(Evaluator):
     @memoize
     def _call_api(names):
         return Genderize().get(names)
+        # use below to test changes in code without calling the API: returns dummy response
+        # d = {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
+        # return [d for i in range(len(names))]
 
     def _fetch_gender_from_api(self):
         """Fetches gender predictions from genderize.io using self.test_data.first_name and
