@@ -9,6 +9,7 @@ from urllib.request import urlopen
 
 from urllib.parse import urlencode
 from genderize import Genderize, GenderizeException
+from hammock import Hammock as NamsorAPI
 
 from evaluator import Evaluator
 from helpers import memoize
@@ -67,6 +68,7 @@ class GenderAPIEvaluator(Evaluator):
                     break
             except:
                 print("Some unexpected error occured")
+                break
 
 
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
@@ -98,6 +100,7 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
                     break
             except:
                 print("An unexpected error occured")
+                break
 
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
@@ -183,6 +186,57 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
                 break
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
+                break
+
+
+class NamSorEvaluator(Evaluator):
+    gender_evaluator = 'namsor'
+    gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
+
+    def __init__(self, data_source):
+        Evaluator.__init__(self, data_source)
+
+    @staticmethod
+    @memoize
+    def _call_api(name):
+        namsor = NamsorAPI('http://api.namsor.com/onomastics/api/json/gender')
+        # Namsor takes names that are already properly split on fore- and surname
+        if not isinstance(name, tuple):
+            raise Exception('When calling NamSor, name must be a tuple')
+        else:
+            forename, surname = name
+    
+        resp = namsor(forename, surname).GET()
+        return resp.json()
+
+    def _fetch_gender_from_api(self):
+
+        start_position = len(
+            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            show_progress(i)
+
+            try:
+                if row.middle_name == '':
+                    self.api_response.append(self._call_api((row.first_name, row.last_name)))
+                else:  # if middle_name exists then try various variations of full name
+                    connectors = ['', ' ', '-']
+                    names = [row.first_name + c + row.middle_name for c in connectors]
+                    api_resp = [self._call_api((name, row.last_name)) for name in names]
+                    api_resp_genders = set([r[self.api_gender_key_name] for r in api_resp])
+                    if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
+                        # If no gender with both names is found, use first name only
+                        data = self._call_api((row.first_name, row.last_name))
+                    else:  
+                        # if usage of middle name leads to female or male then take response with highest confidence
+                        # confidence in NamSor is absolute value of scale
+                        data = max(api_resp, key=lambda x: abs(x['scale']))
+                    self.api_response.append(data)
+            except Exception as e:
+                print('An unexpected error occured')
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                print(exc_type, exc_tb.tb_lineno)
+                print(e)
                 break
 
 
