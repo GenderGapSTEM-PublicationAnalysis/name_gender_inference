@@ -1,568 +1,568 @@
-"raw_name","first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability"
-"Thayer, Ann","ann","","thayer","ann thayer","u",1818.0,"f","ann",0.99
-"Chiesa, Paolo","paolo","","chiesa","paolo chiesa","m",781.0,"m","paolo",0.99
-"Abbate, Ernesto","ernesto","","abbate","ernesto abbate","m",381.0,"m","ernesto",1.0
-"Epstein, John H.","john","","epstein","john epstein","m",9931.0,"m","john",0.99
-"Cotroneo, Margaret","margaret","","cotroneo","margaret cotroneo","f",1101.0,"f","margaret",0.98
-"Kresge, Nicole","nicole","","kresge","nicole kresge","f",4042.0,"f","nicole",1.0
-"Simoni, Robert D.","robert","","simoni","robert simoni","m",5222.0,"m","robert",1.0
-"Hill, Robert L.","robert","","hill","robert hill","m",5222.0,"m","robert",1.0
-"Williams, Ruth","ruth","","williams","ruth williams","f",1344.0,"f","ruth",1.0
-"Fine, Eric","eric","","fine","eric fine","u",4110.0,"m","eric",1.0
-"Watts, Geoff","geoff","","watts","geoff watts","m",426.0,"m","geoff",0.99
-"Burkhardt, Gerhard","gerhard","","burkhardt","gerhard burkhardt","m",49.0,"m","gerhard",1.0
-"Reuss, Hellmut","hellmut","","reuss","hellmut reuss","u","","u","hellmut",""
-"Cash, Stephanie","stephanie","","cash","stephanie cash","f",4114.0,"f","stephanie",1.0
-"Ebony, David","david","","ebony","david ebony","m",12593.0,"m","david",1.0
-"Cooper, Martin","martin","","cooper","martin cooper","m",3568.0,"m","martin",1.0
-"Clarke, Mary","mary","","clarke","mary clarke","f",4440.0,"f","mary",1.0
-"Whittall, Arnold","arnold","","whittall","arnold whittall","m",186.0,"m","arnold",0.98
-"Nair, Prashant","prashant","","nair","prashant nair","m",198.0,"m","prashant",1.0
-"Schwarz, Steven M.","steven","","schwarz","steven schwarz","m",2600.0,"m","steven",1.0
-"Saracci, Rodolfo","rodolfo","","saracci","rodolfo saracci","m",304.0,"m","rodolfo",1.0
-"Lafer, Celso","celso","","lafer","celso lafer","m",36.0,"m","celso",1.0
-"Schmid, Judith Louisa","judith","louisa","schmid","judith louisa schmid","u",750.0,"f","judith",1.0
-"Clauser, Luigi","luigi","","clauser","luigi clauser","m",429.0,"m","luigi",1.0
-"Marshall, James R.","james","","marshall","james marshall","m",6359.0,"m","james",0.99
-"Finlay, Mark","mark","","finlay","mark finlay","m",6176.0,"m","mark",1.0
-"Akira, Shizuo","shizuo","","akira","shizuo akira","u","","u","shizuo",""
-"Raber, Linda","linda","","raber","linda raber","f",4323.0,"f","linda",1.0
-"Waters, Hannah","hannah","","waters","hannah waters","f",1949.0,"f","hannah",1.0
-"Shupnik, Margaret A.","margaret","","shupnik","margaret shupnik","f",1101.0,"f","margaret",0.98
-"Schima, Heinrich","heinrich","","schima","heinrich schima","m",14.0,"m","heinrich",1.0
-"Meyns, Bart","bart","","meyns","bart meyns","m",242.0,"m","bart",0.99
-"Walpoth, Beat","beat","","walpoth","beat walpoth","m",43.0,"m","beat",0.95
-"Booth, John","john","","booth","john booth","m",9931.0,"m","john",0.99
-"Geer, John","john","","geer","john geer","m",9931.0,"m","john",0.99
-"Seligson, Mitch","mitch","","seligson","mitch seligson","m",358.0,"m","mitch",0.93
-"Ewart, Michael","michael","","ewart","michael ewart","m",11094.0,"m","michael",1.0
-"Luke, Andrea","andrea","","luke","andrea luke","f",5794.0,"f","andrea",0.79
-"Mewes, Dieter","dieter","","mewes","dieter mewes","m",70.0,"m","dieter",1.0
-"Kraus, Lisa","lisa","","kraus","lisa kraus","f",6394.0,"f","lisa",1.0
-"Lynden-Bell, Donald","donald","","lynden-bell","donald lynden-bell","m",493.0,"m","donald",1.0
-"Golob, Thomas F.","thomas","","golob","thomas golob","u",3753.0,"m","thomas",1.0
-"Haight, Molly I.","molly","","haight","molly haight","u",780.0,"f","molly",0.99
-"Harlow, Lisa L.","lisa","","harlow","lisa harlow","u",6394.0,"f","lisa",1.0
-"Pinnavaia, Thomas J.","thomas","","pinnavaia","thomas pinnavaia","m",3753.0,"m","thomas",1.0
-"Letocha, Charles E.","charles","","letocha","charles letocha","m",1798.0,"m","charles",1.0
-"Joerissen, Ludwig","ludwig","","joerissen","ludwig joerissen","m",22.0,"m","ludwig",1.0
-"Braverman, Irwin M.","irwin","","braverman","irwin braverman","u",20.0,"m","irwin",1.0
-"Glatzer, Wolfgang","wolfgang","","glatzer","wolfgang glatzer","m",95.0,"m","wolfgang",1.0
-"Burton, Robert","robert","","burton","robert burton","m",5222.0,"m","robert",1.0
-"Thompson, Graham J.","graham","","thompson","graham thompson","m",603.0,"m","graham",1.0
-"Helffrich, George","george","","helffrich","george helffrich","m",2098.0,"m","george",0.99
-"Findlay, James A. M.","james","","findlay","james findlay","m",6359.0,"m","james",0.99
-"Dutton, Gordon N.","gordon","","dutton","gordon dutton","m",416.0,"m","gordon",1.0
-"Prusinski, Antoni","antoni","","prusinski","antoni prusinski","m",39.0,"m","antoni",1.0
-"Taft, Earl J.","earl","","taft","earl taft","u",201.0,"m","earl",1.0
-"Visileanu, Emilia","emilia","","visileanu","emilia visileanu","f",254.0,"f","emilia",1.0
-"Mirrakhimov, Erkin","erkin","","mirrakhimov","erkin mirrakhimov","m",18.0,"m","erkin",1.0
-"Trounson, Alan","alan","","trounson","alan trounson","m",2079.0,"m","alan",1.0
-"Parker, Becky","becky","","parker","becky parker","f",1447.0,"f","becky",1.0
-"Fava, Giovanni A.","giovanni","","fava","giovanni fava","m",722.0,"m","giovanni",1.0
-"Ladenson, Paul W.","paul","","ladenson","paul ladenson","u",5931.0,"m","paul",1.0
-"Mitchell, Dann","dann","","mitchell","dann mitchell","m",26.0,"m","dann",0.77
-"Nursten, Harry E.","harry","","nursten","harry nursten","u",844.0,"m","harry",0.99
-"Dyson, Anthony","anthony","","dyson","anthony dyson","u",3029.0,"m","anthony",1.0
-"Reid, Sarah","sarah","","reid","sarah reid","u",8371.0,"f","sarah",1.0
-"Knoll, Michael","michael","","knoll","michael knoll","u",11094.0,"m","michael",1.0
-"Baer, Michael","michael","","baer","michael baer","m",11094.0,"m","michael",1.0
-"Gaino, Elda","elda","","gaino","elda gaino","f",69.0,"f","elda",1.0
-"Dito, Giuseppe","giuseppe","","dito","giuseppe dito","m",774.0,"m","giuseppe",1.0
-"Sternheimer, Daniel","daniel","","sternheimer","daniel sternheimer","m",8180.0,"m","daniel",1.0
-"Smith, Linda C.","linda","","smith","linda smith","f",4323.0,"f","linda",1.0
-"Tenopir, Carol","carol","","tenopir","carol tenopir","f",2345.0,"f","carol",0.99
-"Bonet, Lluis","lluis","","bonet","lluis bonet","u",1.0,"m","lluis",1.0
-"Mohanty, Utlayan","utlayan","","mohanty","utlayan mohanty","m","","u","utlayan",""
-"Herman, Michael","michael","","herman","michael herman","m",11094.0,"m","michael",1.0
-"Douglas, Jack","jack","","douglas","jack douglas","m",1993.0,"m","jack",0.99
-"Dudowitcz, Jacek","jacek","","dudowitcz","jacek dudowitcz","u",97.0,"m","jacek",0.99
-"Canning-Glass, Judy","judy","","canning-glass","judy canning-glass","u",1375.0,"f","judy",1.0
-"Lo, Selina","selina","","lo","selina lo","u",176.0,"f","selina",1.0
-"Pignone, Domenico","domenico","","pignone","domenico pignone","m",220.0,"m","domenico",1.0
-"Hammer, Karl","karl","","hammer","karl hammer","m",700.0,"m","karl",1.0
-"Allioux, Yves-Marie","yves","marie","allioux","yves marie allioux","m",2.0,"m","yves-marie",1.0
-"Bogousslavsky, Julien","julien","","bogousslavsky","julien bogousslavsky","m",1062.0,"m","julien",1.0
-"Pfefferbaum, Adolf","adolf","","pfefferbaum","adolf pfefferbaum","m",10.0,"m","adolf",1.0
-"Joppich, Ingolf","ingolf","","joppich","ingolf joppich","u",2.0,"m","ingolf",1.0
-"Cooper, Joel D.","joel","","cooper","joel cooper","u",1468.0,"m","joel",0.99
-"Zmarlicki, Stanislaw","stanislaw","","zmarlicki","stanislaw zmarlicki","m",30.0,"m","stanislaw",1.0
-"Sheehan, John J. D.","john","","sheehan","john sheehan","u",9931.0,"m","john",0.99
-"Himes, Geoffrey","geoffrey","","himes","geoffrey himes","m",262.0,"m","geoffrey",1.0
-"Stoeffler, Dieter","dieter","","stoeffler","dieter stoeffler","m",70.0,"m","dieter",1.0
-"Kring, David A.","david","","kring","david kring","m",12593.0,"m","david",1.0
-"Wang, Linda","linda","","wang","linda wang","f",4323.0,"f","linda",1.0
-"Macovei, Gheorghe","gheorghe","","macovei","gheorghe macovei","u",6.0,"m","gheorghe",0.83
-"Beck, Felix","felix","","beck","felix beck","m",657.0,"m","felix",1.0
-"Oray, Linda Esther","linda","esther","oray","linda esther oray","u",4323.0,"f","linda",1.0
-"Bederson, Benjamin","benjamin","","bederson","benjamin bederson","m",1475.0,"m","benjamin",1.0
-"Rosenberg, Leonard","leonard","","rosenberg","leonard rosenberg","u",201.0,"m","leonard",1.0
-"Shakeshaft, Robin","robin","","shakeshaft","robin shakeshaft","m",1628.0,"f","robin",0.59
-"Ranmuthu, Dilanki","dilanki","","ranmuthu","dilanki ranmuthu","f","","u","dilanki",""
-"Carlson, Richard W.","richard","","carlson","richard carlson","m",4381.0,"m","richard",1.0
-"Chambers, John E.","john","","chambers","john chambers","m",9931.0,"m","john",0.99
-"Solomon, Sean C.","sean","","solomon","sean solomon","m",2515.0,"m","sean",1.0
-"Money, Anita","anita","","money","anita money","u",1519.0,"f","anita",1.0
-"Goff, Doug","doug","","goff","doug goff","m",891.0,"m","doug",1.0
-"Wilkerson, Scott","scott","","wilkerson","scott wilkerson","m",3450.0,"m","scott",1.0
-"Shea, Bill","bill","","shea","bill shea","m",1812.0,"m","bill",1.0
-"Bravo-Elizondo, Pedro","pedro","","bravo-elizondo","pedro bravo-elizondo","m",1631.0,"m","pedro",0.99
-"Markham, Nicholas","nicholas","","markham","nicholas markham","m",1176.0,"m","nicholas",1.0
-"Sarkar, Sameer P.","sameer","","sarkar","sameer sarkar","m",210.0,"m","sameer",1.0
-"O'Connor, Kieron","kieron","","o'connor","kieron o'connor","m",23.0,"m","kieron",1.0
-"Melmed, Shlomo","shlomo","","melmed","shlomo melmed","m",16.0,"m","shlomo",1.0
-"Ji, Lilien","lilien","","ji","lilien ji","m",1.0,"f","lilien",1.0
-"Liu, Kefeng","kefeng","","liu","kefeng liu","m","","u","kefeng",""
-"Yau, Shing-Tung","shing","tung","yau","shing tung yau","m",27.0,"m","shing",0.81
-"Levin, Vladimir","vladimir","","levin","vladimir levin","m",299.0,"m","vladimir",1.0
-"Schmitt, Laurent","laurent","","schmitt","laurent schmitt","m",571.0,"m","laurent",0.99
-"Zumr, Josef","josef","","zumr","josef zumr","u",104.0,"m","josef",0.99
-"Little, Doug","doug","","little","doug little","u",891.0,"m","doug",1.0
-"Giesecke, Robin","robin","","giesecke","robin giesecke","u",1628.0,"f","robin",0.59
-"Mesko, Gorazd","gorazd","","mesko","gorazd mesko","m",3.0,"m","gorazd",1.0
-"Wunderer, Rolf","rolf","","wunderer","rolf wunderer","m",114.0,"m","rolf",1.0
-"Opperdoes, Fred","fred","","opperdoes","fred opperdoes","m",966.0,"m","fred",0.98
-"Sampson, Karen","karen","","sampson","karen sampson","u",5462.0,"f","karen",1.0
-"Jsppelt, Ulrich","ulrich","","jsppelt","ulrich jsppelt","u",40.0,"m","ulrich",1.0
-"Scott, Margaret","margaret","","scott","margaret scott","f",1101.0,"f","margaret",0.98
-"Anzenberger, Gustl","gustl","","anzenberger","gustl anzenberger","m","","u","gustl",""
-"Falk, Barbara","barbara","","falk","barbara falk","f",2837.0,"f","barbara",1.0
-"Vujosevic, Mladen","mladen","","vujosevic","mladen vujosevic","m",45.0,"m","mladen",1.0
-"Boldy, David","david","","boldy","david boldy","u",12593.0,"m","david",1.0
-"Boldy, Stephen","stephen","","boldy","stephen boldy","u",2608.0,"m","stephen",1.0
-"Panniker, Jean","jean","","panniker","jean panniker","u",1523.0,"f","jean",0.53
-"SANFORD, GAJ","gaj","","sanford","gaj sanford","u","","u","gaj",""
-"Bristol, Nellie","nellie","","bristol","nellie bristol","f",67.0,"f","nellie",0.99
-"Olmstead, Richard G.","richard","","olmstead","richard olmstead","m",4381.0,"m","richard",1.0
-"Gross, Thomas G.","thomas","","gross","thomas gross","m",3753.0,"m","thomas",1.0
-"Oxman, Bernard H.","bernard","","oxman","bernard oxman","m",397.0,"m","bernard",1.0
-"Sullivan, Christopher D.","christopher","","sullivan","christopher sullivan","m",2339.0,"m","christopher",1.0
-"Litvinoff, Eugene S.","eugene","","litvinoff","eugene litvinoff","m",319.0,"m","eugene",0.98
-"Seifert, Mark J.","mark","","seifert","mark seifert","m",6176.0,"m","mark",1.0
-"Ashton, John R.","john","","ashton","john ashton","m",9931.0,"m","john",0.99
-"Murray, Warwick","warwick","","murray","warwick murray","m",16.0,"m","warwick",1.0
-"Geyer, Ingeborg","ingeborg","","geyer","ingeborg geyer","f",26.0,"f","ingeborg",1.0
-"Seger, Martin","martin","","seger","martin seger","m",3568.0,"m","martin",1.0
-"Siggers, Diana","diana","","siggers","diana siggers","u",2885.0,"f","diana",0.99
-"Oswald, George","george","","oswald","george oswald","m",2098.0,"m","george",0.99
-"Rochford, John","john","","rochford","john rochford","m",9931.0,"m","john",0.99
-"Knutsen, RD","rd","","knutsen","rd knutsen","u",9.0,"m","rd",0.89
-"Wood, GA","ga","","wood","ga wood","u",47.0,"f","ga",0.85
-"Wong, MEK","mek","","wong","mek wong","u",1.0,"m","mek",1.0
-"Ahmed, Aijaz","aijaz","","ahmed","aijaz ahmed","m",14.0,"m","aijaz",1.0
-"Esquivel, Carlos O.","carlos","","esquivel","carlos esquivel","m",5149.0,"m","carlos",1.0
-"Lewis-Williams, JD","jd","","lewis-williams","jd lewis-williams","u",122.0,"m","jd",0.88
-"Knoedel, Peter","peter","","knoedel","peter knoedel","m",4373.0,"m","peter",1.0
-"Loose, Tobias","tobias","","loose","tobias loose","m",352.0,"m","tobias",1.0
-"Walker, Margaret E.","margaret","","walker","margaret walker","f",1101.0,"f","margaret",0.98
-"Beard, Randy","randy","","beard","randy beard","m",1012.0,"m","randy",0.98
-"Tosseri, Olivier","olivier","","tosseri","olivier tosseri","m",715.0,"m","olivier",0.99
-"Scheuerman, William E.","william","","scheuerman","william scheuerman","m",2626.0,"m","william",1.0
-"Duncan, Ruth","ruth","","duncan","ruth duncan","f",1344.0,"f","ruth",1.0
-"Seymour, Len","len","","seymour","len seymour","m",125.0,"m","len",0.9
-"Crabb, Michael","michael","","crabb","michael crabb","m",11094.0,"m","michael",1.0
-"Rona-Tas, Andras","andras","","rona-tas","andras rona-tas","m",14.0,"m","andras",0.86
-"Myers, Jeff","jeff","","myers","jeff myers","m",2925.0,"m","jeff",1.0
-"D'Antonio, Patricia","patricia","","d'antonio","patricia d'antonio","f",3488.0,"f","patricia",1.0
-"Alovert, Nina","nina","","alovert","nina alovert","u",1434.0,"f","nina",0.99
-"Urbaniak, James R.","james","","urbaniak","james urbaniak","m",6359.0,"m","james",0.99
-"Goldner, Richard D.","richard","","goldner","richard goldner","m",4381.0,"m","richard",1.0
-"Nunley, James A.","james","","nunley","james nunley","m",6359.0,"m","james",0.99
-"Kort, Pamela","pamela","","kort","pamela kort","f",1468.0,"f","pamela",1.0
-"Baker, Diane Romayne","diane","romayne","baker","diane romayne baker","f",1649.0,"f","diane",0.99
-"Brajuskovic, Goran","goran","","brajuskovic","goran brajuskovic","m",94.0,"m","goran",1.0
-"Pavicevic, Dusanka Savic","dusanka","savic","pavicevic","dusanka savic pavicevic","u",3.0,"f","dusanka",1.0
-"Romac, Stanka","stanka","","romac","stanka romac","u",7.0,"f","stanka",1.0
-"Steinmetz, Heidrun","heidrun","","steinmetz","heidrun steinmetz","f",4.0,"f","heidrun",1.0
-"Tabasaran, Oktay","oktay","","tabasaran","oktay tabasaran","m",177.0,"m","oktay",0.99
-"Carman, Joseph","joseph","","carman","joseph carman","m",2213.0,"m","joseph",0.99
-"King, John","john","","king","john king","m",9931.0,"m","john",0.99
-"Mujica, Vladimiro","vladimiro","","mujica","vladimiro mujica","m","","u","vladimiro",""
-"Nitzan, Abraham","abraham","","nitzan","abraham nitzan","m",292.0,"m","abraham",1.0
-"Mikkelsen, Kurt","kurt","","mikkelsen","kurt mikkelsen","m",421.0,"m","kurt",1.0
-"Karczubova, Luisa","luisa","","karczubova","luisa karczubova","f",732.0,"f","luisa",1.0
-"Altrichter, Michal","michal","","altrichter","michal altrichter","m",360.0,"m","michal",0.75
-"Ambros, Pavel","pavel","","ambros","pavel ambros","m",198.0,"m","pavel",0.99
-"Ohlednuti, Kratke","kratke","","ohlednuti","kratke ohlednuti","u","","u","kratke",""
-"Descimon, Robert","robert","","descimon","robert descimon","u",5222.0,"m","robert",1.0
-"Bakker, Theo C. M.","theo","","bakker","theo bakker","m",145.0,"m","theo",0.97
-"Lubjuhn, Thomas","thomas","","lubjuhn","thomas lubjuhn","m",3753.0,"m","thomas",1.0
-"Kullmann, Harald","harald","","kullmann","harald kullmann","m",80.0,"m","harald",1.0
-"de Almeida, Geraldo Vicente","geraldo","vicente","de almeida","geraldo vicente de almeida","m",40.0,"m","geraldo",0.98
-"Merkel, Bernie","bernie","","merkel","bernie merkel","u",134.0,"m","bernie",0.75
-"Healey, John","john","","healey","john healey","m",9931.0,"m","john",0.99
-"Davidson, Jake","jake","","davidson","jake davidson","u",1410.0,"m","jake",0.99
-"Lamb, John","john","","lamb","john lamb","m",9931.0,"m","john",0.99
-"Cooke, Elizabeth","elizabeth","","cooke","elizabeth cooke","u",3508.0,"f","elizabeth",1.0
-"Yamate, Jyoji","jyoji","","yamate","jyoji yamate","m","","u","jyoji",""
-"Awodey, Steve","steve","","awodey","steve awodey","m",3965.0,"m","steve",1.0
-"Booth, Brian J.","brian","","booth","brian booth","m",4600.0,"m","brian",1.0
-"Hecht, Elena","elena","","hecht","elena hecht","f",1645.0,"f","elena",1.0
-"Cazauran, Nicole","nicole","","cazauran","nicole cazauran","u",4042.0,"f","nicole",1.0
-"Zhu, Xiongwei","xiongwei","","zhu","xiongwei zhu","m","","u","xiongwei",""
-"Castellani, Rudy J.","rudy","","castellani","rudy castellani","m",220.0,"m","rudy",0.95
-"Lee, Hyoung-gon","hyoung","gon","lee","hyoung gon lee","m","","u","hyoung",""
-"Perry, George","george","","perry","george perry","m",2098.0,"m","george",0.99
-"Weeds, Alan","alan","","weeds","alan weeds","m",2079.0,"m","alan",1.0
-"Phillips, David","david","","phillips","david phillips","m",12593.0,"m","david",1.0
-"Suny, Ronald Grigor","ronald","grigor","suny","ronald grigor suny","m",755.0,"m","ronald",1.0
-"Chrusciel, Janusz","janusz","","chrusciel","janusz chrusciel","m",15.0,"m","janusz",1.0
-"Zajac, Wojciech","wojciech","","zajac","wojciech zajac","m",30.0,"m","wojciech",1.0
-"Szytula, Andrzej","andrzej","","szytula","andrzej szytula","m",50.0,"m","andrzej",0.98
-"Roleder, Krystian","krystian","","roleder","krystian roleder","m",11.0,"m","krystian",1.0
-"Handt, Hartmut","hartmut","","handt","hartmut handt","u",5.0,"m","hartmut",1.0
-"McCourt, John","john","","mccourt","john mccourt","m",9931.0,"m","john",0.99
-"Berlekamp, Elwyn","elwyn","","berlekamp","elwyn berlekamp","m",8.0,"m","elwyn",0.63
-"Plaseska-Karanfilska, Dijana","dijana","","plaseska-karanfilska","dijana plaseska-karanfilska","f",42.0,"f","dijana",1.0
-"Dimovski, Aleksandar J.","aleksandar","","dimovski","aleksandar dimovski","m",198.0,"m","aleksandar",0.99
-"Willoughby, Arthur","arthur","","willoughby","arthur willoughby","m",547.0,"m","arthur",0.98
-"Ainsworth, Susan J.","susan","","ainsworth","susan ainsworth","f",3203.0,"f","susan",1.0
-"Tropilo, Jan","jan","","tropilo","jan tropilo","m",1663.0,"m","jan",0.6
-"McNamee, Peter","peter","","mcnamee","peter mcnamee","u",4373.0,"m","peter",1.0
-"Bell-Berti, Fredericka","fredericka","","bell-berti","fredericka bell-berti","u","","u","fredericka",""
-"Zhang, Yang","yang","","zhang","yang zhang","u",93.0,"m","yang",0.65
-"Iverson, Paul","paul","","iverson","paul iverson","u",5931.0,"m","paul",1.0
-"Smith, Thomas G.","thomas","","smith","thomas smith","m",3753.0,"m","thomas",1.0
-"Geraci, Joseph R.","joseph","","geraci","joseph geraci","m",2213.0,"m","joseph",0.99
-"Chaouat, Gerard","gerard","","chaouat","gerard chaouat","m",460.0,"m","gerard",1.0
-"Christie, George","george","","christie","george christie","u",2098.0,"m","george",0.99
-"Wardle, David A.","david","","wardle","david wardle","m",12593.0,"m","david",1.0
-"Ross, Craig","craig","","ross","craig ross","m",1816.0,"m","craig",1.0
-"Boag, Brian","brian","","boag","brian boag","m",4600.0,"m","brian",1.0
-"Coleman, David C.","david","","coleman","david coleman","m",12593.0,"m","david",1.0
-"Abd-El-Aziz, Alaa S.","alaa","","abd-el-aziz","alaa abd-el-aziz","m",258.0,"m","alaa",0.68
-"Mattson, Mark P.","mark","","mattson","mark mattson","m",6176.0,"m","mark",1.0
-"Lashinsky, Adam","adam","","lashinsky","adam lashinsky","m",3957.0,"m","adam",1.0
-"Ference, Gregory C.","gregory","","ference","gregory ference","u",721.0,"m","gregory",1.0
-"Schaffner, Bradley L.","bradley","","schaffner","bradley schaffner","m",394.0,"m","bradley",1.0
-"Adams, Willie","willie","","adams","willie adams","m",165.0,"m","willie",0.95
-"Ouellette, Dan","dan","","ouellette","dan ouellette","u",3240.0,"m","dan",0.98
-"Brand, Richard A.","richard","","brand","richard brand","u",4381.0,"m","richard",1.0
-"Cataldo, Michael F.","michael","","cataldo","michael cataldo","m",11094.0,"m","michael",1.0
-"Davidson, Nancy E.","nancy","","davidson","nancy davidson","f",2716.0,"f","nancy",1.0
-"Vecsei, Paul","paul","","vecsei","paul vecsei","m",5931.0,"m","paul",1.0
-"Alcouffe, Daniel","daniel","","alcouffe","daniel alcouffe","m",8180.0,"m","daniel",1.0
-"Kadziolka, Wojciech","wojciech","","kadziolka","wojciech kadziolka","m",30.0,"m","wojciech",1.0
-"Piwkowski, Cezary","cezary","","piwkowski","cezary piwkowski","m",5.0,"m","cezary",1.0
-"Cohen, Aaron","aaron","","cohen","aaron cohen","m",2280.0,"m","aaron",1.0
-"Eisenbrand, Gerhard","gerhard","","eisenbrand","gerhard eisenbrand","m",49.0,"m","gerhard",1.0
-"Janzowski, Christine","christine","","janzowski","christine janzowski","f",3115.0,"f","christine",1.0
-"Hecht, Stephen","stephen","","hecht","stephen hecht","m",2608.0,"m","stephen",1.0
-"Keefer, Larry","larry","","keefer","larry keefer","m",972.0,"m","larry",1.0
-"Tannenbaum, Steven","steven","","tannenbaum","steven tannenbaum","m",2600.0,"m","steven",1.0
-"Scott, Doug","doug","","scott","doug scott","m",891.0,"m","doug",1.0
-"Maerker-Hermann, Elisabeth","elisabeth","","maerker-hermann","elisabeth maerker-hermann","f",570.0,"f","elisabeth",1.0
-"Bolten, Wolfgang","wolfgang","","bolten","wolfgang bolten","m",95.0,"m","wolfgang",1.0
-"Huss, Gary R.","gary","","huss","gary huss","m",2132.0,"m","gary",1.0
-"Cassel, David G.","david","","cassel","david cassel","m",12593.0,"m","david",1.0
-"Cassel, Edith","edith","","cassel","edith cassel","u",373.0,"f","edith",1.0
-"Holcomb, Donald F.","donald","","holcomb","donald holcomb","m",493.0,"m","donald",1.0
-"Moser, Hans","hans","","moser","hans moser","m",431.0,"m","hans",0.99
-"Roche, John","john","","roche","john roche","u",9931.0,"m","john",0.99
-"Ciment, Michel","michel","","ciment","michel ciment","m",729.0,"m","michel",0.96
-"Ross, Constance A. C.","constance","","ross","constance ross","u",120.0,"f","constance",0.99
-"Roubertoux, Pierre L.","pierre","","roubertoux","pierre roubertoux","m",852.0,"m","pierre",0.99
-"Kennedy-Malone, Laurie","laurie","","kennedy-malone","laurie kennedy-malone","f",906.0,"f","laurie",0.94
-"Keiter, Richard L.","richard","","keiter","richard keiter","m",4381.0,"m","richard",1.0
-"Reger, Daniel L.","daniel","","reger","daniel reger","m",8180.0,"m","daniel",1.0
-"Gutierrez Hernandez, Pedro Ramon","pedro","ramon","gutierrez hernandez","pedro ramon gutierrez hernandez","u",1631.0,"m","pedro",0.99
-"Amort, Andrea","andrea","","amort","andrea amort","f",5794.0,"f","andrea",0.79
-"Stanko, Tomasz","tomasz","","stanko","tomasz stanko","m",122.0,"m","tomasz",1.0
-"Basso, Alberto","alberto","","basso","alberto basso","m",1530.0,"m","alberto",1.0
-"Edward, George","george","","edward","george edward","u",2098.0,"m","george",0.99
-"Das, Pam","pam","","das","pam das","f",1060.0,"f","pam",1.0
-"Forrest, Joseph","joseph","","forrest","joseph forrest","m",2213.0,"m","joseph",0.99
-"Brady, Shaun","shaun","","brady","shaun brady","m",709.0,"m","shaun",0.98
-"Lewak, Stanislaw","stanislaw","","lewak","stanislaw lewak","m",30.0,"m","stanislaw",1.0
-"Corbineau, Francoise","francoise","","corbineau","francoise corbineau","f",5.0,"f","francoise",0.8
-"Bruckner-Tuderman, Leena","leena","","bruckner-tuderman","leena bruckner-tuderman","f",80.0,"f","leena",0.98
-"Jung, Ernst G.","ernst","","jung","ernst jung","u",25.0,"m","ernst",1.0
-"Burg, Guenter","guenter","","burg","guenter burg","m",4.0,"m","guenter",1.0
-"Golz, Jochen","jochen","","golz","jochen golz","m",32.0,"m","jochen",1.0
-"Britain, James E.","james","","britain","james britain","u",6359.0,"m","james",0.99
-"Staehelin, Martin","martin","","staehelin","martin staehelin","u",3568.0,"m","martin",1.0
-"Thorhaug, Anitra","anitra","","thorhaug","anitra thorhaug","f",27.0,"f","anitra",1.0
-"Berlyn, Graeme","graeme","","berlyn","graeme berlyn","m",167.0,"m","graeme",0.99
-"Bianco, Andrea","andrea","","bianco","andrea bianco","m",5794.0,"f","andrea",0.79
-"Jukan, Admela","admela","","jukan","admela jukan","f","","u","admela",""
-"Rouskas, George","george","","rouskas","george rouskas","m",2098.0,"m","george",0.99
-"Lambert, Florence D.","florence","","lambert","florence lambert","u",538.0,"f","florence",1.0
-"Jackson, Wendy A.","wendy","","jackson","wendy jackson","f",1964.0,"f","wendy",0.99
-"Sanders, Susan E.","susan","","sanders","susan sanders","f",3203.0,"f","susan",1.0
-"Jackson, Peter T.","peter","","jackson","peter jackson","m",4373.0,"m","peter",1.0
-"Braddick, Oliver","oliver","","braddick","oliver braddick","m",750.0,"m","oliver",0.99
-"Atkinson, Janette","janette","","atkinson","janette atkinson","f",174.0,"f","janette",0.99
-"Anderson, Gary","gary","","anderson","gary anderson","m",2132.0,"m","gary",1.0
-"Zeman, David","david","","zeman","david zeman","m",12593.0,"m","david",1.0
-"Johnson, Richard I.","richard","","johnson","richard johnson","m",4381.0,"m","richard",1.0
-"McChesney, Robert W.","robert","","mcchesney","robert mcchesney","m",5222.0,"m","robert",1.0
-"Amin, Samir","samir","","amin","samir amin","m",377.0,"m","samir",0.99
-"Amin, Isabelle","isabelle","","amin","isabelle amin","u",867.0,"f","isabelle",1.0
-"Baran, Nicholas","nicholas","","baran","nicholas baran","u",1176.0,"m","nicholas",1.0
-"Brazil, Gladys","gladys","","brazil","gladys brazil","u",382.0,"f","gladys",0.97
-"Brazil, Percy","percy","","brazil","percy brazil","u",113.0,"m","percy",0.99
-"Brun, Ellen","ellen","","brun","ellen brun","u",942.0,"f","ellen",1.0
-"Hersh, Jacques","jacques","","hersh","jacques hersh","m",280.0,"m","jacques",0.99
-"Burkett, Paul","paul","","burkett","paul burkett","m",5931.0,"m","paul",1.0
-"Chandra, Nirmal Kumar","nirmal","kumar","chandra","nirmal kumar chandra","u",1.0,"m","nirmalkumar",1.0
-"Tanittiran-Cigdem, Hakan","hakan","","tanittiran-cigdem","hakan tanittiran-cigdem","u",876.0,"m","hakan",0.99
-"Clark, Brett","brett","","clark","brett clark","m",976.0,"m","brett",0.99
-"Desai, Rajani X.","rajani","","desai","rajani desai","u",9.0,"f","rajani",0.89
-"DeWind, John","john","","dewind","john dewind","u",9931.0,"m","john",0.99
-"Dong, Xulin","xulin","","dong","xulin dong","u","","u","xulin",""
-"Engler, Robert","robert","","engler","robert engler","u",5222.0,"m","robert",1.0
-"Gimenez, Martha","martha","","gimenez","martha gimenez","f",1169.0,"f","martha",0.99
-"Gindin, Sam","sam","","gindin","sam gindin","m",3336.0,"m","sam",0.76
-"Greenbaum, Joan","joan","","greenbaum","joan greenbaum","f",1017.0,"f","joan",0.82
-"Halevi, Joseph","joseph","","halevi","joseph halevi","m",2213.0,"m","joseph",0.99
-"Mage, John","john","","mage","john mage","m",9931.0,"m","john",0.99
-"Marzani, Charlotte Pomerantz","charlotte","pomerantz","marzani","charlotte pomerantz marzani","u",1926.0,"f","charlotte",1.0
-"Mohit, Morteza","morteza","","mohit","morteza mohit","m",13.0,"m","morteza",1.0
-"Nasser, Alan","alan","","nasser","alan nasser","u",2079.0,"m","alan",1.0
-"Ness, Eric","eric","","ness","eric ness","u",4110.0,"m","eric",1.0
-"Ness, Immanuel","immanuel","","ness","immanuel ness","m",15.0,"m","immanuel",1.0
-"Ollman, Bertell","bertell","","ollman","bertell ollman","m","","u","bertell",""
-"Panitch, Leo","leo","","panitch","leo panitch","m",759.0,"m","leo",0.95
-"Parvati, Comrade","comrade","","parvati","comrade parvati","f",1.0,"m","comrade",1.0
-"Pollin, Robert","robert","","pollin","robert pollin","m",5222.0,"m","robert",1.0
-"Quick, Paddy","paddy","","quick","paddy quick","f",91.0,"m","paddy",0.89
-"Robinson, Lukin","lukin","","robinson","lukin robinson","m","","u","lukin",""
-"Rubinstein, Annette","annette","","rubinstein","annette rubinstein","f",639.0,"f","annette",1.0
-"Ruben, Albert","albert","","ruben","albert ruben","u",723.0,"m","albert",0.99
-"Ruben, Julie","julie","","ruben","julie ruben","f",4260.0,"f","julie",1.0
-"Sanders, Bernie","bernie","","sanders","bernie sanders","m",134.0,"m","bernie",0.75
-"Singer, Jeanne","jeanne","","singer","jeanne singer","u",449.0,"f","jeanne",1.0
-"Sweezy, Martha","martha","","sweezy","martha sweezy","u",1169.0,"f","martha",0.99
-"Sweezy, Lybess","lybess","","sweezy","lybess sweezy","f","","u","lybess",""
-"Sweezy, Sam","sam","","sweezy","sam sweezy","u",3336.0,"m","sam",0.76
-"Miller, Ken","ken","","miller","ken miller","m",1435.0,"m","ken",0.99
-"Postel, Rob","rob","","postel","rob postel","u",2262.0,"m","rob",0.99
-"Weil, Robert","robert","","weil","robert weil","u",5222.0,"m","robert",1.0
-"Filliozat, Pierre-Sylvain","pierre","sylvain","filliozat","pierre sylvain filliozat","m",852.0,"m","pierre",0.99
-"Schaefter, Dorothea","dorothea","","schaefter","dorothea schaefter","f",30.0,"f","dorothea",1.0
-"Evans, Jane E.","jane","","evans","jane evans","f",1796.0,"f","jane",0.99
-"Fujii, Fumio","fumio","","fujii","fumio fujii","m",3.0,"m","fumio",1.0
-"Sutcliffe, Anne J.","anne","","sutcliffe","anne sutcliffe","f",2461.0,"f","anne",1.0
-"Reijenga, Jetse","jetse","","reijenga","jetse reijenga","m",1.0,"m","jetse",1.0
-"Verheggen, Theo","theo","","verheggen","theo verheggen","m",145.0,"m","theo",0.97
-"Collias, Nicholas","nicholas","","collias","nicholas collias","m",1176.0,"m","nicholas",1.0
-"Kung, Charles","charles","","kung","charles kung","m",1798.0,"m","charles",1.0
-"Lappin, Terry","terry","","lappin","terry lappin","m",1429.0,"m","terry",0.78
-"Menczel, Joe","joe","","menczel","joe menczel","u",3679.0,"m","joe",0.99
-"Seyler, Rick","rick","","seyler","rick seyler","u",1255.0,"m","rick",1.0
-"Jones, Anne Hudson","anne","hudson","jones","anne hudson jones","f",2461.0,"f","anne",1.0
-"Coyne, Jerry A.","jerry","","coyne","jerry coyne","u",1031.0,"m","jerry",0.98
-"Cobb, Matthew","matthew","","cobb","matthew cobb","m",3338.0,"m","matthew",1.0
-"Eschapasse, Baudouin","baudouin","","eschapasse","baudouin eschapasse","m",4.0,"m","baudouin",1.0
-"Pukazhenthi, Budhan","budhan","","pukazhenthi","budhan pukazhenthi","m","","u","budhan",""
-"Munk-Jorgensen, Povl","povl","","munk-jorgensen","povl munk-jorgensen","m","","u","povl",""
-"Davis, Alan","alan","","davis","alan davis","u",2079.0,"m","alan",1.0
-"Gartner, Wolfgang","wolfgang","","gartner","wolfgang gartner","u",95.0,"m","wolfgang",1.0
-"Lane, Richard","richard","","lane","richard lane","u",4381.0,"m","richard",1.0
-"Droser, Mary L.","mary","","droser","mary droser","f",4440.0,"f","mary",1.0
-"Pal, Chinmoy","chinmoy","","pal","chinmoy pal","u",1.0,"m","chinmoy",1.0
-"Bernard, George","george","","bernard","george bernard","m",2098.0,"m","george",0.99
-"Van Hurnbeeck, Jan","jan","","van hurnbeeck","jan van hurnbeeck","m",1663.0,"m","jan",0.6
-"Burgin, George H.","george","","burgin","george burgin","m",2098.0,"m","george",0.99
-"Nehring, Elisabeth","elisabeth","","nehring","elisabeth nehring","f",570.0,"f","elisabeth",1.0
-"Costa, Daniel L.","daniel","","costa","daniel costa","m",8180.0,"m","daniel",1.0
-"Martinic B, Mateo","mateo","","martinic b","mateo martinic b","u",107.0,"m","mateo",1.0
-"Prichard, Bob","bob","","prichard","bob prichard","u",1593.0,"m","bob",0.98
-"Stein, Glenn M.","glenn","","stein","glenn stein","m",652.0,"m","glenn",0.99
-"Peschke, Elmar","elmar","","peschke","elmar peschke","m",17.0,"m","elmar",0.94
-"Willerson, James T.","james","","willerson","james willerson","m",6359.0,"m","james",0.99
-"Hallegraeff, Gustaaf M.","gustaaf","","hallegraeff","gustaaf hallegraeff","m",2.0,"m","gustaaf",1.0
-"Blackburn, Susan I.","susan","","blackburn","susan blackburn","f",3203.0,"f","susan",1.0
-"Roy, Suzanne","suzanne","","roy","suzanne roy","f",1024.0,"f","suzanne",1.0
-"Vernet, Maria","maria","","vernet","maria vernet","f",8402.0,"f","maria",0.99
-"Wright, Simon W.","simon","","wright","simon wright","u",2443.0,"m","simon",0.99
-"Bowman, Alan K.","alan","","bowman","alan bowman","u",2079.0,"m","alan",1.0
-"Marino, Melissa","melissa","","marino","melissa marino","u",4400.0,"f","melissa",1.0
-"Zakrzewski, Kazimierz","kazimierz","","zakrzewski","kazimierz zakrzewski","m",3.0,"m","kazimierz",1.0
-"Koszyk, Kurt","kurt","","koszyk","kurt koszyk","m",421.0,"m","kurt",1.0
-"Cohen, Jon","jon","","cohen","jon cohen","u",1790.0,"m","jon",1.0
-"Bruch, Hans-Peter","hans","peter","bruch","hans peter bruch","m",9.0,"m","hans-peter",1.0
-"Metzger, Chantal","chantal","","metzger","chantal metzger","u",473.0,"f","chantal",1.0
-"Shrivastava, Nirbhay","nirbhay","","shrivastava","nirbhay shrivastava","m",1.0,"m","nirbhay",1.0
-"Pain, Elisabeth","elisabeth","","pain","elisabeth pain","u",570.0,"f","elisabeth",1.0
-"Nowak, Andrzej","andrzej","","nowak","andrzej nowak","m",50.0,"m","andrzej",0.98
-"Kovacs, Kalman","kalman","","kovacs","kalman kovacs","m",19.0,"f","kalman",0.79
-"Murphy, Agnes","agnes","","murphy","agnes murphy","f",332.0,"f","agnes",1.0
-"Costabile-Heming, Carol Anne","carol","anne","costabile-heming","carol anne costabile-heming","f",13.0,"f","carolanne",1.0
-"Umlauf, Konrad","konrad","","umlauf","konrad umlauf","m",62.0,"m","konrad",1.0
-"De Vivo, Darryl C.","darryl","","de vivo","darryl de vivo","m",202.0,"m","darryl",0.99
-"DiMauro, Salvatore","salvatore","","dimauro","salvatore dimauro","m",409.0,"m","salvatore",1.0
-"Westeel, Virginie","virginie","","westeel","virginie westeel","f",437.0,"f","virginie",1.0
-"Quoix, Elisabeth","elisabeth","","quoix","elisabeth quoix","f",570.0,"f","elisabeth",1.0
-"Pujol, Jean-Louis","jean","louis","pujol","jean louis pujol","m",43.0,"m","jean-louis",1.0
-"Milleron, Bernard","bernard","","milleron","bernard milleron","m",397.0,"m","bernard",1.0
-"Eckley, Timothy S.","timothy","","eckley","timothy eckley","u",809.0,"m","timothy",1.0
-"Viviani, Christian","christian","","viviani","christian viviani","u",2548.0,"m","christian",0.99
-"Loeckle, Wolf","wolf","","loeckle","wolf loeckle","m",40.0,"m","wolf",0.95
-"Fleinghaus, Helmut","helmut","","fleinghaus","helmut fleinghaus","m",51.0,"m","helmut",1.0
-"Zink, Michel","michel","","zink","michel zink","m",729.0,"m","michel",0.96
-"Schwalbe, Karl-Heinz","karl","heinz","schwalbe","karl heinz schwalbe","m",3.0,"m","karl-heinz",1.0
-"Norskov, Jens K.","jens","","norskov","jens norskov","m",292.0,"m","jens",1.0
-"Clausen, Bjerne S.","bjerne","","clausen","bjerne clausen","m","","u","bjerne",""
-"de Wet, Frans","frans","","de wet","frans de wet","m",70.0,"m","frans",0.96
-"Sprott, Margaret","margaret","","sprott","margaret sprott","u",1101.0,"f","margaret",0.98
-"Schoenfeld, Bernd","bernd","","schoenfeld","bernd schoenfeld","m",34.0,"m","bernd",1.0
-"Wochner, Peter","peter","","wochner","peter wochner","u",4373.0,"m","peter",1.0
-"Franken, Klaus","klaus","","franken","klaus franken","m",177.0,"m","klaus",0.98
-"Lai, Jules","jules","","lai","jules lai","u",210.0,"f","jules",0.59
-"McBurney, Gerard","gerard","","mcburney","gerard mcburney","m",460.0,"m","gerard",1.0
-"Kumate-Rodriguez, Jesus","jesus","","kumate-rodriguez","jesus kumate-rodriguez","m",1071.0,"m","jesus",0.98
-"Nagai, Yoshiyuki","yoshiyuki","","nagai","yoshiyuki nagai","u",2.0,"m","yoshiyuki",1.0
-"Das, Pamela","pamela","","das","pamela das","f",1468.0,"f","pamela",1.0
-"Murphy, Hugh","hugh","","murphy","hugh murphy","u",174.0,"m","hugh",1.0
-"Wetzel, Guenter","guenter","","wetzel","guenter wetzel","m",4.0,"m","guenter",1.0
-"Haubrich, William S.","william","","haubrich","william haubrich","m",2626.0,"m","william",1.0
-"Greene, Geoffrey L.","geoffrey","","greene","geoffrey greene","m",262.0,"m","geoffrey",1.0
-"Neuhouser, Frederick","frederick","","neuhouser","frederick neuhouser","m",294.0,"m","frederick",1.0
-"Bigby, Christine","christine","","bigby","christine bigby","u",3115.0,"f","christine",1.0
-"Fyffe, Chris","chris","","fyffe","chris fyffe","u",8631.0,"m","chris",0.93
-"Zahradnicek, Josef","josef","","zahradnicek","josef zahradnicek","m",104.0,"m","josef",0.99
-"Becker, Gary J.","gary","","becker","gary becker","u",2132.0,"m","gary",1.0
-"Price, Jack E.","jack","","price","jack price","u",1993.0,"m","jack",0.99
-"Alifanov, Oleg M.","oleg","","alifanov","oleg alifanov","m",86.0,"m","oleg",0.99
-"Blackwell, Ben","ben","","blackwell","ben blackwell","m",3363.0,"m","ben",0.99
-"Cole, Kevin D.","kevin","","cole","kevin cole","m",5362.0,"m","kevin",1.0
-"DeMonte, Filippo","filippo","","demonte","filippo demonte","m",237.0,"m","filippo",1.0
-"Dolan, Kirk D.","kirk","","dolan","kirk dolan","m",280.0,"m","kirk",1.0
-"McMasters, Robert L.","robert","","mcmasters","robert mcmasters","m",5222.0,"m","robert",1.0
-"Nenarokomov, Aleksey","aleksey","","nenarokomov","aleksey nenarokomov","m",18.0,"m","aleksey",1.0
-"Woodbury, Keith A.","keith","","woodbury","keith woodbury","m",1417.0,"m","keith",0.99
-"Bardon, Jean-Pierre","jean","pierre","bardon","jean pierre bardon","m",122.0,"m","jean-pierre",1.0
-"Dowding, Kevin J.","kevin","","dowding","kevin dowding","u",5362.0,"m","kevin",1.0
-"Keltner, Ned R.","ned","","keltner","ned keltner","u",73.0,"m","ned",0.96
-"Scott, Elaine P.","elaine","","scott","elaine scott","f",1142.0,"f","elaine",1.0
-"Wright, Neil T.","neil","","wright","neil wright","m",1036.0,"m","neil",1.0
-"Hanrahan, Christine","christine","","hanrahan","christine hanrahan","f",3115.0,"f","christine",1.0
-"McBride, Beverly","beverly","","mcbride","beverly mcbride","f",385.0,"f","beverly",0.99
-"Zurbrigg, Eleanor","eleanor","","zurbrigg","eleanor zurbrigg","u",263.0,"f","eleanor",1.0
-"Brodo, Irwin M.","irwin","","brodo","irwin brodo","m",20.0,"m","irwin",1.0
-"Haspelmath, Martin","martin","","haspelmath","martin haspelmath","m",3568.0,"m","martin",1.0
-"Konig, Ekkehard","ekkehard","","konig","ekkehard konig","m","","u","ekkehard",""
-"Rubery, Matthew","matthew","","rubery","matthew rubery","m",3338.0,"m","matthew",1.0
-"Bronks, Ian","ian","","bronks","ian bronks","u",2159.0,"m","ian",0.99
-"Lachman, Ralph S.","ralph","","lachman","ralph lachman","m",314.0,"m","ralph",1.0
-"Ratner, Mark","mark","","ratner","mark ratner","m",6176.0,"m","mark",1.0
-"Manchanda, Raj K.","raj","","manchanda","raj manchanda","m",267.0,"m","raj",0.86
-"Nayak, Chaturbhuja","chaturbhuja","","nayak","chaturbhuja nayak","m","","u","chaturbhuja",""
-"Panken, Ted","ted","","panken","ted panken","m",376.0,"m","ted",1.0
-"Basili, Victor","victor","","basili","victor basili","m",2234.0,"m","victor",1.0
-"Booch, Grady","grady","","booch","grady booch","m",43.0,"m","grady",0.74
-"Vogel, Doug","doug","","vogel","doug vogel","m",891.0,"m","doug",1.0
-"Sherins, Richard J.","richard","","sherins","richard sherins","m",4381.0,"m","richard",1.0
-"Whiticar, Michael J.","michael","","whiticar","michael whiticar","m",11094.0,"m","michael",1.0
-"de Leeuw, Jan W.","jan","","de leeuw","jan de leeuw","m",1663.0,"m","jan",0.6
-"Stratford, Michael C.","michael","","stratford","michael stratford","m",11094.0,"m","michael",1.0
-"Anderson, James M.","james","","anderson","james anderson","m",6359.0,"m","james",0.99
-"Mukhopadiyay, Atri","atri","","mukhopadiyay","atri mukhopadiyay","u",1.0,"f","atri",1.0
-"Catling, Paul","paul","","catling","paul catling","m",5931.0,"m","paul",1.0
-"Mitrow, Gisele","gisele","","mitrow","gisele mitrow","f",85.0,"f","gisele",1.0
-"Cayouette, Jacques","jacques","","cayouette","jacques cayouette","m",280.0,"m","jacques",0.99
-"Brock, William H.","william","","brock","william brock","u",2626.0,"m","william",1.0
-"Ruggieri, Pietro","pietro","","ruggieri","pietro ruggieri","m",202.0,"m","pietro",1.0
-"Hamilton, David E.","david","","hamilton","david hamilton","m",12593.0,"m","david",1.0
-"Barker, Nicolas","nicolas","","barker","nicolas barker","m",1953.0,"m","nicolas",1.0
-"Pukl, Pavla","pavla","","pukl","pavla pukl","u",40.0,"f","pavla",0.98
-"Rohmer, Michel","michel","","rohmer","michel rohmer","m",729.0,"m","michel",0.96
-"Boon, Annie","annie","","boon","annie boon","f",1120.0,"f","annie",1.0
-"Wiese, Wolfgang","wolfgang","","wiese","wolfgang wiese","m",95.0,"m","wolfgang",1.0
-"van Ommen, Gertjan","gertjan","","van ommen","gertjan van ommen","m",3.0,"m","gertjan",1.0
-"Fee, Elizabeth","elizabeth","","fee","elizabeth fee","f",3508.0,"f","elizabeth",1.0
-"Campling, Angela","angela","","campling","angela campling","u",3511.0,"f","angela",1.0
-"Caldwell, Kenneth","kenneth","","caldwell","kenneth caldwell","m",1020.0,"m","kenneth",1.0
-"Nyren, Ron","ron","","nyren","ron nyren","u",1014.0,"m","ron",0.98
-"Hartmann, Gerd K.","gerd","","hartmann","gerd hartmann","m",54.0,"f","gerd",0.52
-"Dickison, Alex","alex","","dickison","alex dickison","m",5856.0,"m","alex",0.87
-"Shortman, Ken","ken","","shortman","ken shortman","m",1435.0,"m","ken",0.99
-"Feehally, John","john","","feehally","john feehally","m",9931.0,"m","john",0.99
-"Eastwood, John","john","","eastwood","john eastwood","m",9931.0,"m","john",0.99
-"Cameron, Stewart","stewart","","cameron","stewart cameron","m",197.0,"m","stewart",0.99
-"Cruikshank, Julie","julie","","cruikshank","julie cruikshank","f",4260.0,"f","julie",1.0
-"Cox, Jane","jane","","cox","jane cox","f",1796.0,"f","jane",0.99
-"Fisher, Paul","paul","","fisher","paul fisher","m",5931.0,"m","paul",1.0
-"Mainer, Jose-Carlos","jose","carlos","mainer","jose carlos mainer","m",75.0,"m","jose carlos",1.0
-"Weiss, Hedy","hedy","","weiss","hedy weiss","f",42.0,"f","hedy",1.0
-"Clee, Patricia","patricia","","clee","patricia clee","u",3488.0,"f","patricia",1.0
-"Ottesen, Rolf Tore","rolf","tore","ottesen","rolf tore ottesen","m",114.0,"m","rolf",1.0
-"Volden, Tore","tore","","volden","tore volden","u",33.0,"m","tore",0.97
-"Rein, Amund","amund","","rein","amund rein","u",7.0,"m","amund",1.0
-"Reimann, Clemens","clemens","","reimann","clemens reimann","m",20.0,"m","clemens",1.0
-"Franks, Sharon E. R.","sharon","","franks","sharon franks","f",2760.0,"f","sharon",0.99
-"Elvin, Violetta","violetta","","elvin","violetta elvin","f",41.0,"f","violetta",1.0
-"Loewenberg, Samuel","samuel","","loewenberg","samuel loewenberg","m",1409.0,"m","samuel",1.0
-"Schuez, Almut","almut","","schuez","almut schuez","f",8.0,"f","almut",1.0
-"Tomas, Obitelj","obitelj","","tomas","obitelj tomas","u","","u","obitelj",""
-"Weary, Peyton E.","peyton","","weary","peyton weary","m",37.0,"f","peyton",0.59
-"Couper, Mary Rose","mary","rose","couper","mary rose couper","u",11.0,"f","maryrose",1.0
-"Howell, David","david","","howell","david howell","m",12593.0,"m","david",1.0
-"Gildart, Keith","keith","","gildart","keith gildart","m",1417.0,"m","keith",0.99
-"Jordan, Dawne","dawne","","jordan","dawne jordan","u",16.0,"f","dawne",1.0
-"Szyprowski, Andrzej J.","andrzej","","szyprowski","andrzej szyprowski","m",50.0,"m","andrzej",0.98
-"Sciazko, Marek","marek","","sciazko","marek sciazko","m",229.0,"m","marek",1.0
-"Holmes, Andrew","andrew","","holmes","andrew holmes","m",5168.0,"m","andrew",1.0
-"Pointon, Tony","tony","","pointon","tony pointon","u",3071.0,"m","tony",1.0
-"Quenin, Francois","francois","","quenin","francois quenin","m",290.0,"m","francois",1.0
-"Balaguer, Emilio","emilio","","balaguer","emilio balaguer","u",370.0,"m","emilio",0.99
-"Ballester, Rosa","rosa","","ballester","rosa ballester","f",947.0,"f","rosa",0.99
-"Nunn, Frederick M.","frederick","","nunn","frederick nunn","u",294.0,"m","frederick",1.0
-"Sims, Richard","richard","","sims","richard sims","u",4381.0,"m","richard",1.0
-"Somers, Krishna","krishna","","somers","krishna somers","u",194.0,"m","krishna",0.71
-"Seidel, Scott","scott","","seidel","scott seidel","m",3450.0,"m","scott",1.0
-"Franchi, Lorenzo","lorenzo","","franchi","lorenzo franchi","m",496.0,"m","lorenzo",1.0
-"Mchedlov-Petrossyan, Nikolay O.","nikolay","","mchedlov-petrossyan","nikolay mchedlov-petrossyan","m",47.0,"m","nikolay",1.0
-"Martini, Claudio","claudio","","martini","claudio martini","m",854.0,"m","claudio",1.0
-"Bailey, Beth","beth","","bailey","beth bailey","f",1541.0,"f","beth",1.0
-"Farber, David","david","","farber","david farber","m",12593.0,"m","david",1.0
-"Reed, Arthur C.","arthur","","reed","arthur reed","u",547.0,"m","arthur",0.98
-"Erdine, Serdar","serdar","","erdine","serdar erdine","m",424.0,"m","serdar",0.99
-"Wiesenfeld, David","david","","wiesenfeld","david wiesenfeld","m",12593.0,"m","david",1.0
-"Smith, Suzanne P.","suzanne","","smith","suzanne smith","f",1024.0,"f","suzanne",1.0
-"Cook, Alison","alison","","cook","alison cook","u",1288.0,"f","alison",0.99
-"Ohmann, Valdur","valdur","","ohmann","valdur ohmann","m","","u","valdur",""
-"Nap, Marius","marius","","nap","marius nap","u",234.0,"m","marius",1.0
-"Chawishly, Soran","soran","","chawishly","soran chawishly","u",2.0,"m","soran",1.0
-"Helpern, Alice","alice","","helpern","alice helpern","u",1414.0,"f","alice",1.0
-"Gerler, Peter","peter","","gerler","peter gerler","m",4373.0,"m","peter",1.0
-"Harris, Judith","judith","","harris","judith harris","f",750.0,"f","judith",1.0
-"Rodriguez Portales, Jose A.","jose","","rodriguez portales","jose rodriguez portales","m",3821.0,"m","jose",0.99
-"Ng, Timothy","timothy","","ng","timothy ng","u",809.0,"m","timothy",1.0
-"Sandhu-Purewal, Mandeep","mandeep","","sandhu-purewal","mandeep sandhu-purewal","u",45.0,"m","mandeep",0.84
-"Crain, Barbara J.","barbara","","crain","barbara crain","f",2837.0,"f","barbara",1.0
-"Cieslak-Golonka, Maria","maria","","cieslak-golonka","maria cieslak-golonka","f",8402.0,"f","maria",0.99
-"Kojic-Prodic, Breska","breska","","kojic-prodic","breska kojic-prodic","f","","u","breska",""
-"Ljubesic, Nikola","nikola","","ljubesic","nikola ljubesic","m",301.0,"m","nikola",0.83
-"Salopek-Sondi, Branka","branka","","salopek-sondi","branka salopek-sondi","f",31.0,"f","branka",1.0
-"Iskric, Sonja","sonja","","iskric","sonja iskric","u",372.0,"f","sonja",0.99
-"Lacan, Goran","goran","","lacan","goran lacan","u",94.0,"m","goran",1.0
-"Wrischer, Mercedes","mercedes","","wrischer","mercedes wrischer","u",429.0,"f","mercedes",1.0
-"Brauner, Colin J.","colin","","brauner","colin brauner","m",954.0,"m","colin",0.99
-"Zaba, Ryszard","ryszard","","zaba","ryszard zaba","m",29.0,"m","ryszard",1.0
-"Rouyer, Philippe","philippe","","rouyer","philippe rouyer","m",605.0,"m","philippe",0.99
-"Kontak, Daniel J.","daniel","","kontak","daniel kontak","m",8180.0,"m","daniel",1.0
-"Basar, Tamer","tamer","","basar","tamer basar","m",250.0,"m","tamer",0.99
-"Lawrence, Una","una","","lawrence","una lawrence","u",69.0,"f","una",0.99
-"Milton, Kimball A.","kimball","","milton","kimball milton","m",1.0,"f","kimball",1.0
-"O'Donovan, Nick","nick","","o'donovan","nick o'donovan","u",3326.0,"m","nick",0.99
-"Vagenakis, Apostolos G.","apostolos","","vagenakis","apostolos vagenakis","u",18.0,"m","apostolos",1.0
-"Maceina, Mike","mike","","maceina","mike maceina","m",5595.0,"m","mike",1.0
-"Lovell, Graves","graves","","lovell","graves lovell","m","","u","graves",""
-"Partridge, Todd","todd","","partridge","todd partridge","u",847.0,"m","todd",1.0
-"Mascone, Cindy Fabian","cindy","fabian","mascone","cindy fabian mascone","u",2477.0,"f","cindy",1.0
-"Csuzdi, Csaba","csaba","","csuzdi","csaba csuzdi","m",17.0,"m","csaba",1.0
-"Michael, Enid","enid","","michael","enid michael","m",39.0,"f","enid",1.0
-"Goske, Marilyn J.","marilyn","","goske","marilyn goske","f",718.0,"f","marilyn",1.0
-"Rumack, Carol M.","carol","","rumack","carol rumack","f",2345.0,"f","carol",0.99
-"Kolenc, Olga","olga","","kolenc","olga kolenc","u",898.0,"f","olga",1.0
-"Tager, Michael","michael","","tager","michael tager","u",11094.0,"m","michael",1.0
-"Craig, John F.","john","","craig","john craig","m",9931.0,"m","john",0.99
-"Lynn, Richard","richard","","lynn","richard lynn","m",4381.0,"m","richard",1.0
-"Pertold, Zdenek","zdenek","","pertold","zdenek pertold","m",33.0,"m","zdenek",1.0
-"Bolton, Laura","laura","","bolton","laura bolton","f",7953.0,"f","laura",1.0
-"Goldberg-Gist, Arlene","arlene","","goldberg-gist","arlene goldberg-gist","f",271.0,"f","arlene",1.0
-"Morison, Ian","ian","","morison","ian morison","m",2159.0,"m","ian",0.99
-"Hughes, David","david","","hughes","david hughes","m",12593.0,"m","david",1.0
-"Higson, Roger","roger","","higson","roger higson","m",1220.0,"m","roger",1.0
+"raw_name","first_name","middle_name","last_name","full_name","gender","count","gender_infered","name","probability","gender_response"
+"Thayer, Ann","ann","","thayer","ann thayer","u",1818.0,"f","ann",0.99,"female"
+"Chiesa, Paolo","paolo","","chiesa","paolo chiesa","m",781.0,"m","paolo",0.99,"male"
+"Abbate, Ernesto","ernesto","","abbate","ernesto abbate","m",381.0,"m","ernesto",1.0,"male"
+"Epstein, John H.","john","","epstein","john epstein","m",9931.0,"m","john",0.99,"male"
+"Cotroneo, Margaret","margaret","","cotroneo","margaret cotroneo","f",1101.0,"f","margaret",0.98,"female"
+"Kresge, Nicole","nicole","","kresge","nicole kresge","f",4042.0,"f","nicole",1.0,"female"
+"Simoni, Robert D.","robert","","simoni","robert simoni","m",5222.0,"m","robert",1.0,"male"
+"Hill, Robert L.","robert","","hill","robert hill","m",5222.0,"m","robert",1.0,"male"
+"Williams, Ruth","ruth","","williams","ruth williams","f",1344.0,"f","ruth",1.0,"female"
+"Fine, Eric","eric","","fine","eric fine","u",4110.0,"m","eric",1.0,"male"
+"Watts, Geoff","geoff","","watts","geoff watts","m",426.0,"m","geoff",0.99,"male"
+"Burkhardt, Gerhard","gerhard","","burkhardt","gerhard burkhardt","m",49.0,"m","gerhard",1.0,"male"
+"Reuss, Hellmut","hellmut","","reuss","hellmut reuss","u","","u","hellmut","",""
+"Cash, Stephanie","stephanie","","cash","stephanie cash","f",4114.0,"f","stephanie",1.0,"female"
+"Ebony, David","david","","ebony","david ebony","m",12593.0,"m","david",1.0,"male"
+"Cooper, Martin","martin","","cooper","martin cooper","m",3568.0,"m","martin",1.0,"male"
+"Clarke, Mary","mary","","clarke","mary clarke","f",4440.0,"f","mary",1.0,"female"
+"Whittall, Arnold","arnold","","whittall","arnold whittall","m",186.0,"m","arnold",0.98,"male"
+"Nair, Prashant","prashant","","nair","prashant nair","m",198.0,"m","prashant",1.0,"male"
+"Schwarz, Steven M.","steven","","schwarz","steven schwarz","m",2600.0,"m","steven",1.0,"male"
+"Saracci, Rodolfo","rodolfo","","saracci","rodolfo saracci","m",304.0,"m","rodolfo",1.0,"male"
+"Lafer, Celso","celso","","lafer","celso lafer","m",36.0,"m","celso",1.0,"male"
+"Schmid, Judith Louisa","judith","louisa","schmid","judith louisa schmid","u",750.0,"f","judith",1.0,"female"
+"Clauser, Luigi","luigi","","clauser","luigi clauser","m",429.0,"m","luigi",1.0,"male"
+"Marshall, James R.","james","","marshall","james marshall","m",6359.0,"m","james",0.99,"male"
+"Finlay, Mark","mark","","finlay","mark finlay","m",6176.0,"m","mark",1.0,"male"
+"Akira, Shizuo","shizuo","","akira","shizuo akira","u","","u","shizuo","",""
+"Raber, Linda","linda","","raber","linda raber","f",4323.0,"f","linda",1.0,"female"
+"Waters, Hannah","hannah","","waters","hannah waters","f",1949.0,"f","hannah",1.0,"female"
+"Shupnik, Margaret A.","margaret","","shupnik","margaret shupnik","f",1101.0,"f","margaret",0.98,"female"
+"Schima, Heinrich","heinrich","","schima","heinrich schima","m",14.0,"m","heinrich",1.0,"male"
+"Meyns, Bart","bart","","meyns","bart meyns","m",242.0,"m","bart",0.99,"male"
+"Walpoth, Beat","beat","","walpoth","beat walpoth","m",43.0,"m","beat",0.95,"male"
+"Booth, John","john","","booth","john booth","m",9931.0,"m","john",0.99,"male"
+"Geer, John","john","","geer","john geer","m",9931.0,"m","john",0.99,"male"
+"Seligson, Mitch","mitch","","seligson","mitch seligson","m",358.0,"m","mitch",0.93,"male"
+"Ewart, Michael","michael","","ewart","michael ewart","m",11094.0,"m","michael",1.0,"male"
+"Luke, Andrea","andrea","","luke","andrea luke","f",5794.0,"f","andrea",0.79,"female"
+"Mewes, Dieter","dieter","","mewes","dieter mewes","m",70.0,"m","dieter",1.0,"male"
+"Kraus, Lisa","lisa","","kraus","lisa kraus","f",6394.0,"f","lisa",1.0,"female"
+"Lynden-Bell, Donald","donald","","lynden-bell","donald lynden-bell","m",493.0,"m","donald",1.0,"male"
+"Golob, Thomas F.","thomas","","golob","thomas golob","u",3753.0,"m","thomas",1.0,"male"
+"Haight, Molly I.","molly","","haight","molly haight","u",780.0,"f","molly",0.99,"female"
+"Harlow, Lisa L.","lisa","","harlow","lisa harlow","u",6394.0,"f","lisa",1.0,"female"
+"Pinnavaia, Thomas J.","thomas","","pinnavaia","thomas pinnavaia","m",3753.0,"m","thomas",1.0,"male"
+"Letocha, Charles E.","charles","","letocha","charles letocha","m",1798.0,"m","charles",1.0,"male"
+"Joerissen, Ludwig","ludwig","","joerissen","ludwig joerissen","m",22.0,"m","ludwig",1.0,"male"
+"Braverman, Irwin M.","irwin","","braverman","irwin braverman","u",20.0,"m","irwin",1.0,"male"
+"Glatzer, Wolfgang","wolfgang","","glatzer","wolfgang glatzer","m",95.0,"m","wolfgang",1.0,"male"
+"Burton, Robert","robert","","burton","robert burton","m",5222.0,"m","robert",1.0,"male"
+"Thompson, Graham J.","graham","","thompson","graham thompson","m",603.0,"m","graham",1.0,"male"
+"Helffrich, George","george","","helffrich","george helffrich","m",2098.0,"m","george",0.99,"male"
+"Findlay, James A. M.","james","","findlay","james findlay","m",6359.0,"m","james",0.99,"male"
+"Dutton, Gordon N.","gordon","","dutton","gordon dutton","m",416.0,"m","gordon",1.0,"male"
+"Prusinski, Antoni","antoni","","prusinski","antoni prusinski","m",39.0,"m","antoni",1.0,"male"
+"Taft, Earl J.","earl","","taft","earl taft","u",201.0,"m","earl",1.0,"male"
+"Visileanu, Emilia","emilia","","visileanu","emilia visileanu","f",254.0,"f","emilia",1.0,"female"
+"Mirrakhimov, Erkin","erkin","","mirrakhimov","erkin mirrakhimov","m",18.0,"m","erkin",1.0,"male"
+"Trounson, Alan","alan","","trounson","alan trounson","m",2079.0,"m","alan",1.0,"male"
+"Parker, Becky","becky","","parker","becky parker","f",1447.0,"f","becky",1.0,"female"
+"Fava, Giovanni A.","giovanni","","fava","giovanni fava","m",722.0,"m","giovanni",1.0,"male"
+"Ladenson, Paul W.","paul","","ladenson","paul ladenson","u",5931.0,"m","paul",1.0,"male"
+"Mitchell, Dann","dann","","mitchell","dann mitchell","m",26.0,"m","dann",0.77,"male"
+"Nursten, Harry E.","harry","","nursten","harry nursten","u",844.0,"m","harry",0.99,"male"
+"Dyson, Anthony","anthony","","dyson","anthony dyson","u",3029.0,"m","anthony",1.0,"male"
+"Reid, Sarah","sarah","","reid","sarah reid","u",8371.0,"f","sarah",1.0,"female"
+"Knoll, Michael","michael","","knoll","michael knoll","u",11094.0,"m","michael",1.0,"male"
+"Baer, Michael","michael","","baer","michael baer","m",11094.0,"m","michael",1.0,"male"
+"Gaino, Elda","elda","","gaino","elda gaino","f",69.0,"f","elda",1.0,"female"
+"Dito, Giuseppe","giuseppe","","dito","giuseppe dito","m",774.0,"m","giuseppe",1.0,"male"
+"Sternheimer, Daniel","daniel","","sternheimer","daniel sternheimer","m",8180.0,"m","daniel",1.0,"male"
+"Smith, Linda C.","linda","","smith","linda smith","f",4323.0,"f","linda",1.0,"female"
+"Tenopir, Carol","carol","","tenopir","carol tenopir","f",2345.0,"f","carol",0.99,"female"
+"Bonet, Lluis","lluis","","bonet","lluis bonet","u",1.0,"m","lluis",1.0,"male"
+"Mohanty, Utlayan","utlayan","","mohanty","utlayan mohanty","m","","u","utlayan","",""
+"Herman, Michael","michael","","herman","michael herman","m",11094.0,"m","michael",1.0,"male"
+"Douglas, Jack","jack","","douglas","jack douglas","m",1993.0,"m","jack",0.99,"male"
+"Dudowitcz, Jacek","jacek","","dudowitcz","jacek dudowitcz","u",97.0,"m","jacek",0.99,"male"
+"Canning-Glass, Judy","judy","","canning-glass","judy canning-glass","u",1375.0,"f","judy",1.0,"female"
+"Lo, Selina","selina","","lo","selina lo","u",176.0,"f","selina",1.0,"female"
+"Pignone, Domenico","domenico","","pignone","domenico pignone","m",220.0,"m","domenico",1.0,"male"
+"Hammer, Karl","karl","","hammer","karl hammer","m",700.0,"m","karl",1.0,"male"
+"Allioux, Yves-Marie","yves","marie","allioux","yves marie allioux","m",2.0,"m","yves-marie",1.0,"male"
+"Bogousslavsky, Julien","julien","","bogousslavsky","julien bogousslavsky","m",1062.0,"m","julien",1.0,"male"
+"Pfefferbaum, Adolf","adolf","","pfefferbaum","adolf pfefferbaum","m",10.0,"m","adolf",1.0,"male"
+"Joppich, Ingolf","ingolf","","joppich","ingolf joppich","u",2.0,"m","ingolf",1.0,"male"
+"Cooper, Joel D.","joel","","cooper","joel cooper","u",1468.0,"m","joel",0.99,"male"
+"Zmarlicki, Stanislaw","stanislaw","","zmarlicki","stanislaw zmarlicki","m",30.0,"m","stanislaw",1.0,"male"
+"Sheehan, John J. D.","john","","sheehan","john sheehan","u",9931.0,"m","john",0.99,"male"
+"Himes, Geoffrey","geoffrey","","himes","geoffrey himes","m",262.0,"m","geoffrey",1.0,"male"
+"Stoeffler, Dieter","dieter","","stoeffler","dieter stoeffler","m",70.0,"m","dieter",1.0,"male"
+"Kring, David A.","david","","kring","david kring","m",12593.0,"m","david",1.0,"male"
+"Wang, Linda","linda","","wang","linda wang","f",4323.0,"f","linda",1.0,"female"
+"Macovei, Gheorghe","gheorghe","","macovei","gheorghe macovei","u",6.0,"m","gheorghe",0.83,"male"
+"Beck, Felix","felix","","beck","felix beck","m",657.0,"m","felix",1.0,"male"
+"Oray, Linda Esther","linda","esther","oray","linda esther oray","u",4323.0,"f","linda",1.0,"female"
+"Bederson, Benjamin","benjamin","","bederson","benjamin bederson","m",1475.0,"m","benjamin",1.0,"male"
+"Rosenberg, Leonard","leonard","","rosenberg","leonard rosenberg","u",201.0,"m","leonard",1.0,"male"
+"Shakeshaft, Robin","robin","","shakeshaft","robin shakeshaft","m",1628.0,"f","robin",0.59,"female"
+"Ranmuthu, Dilanki","dilanki","","ranmuthu","dilanki ranmuthu","f","","u","dilanki","",""
+"Carlson, Richard W.","richard","","carlson","richard carlson","m",4381.0,"m","richard",1.0,"male"
+"Chambers, John E.","john","","chambers","john chambers","m",9931.0,"m","john",0.99,"male"
+"Solomon, Sean C.","sean","","solomon","sean solomon","m",2515.0,"m","sean",1.0,"male"
+"Money, Anita","anita","","money","anita money","u",1519.0,"f","anita",1.0,"female"
+"Goff, Doug","doug","","goff","doug goff","m",891.0,"m","doug",1.0,"male"
+"Wilkerson, Scott","scott","","wilkerson","scott wilkerson","m",3450.0,"m","scott",1.0,"male"
+"Shea, Bill","bill","","shea","bill shea","m",1812.0,"m","bill",1.0,"male"
+"Bravo-Elizondo, Pedro","pedro","","bravo-elizondo","pedro bravo-elizondo","m",1631.0,"m","pedro",0.99,"male"
+"Markham, Nicholas","nicholas","","markham","nicholas markham","m",1176.0,"m","nicholas",1.0,"male"
+"Sarkar, Sameer P.","sameer","","sarkar","sameer sarkar","m",210.0,"m","sameer",1.0,"male"
+"O'Connor, Kieron","kieron","","o'connor","kieron o'connor","m",23.0,"m","kieron",1.0,"male"
+"Melmed, Shlomo","shlomo","","melmed","shlomo melmed","m",16.0,"m","shlomo",1.0,"male"
+"Ji, Lilien","lilien","","ji","lilien ji","m",1.0,"f","lilien",1.0,"female"
+"Liu, Kefeng","kefeng","","liu","kefeng liu","m","","u","kefeng","",""
+"Yau, Shing-Tung","shing","tung","yau","shing tung yau","m",27.0,"m","shing",0.81,"male"
+"Levin, Vladimir","vladimir","","levin","vladimir levin","m",299.0,"m","vladimir",1.0,"male"
+"Schmitt, Laurent","laurent","","schmitt","laurent schmitt","m",571.0,"m","laurent",0.99,"male"
+"Zumr, Josef","josef","","zumr","josef zumr","u",104.0,"m","josef",0.99,"male"
+"Little, Doug","doug","","little","doug little","u",891.0,"m","doug",1.0,"male"
+"Giesecke, Robin","robin","","giesecke","robin giesecke","u",1628.0,"f","robin",0.59,"female"
+"Mesko, Gorazd","gorazd","","mesko","gorazd mesko","m",3.0,"m","gorazd",1.0,"male"
+"Wunderer, Rolf","rolf","","wunderer","rolf wunderer","m",114.0,"m","rolf",1.0,"male"
+"Opperdoes, Fred","fred","","opperdoes","fred opperdoes","m",966.0,"m","fred",0.98,"male"
+"Sampson, Karen","karen","","sampson","karen sampson","u",5462.0,"f","karen",1.0,"female"
+"Jsppelt, Ulrich","ulrich","","jsppelt","ulrich jsppelt","u",40.0,"m","ulrich",1.0,"male"
+"Scott, Margaret","margaret","","scott","margaret scott","f",1101.0,"f","margaret",0.98,"female"
+"Anzenberger, Gustl","gustl","","anzenberger","gustl anzenberger","m","","u","gustl","",""
+"Falk, Barbara","barbara","","falk","barbara falk","f",2837.0,"f","barbara",1.0,"female"
+"Vujosevic, Mladen","mladen","","vujosevic","mladen vujosevic","m",45.0,"m","mladen",1.0,"male"
+"Boldy, David","david","","boldy","david boldy","u",12593.0,"m","david",1.0,"male"
+"Boldy, Stephen","stephen","","boldy","stephen boldy","u",2608.0,"m","stephen",1.0,"male"
+"Panniker, Jean","jean","","panniker","jean panniker","u",1523.0,"f","jean",0.53,"female"
+"SANFORD, GAJ","gaj","","sanford","gaj sanford","u","","u","gaj","",""
+"Bristol, Nellie","nellie","","bristol","nellie bristol","f",67.0,"f","nellie",0.99,"female"
+"Olmstead, Richard G.","richard","","olmstead","richard olmstead","m",4381.0,"m","richard",1.0,"male"
+"Gross, Thomas G.","thomas","","gross","thomas gross","m",3753.0,"m","thomas",1.0,"male"
+"Oxman, Bernard H.","bernard","","oxman","bernard oxman","m",397.0,"m","bernard",1.0,"male"
+"Sullivan, Christopher D.","christopher","","sullivan","christopher sullivan","m",2339.0,"m","christopher",1.0,"male"
+"Litvinoff, Eugene S.","eugene","","litvinoff","eugene litvinoff","m",319.0,"m","eugene",0.98,"male"
+"Seifert, Mark J.","mark","","seifert","mark seifert","m",6176.0,"m","mark",1.0,"male"
+"Ashton, John R.","john","","ashton","john ashton","m",9931.0,"m","john",0.99,"male"
+"Murray, Warwick","warwick","","murray","warwick murray","m",16.0,"m","warwick",1.0,"male"
+"Geyer, Ingeborg","ingeborg","","geyer","ingeborg geyer","f",26.0,"f","ingeborg",1.0,"female"
+"Seger, Martin","martin","","seger","martin seger","m",3568.0,"m","martin",1.0,"male"
+"Siggers, Diana","diana","","siggers","diana siggers","u",2885.0,"f","diana",0.99,"female"
+"Oswald, George","george","","oswald","george oswald","m",2098.0,"m","george",0.99,"male"
+"Rochford, John","john","","rochford","john rochford","m",9931.0,"m","john",0.99,"male"
+"Knutsen, RD","rd","","knutsen","rd knutsen","u",9.0,"m","rd",0.89,"male"
+"Wood, GA","ga","","wood","ga wood","u",47.0,"f","ga",0.85,"female"
+"Wong, MEK","mek","","wong","mek wong","u",1.0,"m","mek",1.0,"male"
+"Ahmed, Aijaz","aijaz","","ahmed","aijaz ahmed","m",14.0,"m","aijaz",1.0,"male"
+"Esquivel, Carlos O.","carlos","","esquivel","carlos esquivel","m",5149.0,"m","carlos",1.0,"male"
+"Lewis-Williams, JD","jd","","lewis-williams","jd lewis-williams","u",122.0,"m","jd",0.88,"male"
+"Knoedel, Peter","peter","","knoedel","peter knoedel","m",4373.0,"m","peter",1.0,"male"
+"Loose, Tobias","tobias","","loose","tobias loose","m",352.0,"m","tobias",1.0,"male"
+"Walker, Margaret E.","margaret","","walker","margaret walker","f",1101.0,"f","margaret",0.98,"female"
+"Beard, Randy","randy","","beard","randy beard","m",1012.0,"m","randy",0.98,"male"
+"Tosseri, Olivier","olivier","","tosseri","olivier tosseri","m",715.0,"m","olivier",0.99,"male"
+"Scheuerman, William E.","william","","scheuerman","william scheuerman","m",2626.0,"m","william",1.0,"male"
+"Duncan, Ruth","ruth","","duncan","ruth duncan","f",1344.0,"f","ruth",1.0,"female"
+"Seymour, Len","len","","seymour","len seymour","m",125.0,"m","len",0.9,"male"
+"Crabb, Michael","michael","","crabb","michael crabb","m",11094.0,"m","michael",1.0,"male"
+"Rona-Tas, Andras","andras","","rona-tas","andras rona-tas","m",14.0,"m","andras",0.86,"male"
+"Myers, Jeff","jeff","","myers","jeff myers","m",2925.0,"m","jeff",1.0,"male"
+"D'Antonio, Patricia","patricia","","d'antonio","patricia d'antonio","f",3488.0,"f","patricia",1.0,"female"
+"Alovert, Nina","nina","","alovert","nina alovert","u",1434.0,"f","nina",0.99,"female"
+"Urbaniak, James R.","james","","urbaniak","james urbaniak","m",6359.0,"m","james",0.99,"male"
+"Goldner, Richard D.","richard","","goldner","richard goldner","m",4381.0,"m","richard",1.0,"male"
+"Nunley, James A.","james","","nunley","james nunley","m",6359.0,"m","james",0.99,"male"
+"Kort, Pamela","pamela","","kort","pamela kort","f",1468.0,"f","pamela",1.0,"female"
+"Baker, Diane Romayne","diane","romayne","baker","diane romayne baker","f",1649.0,"f","diane",0.99,"female"
+"Brajuskovic, Goran","goran","","brajuskovic","goran brajuskovic","m",94.0,"m","goran",1.0,"male"
+"Pavicevic, Dusanka Savic","dusanka","savic","pavicevic","dusanka savic pavicevic","u",3.0,"f","dusanka",1.0,"female"
+"Romac, Stanka","stanka","","romac","stanka romac","u",7.0,"f","stanka",1.0,"female"
+"Steinmetz, Heidrun","heidrun","","steinmetz","heidrun steinmetz","f",4.0,"f","heidrun",1.0,"female"
+"Tabasaran, Oktay","oktay","","tabasaran","oktay tabasaran","m",177.0,"m","oktay",0.99,"male"
+"Carman, Joseph","joseph","","carman","joseph carman","m",2213.0,"m","joseph",0.99,"male"
+"King, John","john","","king","john king","m",9931.0,"m","john",0.99,"male"
+"Mujica, Vladimiro","vladimiro","","mujica","vladimiro mujica","m","","u","vladimiro","",""
+"Nitzan, Abraham","abraham","","nitzan","abraham nitzan","m",292.0,"m","abraham",1.0,"male"
+"Mikkelsen, Kurt","kurt","","mikkelsen","kurt mikkelsen","m",421.0,"m","kurt",1.0,"male"
+"Karczubova, Luisa","luisa","","karczubova","luisa karczubova","f",732.0,"f","luisa",1.0,"female"
+"Altrichter, Michal","michal","","altrichter","michal altrichter","m",360.0,"m","michal",0.75,"male"
+"Ambros, Pavel","pavel","","ambros","pavel ambros","m",198.0,"m","pavel",0.99,"male"
+"Ohlednuti, Kratke","kratke","","ohlednuti","kratke ohlednuti","u","","u","kratke","",""
+"Descimon, Robert","robert","","descimon","robert descimon","u",5222.0,"m","robert",1.0,"male"
+"Bakker, Theo C. M.","theo","","bakker","theo bakker","m",145.0,"m","theo",0.97,"male"
+"Lubjuhn, Thomas","thomas","","lubjuhn","thomas lubjuhn","m",3753.0,"m","thomas",1.0,"male"
+"Kullmann, Harald","harald","","kullmann","harald kullmann","m",80.0,"m","harald",1.0,"male"
+"de Almeida, Geraldo Vicente","geraldo","vicente","de almeida","geraldo vicente de almeida","m",40.0,"m","geraldo",0.98,"male"
+"Merkel, Bernie","bernie","","merkel","bernie merkel","u",134.0,"m","bernie",0.75,"male"
+"Healey, John","john","","healey","john healey","m",9931.0,"m","john",0.99,"male"
+"Davidson, Jake","jake","","davidson","jake davidson","u",1410.0,"m","jake",0.99,"male"
+"Lamb, John","john","","lamb","john lamb","m",9931.0,"m","john",0.99,"male"
+"Cooke, Elizabeth","elizabeth","","cooke","elizabeth cooke","u",3508.0,"f","elizabeth",1.0,"female"
+"Yamate, Jyoji","jyoji","","yamate","jyoji yamate","m","","u","jyoji","",""
+"Awodey, Steve","steve","","awodey","steve awodey","m",3965.0,"m","steve",1.0,"male"
+"Booth, Brian J.","brian","","booth","brian booth","m",4600.0,"m","brian",1.0,"male"
+"Hecht, Elena","elena","","hecht","elena hecht","f",1645.0,"f","elena",1.0,"female"
+"Cazauran, Nicole","nicole","","cazauran","nicole cazauran","u",4042.0,"f","nicole",1.0,"female"
+"Zhu, Xiongwei","xiongwei","","zhu","xiongwei zhu","m","","u","xiongwei","",""
+"Castellani, Rudy J.","rudy","","castellani","rudy castellani","m",220.0,"m","rudy",0.95,"male"
+"Lee, Hyoung-gon","hyoung","gon","lee","hyoung gon lee","m","","u","hyoung","",""
+"Perry, George","george","","perry","george perry","m",2098.0,"m","george",0.99,"male"
+"Weeds, Alan","alan","","weeds","alan weeds","m",2079.0,"m","alan",1.0,"male"
+"Phillips, David","david","","phillips","david phillips","m",12593.0,"m","david",1.0,"male"
+"Suny, Ronald Grigor","ronald","grigor","suny","ronald grigor suny","m",755.0,"m","ronald",1.0,"male"
+"Chrusciel, Janusz","janusz","","chrusciel","janusz chrusciel","m",15.0,"m","janusz",1.0,"male"
+"Zajac, Wojciech","wojciech","","zajac","wojciech zajac","m",30.0,"m","wojciech",1.0,"male"
+"Szytula, Andrzej","andrzej","","szytula","andrzej szytula","m",50.0,"m","andrzej",0.98,"male"
+"Roleder, Krystian","krystian","","roleder","krystian roleder","m",11.0,"m","krystian",1.0,"male"
+"Handt, Hartmut","hartmut","","handt","hartmut handt","u",5.0,"m","hartmut",1.0,"male"
+"McCourt, John","john","","mccourt","john mccourt","m",9931.0,"m","john",0.99,"male"
+"Berlekamp, Elwyn","elwyn","","berlekamp","elwyn berlekamp","m",8.0,"m","elwyn",0.63,"male"
+"Plaseska-Karanfilska, Dijana","dijana","","plaseska-karanfilska","dijana plaseska-karanfilska","f",42.0,"f","dijana",1.0,"female"
+"Dimovski, Aleksandar J.","aleksandar","","dimovski","aleksandar dimovski","m",198.0,"m","aleksandar",0.99,"male"
+"Willoughby, Arthur","arthur","","willoughby","arthur willoughby","m",547.0,"m","arthur",0.98,"male"
+"Ainsworth, Susan J.","susan","","ainsworth","susan ainsworth","f",3203.0,"f","susan",1.0,"female"
+"Tropilo, Jan","jan","","tropilo","jan tropilo","m",1663.0,"m","jan",0.6,"male"
+"McNamee, Peter","peter","","mcnamee","peter mcnamee","u",4373.0,"m","peter",1.0,"male"
+"Bell-Berti, Fredericka","fredericka","","bell-berti","fredericka bell-berti","u","","u","fredericka","",""
+"Zhang, Yang","yang","","zhang","yang zhang","u",93.0,"m","yang",0.65,"male"
+"Iverson, Paul","paul","","iverson","paul iverson","u",5931.0,"m","paul",1.0,"male"
+"Smith, Thomas G.","thomas","","smith","thomas smith","m",3753.0,"m","thomas",1.0,"male"
+"Geraci, Joseph R.","joseph","","geraci","joseph geraci","m",2213.0,"m","joseph",0.99,"male"
+"Chaouat, Gerard","gerard","","chaouat","gerard chaouat","m",460.0,"m","gerard",1.0,"male"
+"Christie, George","george","","christie","george christie","u",2098.0,"m","george",0.99,"male"
+"Wardle, David A.","david","","wardle","david wardle","m",12593.0,"m","david",1.0,"male"
+"Ross, Craig","craig","","ross","craig ross","m",1816.0,"m","craig",1.0,"male"
+"Boag, Brian","brian","","boag","brian boag","m",4600.0,"m","brian",1.0,"male"
+"Coleman, David C.","david","","coleman","david coleman","m",12593.0,"m","david",1.0,"male"
+"Abd-El-Aziz, Alaa S.","alaa","","abd-el-aziz","alaa abd-el-aziz","m",258.0,"m","alaa",0.68,"male"
+"Mattson, Mark P.","mark","","mattson","mark mattson","m",6176.0,"m","mark",1.0,"male"
+"Lashinsky, Adam","adam","","lashinsky","adam lashinsky","m",3957.0,"m","adam",1.0,"male"
+"Ference, Gregory C.","gregory","","ference","gregory ference","u",721.0,"m","gregory",1.0,"male"
+"Schaffner, Bradley L.","bradley","","schaffner","bradley schaffner","m",394.0,"m","bradley",1.0,"male"
+"Adams, Willie","willie","","adams","willie adams","m",165.0,"m","willie",0.95,"male"
+"Ouellette, Dan","dan","","ouellette","dan ouellette","u",3240.0,"m","dan",0.98,"male"
+"Brand, Richard A.","richard","","brand","richard brand","u",4381.0,"m","richard",1.0,"male"
+"Cataldo, Michael F.","michael","","cataldo","michael cataldo","m",11094.0,"m","michael",1.0,"male"
+"Davidson, Nancy E.","nancy","","davidson","nancy davidson","f",2716.0,"f","nancy",1.0,"female"
+"Vecsei, Paul","paul","","vecsei","paul vecsei","m",5931.0,"m","paul",1.0,"male"
+"Alcouffe, Daniel","daniel","","alcouffe","daniel alcouffe","m",8180.0,"m","daniel",1.0,"male"
+"Kadziolka, Wojciech","wojciech","","kadziolka","wojciech kadziolka","m",30.0,"m","wojciech",1.0,"male"
+"Piwkowski, Cezary","cezary","","piwkowski","cezary piwkowski","m",5.0,"m","cezary",1.0,"male"
+"Cohen, Aaron","aaron","","cohen","aaron cohen","m",2280.0,"m","aaron",1.0,"male"
+"Eisenbrand, Gerhard","gerhard","","eisenbrand","gerhard eisenbrand","m",49.0,"m","gerhard",1.0,"male"
+"Janzowski, Christine","christine","","janzowski","christine janzowski","f",3115.0,"f","christine",1.0,"female"
+"Hecht, Stephen","stephen","","hecht","stephen hecht","m",2608.0,"m","stephen",1.0,"male"
+"Keefer, Larry","larry","","keefer","larry keefer","m",972.0,"m","larry",1.0,"male"
+"Tannenbaum, Steven","steven","","tannenbaum","steven tannenbaum","m",2600.0,"m","steven",1.0,"male"
+"Scott, Doug","doug","","scott","doug scott","m",891.0,"m","doug",1.0,"male"
+"Maerker-Hermann, Elisabeth","elisabeth","","maerker-hermann","elisabeth maerker-hermann","f",570.0,"f","elisabeth",1.0,"female"
+"Bolten, Wolfgang","wolfgang","","bolten","wolfgang bolten","m",95.0,"m","wolfgang",1.0,"male"
+"Huss, Gary R.","gary","","huss","gary huss","m",2132.0,"m","gary",1.0,"male"
+"Cassel, David G.","david","","cassel","david cassel","m",12593.0,"m","david",1.0,"male"
+"Cassel, Edith","edith","","cassel","edith cassel","u",373.0,"f","edith",1.0,"female"
+"Holcomb, Donald F.","donald","","holcomb","donald holcomb","m",493.0,"m","donald",1.0,"male"
+"Moser, Hans","hans","","moser","hans moser","m",431.0,"m","hans",0.99,"male"
+"Roche, John","john","","roche","john roche","u",9931.0,"m","john",0.99,"male"
+"Ciment, Michel","michel","","ciment","michel ciment","m",729.0,"m","michel",0.96,"male"
+"Ross, Constance A. C.","constance","","ross","constance ross","u",120.0,"f","constance",0.99,"female"
+"Roubertoux, Pierre L.","pierre","","roubertoux","pierre roubertoux","m",852.0,"m","pierre",0.99,"male"
+"Kennedy-Malone, Laurie","laurie","","kennedy-malone","laurie kennedy-malone","f",906.0,"f","laurie",0.94,"female"
+"Keiter, Richard L.","richard","","keiter","richard keiter","m",4381.0,"m","richard",1.0,"male"
+"Reger, Daniel L.","daniel","","reger","daniel reger","m",8180.0,"m","daniel",1.0,"male"
+"Gutierrez Hernandez, Pedro Ramon","pedro","ramon","gutierrez hernandez","pedro ramon gutierrez hernandez","u",1631.0,"m","pedro",0.99,"male"
+"Amort, Andrea","andrea","","amort","andrea amort","f",5794.0,"f","andrea",0.79,"female"
+"Stanko, Tomasz","tomasz","","stanko","tomasz stanko","m",122.0,"m","tomasz",1.0,"male"
+"Basso, Alberto","alberto","","basso","alberto basso","m",1530.0,"m","alberto",1.0,"male"
+"Edward, George","george","","edward","george edward","u",2098.0,"m","george",0.99,"male"
+"Das, Pam","pam","","das","pam das","f",1060.0,"f","pam",1.0,"female"
+"Forrest, Joseph","joseph","","forrest","joseph forrest","m",2213.0,"m","joseph",0.99,"male"
+"Brady, Shaun","shaun","","brady","shaun brady","m",709.0,"m","shaun",0.98,"male"
+"Lewak, Stanislaw","stanislaw","","lewak","stanislaw lewak","m",30.0,"m","stanislaw",1.0,"male"
+"Corbineau, Francoise","francoise","","corbineau","francoise corbineau","f",5.0,"f","francoise",0.8,"female"
+"Bruckner-Tuderman, Leena","leena","","bruckner-tuderman","leena bruckner-tuderman","f",80.0,"f","leena",0.98,"female"
+"Jung, Ernst G.","ernst","","jung","ernst jung","u",25.0,"m","ernst",1.0,"male"
+"Burg, Guenter","guenter","","burg","guenter burg","m",4.0,"m","guenter",1.0,"male"
+"Golz, Jochen","jochen","","golz","jochen golz","m",32.0,"m","jochen",1.0,"male"
+"Britain, James E.","james","","britain","james britain","u",6359.0,"m","james",0.99,"male"
+"Staehelin, Martin","martin","","staehelin","martin staehelin","u",3568.0,"m","martin",1.0,"male"
+"Thorhaug, Anitra","anitra","","thorhaug","anitra thorhaug","f",27.0,"f","anitra",1.0,"female"
+"Berlyn, Graeme","graeme","","berlyn","graeme berlyn","m",167.0,"m","graeme",0.99,"male"
+"Bianco, Andrea","andrea","","bianco","andrea bianco","m",5794.0,"f","andrea",0.79,"female"
+"Jukan, Admela","admela","","jukan","admela jukan","f","","u","admela","",""
+"Rouskas, George","george","","rouskas","george rouskas","m",2098.0,"m","george",0.99,"male"
+"Lambert, Florence D.","florence","","lambert","florence lambert","u",538.0,"f","florence",1.0,"female"
+"Jackson, Wendy A.","wendy","","jackson","wendy jackson","f",1964.0,"f","wendy",0.99,"female"
+"Sanders, Susan E.","susan","","sanders","susan sanders","f",3203.0,"f","susan",1.0,"female"
+"Jackson, Peter T.","peter","","jackson","peter jackson","m",4373.0,"m","peter",1.0,"male"
+"Braddick, Oliver","oliver","","braddick","oliver braddick","m",750.0,"m","oliver",0.99,"male"
+"Atkinson, Janette","janette","","atkinson","janette atkinson","f",174.0,"f","janette",0.99,"female"
+"Anderson, Gary","gary","","anderson","gary anderson","m",2132.0,"m","gary",1.0,"male"
+"Zeman, David","david","","zeman","david zeman","m",12593.0,"m","david",1.0,"male"
+"Johnson, Richard I.","richard","","johnson","richard johnson","m",4381.0,"m","richard",1.0,"male"
+"McChesney, Robert W.","robert","","mcchesney","robert mcchesney","m",5222.0,"m","robert",1.0,"male"
+"Amin, Samir","samir","","amin","samir amin","m",377.0,"m","samir",0.99,"male"
+"Amin, Isabelle","isabelle","","amin","isabelle amin","u",867.0,"f","isabelle",1.0,"female"
+"Baran, Nicholas","nicholas","","baran","nicholas baran","u",1176.0,"m","nicholas",1.0,"male"
+"Brazil, Gladys","gladys","","brazil","gladys brazil","u",382.0,"f","gladys",0.97,"female"
+"Brazil, Percy","percy","","brazil","percy brazil","u",113.0,"m","percy",0.99,"male"
+"Brun, Ellen","ellen","","brun","ellen brun","u",942.0,"f","ellen",1.0,"female"
+"Hersh, Jacques","jacques","","hersh","jacques hersh","m",280.0,"m","jacques",0.99,"male"
+"Burkett, Paul","paul","","burkett","paul burkett","m",5931.0,"m","paul",1.0,"male"
+"Chandra, Nirmal Kumar","nirmal","kumar","chandra","nirmal kumar chandra","u",1.0,"m","nirmalkumar",1.0,"male"
+"Tanittiran-Cigdem, Hakan","hakan","","tanittiran-cigdem","hakan tanittiran-cigdem","u",876.0,"m","hakan",0.99,"male"
+"Clark, Brett","brett","","clark","brett clark","m",976.0,"m","brett",0.99,"male"
+"Desai, Rajani X.","rajani","","desai","rajani desai","u",9.0,"f","rajani",0.89,"female"
+"DeWind, John","john","","dewind","john dewind","u",9931.0,"m","john",0.99,"male"
+"Dong, Xulin","xulin","","dong","xulin dong","u","","u","xulin","",""
+"Engler, Robert","robert","","engler","robert engler","u",5222.0,"m","robert",1.0,"male"
+"Gimenez, Martha","martha","","gimenez","martha gimenez","f",1169.0,"f","martha",0.99,"female"
+"Gindin, Sam","sam","","gindin","sam gindin","m",3336.0,"m","sam",0.76,"male"
+"Greenbaum, Joan","joan","","greenbaum","joan greenbaum","f",1017.0,"f","joan",0.82,"female"
+"Halevi, Joseph","joseph","","halevi","joseph halevi","m",2213.0,"m","joseph",0.99,"male"
+"Mage, John","john","","mage","john mage","m",9931.0,"m","john",0.99,"male"
+"Marzani, Charlotte Pomerantz","charlotte","pomerantz","marzani","charlotte pomerantz marzani","u",1926.0,"f","charlotte",1.0,"female"
+"Mohit, Morteza","morteza","","mohit","morteza mohit","m",13.0,"m","morteza",1.0,"male"
+"Nasser, Alan","alan","","nasser","alan nasser","u",2079.0,"m","alan",1.0,"male"
+"Ness, Eric","eric","","ness","eric ness","u",4110.0,"m","eric",1.0,"male"
+"Ness, Immanuel","immanuel","","ness","immanuel ness","m",15.0,"m","immanuel",1.0,"male"
+"Ollman, Bertell","bertell","","ollman","bertell ollman","m","","u","bertell","",""
+"Panitch, Leo","leo","","panitch","leo panitch","m",759.0,"m","leo",0.95,"male"
+"Parvati, Comrade","comrade","","parvati","comrade parvati","f",1.0,"m","comrade",1.0,"male"
+"Pollin, Robert","robert","","pollin","robert pollin","m",5222.0,"m","robert",1.0,"male"
+"Quick, Paddy","paddy","","quick","paddy quick","f",91.0,"m","paddy",0.89,"male"
+"Robinson, Lukin","lukin","","robinson","lukin robinson","m","","u","lukin","",""
+"Rubinstein, Annette","annette","","rubinstein","annette rubinstein","f",639.0,"f","annette",1.0,"female"
+"Ruben, Albert","albert","","ruben","albert ruben","u",723.0,"m","albert",0.99,"male"
+"Ruben, Julie","julie","","ruben","julie ruben","f",4260.0,"f","julie",1.0,"female"
+"Sanders, Bernie","bernie","","sanders","bernie sanders","m",134.0,"m","bernie",0.75,"male"
+"Singer, Jeanne","jeanne","","singer","jeanne singer","u",449.0,"f","jeanne",1.0,"female"
+"Sweezy, Martha","martha","","sweezy","martha sweezy","u",1169.0,"f","martha",0.99,"female"
+"Sweezy, Lybess","lybess","","sweezy","lybess sweezy","f","","u","lybess","",""
+"Sweezy, Sam","sam","","sweezy","sam sweezy","u",3336.0,"m","sam",0.76,"male"
+"Miller, Ken","ken","","miller","ken miller","m",1435.0,"m","ken",0.99,"male"
+"Postel, Rob","rob","","postel","rob postel","u",2262.0,"m","rob",0.99,"male"
+"Weil, Robert","robert","","weil","robert weil","u",5222.0,"m","robert",1.0,"male"
+"Filliozat, Pierre-Sylvain","pierre","sylvain","filliozat","pierre sylvain filliozat","m",852.0,"m","pierre",0.99,"male"
+"Schaefter, Dorothea","dorothea","","schaefter","dorothea schaefter","f",30.0,"f","dorothea",1.0,"female"
+"Evans, Jane E.","jane","","evans","jane evans","f",1796.0,"f","jane",0.99,"female"
+"Fujii, Fumio","fumio","","fujii","fumio fujii","m",3.0,"m","fumio",1.0,"male"
+"Sutcliffe, Anne J.","anne","","sutcliffe","anne sutcliffe","f",2461.0,"f","anne",1.0,"female"
+"Reijenga, Jetse","jetse","","reijenga","jetse reijenga","m",1.0,"m","jetse",1.0,"male"
+"Verheggen, Theo","theo","","verheggen","theo verheggen","m",145.0,"m","theo",0.97,"male"
+"Collias, Nicholas","nicholas","","collias","nicholas collias","m",1176.0,"m","nicholas",1.0,"male"
+"Kung, Charles","charles","","kung","charles kung","m",1798.0,"m","charles",1.0,"male"
+"Lappin, Terry","terry","","lappin","terry lappin","m",1429.0,"m","terry",0.78,"male"
+"Menczel, Joe","joe","","menczel","joe menczel","u",3679.0,"m","joe",0.99,"male"
+"Seyler, Rick","rick","","seyler","rick seyler","u",1255.0,"m","rick",1.0,"male"
+"Jones, Anne Hudson","anne","hudson","jones","anne hudson jones","f",2461.0,"f","anne",1.0,"female"
+"Coyne, Jerry A.","jerry","","coyne","jerry coyne","u",1031.0,"m","jerry",0.98,"male"
+"Cobb, Matthew","matthew","","cobb","matthew cobb","m",3338.0,"m","matthew",1.0,"male"
+"Eschapasse, Baudouin","baudouin","","eschapasse","baudouin eschapasse","m",4.0,"m","baudouin",1.0,"male"
+"Pukazhenthi, Budhan","budhan","","pukazhenthi","budhan pukazhenthi","m","","u","budhan","",""
+"Munk-Jorgensen, Povl","povl","","munk-jorgensen","povl munk-jorgensen","m","","u","povl","",""
+"Davis, Alan","alan","","davis","alan davis","u",2079.0,"m","alan",1.0,"male"
+"Gartner, Wolfgang","wolfgang","","gartner","wolfgang gartner","u",95.0,"m","wolfgang",1.0,"male"
+"Lane, Richard","richard","","lane","richard lane","u",4381.0,"m","richard",1.0,"male"
+"Droser, Mary L.","mary","","droser","mary droser","f",4440.0,"f","mary",1.0,"female"
+"Pal, Chinmoy","chinmoy","","pal","chinmoy pal","u",1.0,"m","chinmoy",1.0,"male"
+"Bernard, George","george","","bernard","george bernard","m",2098.0,"m","george",0.99,"male"
+"Van Hurnbeeck, Jan","jan","","van hurnbeeck","jan van hurnbeeck","m",1663.0,"m","jan",0.6,"male"
+"Burgin, George H.","george","","burgin","george burgin","m",2098.0,"m","george",0.99,"male"
+"Nehring, Elisabeth","elisabeth","","nehring","elisabeth nehring","f",570.0,"f","elisabeth",1.0,"female"
+"Costa, Daniel L.","daniel","","costa","daniel costa","m",8180.0,"m","daniel",1.0,"male"
+"Martinic B, Mateo","mateo","","martinic b","mateo martinic b","u",107.0,"m","mateo",1.0,"male"
+"Prichard, Bob","bob","","prichard","bob prichard","u",1593.0,"m","bob",0.98,"male"
+"Stein, Glenn M.","glenn","","stein","glenn stein","m",652.0,"m","glenn",0.99,"male"
+"Peschke, Elmar","elmar","","peschke","elmar peschke","m",17.0,"m","elmar",0.94,"male"
+"Willerson, James T.","james","","willerson","james willerson","m",6359.0,"m","james",0.99,"male"
+"Hallegraeff, Gustaaf M.","gustaaf","","hallegraeff","gustaaf hallegraeff","m",2.0,"m","gustaaf",1.0,"male"
+"Blackburn, Susan I.","susan","","blackburn","susan blackburn","f",3203.0,"f","susan",1.0,"female"
+"Roy, Suzanne","suzanne","","roy","suzanne roy","f",1024.0,"f","suzanne",1.0,"female"
+"Vernet, Maria","maria","","vernet","maria vernet","f",8402.0,"f","maria",0.99,"female"
+"Wright, Simon W.","simon","","wright","simon wright","u",2443.0,"m","simon",0.99,"male"
+"Bowman, Alan K.","alan","","bowman","alan bowman","u",2079.0,"m","alan",1.0,"male"
+"Marino, Melissa","melissa","","marino","melissa marino","u",4400.0,"f","melissa",1.0,"female"
+"Zakrzewski, Kazimierz","kazimierz","","zakrzewski","kazimierz zakrzewski","m",3.0,"m","kazimierz",1.0,"male"
+"Koszyk, Kurt","kurt","","koszyk","kurt koszyk","m",421.0,"m","kurt",1.0,"male"
+"Cohen, Jon","jon","","cohen","jon cohen","u",1790.0,"m","jon",1.0,"male"
+"Bruch, Hans-Peter","hans","peter","bruch","hans peter bruch","m",9.0,"m","hans-peter",1.0,"male"
+"Metzger, Chantal","chantal","","metzger","chantal metzger","u",473.0,"f","chantal",1.0,"female"
+"Shrivastava, Nirbhay","nirbhay","","shrivastava","nirbhay shrivastava","m",1.0,"m","nirbhay",1.0,"male"
+"Pain, Elisabeth","elisabeth","","pain","elisabeth pain","u",570.0,"f","elisabeth",1.0,"female"
+"Nowak, Andrzej","andrzej","","nowak","andrzej nowak","m",50.0,"m","andrzej",0.98,"male"
+"Kovacs, Kalman","kalman","","kovacs","kalman kovacs","m",19.0,"f","kalman",0.79,"female"
+"Murphy, Agnes","agnes","","murphy","agnes murphy","f",332.0,"f","agnes",1.0,"female"
+"Costabile-Heming, Carol Anne","carol","anne","costabile-heming","carol anne costabile-heming","f",13.0,"f","carolanne",1.0,"female"
+"Umlauf, Konrad","konrad","","umlauf","konrad umlauf","m",62.0,"m","konrad",1.0,"male"
+"De Vivo, Darryl C.","darryl","","de vivo","darryl de vivo","m",202.0,"m","darryl",0.99,"male"
+"DiMauro, Salvatore","salvatore","","dimauro","salvatore dimauro","m",409.0,"m","salvatore",1.0,"male"
+"Westeel, Virginie","virginie","","westeel","virginie westeel","f",437.0,"f","virginie",1.0,"female"
+"Quoix, Elisabeth","elisabeth","","quoix","elisabeth quoix","f",570.0,"f","elisabeth",1.0,"female"
+"Pujol, Jean-Louis","jean","louis","pujol","jean louis pujol","m",43.0,"m","jean-louis",1.0,"male"
+"Milleron, Bernard","bernard","","milleron","bernard milleron","m",397.0,"m","bernard",1.0,"male"
+"Eckley, Timothy S.","timothy","","eckley","timothy eckley","u",809.0,"m","timothy",1.0,"male"
+"Viviani, Christian","christian","","viviani","christian viviani","u",2548.0,"m","christian",0.99,"male"
+"Loeckle, Wolf","wolf","","loeckle","wolf loeckle","m",40.0,"m","wolf",0.95,"male"
+"Fleinghaus, Helmut","helmut","","fleinghaus","helmut fleinghaus","m",51.0,"m","helmut",1.0,"male"
+"Zink, Michel","michel","","zink","michel zink","m",729.0,"m","michel",0.96,"male"
+"Schwalbe, Karl-Heinz","karl","heinz","schwalbe","karl heinz schwalbe","m",3.0,"m","karl-heinz",1.0,"male"
+"Norskov, Jens K.","jens","","norskov","jens norskov","m",292.0,"m","jens",1.0,"male"
+"Clausen, Bjerne S.","bjerne","","clausen","bjerne clausen","m","","u","bjerne","",""
+"de Wet, Frans","frans","","de wet","frans de wet","m",70.0,"m","frans",0.96,"male"
+"Sprott, Margaret","margaret","","sprott","margaret sprott","u",1101.0,"f","margaret",0.98,"female"
+"Schoenfeld, Bernd","bernd","","schoenfeld","bernd schoenfeld","m",34.0,"m","bernd",1.0,"male"
+"Wochner, Peter","peter","","wochner","peter wochner","u",4373.0,"m","peter",1.0,"male"
+"Franken, Klaus","klaus","","franken","klaus franken","m",177.0,"m","klaus",0.98,"male"
+"Lai, Jules","jules","","lai","jules lai","u",210.0,"f","jules",0.59,"female"
+"McBurney, Gerard","gerard","","mcburney","gerard mcburney","m",460.0,"m","gerard",1.0,"male"
+"Kumate-Rodriguez, Jesus","jesus","","kumate-rodriguez","jesus kumate-rodriguez","m",1071.0,"m","jesus",0.98,"male"
+"Nagai, Yoshiyuki","yoshiyuki","","nagai","yoshiyuki nagai","u",2.0,"m","yoshiyuki",1.0,"male"
+"Das, Pamela","pamela","","das","pamela das","f",1468.0,"f","pamela",1.0,"female"
+"Murphy, Hugh","hugh","","murphy","hugh murphy","u",174.0,"m","hugh",1.0,"male"
+"Wetzel, Guenter","guenter","","wetzel","guenter wetzel","m",4.0,"m","guenter",1.0,"male"
+"Haubrich, William S.","william","","haubrich","william haubrich","m",2626.0,"m","william",1.0,"male"
+"Greene, Geoffrey L.","geoffrey","","greene","geoffrey greene","m",262.0,"m","geoffrey",1.0,"male"
+"Neuhouser, Frederick","frederick","","neuhouser","frederick neuhouser","m",294.0,"m","frederick",1.0,"male"
+"Bigby, Christine","christine","","bigby","christine bigby","u",3115.0,"f","christine",1.0,"female"
+"Fyffe, Chris","chris","","fyffe","chris fyffe","u",8631.0,"m","chris",0.93,"male"
+"Zahradnicek, Josef","josef","","zahradnicek","josef zahradnicek","m",104.0,"m","josef",0.99,"male"
+"Becker, Gary J.","gary","","becker","gary becker","u",2132.0,"m","gary",1.0,"male"
+"Price, Jack E.","jack","","price","jack price","u",1993.0,"m","jack",0.99,"male"
+"Alifanov, Oleg M.","oleg","","alifanov","oleg alifanov","m",86.0,"m","oleg",0.99,"male"
+"Blackwell, Ben","ben","","blackwell","ben blackwell","m",3363.0,"m","ben",0.99,"male"
+"Cole, Kevin D.","kevin","","cole","kevin cole","m",5362.0,"m","kevin",1.0,"male"
+"DeMonte, Filippo","filippo","","demonte","filippo demonte","m",237.0,"m","filippo",1.0,"male"
+"Dolan, Kirk D.","kirk","","dolan","kirk dolan","m",280.0,"m","kirk",1.0,"male"
+"McMasters, Robert L.","robert","","mcmasters","robert mcmasters","m",5222.0,"m","robert",1.0,"male"
+"Nenarokomov, Aleksey","aleksey","","nenarokomov","aleksey nenarokomov","m",18.0,"m","aleksey",1.0,"male"
+"Woodbury, Keith A.","keith","","woodbury","keith woodbury","m",1417.0,"m","keith",0.99,"male"
+"Bardon, Jean-Pierre","jean","pierre","bardon","jean pierre bardon","m",122.0,"m","jean-pierre",1.0,"male"
+"Dowding, Kevin J.","kevin","","dowding","kevin dowding","u",5362.0,"m","kevin",1.0,"male"
+"Keltner, Ned R.","ned","","keltner","ned keltner","u",73.0,"m","ned",0.96,"male"
+"Scott, Elaine P.","elaine","","scott","elaine scott","f",1142.0,"f","elaine",1.0,"female"
+"Wright, Neil T.","neil","","wright","neil wright","m",1036.0,"m","neil",1.0,"male"
+"Hanrahan, Christine","christine","","hanrahan","christine hanrahan","f",3115.0,"f","christine",1.0,"female"
+"McBride, Beverly","beverly","","mcbride","beverly mcbride","f",385.0,"f","beverly",0.99,"female"
+"Zurbrigg, Eleanor","eleanor","","zurbrigg","eleanor zurbrigg","u",263.0,"f","eleanor",1.0,"female"
+"Brodo, Irwin M.","irwin","","brodo","irwin brodo","m",20.0,"m","irwin",1.0,"male"
+"Haspelmath, Martin","martin","","haspelmath","martin haspelmath","m",3568.0,"m","martin",1.0,"male"
+"Konig, Ekkehard","ekkehard","","konig","ekkehard konig","m","","u","ekkehard","",""
+"Rubery, Matthew","matthew","","rubery","matthew rubery","m",3338.0,"m","matthew",1.0,"male"
+"Bronks, Ian","ian","","bronks","ian bronks","u",2159.0,"m","ian",0.99,"male"
+"Lachman, Ralph S.","ralph","","lachman","ralph lachman","m",314.0,"m","ralph",1.0,"male"
+"Ratner, Mark","mark","","ratner","mark ratner","m",6176.0,"m","mark",1.0,"male"
+"Manchanda, Raj K.","raj","","manchanda","raj manchanda","m",267.0,"m","raj",0.86,"male"
+"Nayak, Chaturbhuja","chaturbhuja","","nayak","chaturbhuja nayak","m","","u","chaturbhuja","",""
+"Panken, Ted","ted","","panken","ted panken","m",376.0,"m","ted",1.0,"male"
+"Basili, Victor","victor","","basili","victor basili","m",2234.0,"m","victor",1.0,"male"
+"Booch, Grady","grady","","booch","grady booch","m",43.0,"m","grady",0.74,"male"
+"Vogel, Doug","doug","","vogel","doug vogel","m",891.0,"m","doug",1.0,"male"
+"Sherins, Richard J.","richard","","sherins","richard sherins","m",4381.0,"m","richard",1.0,"male"
+"Whiticar, Michael J.","michael","","whiticar","michael whiticar","m",11094.0,"m","michael",1.0,"male"
+"de Leeuw, Jan W.","jan","","de leeuw","jan de leeuw","m",1663.0,"m","jan",0.6,"male"
+"Stratford, Michael C.","michael","","stratford","michael stratford","m",11094.0,"m","michael",1.0,"male"
+"Anderson, James M.","james","","anderson","james anderson","m",6359.0,"m","james",0.99,"male"
+"Mukhopadiyay, Atri","atri","","mukhopadiyay","atri mukhopadiyay","u",1.0,"f","atri",1.0,"female"
+"Catling, Paul","paul","","catling","paul catling","m",5931.0,"m","paul",1.0,"male"
+"Mitrow, Gisele","gisele","","mitrow","gisele mitrow","f",85.0,"f","gisele",1.0,"female"
+"Cayouette, Jacques","jacques","","cayouette","jacques cayouette","m",280.0,"m","jacques",0.99,"male"
+"Brock, William H.","william","","brock","william brock","u",2626.0,"m","william",1.0,"male"
+"Ruggieri, Pietro","pietro","","ruggieri","pietro ruggieri","m",202.0,"m","pietro",1.0,"male"
+"Hamilton, David E.","david","","hamilton","david hamilton","m",12593.0,"m","david",1.0,"male"
+"Barker, Nicolas","nicolas","","barker","nicolas barker","m",1953.0,"m","nicolas",1.0,"male"
+"Pukl, Pavla","pavla","","pukl","pavla pukl","u",40.0,"f","pavla",0.98,"female"
+"Rohmer, Michel","michel","","rohmer","michel rohmer","m",729.0,"m","michel",0.96,"male"
+"Boon, Annie","annie","","boon","annie boon","f",1120.0,"f","annie",1.0,"female"
+"Wiese, Wolfgang","wolfgang","","wiese","wolfgang wiese","m",95.0,"m","wolfgang",1.0,"male"
+"van Ommen, Gertjan","gertjan","","van ommen","gertjan van ommen","m",3.0,"m","gertjan",1.0,"male"
+"Fee, Elizabeth","elizabeth","","fee","elizabeth fee","f",3508.0,"f","elizabeth",1.0,"female"
+"Campling, Angela","angela","","campling","angela campling","u",3511.0,"f","angela",1.0,"female"
+"Caldwell, Kenneth","kenneth","","caldwell","kenneth caldwell","m",1020.0,"m","kenneth",1.0,"male"
+"Nyren, Ron","ron","","nyren","ron nyren","u",1014.0,"m","ron",0.98,"male"
+"Hartmann, Gerd K.","gerd","","hartmann","gerd hartmann","m",54.0,"f","gerd",0.52,"female"
+"Dickison, Alex","alex","","dickison","alex dickison","m",5856.0,"m","alex",0.87,"male"
+"Shortman, Ken","ken","","shortman","ken shortman","m",1435.0,"m","ken",0.99,"male"
+"Feehally, John","john","","feehally","john feehally","m",9931.0,"m","john",0.99,"male"
+"Eastwood, John","john","","eastwood","john eastwood","m",9931.0,"m","john",0.99,"male"
+"Cameron, Stewart","stewart","","cameron","stewart cameron","m",197.0,"m","stewart",0.99,"male"
+"Cruikshank, Julie","julie","","cruikshank","julie cruikshank","f",4260.0,"f","julie",1.0,"female"
+"Cox, Jane","jane","","cox","jane cox","f",1796.0,"f","jane",0.99,"female"
+"Fisher, Paul","paul","","fisher","paul fisher","m",5931.0,"m","paul",1.0,"male"
+"Mainer, Jose-Carlos","jose","carlos","mainer","jose carlos mainer","m",75.0,"m","jose carlos",1.0,"male"
+"Weiss, Hedy","hedy","","weiss","hedy weiss","f",42.0,"f","hedy",1.0,"female"
+"Clee, Patricia","patricia","","clee","patricia clee","u",3488.0,"f","patricia",1.0,"female"
+"Ottesen, Rolf Tore","rolf","tore","ottesen","rolf tore ottesen","m",114.0,"m","rolf",1.0,"male"
+"Volden, Tore","tore","","volden","tore volden","u",33.0,"m","tore",0.97,"male"
+"Rein, Amund","amund","","rein","amund rein","u",7.0,"m","amund",1.0,"male"
+"Reimann, Clemens","clemens","","reimann","clemens reimann","m",20.0,"m","clemens",1.0,"male"
+"Franks, Sharon E. R.","sharon","","franks","sharon franks","f",2760.0,"f","sharon",0.99,"female"
+"Elvin, Violetta","violetta","","elvin","violetta elvin","f",41.0,"f","violetta",1.0,"female"
+"Loewenberg, Samuel","samuel","","loewenberg","samuel loewenberg","m",1409.0,"m","samuel",1.0,"male"
+"Schuez, Almut","almut","","schuez","almut schuez","f",8.0,"f","almut",1.0,"female"
+"Tomas, Obitelj","obitelj","","tomas","obitelj tomas","u","","u","obitelj","",""
+"Weary, Peyton E.","peyton","","weary","peyton weary","m",37.0,"f","peyton",0.59,"female"
+"Couper, Mary Rose","mary","rose","couper","mary rose couper","u",11.0,"f","maryrose",1.0,"female"
+"Howell, David","david","","howell","david howell","m",12593.0,"m","david",1.0,"male"
+"Gildart, Keith","keith","","gildart","keith gildart","m",1417.0,"m","keith",0.99,"male"
+"Jordan, Dawne","dawne","","jordan","dawne jordan","u",16.0,"f","dawne",1.0,"female"
+"Szyprowski, Andrzej J.","andrzej","","szyprowski","andrzej szyprowski","m",50.0,"m","andrzej",0.98,"male"
+"Sciazko, Marek","marek","","sciazko","marek sciazko","m",229.0,"m","marek",1.0,"male"
+"Holmes, Andrew","andrew","","holmes","andrew holmes","m",5168.0,"m","andrew",1.0,"male"
+"Pointon, Tony","tony","","pointon","tony pointon","u",3071.0,"m","tony",1.0,"male"
+"Quenin, Francois","francois","","quenin","francois quenin","m",290.0,"m","francois",1.0,"male"
+"Balaguer, Emilio","emilio","","balaguer","emilio balaguer","u",370.0,"m","emilio",0.99,"male"
+"Ballester, Rosa","rosa","","ballester","rosa ballester","f",947.0,"f","rosa",0.99,"female"
+"Nunn, Frederick M.","frederick","","nunn","frederick nunn","u",294.0,"m","frederick",1.0,"male"
+"Sims, Richard","richard","","sims","richard sims","u",4381.0,"m","richard",1.0,"male"
+"Somers, Krishna","krishna","","somers","krishna somers","u",194.0,"m","krishna",0.71,"male"
+"Seidel, Scott","scott","","seidel","scott seidel","m",3450.0,"m","scott",1.0,"male"
+"Franchi, Lorenzo","lorenzo","","franchi","lorenzo franchi","m",496.0,"m","lorenzo",1.0,"male"
+"Mchedlov-Petrossyan, Nikolay O.","nikolay","","mchedlov-petrossyan","nikolay mchedlov-petrossyan","m",47.0,"m","nikolay",1.0,"male"
+"Martini, Claudio","claudio","","martini","claudio martini","m",854.0,"m","claudio",1.0,"male"
+"Bailey, Beth","beth","","bailey","beth bailey","f",1541.0,"f","beth",1.0,"female"
+"Farber, David","david","","farber","david farber","m",12593.0,"m","david",1.0,"male"
+"Reed, Arthur C.","arthur","","reed","arthur reed","u",547.0,"m","arthur",0.98,"male"
+"Erdine, Serdar","serdar","","erdine","serdar erdine","m",424.0,"m","serdar",0.99,"male"
+"Wiesenfeld, David","david","","wiesenfeld","david wiesenfeld","m",12593.0,"m","david",1.0,"male"
+"Smith, Suzanne P.","suzanne","","smith","suzanne smith","f",1024.0,"f","suzanne",1.0,"female"
+"Cook, Alison","alison","","cook","alison cook","u",1288.0,"f","alison",0.99,"female"
+"Ohmann, Valdur","valdur","","ohmann","valdur ohmann","m","","u","valdur","",""
+"Nap, Marius","marius","","nap","marius nap","u",234.0,"m","marius",1.0,"male"
+"Chawishly, Soran","soran","","chawishly","soran chawishly","u",2.0,"m","soran",1.0,"male"
+"Helpern, Alice","alice","","helpern","alice helpern","u",1414.0,"f","alice",1.0,"female"
+"Gerler, Peter","peter","","gerler","peter gerler","m",4373.0,"m","peter",1.0,"male"
+"Harris, Judith","judith","","harris","judith harris","f",750.0,"f","judith",1.0,"female"
+"Rodriguez Portales, Jose A.","jose","","rodriguez portales","jose rodriguez portales","m",3821.0,"m","jose",0.99,"male"
+"Ng, Timothy","timothy","","ng","timothy ng","u",809.0,"m","timothy",1.0,"male"
+"Sandhu-Purewal, Mandeep","mandeep","","sandhu-purewal","mandeep sandhu-purewal","u",45.0,"m","mandeep",0.84,"male"
+"Crain, Barbara J.","barbara","","crain","barbara crain","f",2837.0,"f","barbara",1.0,"female"
+"Cieslak-Golonka, Maria","maria","","cieslak-golonka","maria cieslak-golonka","f",8402.0,"f","maria",0.99,"female"
+"Kojic-Prodic, Breska","breska","","kojic-prodic","breska kojic-prodic","f","","u","breska","",""
+"Ljubesic, Nikola","nikola","","ljubesic","nikola ljubesic","m",301.0,"m","nikola",0.83,"male"
+"Salopek-Sondi, Branka","branka","","salopek-sondi","branka salopek-sondi","f",31.0,"f","branka",1.0,"female"
+"Iskric, Sonja","sonja","","iskric","sonja iskric","u",372.0,"f","sonja",0.99,"female"
+"Lacan, Goran","goran","","lacan","goran lacan","u",94.0,"m","goran",1.0,"male"
+"Wrischer, Mercedes","mercedes","","wrischer","mercedes wrischer","u",429.0,"f","mercedes",1.0,"female"
+"Brauner, Colin J.","colin","","brauner","colin brauner","m",954.0,"m","colin",0.99,"male"
+"Zaba, Ryszard","ryszard","","zaba","ryszard zaba","m",29.0,"m","ryszard",1.0,"male"
+"Rouyer, Philippe","philippe","","rouyer","philippe rouyer","m",605.0,"m","philippe",0.99,"male"
+"Kontak, Daniel J.","daniel","","kontak","daniel kontak","m",8180.0,"m","daniel",1.0,"male"
+"Basar, Tamer","tamer","","basar","tamer basar","m",250.0,"m","tamer",0.99,"male"
+"Lawrence, Una","una","","lawrence","una lawrence","u",69.0,"f","una",0.99,"female"
+"Milton, Kimball A.","kimball","","milton","kimball milton","m",1.0,"f","kimball",1.0,"female"
+"O'Donovan, Nick","nick","","o'donovan","nick o'donovan","u",3326.0,"m","nick",0.99,"male"
+"Vagenakis, Apostolos G.","apostolos","","vagenakis","apostolos vagenakis","u",18.0,"m","apostolos",1.0,"male"
+"Maceina, Mike","mike","","maceina","mike maceina","m",5595.0,"m","mike",1.0,"male"
+"Lovell, Graves","graves","","lovell","graves lovell","m","","u","graves","",""
+"Partridge, Todd","todd","","partridge","todd partridge","u",847.0,"m","todd",1.0,"male"
+"Mascone, Cindy Fabian","cindy","fabian","mascone","cindy fabian mascone","u",2477.0,"f","cindy",1.0,"female"
+"Csuzdi, Csaba","csaba","","csuzdi","csaba csuzdi","m",17.0,"m","csaba",1.0,"male"
+"Michael, Enid","enid","","michael","enid michael","m",39.0,"f","enid",1.0,"female"
+"Goske, Marilyn J.","marilyn","","goske","marilyn goske","f",718.0,"f","marilyn",1.0,"female"
+"Rumack, Carol M.","carol","","rumack","carol rumack","f",2345.0,"f","carol",0.99,"female"
+"Kolenc, Olga","olga","","kolenc","olga kolenc","u",898.0,"f","olga",1.0,"female"
+"Tager, Michael","michael","","tager","michael tager","u",11094.0,"m","michael",1.0,"male"
+"Craig, John F.","john","","craig","john craig","m",9931.0,"m","john",0.99,"male"
+"Lynn, Richard","richard","","lynn","richard lynn","m",4381.0,"m","richard",1.0,"male"
+"Pertold, Zdenek","zdenek","","pertold","zdenek pertold","m",33.0,"m","zdenek",1.0,"male"
+"Bolton, Laura","laura","","bolton","laura bolton","f",7953.0,"f","laura",1.0,"female"
+"Goldberg-Gist, Arlene","arlene","","goldberg-gist","arlene goldberg-gist","f",271.0,"f","arlene",1.0,"female"
+"Morison, Ian","ian","","morison","ian morison","m",2159.0,"m","ian",0.99,"male"
+"Hughes, David","david","","hughes","david hughes","m",12593.0,"m","david",1.0,"male"
+"Higson, Roger","roger","","higson","roger higson","m",1220.0,"m","roger",1.0,"male"
