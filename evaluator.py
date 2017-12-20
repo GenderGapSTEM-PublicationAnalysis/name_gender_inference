@@ -8,10 +8,18 @@ class Evaluator(abc.ABC):
     """Constant class-level properties; same for all inheriting classes"""
     raw_data_prefix = 'test_data/raw_data/test_data_'
     data_suffix = '.csv'
+    api_gender_key_name = 'gender'  # change this in inheriting class if API response denotes the gender differently
 
     @property
     @abc.abstractmethod
     def gender_evaluator(self):
+        """Name string of the service. Used for names of files with evaluation results."""
+        return 'Should never reach here'
+
+    @property
+    @abc.abstractmethod
+    def gender_response_mapping(self):
+        """mapping of gender assignments from the service to 'm', 'f' and 'u'"""
         return 'Should never reach here'
 
     def __init__(self, data_source):
@@ -71,18 +79,26 @@ class Evaluator(abc.ABC):
         except FileNotFoundError:
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
             self._fetch_gender_from_api()
+            self.extend_test_data_by_api_response()
+            self._translate_api_response()
             if save_to_dump:
                 print('Saving data to dump file {}'.format(self.file_path_evaluated_data))
                 self.dump_test_data_with_gender_inference_to_file()
 
-    def extend_test_data_by_api_response(self, api_response, gender_mapping):
-        api_response = pd.DataFrame(api_response).rename(columns={"gender": "gender_infered"})
-        if len(api_response) == len(self.test_data):
+    def extend_test_data_by_api_response(self):
+        """Add response from service to self.test_data if number of responses equals number of rows in self.test_data.
+        Hereby rename the column with gender assignment from service to 'gender_response'."""
+        if len(self.api_response) == len(self.test_data):
+            api_response = pd.DataFrame(self.api_response).rename(columns={self.api_gender_key_name: "gender_response"})
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
         else:
             print("Response from API contains less results than request. Try again?")
 
-        self.test_data.replace(to_replace={"gender_infered": gender_mapping}, inplace=True)
+    def _translate_api_response(self):
+        """Create new column 'gender_infered' in self.test_data which translates gender assignments from the
+        service to 'f', 'm' and 'u'."""
+        self.test_data['gender_infered'] = self.test_data['gender_response']
+        self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
 
     @abc.abstractmethod
     def _fetch_gender_from_api(self):

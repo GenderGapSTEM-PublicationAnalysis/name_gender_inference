@@ -27,6 +27,7 @@ class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
     api_key = API_KEYS[gender_evaluator]
+    gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -54,7 +55,7 @@ class GenderAPIEvaluator(Evaluator):
                     connectors = ['', ' ', '-']
                     names = [c.join([row.first_name, row.middle_name]) for c in connectors]
                     api_resp = [GenderAPIEvaluator._call_api(n) for n in names]
-                    if set([r['gender'] for r in api_resp]) == {'unknown'}:
+                    if set([r[self.api_gender_key_name] for r in api_resp]) == {'unknown'}:
                         # If no gender with both names, try first only
                         data = GenderAPIEvaluator._call_api(row.first_name)
                     else:
@@ -66,8 +67,6 @@ class GenderAPIEvaluator(Evaluator):
                     break
             except:
                 print("Some unexpected error occured")
-        self.extend_test_data_by_api_response(self.api_response,
-                                              {'male': 'm', 'female': 'f', 'unknown': 'u'})
 
 
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
@@ -99,8 +98,6 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
                     break
             except:
                 print("An unexpected error occured")
-        self.extend_test_data_by_api_response(self.api_response,
-                                              {'male': 'm', 'female': 'f', 'unknown': 'u'})
 
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
@@ -109,6 +106,7 @@ class NamesAPIEvaluator(Evaluator):
     gender_evaluator = 'names_api'
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
+    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u', 'CONFLICT': 'u'}
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -151,7 +149,7 @@ class NamesAPIEvaluator(Evaluator):
                     connectors = ['', ' ', '-']
                     names = [row.first_name + c + row.middle_name for c in connectors]
                     api_resp = [self._call_api(name) for name in names]
-                    api_resp_genders = set([r['gender'] for r in api_resp])
+                    api_resp_genders = set([r[self.api_gender_key_name] for r in api_resp])
                     if 'MALE' not in api_resp_genders and 'FEMALE' not in api_resp_genders:
                         self.api_response.append(self._call_api(row.first_name))
                     else:  # if usage of middle name leads to female or male then take response with highest confidence
@@ -163,9 +161,6 @@ class NamesAPIEvaluator(Evaluator):
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
                 break
-        self.extend_test_data_by_api_response(self.api_response,
-                                              {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
-                                               'CONFLICT': 'u'})
 
 
 class NamesAPIFullEvaluator(NamesAPIEvaluator):
@@ -189,13 +184,13 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
             except requests.exceptions.RequestException as e:
                 print("Network error:", e)
                 break
-        self.extend_test_data_by_api_response(self.api_response,
-                                              {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u'})
 
 
 class GenderGuesserEvaluator(Evaluator):
     """# Python wrapper of Joerg Michael's C-program `gender`"""
     gender_evaluator = 'gender_guesser'
+    gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f", "unknown": "u",
+                               "andy": "u"}
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -206,31 +201,27 @@ class GenderGuesserEvaluator(Evaluator):
         return gender.Detector().get_gender(n)
 
     def _fetch_gender_from_api(self):
-        # exact response stored in column `response`. This can be tuned using training data
         start_position = len(self.api_response)
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
             if row.middle_name != '':
                 name = row.first_name.title() + '-' + row.middle_name.title()
-                g = GenderGuesserEvaluator._call_api(name)
+                g = self._call_api(name)
                 if g != "unknown":
                     self.api_response.append(g)
                 else:
                     name = row.first_name.title()
-                    self.api_response.append(GenderGuesserEvaluator._call_api(name))
+                    self.api_response.append(self._call_api(name))
             else:
                 name = row.first_name.title()
-                self.api_response.append(GenderGuesserEvaluator._call_api(name))
+                self.api_response.append(self._call_api(name))
 
-        self.test_data["gender_infered"] = self.api_response
-        self.test_data["response"] = self.api_response
-        self.test_data.replace(to_replace={"gender_infered": {'male': 'm', "female": "f", "mostly_male": "m",
-                                                              "mostly_female": "f", "unknown": "u", "andy": "u"}},
-                               inplace=True)
+        self.api_response = [{'gender': item} for item in self.api_response]
 
 
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
+    gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -256,11 +247,11 @@ class GenderizeIoEvaluator(Evaluator):
                     connectors = ['', ' ', '-']
                     names = tuple([row.first_name + c + row.middle_name for c in connectors])
                     api_resp = self._call_api(names)
-                    if set([r['gender'] for r in api_resp]) == {None}:
+                    if set([r[self.api_gender_key_name] for r in api_resp]) == {None}:
                         self.api_response.extend(self._call_api((row.first_name,)))
                     else:  # if usage of middle name leads to female or male then take assignment with highest count
                         for item in api_resp:
-                            if item['gender'] is None:
+                            if item[self.api_gender_key_name] is None:
                                 item['count'], item['probability'] = 0, 0.0
                         names_to_responses = dict(zip(names, api_resp))
                         names_to_responses = OrderedDict(
@@ -271,5 +262,3 @@ class GenderizeIoEvaluator(Evaluator):
             except GenderizeException as e:
                 print(e)
                 break
-
-        self.extend_test_data_by_api_response(self.api_response, {'male': 'm', "female": "f", None: "u"})
