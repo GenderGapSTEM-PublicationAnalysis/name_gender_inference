@@ -12,7 +12,7 @@ from genderize import Genderize, GenderizeException
 from hammock import Hammock as NamsorAPI
 
 from evaluator import Evaluator
-from helpers import memoize
+from helpers import memoize, register_evaluator
 
 from api_keys import API_KEYS
 
@@ -24,6 +24,7 @@ def show_progress(row_index):
         sys.stdout.flush()
 
 
+@register_evaluator
 class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
@@ -71,6 +72,7 @@ class GenderAPIEvaluator(Evaluator):
                 break
 
 
+@register_evaluator
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
     """This implementation is for full_name"""
     gender_evaluator = 'gender_api_full'
@@ -105,6 +107,7 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
+@register_evaluator
 class NamesAPIEvaluator(Evaluator):
     gender_evaluator = 'names_api'
     api_key = API_KEYS[gender_evaluator]
@@ -166,6 +169,7 @@ class NamesAPIEvaluator(Evaluator):
                 break
 
 
+@register_evaluator
 class NamesAPIFullEvaluator(NamesAPIEvaluator):
     gender_evaluator = 'names_api_full'
 
@@ -189,6 +193,7 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
                 break
 
 
+@register_evaluator
 class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
@@ -205,7 +210,7 @@ class NamSorEvaluator(Evaluator):
             raise Exception('When calling NamSor, name must be a tuple')
         else:
             forename, surname = name
-    
+
         resp = namsor(forename, surname).GET()
         return resp.json()
 
@@ -227,7 +232,7 @@ class NamSorEvaluator(Evaluator):
                     if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
                         # If no gender with both names is found, use first name only
                         data = self._call_api((row.first_name, row.last_name))
-                    else:  
+                    else:
                         # if usage of middle name leads to female or male then take response with highest confidence
                         # confidence in NamSor is absolute value of scale
                         data = max(api_resp, key=lambda x: abs(x['scale']))
@@ -240,6 +245,7 @@ class NamSorEvaluator(Evaluator):
                 break
 
 
+@register_evaluator
 class GenderGuesserEvaluator(Evaluator):
     """# Python wrapper of Joerg Michael's C-program `gender`"""
     gender_evaluator = 'gender_guesser'
@@ -273,6 +279,7 @@ class GenderGuesserEvaluator(Evaluator):
         self.api_response = [{'gender': item} for item in self.api_response]
 
 
+@register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}

@@ -166,3 +166,4 @@ class Evaluator(abc.ABC):
         print("error counting proportion of names with unpredicted gender: ", self.error_unknown)
         print("error where negative value suggestes that more women than men are missclassified: ",
               self.error_gender_bias)
+        return [self.error_with_unknown, self.error_without_unknown, self.error_gender_bias, self.error_unknown]

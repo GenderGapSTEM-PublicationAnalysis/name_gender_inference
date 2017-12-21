@@ -31,3 +31,12 @@ class memoize:
         except KeyError:
             self.memoized[args] = self.function(*args)
             return self.memoized[args]
+
+
+# Taken from http://scottlobdell.me/2015/08/using-decorators-python-automatic-registration/
+REGISTERED_EVALUATORS = []
+
+
+def register_evaluator(cls):
+    REGISTERED_EVALUATORS.append(cls)
+    return cls
