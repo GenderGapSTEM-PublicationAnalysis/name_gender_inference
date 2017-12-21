@@ -93,7 +93,7 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
         for i, n in enumerate(names):
             show_progress(i)
             try:
-                data = GenderAPIEvaluator._call_api(n)
+                data = self._call_api(n)
                 if 'errmsg' not in data.keys():
                     self.api_response.append(data)
                 else:
