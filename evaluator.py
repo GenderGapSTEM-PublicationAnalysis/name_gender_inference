@@ -35,6 +35,7 @@ class Evaluator(abc.ABC):
         self.error_with_unknown = None
         self.error_unknown = None
         self.error_gender_bias = None
+        self.api_call_completed = False
 
     def load_data(self):
         try:
@@ -78,10 +79,13 @@ class Evaluator(abc.ABC):
             print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
             self._fetch_gender_from_api()
             self.extend_test_data_by_api_response()
-            self._translate_api_response()
-            if save_to_dump:
-                print('Saving data to dump file {}'.format(self.file_path_evaluated_data))
-                self.dump_test_data_with_gender_inference_to_file()
+            if self.api_call_completed:
+                self._translate_api_response()
+                if save_to_dump:
+                    print('Saving data to dump file {}'.format(self.file_path_evaluated_data))
+                    self.dump_test_data_with_gender_inference_to_file()
+            else:
+                print('API call did not complete. Check error and try again.')
 
     def extend_test_data_by_api_response(self):
         """Add response from service to self.test_data if number of responses equals number of rows in self.test_data.
@@ -89,8 +93,10 @@ class Evaluator(abc.ABC):
         if len(self.api_response) == len(self.test_data):
             api_response = pd.DataFrame(self.api_response).add_prefix('api_')
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
+            self.api_call_completed = True
         else:
-            print("Response from API contains less results than request. Try again?")
+            print("\nResponse from API contains less results than request. Try again?")
+            self.api_call_completed = False
 
     def _translate_api_response(self):
         """Create new column 'gender_infered' in self.test_data which translates gender assignments from the
