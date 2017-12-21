@@ -38,7 +38,7 @@ class Evaluator(abc.ABC):
 
     def load_data(self):
         try:
-            test_data = pd.read_csv(self.file_path_raw_data)
+            test_data = pd.read_csv(self.file_path_raw_data, keep_default_na=False)
             expected_columns = ['first_name', 'middle_name', 'last_name', 'full_name', 'gender']
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
