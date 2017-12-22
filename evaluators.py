@@ -17,13 +17,6 @@ from helpers import memoize, register_evaluator
 from api_keys import API_KEYS
 
 
-def show_progress(row_index):
-    """Shows a progress bar"""
-    if row_index % 100 == 0:
-        sys.stdout.write('{}...'.format(row_index))
-        sys.stdout.flush()
-
-
 @register_evaluator
 class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
@@ -43,39 +36,26 @@ class GenderAPIEvaluator(Evaluator):
         decoded = response.read().decode('utf-8')
         return json.loads(decoded)
 
-    def _fetch_gender_from_api(self):
-        start_position = len(self.api_response)
-        print('Starting from record: {}'.format(start_position))
+    def _fetch_gender_with_first_last(self, first, last, full):
+        # Call API only with first name only
+        api_resp = self._call_api(first)
+        # API call succeeded if no 'errmsg' in json response, else return None and print data
+        return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
-        for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            show_progress(i)
-            try:
-                if row.middle_name == '':
-                    # If middle name is missing, try just first_name alone
-                    data = GenderAPIEvaluator._call_api(row.first_name)
-                else:
-                    # If middle name, try various combinations
-                    connectors = ['', ' ', '-']
-                    names = [c.join([row.first_name, row.middle_name]) for c in connectors]
-                    api_resp = [self._call_api(n) for n in names]
-                    if set([r[self.api_gender_key_name] for r in api_resp]) == {'unknown'}:
-                        # If no gender with both names, try first only
-                        data = GenderAPIEvaluator._call_api(row.first_name)
-                    else:
-                        # if usage of middle name leads to female or male then take assignment with highest samples
-                        data = max(api_resp, key=lambda x: x['samples'])
-                if 'errmsg' not in data.keys():
-                    self.api_response.append(data)
-                else:
-                    # Print error message if api call returns an error
-                    print('\n', data)
-                    break
-            except Exception as e:
-                print('An unexpected error occured')
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                print(exc_type, exc_tb.tb_lineno)
-                print(e)
-                break
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        # If middle name, try various combinations
+        connectors = [' ', '-']
+        names = [c.join([first, mid]) for c in connectors]
+        api_resps = [self._call_api(n) for n in names]
+        api_resp_genders = set([r[self.api_gender_key_name] for r in api_resps])
+        if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
+            # If no gender with both names, try first only
+            api_resp = self._call_api(first)
+        else:
+            # if usage of middle name leads to female or male then take assignment with highest samples
+            api_resp = max(api_resps, key=lambda x: x['samples'])
+        # API call succeeded if no 'errmsg' in json response, else return None and print data
+        return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
 
 @register_evaluator
@@ -95,27 +75,19 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
         decoded = response.read().decode('utf-8')
         return json.loads(decoded)
 
-    def _fetch_gender_from_api(self):
-        start_position = len(self.api_response)
-        print('Starting from record: {}'.format(start_position))
+    def _fetch_gender_with_full_name(self, fullname):
+        # Calls API with full name
+        api_resp = self._call_api(fullname)
+        # API call succeeded if no 'errmsg' in json response, else return None and print data
+        return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
-        names = self.test_data[start_position:].full_name.tolist()
-        for i, n in enumerate(names):
-            show_progress(i)
-            try:
-                data = self._call_api(n)
-                if 'errmsg' not in data.keys():
-                    self.api_response.append(data)
-                else:
-                    # Print error message if api call returns an error
-                    print('\n', data)
-                    break
-            except Exception as e:
-                print('An unexpected error occured')
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                print(exc_type, exc_tb.tb_lineno)
-                print(e)
-                break
+    def _fetch_gender_with_first_last(self, first, last, full):
+        # Disregards pieces and calls with full name
+        self._fetch_gender_with_full_name(full)
+
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        # Disregards pieces and calls with full name 
+        self._fetch_gender_with_full_name(full)
 
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
@@ -154,34 +126,34 @@ class NamesAPIEvaluator(Evaluator):
         resp.raise_for_status()
         return resp.json()
 
-    def _fetch_gender_from_api(self):
+    def _fetch_gender_with_first_last(self, first, last, full):
+        try:
+            api_resp = self._call_api(first)
+            return api_resp
+        except requests.exceptions.HTTPError as e:
+            print("Bad HTTP status code:", e)    
+        except requests.exceptions.RequestException as e:
+            print("Network error:", e)
 
-        start_position = len(
-            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
-        print('Starting from record: {}'.format(start_position))
-
-        for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            show_progress(i)
-
-            try:
-                if row.middle_name == '':
-                    self.api_response.append(self._call_api(row.first_name))
-                else:  # if middle_name exists then try various variations of full name
-                    connectors = ['', ' ', '-']
-                    names = [row.first_name + c + row.middle_name for c in connectors]
-                    api_resp = [self._call_api(name) for name in names]
-                    api_resp_genders = set([r[self.api_gender_key_name] for r in api_resp])
-                    if 'MALE' not in api_resp_genders and 'FEMALE' not in api_resp_genders:
-                        self.api_response.append(self._call_api(row.first_name))
-                    else:  # if usage of middle name leads to female or male then take response with highest confidence
-                        self.api_response.append(sorted(api_resp, key=lambda x: x['confidence'], reverse=True)[0])
-
-            except requests.exceptions.HTTPError as e:
-                print("Bad HTTP status code:", e)
-                break
-            except requests.exceptions.RequestException as e:
-                print("Network error:", e)
-                break
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        try:
+            # If middle name, try various combinations
+            connectors = [' ', '-']
+            names = [c.join([first, mid]) for c in connectors]
+            api_resps = [self._call_api(n) for n in names]
+            api_resp_genders = set([r[self.api_gender_key_name] for r in api_resps])
+            if 'MALE' not in api_resp_genders and 'FEMALE' not in api_resp_genders:
+                # If no gender with both names, try first only
+                api_resp = self._call_api(first)
+            else:
+                # if usage of middle name leads to female or male then take assignment with highest samples
+                api_resp = max(api_resps, key=lambda x: x['confidence']) 
+            # API call succeeded if no excepting here
+            return api_resp
+        except requests.exceptions.HTTPError as e:
+            print("Bad HTTP status code:", e)    
+        except requests.exceptions.RequestException as e:
+            print("Network error:", e)
 
 
 @register_evaluator
@@ -191,23 +163,24 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
 
-    def _fetch_gender_from_api(self):
+    def _fetch_gender_with_full_name(fullname):
+        # Calls API with full name
+        try:
+            api_resp = self._call_api(fullname)
+            # API call succeeded if no excepting here
+            return api_resp
+        except requests.exceptions.HTTPError as e:
+            print("Bad HTTP status code:", e)
+        except requests.exceptions.RequestException as e:
+            print("Network error:", e)
+        
+    def _fetch_gender_with_first_last(self, first, last, full):
+        # Disregards pieces and calls with full name
+        self._fetch_gender_with_full_name(full)
 
-        start_position = len(
-            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
-        print('Starting from record: {}'.format(start_position))
-
-        names = self.test_data[start_position:].full_name.tolist()
-        for i, n in enumerate(names):
-            show_progress(i)
-            try:
-                self.api_response.append(self._call_api(n))
-            except requests.exceptions.HTTPError as e:
-                print("Bad HTTP status code:", e)
-                break
-            except requests.exceptions.RequestException as e:
-                print("Network error:", e)
-                break
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        # Disregards pieces and calls with full name 
+        self._fetch_gender_with_full_name(full)
 
 
 @register_evaluator
@@ -227,41 +200,37 @@ class NamSorEvaluator(Evaluator):
             raise Exception('When calling NamSor, name must be a tuple')
         else:
             forename, surname = name
-
         resp = namsor(forename, surname).GET()
-        return resp.json()
+        return resp.json()    
 
-    def _fetch_gender_from_api(self):
+    def _fetch_gender_with_first_last(self, first, last, full):
+        # Call API only with first name only
+        api_resp = self._call_api((first, last))
+        # In NamSor response, key 'id' is of no interest. Remove to make comparison later easier
+        if 'id' in api_resp:
+            api_resp.pop('id')
+        # TODO: investigate how hammock deals with errors in API call
+        # This will always return something, so if there's an error it won't catch it here
+        return api_resp
 
-        start_position = len(
-            self.api_response)  # if api_response already contains partial results then do not re-evaluate them
-        print('Starting from record: {}'.format(start_position))
-
-        for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            show_progress(i)
-
-            try:
-                if row.middle_name == '':
-                    self.api_response.append(self._call_api((row.first_name, row.last_name)))
-                else:  # if middle_name exists then try various variations of full name
-                    connectors = ['', ' ', '-']
-                    names = [row.first_name + c + row.middle_name for c in connectors]
-                    api_resp = [self._call_api((name, row.last_name)) for name in names]
-                    api_resp_genders = set([r[self.api_gender_key_name] for r in api_resp])
-                    if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
-                        # If no gender with both names is found, use first name only
-                        data = self._call_api((row.first_name, row.last_name))
-                    else:
-                        # if usage of middle name leads to female or male then take response with highest confidence
-                        # confidence in NamSor is absolute value of scale
-                        data = max(api_resp, key=lambda x: abs(x['scale']))
-                    self.api_response.append(data)
-            except Exception as e:
-                print('An unexpected error occured')
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                print(exc_type, exc_tb.tb_lineno)
-                print(e)
-                break
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        # If middle name, try various combinations
+        connectors = [' ', '-']
+        names = [c.join([first, mid]) for c in connectors]
+        api_resps = [self._call_api((name, last)) for name in names]
+        api_resp_genders = set([r[self.api_gender_key_name] for r in api_resps])
+        if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
+            # If no gender with both names is found, use first name only
+            api_resp = self._call_api((first, last))
+        else:
+            # if usage of middle name leads to female or male then take response with highest confidence
+            # confidence in NamSor is absolute value of scale
+            api_resp = max(api_resps, key=lambda x: abs(x['scale']))
+        if 'id' in api_resp:
+            api_resp.pop('id')
+        # TODO: investigate how hammock deals with errors in API call
+        # This will always return something, so if there's an error it won't catch it here
+        return api_resp
 
 
 @register_evaluator
@@ -279,25 +248,22 @@ class GenderGuesserEvaluator(Evaluator):
     def _call_api(n):
         return gender.Detector().get_gender(n)
 
-    def _fetch_gender_from_api(self):
-        start_position = len(self.api_response)
-        print('Starting from record: {}'.format(start_position))
+    def _fetch_gender_with_first_last(self, first, last, full):
+        # Call API only with first name with capital letter
+        name = first.title()
+        api_resp = {'gender': self._call_api(name)}
+        return api_resp
 
-        for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            show_progress(i)
-            if row.middle_name != '':
-                name = row.first_name.title() + '-' + row.middle_name.title()
-                g = self._call_api(name)
-                if g != "unknown":
-                    self.api_response.append(g)
-                else:
-                    name = row.first_name.title()
-                    self.api_response.append(self._call_api(name))
-            else:
-                name = row.first_name.title()
-                self.api_response.append(self._call_api(name))
-
-        self.api_response = [{'gender': item} for item in self.api_response]
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        # If middle name, connect first with '-', else search with first name only
+        name = first.title() + '-' + mid.title()
+        g = self._call_api(name)
+        if g != 'unknown':
+            api_resp = {'gender': g}
+        else:
+            name = first.title()
+            api_resp = {'gender': self._call_api(name)}
+        return api_resp
 
 
 @register_evaluator
@@ -310,41 +276,33 @@ class GenderizeIoEvaluator(Evaluator):
 
     @staticmethod
     @memoize
-    def _call_api(names):
-        return Genderize().get(names)
+    def _call_api(name):
+        return Genderize().get((name,))[0]
         # use below to test changes in code without calling the API: returns dummy response
-        # d = {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
-        # return [d for i in range(len(names))]
+        #return {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
+    
+    def _fetch_gender_with_first_last(self, first, last, full):
+        try:
+            # Call API only with first name only
+            api_resp = self._call_api(first)
+            return api_resp 
+        except GenderizeException as e:
+            print('Genderize Exception', e)
 
-    def _fetch_gender_from_api(self):
-        """Fetches gender predictions from genderize.io using self.test_data.first_name and
-        self.test_data.middle_name. Results are stored in self.api_response as a list.
-        If result list complete then they are merged with self.test_data."""
-
-        start_position = len(self.api_response)
-        print('Starting from record: {}'.format(start_position))
-        
-        for i, row in enumerate(self.test_data[start_position:].itertuples()):
-            show_progress(i)
-            try:
-                if row.middle_name == '':
-                    self.api_response.extend(self._call_api((row.first_name,)))
-                else:  # if middle_name exists then try various variations of full name
-                    connectors = ['', ' ', '-']
-                    names = tuple([row.first_name + c + row.middle_name for c in connectors])
-                    api_resp = self._call_api(names)
-                    if set([r[self.api_gender_key_name] for r in api_resp]) == {None}:
-                        self.api_response.extend(self._call_api((row.first_name,)))
-                    else:  # if usage of middle name leads to female or male then take assignment with highest count
-                        for item in api_resp:
-                            if item[self.api_gender_key_name] is None:
-                                item['count'], item['probability'] = 0, 0.0
-                        names_to_responses = dict(zip(names, api_resp))
-                        names_to_responses = OrderedDict(
-                            sorted(names_to_responses.items(), key=lambda x: x[1]['count'], reverse=True))
-                        self.api_response.append(
-                            next(iter(names_to_responses.values())))  # select first item in ordered dict
-
-            except GenderizeException as e:
-                print(e)
-                break
+    def _fetch_gender_with_first_mid_last(self, first, mid, last, full):
+        try:
+            # If middle name, try various combinations
+            connectors = [' ', '-']
+            names = [c.join([first, mid]) for c in connectors]
+            api_resps = [self._call_api(n) for n in names]
+            api_resp_genders = set([r[self.api_gender_key_name] for r in api_resps])
+            if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
+                # If no gender with both names, try first only
+                api_resp = self._call_api(first)
+            else:
+                # if usage of middle name leads to female or male then take assignment with highest samples
+                # Unknown names have no 'count'
+                api_resp = max([ap for ap in api_resps if 'count' in ap], key=lambda x: x['count'])
+            return api_resp 
+        except GenderizeException as e:
+            print('Genderize Exception', e)
