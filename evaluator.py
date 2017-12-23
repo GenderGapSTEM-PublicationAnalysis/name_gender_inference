@@ -5,11 +5,13 @@ import pandas as pd
 import abc
 import csv
 
+
 def show_progress(row_index):
     """Shows a progress bar"""
     if row_index % 100 == 0:
         sys.stdout.write('{}...'.format(row_index))
         sys.stdout.flush()
+
 
 class Evaluator(abc.ABC):
     """Constant class-level properties; same for all inheriting classes"""
@@ -114,7 +116,7 @@ class Evaluator(abc.ABC):
         print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
         start_position = len(self.api_response)
         print('Starting from record: {}'.format(start_position))
-        
+
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
             try:
@@ -131,7 +133,8 @@ class Evaluator(abc.ABC):
                 print(e)
                 break
 
-    def _process_row_for_api_call(self, row):
+    @classmethod
+    def _process_row_for_api_call(cls, row):
         """Takes a row from the test data frame and processes it to make the relevant api call.
 
         Returns a dict api_resp with the data to be appended to self.api_response if the call succeded
@@ -141,17 +144,19 @@ class Evaluator(abc.ABC):
         # TODO: for full_name methods, call _fetch_gender_with_full_name directly from here
         first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
         if mid == '':
-            api_resp = self._fetch_gender_with_first_last(first, last, full)
+            api_resp = cls._fetch_gender_with_first_last(first, last, full)
         else:
-            api_resp = self._fetch_gender_with_first_mid_last(first, mid, last, full)
+            api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last, full)
         return api_resp
 
+    @classmethod
     @abc.abstractmethod
-    def _fetch_gender_with_first_last(first, last):
+    def _fetch_gender_with_first_last(cls, first, last, full):
         """ Decides how to handle the API call when a first and last name are present """
 
+    @classmethod
     @abc.abstractmethod
-    def _fetch_gender_with_first_mid_last(first, mid, last):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
         """ Decides how to handle the API call when a first, middle, and last name are present """
 
     @staticmethod
