@@ -1,7 +1,16 @@
 # TODO: document methods
+import os
+import sys
 import pandas as pd
 import abc
 import csv
+
+
+def show_progress(row_index):
+    """Shows a progress bar"""
+    if row_index % 100 == 0:
+        sys.stdout.write('{}...'.format(row_index))
+        sys.stdout.flush()
 
 
 class Evaluator(abc.ABC):
@@ -9,6 +18,12 @@ class Evaluator(abc.ABC):
     raw_data_prefix = 'test_data/raw_data/test_data_'
     data_suffix = '.csv'
     api_gender_key_name = 'gender'  # change this in inheriting class if API response denotes the gender differently
+
+    @property
+    @abc.abstractmethod
+    def uses_full_name(self):
+        """Returns Boolean whether API can be requested using full name string."""
+        return 'Should never reach here'
 
     @property
     @abc.abstractmethod
@@ -37,16 +52,16 @@ class Evaluator(abc.ABC):
         self.error_gender_bias = None
         self.api_call_completed = False
 
-    def load_data(self):
+    def load_data(self, evaluated=False):
+        from_file = self.file_path_raw_data if not evaluated else self.file_path_evaluated_data
         try:
-            test_data = pd.read_csv(self.file_path_raw_data, keep_default_na=False)
+            test_data = pd.read_csv(from_file, keep_default_na=False)
             expected_columns = ['first_name', 'middle_name', 'last_name', 'full_name', 'gender']
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
                 self.test_data = test_data
                 self.is_test_data_schema_correct = True
-                for col in expected_columns:
-                    self.test_data[col].fillna('', inplace=True)
+                self.test_data[expected_columns] = self.test_data[expected_columns].fillna('')
             else:
                 print("Some expected columns are missing; data not loaded.")
 
@@ -66,17 +81,14 @@ class Evaluator(abc.ABC):
             (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
 
     def fetch_gender(self, save_to_dump=True):
-        # TODO: change try-except structure to if-else since it is not real exception handling
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
         self.dump_test_data_with_gender_inference_to_file"""
         # Try opening the dump file, else resort to calling the API
-        try:
-            # TODO: replace by load method above
-            self.test_data = pd.read_csv(self.file_path_evaluated_data)
+        if os.path.isfile(self.file_path_evaluated_data):
+            self.load_data(evaluated=True)
             print('Reading data from dump file {}'.format(self.file_path_evaluated_data))
-        except FileNotFoundError:
-            print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
+        else:
             self._fetch_gender_from_api()
             self.extend_test_data_by_api_response()
             if self.api_call_completed:
@@ -94,6 +106,7 @@ class Evaluator(abc.ABC):
             api_response = pd.DataFrame(self.api_response).add_prefix('api_')
             self.test_data = pd.concat([self.test_data, api_response], axis=1)
             self.api_call_completed = True
+            print('... API calls completed')
         else:
             print("\nResponse from API contains less results than request. Try again?")
             self.api_call_completed = False
@@ -104,9 +117,64 @@ class Evaluator(abc.ABC):
         self.test_data['gender_infered'] = self.test_data['api_gender']
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
 
-    @abc.abstractmethod
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module"""
+        print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
+        start_position = len(self.api_response)
+        print('Starting from record: {}'.format(start_position))
+
+        for i, row in enumerate(self.test_data[start_position:].itertuples()):
+            show_progress(i)
+            try:
+                api_resp = self._process_row_for_api_call(row)
+                if api_resp:
+                    self.api_response.append(api_resp)
+                else:
+                    # If api_resp is None it means that the evaluation failed -> break the loop
+                    break
+            except Exception as e:
+                # This prints any unforeseen error when processing each row
+                # Should never reach here b/c every class should handle its own potential errors when 
+                # calling their APIs
+                print('An unexpected error occured')
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                print(exc_type, exc_tb.tb_lineno)
+                print(e)
+                break
+
+    @classmethod
+    def _process_row_for_api_call(cls, row):
+        """Takes a row from the test data frame and processes it to make the relevant api call.
+
+        Returns a dict api_resp with the data to be appended to self.api_response if the call succeded
+        Else it returs None, which breaks the execution of the for loop over the rows
+        """
+        # How a row will processed depends first on whether a mid name exists
+        first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
+
+        if cls.uses_full_name is True:
+            api_resp = cls._fetch_gender_with_full_name(full)
+        else:
+            if mid == '':
+                api_resp = cls._fetch_gender_with_first_last(first, last)
+            else:
+                api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last)
+        return api_resp
+
+    @classmethod
+    @abc.abstractmethod
+    def _fetch_gender_with_full_name(cls, full):
+        """ Calls the API with full name, for methods that accept full name """
+
+    @classmethod
+    @abc.abstractmethod
+    def _fetch_gender_with_first_last(cls, first, last):
+        """ Decides how to handle the API call when a first and last name are present """
+
+    @classmethod
+    @abc.abstractmethod
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
+        """ Decides how to handle the API call when a first, middle, and last name are present """
 
     @staticmethod
     @abc.abstractmethod
@@ -166,10 +234,4 @@ class Evaluator(abc.ABC):
         self.compute_error_without_unknown()
         self.compute_error_unknown()
         self.compute_error_gender_bias()
-        # print(self.confusion_matrix)
-        # print("error counting prediction as 'unknown gender' as classification errors: ", self.error_with_unknown)
-        # print("error ignoring prediction as 'unknown gender' : ", self.error_without_unknown)
-        # print("error counting proportion of names with unpredicted gender: ", self.error_unknown)
-        # print("error where negative value suggestes that more women than men are missclassified: ",
-        #       self.error_gender_bias)
         return [self.error_with_unknown, self.error_without_unknown, self.error_gender_bias, self.error_unknown]
