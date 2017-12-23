@@ -22,6 +22,7 @@ class GenderAPIEvaluator(Evaluator):
     gender_evaluator = 'gender_api'
     api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
+    uses_full_name = False
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -63,6 +64,7 @@ class GenderAPIEvaluator(Evaluator):
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
     """This implementation is for full_name"""
     gender_evaluator = 'gender_api_full'
+    uses_full_name = True
 
     def __init__(self, data_source):
         GenderAPIEvaluator.__init__(self, data_source)
@@ -102,6 +104,7 @@ class NamesAPIEvaluator(Evaluator):
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
     gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u', 'CONFLICT': 'u'}
+    uses_full_name = False
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -165,6 +168,7 @@ class NamesAPIEvaluator(Evaluator):
 @register_evaluator
 class NamesAPIFullEvaluator(NamesAPIEvaluator):
     gender_evaluator = 'names_api_full'
+    uses_full_name = True
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -196,6 +200,7 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
 class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
+    uses_full_name = False
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -250,6 +255,7 @@ class GenderGuesserEvaluator(Evaluator):
     gender_evaluator = 'gender_guesser'
     gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f", "unknown": "u",
                                "andy": "u"}
+    uses_full_name = False
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -283,6 +289,7 @@ class GenderGuesserEvaluator(Evaluator):
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
+    uses_full_name = False
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)

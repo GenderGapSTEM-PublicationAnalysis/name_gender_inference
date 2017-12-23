@@ -21,6 +21,12 @@ class Evaluator(abc.ABC):
 
     @property
     @abc.abstractmethod
+    def uses_full_name(self):
+        """Returns Boolean whether API can be requested using full name string."""
+        return 'Should never reach here'
+
+    @property
+    @abc.abstractmethod
     def gender_evaluator(self):
         """Name string of the service. Used for names of files with evaluation results."""
         return 'Should never reach here'
@@ -143,11 +149,20 @@ class Evaluator(abc.ABC):
         # How a row will processed depends first on whether a mid name exists
         # TODO: for full_name methods, call _fetch_gender_with_full_name directly from here
         first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
-        if mid == '':
-            api_resp = cls._fetch_gender_with_first_last(first, last, full)
+
+        if cls.uses_full_name is True:
+            api_resp = cls._fetch_gender_with_full_name(first, last, full)
         else:
-            api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last, full)
+            if mid == '':
+                api_resp = cls._fetch_gender_with_first_last(first, last, full)
+            else:
+                api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last, full)
         return api_resp
+
+    @classmethod
+    @abc.abstractmethod
+    def _fetch_gender_with_full_name(cls, first, last, full):
+        """  """
 
     @classmethod
     @abc.abstractmethod
