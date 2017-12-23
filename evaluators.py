@@ -82,9 +82,9 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
         return json.loads(decoded)
 
     @classmethod
-    def _fetch_gender_with_full_name(cls, fullname):
+    def _fetch_gender_with_full_name(cls, full):
         # Calls API with full name
-        api_resp = cls._call_api(fullname)
+        api_resp = cls._call_api(full)
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
@@ -179,10 +179,10 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
         Evaluator.__init__(self, data_source)
 
     @classmethod
-    def _fetch_gender_with_full_name(cls, fullname):
+    def _fetch_gender_with_full_name(cls, full):
         # Calls API with full name
         try:
-            api_resp = cls._call_api(fullname)
+            api_resp = cls._call_api(full)
             # API call succeeded if no excepting here
             return api_resp
         except requests.exceptions.HTTPError as e:

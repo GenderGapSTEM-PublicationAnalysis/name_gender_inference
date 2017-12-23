@@ -129,6 +129,9 @@ class Evaluator(abc.ABC):
                 api_resp = self._process_row_for_api_call(row)
                 if api_resp:
                     self.api_response.append(api_resp)
+                else:
+                    # If api_resp is None it means that the evaluation failed -> break the loop
+                    break
             except Exception as e:
                 # This prints any unforeseen error when processing each row
                 # Should never reach here b/c every class should handle its own potential errors when 
@@ -147,22 +150,21 @@ class Evaluator(abc.ABC):
         Else it returs None, which breaks the execution of the for loop over the rows
         """
         # How a row will processed depends first on whether a mid name exists
-        # TODO: for full_name methods, call _fetch_gender_with_full_name directly from here
         first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
 
         if cls.uses_full_name is True:
             api_resp = cls._fetch_gender_with_full_name(full)
         else:
             if mid == '':
-                api_resp = cls._fetch_gender_with_first_last(first, last, full)
+                api_resp = cls._fetch_gender_with_first_last(first, last)
             else:
-                api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last, full)
+                api_resp = cls._fetch_gender_with_first_mid_last(first, mid, last)
         return api_resp
 
     @classmethod
     @abc.abstractmethod
     def _fetch_gender_with_full_name(cls, full):
-        """  """
+        """ Calls the API with full name, for methods that accept full name """
 
     @classmethod
     @abc.abstractmethod
@@ -232,10 +234,4 @@ class Evaluator(abc.ABC):
         self.compute_error_without_unknown()
         self.compute_error_unknown()
         self.compute_error_gender_bias()
-        # print(self.confusion_matrix)
-        # print("error counting prediction as 'unknown gender' as classification errors: ", self.error_with_unknown)
-        # print("error ignoring prediction as 'unknown gender' : ", self.error_without_unknown)
-        # print("error counting proportion of names with unpredicted gender: ", self.error_unknown)
-        # print("error where negative value suggestes that more women than men are missclassified: ",
-        #       self.error_gender_bias)
         return [self.error_with_unknown, self.error_without_unknown, self.error_gender_bias, self.error_unknown]
