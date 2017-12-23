@@ -45,6 +45,7 @@ class GenderAPIEvaluator(Evaluator):
 
     def _fetch_gender_from_api(self):
         start_position = len(self.api_response)
+        print('Starting from record: {}'.format(start_position))
 
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
@@ -56,7 +57,7 @@ class GenderAPIEvaluator(Evaluator):
                     # If middle name, try various combinations
                     connectors = ['', ' ', '-']
                     names = [c.join([row.first_name, row.middle_name]) for c in connectors]
-                    api_resp = [GenderAPIEvaluator._call_api(n) for n in names]
+                    api_resp = [self._call_api(n) for n in names]
                     if set([r[self.api_gender_key_name] for r in api_resp]) == {'unknown'}:
                         # If no gender with both names, try first only
                         data = GenderAPIEvaluator._call_api(row.first_name)
@@ -66,9 +67,14 @@ class GenderAPIEvaluator(Evaluator):
                 if 'errmsg' not in data.keys():
                     self.api_response.append(data)
                 else:
+                    # Print error message if api call returns an error
+                    print('\n', data)
                     break
-            except:
-                print("Some unexpected error occured")
+            except Exception as e:
+                print('An unexpected error occured')
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                print(exc_type, exc_tb.tb_lineno)
+                print(e)
                 break
 
 
@@ -91,6 +97,8 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 
     def _fetch_gender_from_api(self):
         start_position = len(self.api_response)
+        print('Starting from record: {}'.format(start_position))
+
         names = self.test_data[start_position:].full_name.tolist()
         for i, n in enumerate(names):
             show_progress(i)
@@ -99,9 +107,14 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
                 if 'errmsg' not in data.keys():
                     self.api_response.append(data)
                 else:
+                    # Print error message if api call returns an error
+                    print('\n', data)
                     break
-            except:
-                print("An unexpected error occured")
+            except Exception as e:
+                print('An unexpected error occured')
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                print(exc_type, exc_tb.tb_lineno)
+                print(e)
                 break
 
 
@@ -145,6 +158,8 @@ class NamesAPIEvaluator(Evaluator):
 
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        print('Starting from record: {}'.format(start_position))
+
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
 
@@ -180,6 +195,8 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
 
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        print('Starting from record: {}'.format(start_position))
+
         names = self.test_data[start_position:].full_name.tolist()
         for i, n in enumerate(names):
             show_progress(i)
@@ -218,6 +235,8 @@ class NamSorEvaluator(Evaluator):
 
         start_position = len(
             self.api_response)  # if api_response already contains partial results then do not re-evaluate them
+        print('Starting from record: {}'.format(start_position))
+
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
 
@@ -262,6 +281,8 @@ class GenderGuesserEvaluator(Evaluator):
 
     def _fetch_gender_from_api(self):
         start_position = len(self.api_response)
+        print('Starting from record: {}'.format(start_position))
+
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
             if row.middle_name != '':
@@ -301,6 +322,8 @@ class GenderizeIoEvaluator(Evaluator):
         If result list complete then they are merged with self.test_data."""
 
         start_position = len(self.api_response)
+        print('Starting from record: {}'.format(start_position))
+        
         for i, row in enumerate(self.test_data[start_position:].itertuples()):
             show_progress(i)
             try:
