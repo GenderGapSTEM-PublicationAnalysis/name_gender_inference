@@ -151,7 +151,7 @@ class Evaluator(abc.ABC):
         first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
 
         if cls.uses_full_name is True:
-            api_resp = cls._fetch_gender_with_full_name(first, last, full)
+            api_resp = cls._fetch_gender_with_full_name(full)
         else:
             if mid == '':
                 api_resp = cls._fetch_gender_with_first_last(first, last, full)
@@ -161,17 +161,17 @@ class Evaluator(abc.ABC):
 
     @classmethod
     @abc.abstractmethod
-    def _fetch_gender_with_full_name(cls, first, last, full):
+    def _fetch_gender_with_full_name(cls, full):
         """  """
 
     @classmethod
     @abc.abstractmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         """ Decides how to handle the API call when a first and last name are present """
 
     @classmethod
     @abc.abstractmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         """ Decides how to handle the API call when a first, middle, and last name are present """
 
     @staticmethod

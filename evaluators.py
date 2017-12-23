@@ -1,6 +1,5 @@
 # TODO: check error messages when catching exceptions before publishing code
 import json
-from collections import OrderedDict
 
 import gender_guesser.detector as gender
 import requests
@@ -37,14 +36,14 @@ class GenderAPIEvaluator(Evaluator):
         return json.loads(decoded)
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         # Call API only with first name only
         api_resp = cls._call_api(first)
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         # If middle name, try various combinations
         connectors = [' ', '-']
         names = [c.join([first, mid]) for c in connectors]
@@ -58,6 +57,10 @@ class GenderAPIEvaluator(Evaluator):
             api_resp = max(api_resps, key=lambda x: x['samples'])
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
+
+    @classmethod
+    def _fetch_gender_with_full_name(cls, full):
+        pass
 
 
 @register_evaluator
@@ -86,14 +89,12 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
-        # Disregards pieces and calls with full name
-        cls._fetch_gender_with_full_name(full)
+    def _fetch_gender_with_first_last(cls, first, last):
+        pass
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
-        # Disregards pieces and calls with full name 
-        cls._fetch_gender_with_full_name(full)
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
+        pass
 
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
@@ -134,7 +135,7 @@ class NamesAPIEvaluator(Evaluator):
         return resp.json()
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         try:
             api_resp = cls._call_api(first)
             return api_resp
@@ -144,7 +145,7 @@ class NamesAPIEvaluator(Evaluator):
             print("Network error:", e)
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         try:
             # If middle name, try various combinations
             connectors = [' ', '-']
@@ -163,6 +164,10 @@ class NamesAPIEvaluator(Evaluator):
             print("Bad HTTP status code:", e)
         except requests.exceptions.RequestException as e:
             print("Network error:", e)
+
+    @classmethod
+    def _fetch_gender_with_full_name(cls, full):
+        pass
 
 
 @register_evaluator
@@ -186,14 +191,12 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
             print("Network error:", e)
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
-        # Disregards pieces and calls with full name
-        cls._fetch_gender_with_full_name(full)
+    def _fetch_gender_with_first_last(cls, first, last):
+        pass
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
-        # Disregards pieces and calls with full name 
-        cls._fetch_gender_with_full_name(full)
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
+        pass
 
 
 @register_evaluator
@@ -218,7 +221,7 @@ class NamSorEvaluator(Evaluator):
         return resp.json()
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         # Call API only with first name only
         api_resp = cls._call_api((first, last))
         # In NamSor response, key 'id' is of no interest. Remove to make comparison later easier
@@ -229,7 +232,7 @@ class NamSorEvaluator(Evaluator):
         return api_resp
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         # If middle name, try various combinations
         connectors = [' ', '-']
         names = [c.join([first, mid]) for c in connectors]
@@ -247,6 +250,10 @@ class NamSorEvaluator(Evaluator):
         # TODO: investigate how hammock deals with errors in API call
         # This will always return something, so if there's an error it won't catch it here
         return api_resp
+
+    @classmethod
+    def _fetch_gender_with_full_name(cls, full):
+        pass
 
 
 @register_evaluator
@@ -266,14 +273,14 @@ class GenderGuesserEvaluator(Evaluator):
         return gender.Detector().get_gender(n)
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         # Call API only with first name with capital letter
         name = first.title()
         api_resp = {'gender': cls._call_api(name)}
         return api_resp
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         # If middle name, connect first with '-', else search with first name only
         name = first.title() + '-' + mid.title()
         g = cls._call_api(name)
@@ -283,6 +290,10 @@ class GenderGuesserEvaluator(Evaluator):
             name = first.title()
             api_resp = {'gender': cls._call_api(name)}
         return api_resp
+
+    @classmethod
+    def _fetch_gender_with_full_name(cls, full):
+        pass
 
 
 @register_evaluator
@@ -302,7 +313,7 @@ class GenderizeIoEvaluator(Evaluator):
         # return {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
 
     @classmethod
-    def _fetch_gender_with_first_last(cls, first, last, full):
+    def _fetch_gender_with_first_last(cls, first, last):
         try:
             # Call API only with first name only
             api_resp = cls._call_api(first)
@@ -311,7 +322,7 @@ class GenderizeIoEvaluator(Evaluator):
             print('Genderize Exception', e)
 
     @classmethod
-    def _fetch_gender_with_first_mid_last(cls, first, mid, last, full):
+    def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         try:
             # If middle name, try various combinations
             connectors = [' ', '-']
@@ -328,3 +339,7 @@ class GenderizeIoEvaluator(Evaluator):
             return api_resp
         except GenderizeException as e:
             print('Genderize Exception', e)
+
+    @classmethod
+    def _fetch_gender_with_full_name(cls, full):
+        pass
