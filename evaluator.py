@@ -34,7 +34,7 @@ class Evaluator(abc.ABC):
     @property
     @abc.abstractmethod
     def gender_response_mapping(self):
-        """mapping of gender assignments from the service to 'm', 'f' and 'u'"""
+        """Mapping of gender assignments from the service to 'm', 'f' and 'u'"""
         return 'Should never reach here'
 
     def __init__(self, data_source):
@@ -52,16 +52,22 @@ class Evaluator(abc.ABC):
         self.error_gender_bias = None
         self.api_call_completed = False
 
-    def load_data(self, evaluated=False):
+    def load_data(self, evaluated=False, return_frame=False):
         from_file = self.file_path_raw_data if not evaluated else self.file_path_evaluated_data
         try:
             test_data = pd.read_csv(from_file, keep_default_na=False)
             expected_columns = ['first_name', 'middle_name', 'last_name', 'full_name', 'gender']
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
-                self.test_data = test_data
-                self.is_test_data_schema_correct = True
-                self.test_data[expected_columns] = self.test_data[expected_columns].fillna('')
+                if return_frame:
+                    # Call with return_frame=True to get the data returned
+                    test_data[expected_columns] = test_data[expected_columns].fillna('')
+                    return test_data
+                else:
+                    # Call with default return_frame=False to load data into attribute
+                    self.test_data = test_data
+                    self.is_test_data_schema_correct = True
+                    self.test_data[expected_columns] = self.test_data[expected_columns].fillna('')
             else:
                 print("Some expected columns are missing; data not loaded.")
 
@@ -118,7 +124,7 @@ class Evaluator(abc.ABC):
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
 
     def _fetch_gender_from_api(self):
-        """Fetches gender assignments from an API or Python module"""
+        """Fetches gender assignments from an API or Python module."""
         print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
         start_position = len(self.api_response)
         print('Starting from record: {}'.format(start_position))
@@ -147,7 +153,7 @@ class Evaluator(abc.ABC):
         """Takes a row from the test data frame and processes it to make the relevant api call.
 
         Returns a dict api_resp with the data to be appended to self.api_response if the call succeded
-        Else it returs None, which breaks the execution of the for loop over the rows
+        Else it returs None, which breaks the execution of the for loop over the rows.
         """
         # How a row will processed depends first on whether a mid name exists
         first, mid, last, full = row.first_name, row.middle_name, row.last_name, row.full_name
@@ -164,22 +170,40 @@ class Evaluator(abc.ABC):
     @classmethod
     @abc.abstractmethod
     def _fetch_gender_with_full_name(cls, full):
-        """ Calls the API with full name, for methods that accept full name """
+        """Calls the API with full name, for methods that accept full name."""
 
     @classmethod
     @abc.abstractmethod
     def _fetch_gender_with_first_last(cls, first, last):
-        """ Decides how to handle the API call when a first and last name are present """
+        """Decides how to handle the API call when a first and last name are present."""
 
     @classmethod
     @abc.abstractmethod
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
-        """ Decides how to handle the API call when a first, middle, and last name are present """
+        """Decides how to handle the API call when a first, middle, and last name are present."""
 
     @staticmethod
     @abc.abstractmethod
     def _call_api(name):
         """Sends a request with one or more names to an API and returns a response."""
+
+    def update_selected_records(self, indices):
+        """Calls API on the selected records and updates the corresponding rows"""
+        for ind in indices:
+            row = self.test_data.loc[ind]
+            print('Updating entry {}'.format(ind))
+            print('''Calling API for name:\nfirst_name: {}\tmiddle_name: {}\t \
+                  last_name: {}\tfull_name: {}'''.format(row.first_name, row.middle_name, 
+                                                         row.last_name, row.full_name))
+            api_resp = self._process_row_for_api_call(row)
+            api_resp = {'api_{}'.format(k): v for (k,v) in api_resp.items()}
+            api_resp['gender_infered'] = self.gender_response_mapping[api_resp['api_gender']]
+            for (k, v) in api_resp.items():
+                self.test_data.loc[ind, k] = v
+            for k in self.test_data.columns[:5]:
+                self.test_data.loc[ind, k] = row[k]
+        print('Data updated in dump file {}'.format(self.file_path_evaluated_data))
+        self.dump_test_data_with_gender_inference_to_file()
 
     def compute_confusion_matrix(self):
         f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
