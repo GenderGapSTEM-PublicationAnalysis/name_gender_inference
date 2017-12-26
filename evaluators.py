@@ -104,7 +104,8 @@ class NamesAPIEvaluator(Evaluator):
     gender_evaluator = 'names_api'
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
-    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u', 'CONFLICT': 'u'}
+    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u', 
+                               'CONFLICT': 'u', 'INDETERMINABLE': 'u'}
     uses_full_name = False
 
     def __init__(self, data_source):
@@ -299,6 +300,7 @@ class GenderGuesserEvaluator(Evaluator):
 @register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
+    api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
     uses_full_name = False
 
@@ -308,7 +310,7 @@ class GenderizeIoEvaluator(Evaluator):
     @staticmethod
     @memoize
     def _call_api(name):
-        return Genderize().get((name,))[0]
+        return Genderize(api_key=GenderizeIoEvaluator.api_key).get((name,))[0]
         # use below to test changes in code without calling the API: returns dummy response
         # return {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
 
