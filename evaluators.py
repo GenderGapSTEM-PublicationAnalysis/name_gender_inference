@@ -104,7 +104,7 @@ class NamesAPIEvaluator(Evaluator):
     gender_evaluator = 'names_api'
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
-    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u', 
+    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
                                'CONFLICT': 'u', 'INDETERMINABLE': 'u'}
     uses_full_name = False
 
@@ -300,7 +300,7 @@ class GenderGuesserEvaluator(Evaluator):
 @register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
-    api_key = API_KEYS[gender_evaluator]
+    # api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
     uses_full_name = False
 
