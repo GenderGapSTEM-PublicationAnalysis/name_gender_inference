@@ -1,16 +1,12 @@
 # TODO: document methods
-import os
-import sys
-import pandas as pd
 import abc
 import csv
+import os
+import sys
 
+import pandas as pd
 
-def show_progress(row_index):
-    """Shows a progress bar"""
-    if row_index % 100 == 0:
-        sys.stdout.write('{}...'.format(row_index))
-        sys.stdout.flush()
+from helpers import show_progress
 
 
 class Evaluator(abc.ABC):

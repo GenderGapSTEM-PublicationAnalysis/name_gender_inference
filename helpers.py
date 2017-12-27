@@ -1,3 +1,6 @@
+import sys
+
+
 def clean_name_part(df, name_part="middle_name"):
     """keep the string in column 'middle_name' if it has more than one character.
     Otherwise replace by ''. """
@@ -40,3 +43,10 @@ REGISTERED_EVALUATORS = []
 def register_evaluator(cls):
     REGISTERED_EVALUATORS.append(cls)
     return cls
+
+
+def show_progress(row_index):
+    """Shows a progress bar"""
+    if row_index % 100 == 0:
+        sys.stdout.write('{}...'.format(row_index))
+        sys.stdout.flush()
