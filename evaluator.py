@@ -4,6 +4,7 @@ import csv
 import os
 import sys
 
+import itertools
 import pandas as pd
 
 from helpers import show_progress
@@ -133,6 +134,10 @@ class Evaluator(abc.ABC):
                 for t in thresholds:
                     self.test_data.loc[
                         ((self.test_data[g[0]] == g[1]) & (self.test_data[t[0]] < t[1])), 'gender_infered'] = 'u'
+
+    @classmethod
+    def build_parameter_grid(cls, *args):
+        return dict(zip(cls.tuning_params, list(itertools.product(*args))))
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
