@@ -38,7 +38,7 @@ class Evaluator(abc.ABC):
     @abc.abstractmethod
     def tuning_params(self):
         """Attributes in the API response that can be used for model tuning, e.g. 'probability' or 'count'"""
-        return 'Should never reach here'
+        return ()
 
     def __init__(self, data_source):
         self.data_source = data_source
@@ -137,7 +137,12 @@ class Evaluator(abc.ABC):
 
     @classmethod
     def build_parameter_grid(cls, *args):
-        return dict(zip(cls.tuning_params, list(itertools.product(*args))))
+        """Takes one or many lists of parameter values as args which refer to the
+        tuning_params attribute of the class in the giben order.
+        Returns the cross-product of these values as key-value pairs.
+        """
+        assert len(args) == len(cls.tuning_params)
+        return [dict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
