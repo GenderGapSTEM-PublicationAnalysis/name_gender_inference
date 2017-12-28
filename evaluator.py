@@ -144,6 +144,10 @@ class Evaluator(abc.ABC):
         assert len(args) == len(cls.tuning_params)
         return [dict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
 
+    def remove_rows_with_unknown_gender(self):
+        self.test_data = self.test_data[self.test_data.gender != 'u']
+        self.test_data.reset_index(inplace=True)
+
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
         print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
