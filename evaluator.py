@@ -119,11 +119,20 @@ class Evaluator(abc.ABC):
             print("\nResponse from API contains less results than request. Try again?")
             self.api_call_completed = False
 
-    def _translate_api_response(self):
+    def _translate_api_response(self, **kwargs):
         """Create new column 'gender_infered' in self.test_data which translates gender assignments from the
         service to 'f', 'm' and 'u'."""
         self.test_data['gender_infered'] = self.test_data['api_gender']
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
+
+        if kwargs is not None:
+            genders = [('gender_infered', 'm'), ('gender_infered', 'f')]
+            thresholds = [(str(k), v) for k, v in kwargs.items()]
+
+            for g in genders:
+                for t in thresholds:
+                    self.test_data.loc[
+                        ((self.test_data[g[0]] == g[1]) & (self.test_data[t[0]] < t[1])), 'gender_infered'] = 'u'
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
@@ -195,10 +204,10 @@ class Evaluator(abc.ABC):
             row = self.test_data.loc[ind]
             print('Updating entry {}'.format(ind))
             print('''Calling API for name:\nfirst_name: {}\tmiddle_name: {}\t \
-                  last_name: {}\tfull_name: {}'''.format(row.first_name, row.middle_name, 
+                  last_name: {}\tfull_name: {}'''.format(row.first_name, row.middle_name,
                                                          row.last_name, row.full_name))
             api_resp = self._process_row_for_api_call(row)
-            api_resp = {'api_{}'.format(k): v for (k,v) in api_resp.items()}
+            api_resp = {'api_{}'.format(k): v for (k, v) in api_resp.items()}
             api_resp['gender_infered'] = self.gender_response_mapping[api_resp['api_gender']]
             for (k, v) in api_resp.items():
                 self.test_data.loc[ind, k] = v
