@@ -22,6 +22,7 @@ class GenderAPIEvaluator(Evaluator):
     api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
     uses_full_name = False
+    tuning_params = ('accuracy', 'samples')
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -107,6 +108,7 @@ class NamesAPIEvaluator(Evaluator):
     gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
                                'CONFLICT': 'u', 'INDETERMINABLE': 'u'}
     uses_full_name = False
+    tuning_params = ('confidence', )
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -205,6 +207,7 @@ class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
     uses_full_name = False
+    tuning_params = ('scale', )
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -264,6 +267,7 @@ class GenderGuesserEvaluator(Evaluator):
     gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f", "unknown": "u",
                                "andy": "u"}
     uses_full_name = False
+    tuning_params = ()
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -303,6 +307,7 @@ class GenderizeIoEvaluator(Evaluator):
     # api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
     uses_full_name = False
+    tuning_params = ('count', 'probability')
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)

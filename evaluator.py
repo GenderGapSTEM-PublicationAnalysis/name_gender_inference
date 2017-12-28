@@ -33,6 +33,12 @@ class Evaluator(abc.ABC):
         """Mapping of gender assignments from the service to 'm', 'f' and 'u'"""
         return 'Should never reach here'
 
+    @property
+    @abc.abstractmethod
+    def tuning_params(self):
+        """Attributes in the API response that can be used for model tuning, e.g. 'probability' or 'count'"""
+        return 'Should never reach here'
+
     def __init__(self, data_source):
         self.data_source = data_source
         self.file_path_raw_data = self.raw_data_prefix + self.data_source + self.data_suffix
