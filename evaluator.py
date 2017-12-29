@@ -7,6 +7,8 @@ import sys
 import itertools
 import pandas as pd
 
+from sklearn.model_selection import KFold, StratifiedKFold
+
 from helpers import show_progress
 
 
@@ -138,7 +140,7 @@ class Evaluator(abc.ABC):
     @classmethod
     def build_parameter_grid(cls, *args):
         """Takes one or many lists of parameter values as args which refer to the
-        tuning_params attribute of the class in the giben order.
+        tuning_params attribute of the class in the given order.
         Returns the cross-product of these values as key-value pairs.
         """
         assert len(args) == len(cls.tuning_params)
@@ -147,6 +149,23 @@ class Evaluator(abc.ABC):
     def remove_rows_with_unknown_gender(self):
         self.test_data = self.test_data[self.test_data.gender != 'u']
         self.test_data.reset_index(inplace=True)
+
+    def build_train_test_splits(self, cols, n_splits, stratified=False, shuffle=True):
+        x = self.test_data[cols]
+        y = self.test_data['gender']
+        train_test_splits = []
+
+        if stratified is False:
+            kf = KFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
+        else:
+            kf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
+
+        for train_index, test_index in kf.split(x):
+            x_train, x_test = x.loc[train_index, :], x.loc[test_index, :]
+            y_train, y_test = y[train_index], y[test_index]
+            train_test_splits.append((x_train, x_test, y_train, y_test))
+
+        return train_test_splits
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
@@ -230,20 +249,48 @@ class Evaluator(abc.ABC):
         print('Data updated in dump file {}'.format(self.file_path_evaluated_data))
         self.dump_test_data_with_gender_inference_to_file()
 
-    def compute_confusion_matrix(self):
-        f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
-        f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
-        f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
-        m_f = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'f')])
-        m_m = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'm')])
-        m_u = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'u')])
-        u_f = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'f')])
-        u_m = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'm')])
-        u_u = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'u')])
+    @staticmethod
+    def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
+        f_f = len(df[(df[col_true] == 'f') & (df[col_pred] == 'f')])
+        f_m = len(df[(df[col_true] == 'f') & (df[col_pred] == 'm')])
+        f_u = len(df[(df[col_true] == 'f') & (df[col_pred] == 'u')])
+        m_f = len(df[(df[col_true] == 'm') & (df[col_pred] == 'f')])
+        m_m = len(df[(df[col_true] == 'm') & (df[col_pred] == 'm')])
+        m_u = len(df[(df[col_true] == 'm') & (df[col_pred] == 'u')])
+        u_f = len(df[(df[col_true] == 'u') & (df[col_pred] == 'f')])
+        u_m = len(df[(df[col_true] == 'u') & (df[col_pred] == 'm')])
+        u_u = len(df[(df[col_true] == 'u') & (df[col_pred] == 'u')])
 
-        self.confusion_matrix = pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]],
-                                             index=['f', 'm', 'u'],
-                                             columns=['f_pred', 'm_pred', 'u_pred'])
+        return pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]], index=['f', 'm', 'u'],
+                            columns=['f_pred', 'm_pred', 'u_pred'])
+
+    def set_confusion_matrix(self):
+        # TODO: check whether we really need this attribute
+        self.confusion_matrix = self.compute_confusion_matrix(self.test_data)
+
+    @staticmethod
+    def build_error_without_unknown(conf_matrix):
+        """Corresponds 'errorCodedWithoutNA' from genderizeR"""
+        error_without_unknown = (conf_matrix.loc['f', 'm_pred'] + conf_matrix.loc['m', 'f_pred']) / \
+                                (conf_matrix.loc['f', 'm_pred'] + conf_matrix.loc['m', 'f_pred'] +
+                                 conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['m', 'm_pred'])
+
+        return error_without_unknown
+
+    # def compute_confusion_matrix(self):
+    #     f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
+    #     f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
+    #     f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
+    #     m_f = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'f')])
+    #     m_m = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'm')])
+    #     m_u = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'u')])
+    #     u_f = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'f')])
+    #     u_m = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'm')])
+    #     u_u = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'u')])
+    #
+    #     self.confusion_matrix = pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]],
+    #                                          index=['f', 'm', 'u'],
+    #                                          columns=['f_pred', 'm_pred', 'u_pred'])
 
     """Error metrics from paper on genderizeR; see p.26 and p.27 (Table 2) for an explanation of the errors"""
 
@@ -278,7 +325,7 @@ class Evaluator(abc.ABC):
                                   self.confusion_matrix.loc['m', 'f_pred'] + self.confusion_matrix.loc['m', 'm_pred'])
 
     def compute_all_errors(self):
-        self.compute_confusion_matrix()
+        self.set_confusion_matrix()
         self.compute_error_with_unknown()
         self.compute_error_without_unknown()
         self.compute_error_unknown()
