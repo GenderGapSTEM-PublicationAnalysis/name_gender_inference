@@ -49,7 +49,6 @@ class Evaluator(abc.ABC):
                                         self.data_source + '_' + self.gender_evaluator + self.data_suffix
         self.test_data = pd.DataFrame()
         self.api_response = []
-        self.is_test_data_schema_correct = None
         self.confusion_matrix = None
         self.error_without_unknown = None
         self.error_with_unknown = None
@@ -71,7 +70,6 @@ class Evaluator(abc.ABC):
                 else:
                     # Call with default return_frame=False to load data into attribute
                     self.test_data = test_data
-                    self.is_test_data_schema_correct = True
                     self.test_data[expected_columns] = self.test_data[expected_columns].fillna('')
             else:
                 print("Some expected columns are missing; data not loaded.")
