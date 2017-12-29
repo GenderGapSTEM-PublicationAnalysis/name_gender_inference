@@ -300,7 +300,7 @@ class GenderGuesserEvaluator(Evaluator):
 @register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
-    # api_key = API_KEYS[gender_evaluator]
+    api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
     uses_full_name = False
 
