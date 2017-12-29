@@ -77,18 +77,6 @@ class Evaluator(abc.ABC):
         except FileNotFoundError:
             print("File not found")
 
-    def dump_test_data_with_gender_inference_to_file(self):
-        if 'gender_infered' in self.test_data.columns:
-            self.test_data.to_csv(self.file_path_evaluated_data, index=False, quoting=csv.QUOTE_NONNUMERIC)
-        else:
-            print("Test data has not been evaluated yet, won't dump")
-
-    def compare_ground_truth_with_inference(self, true_gender, gender_infered):
-        """'true_gender' and 'infered_gender' should be one of the strings 'u', 'm', 'f'.
-        Displays rows of 'test_data' where inference differed from ground truth."""
-        return self.test_data[
-            (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
-
     def fetch_gender(self, save_to_dump=True):
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
@@ -135,36 +123,6 @@ class Evaluator(abc.ABC):
                     self.test_data.loc[
                         ((self.test_data[g[0]] == g[1]) & (self.test_data[t[0]] < t[1])), 'gender_infered'] = 'u'
 
-    @classmethod
-    def build_parameter_grid(cls, *args):
-        """Takes one or many lists of parameter values as args which refer to the
-        tuning_params attribute of the class in the given order.
-        Returns the cross-product of these values as key-value pairs.
-        """
-        assert len(args) == len(cls.tuning_params)
-        return [dict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
-
-    def remove_rows_with_unknown_gender(self):
-        self.test_data = self.test_data[self.test_data.gender != 'u']
-        self.test_data.reset_index(inplace=True)
-
-    def build_train_test_splits(self, cols, n_splits, stratified=False, shuffle=True):
-        x = self.test_data[cols]
-        y = self.test_data['gender']
-        train_test_splits = []
-
-        if stratified is False:
-            kf = KFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
-        else:
-            kf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
-
-        for train_index, test_index in kf.split(x):
-            x_train, x_test = x.loc[train_index, :], x.loc[test_index, :]
-            y_train, y_test = y[train_index], y[test_index]
-            train_test_splits.append((x_train, x_test, y_train, y_test))
-
-        return train_test_splits
-
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
         print('Fetching gender data from API of service {}'.format(self.gender_evaluator))
@@ -182,7 +140,7 @@ class Evaluator(abc.ABC):
                     break
             except Exception as e:
                 # This prints any unforeseen error when processing each row
-                # Should never reach here b/c every class should handle its own potential errors when 
+                # Should never reach here b/c every class should handle its own potential errors when
                 # calling their APIs
                 print('An unexpected error occured')
                 exc_type, exc_obj, exc_tb = sys.exc_info()
@@ -246,6 +204,43 @@ class Evaluator(abc.ABC):
                 self.test_data.loc[ind, k] = row[k]
         print('Data updated in dump file {}'.format(self.file_path_evaluated_data))
         self.dump_test_data_with_gender_inference_to_file()
+
+    def dump_test_data_with_gender_inference_to_file(self):
+        if 'gender_infered' in self.test_data.columns:
+            self.test_data.to_csv(self.file_path_evaluated_data, index=False, quoting=csv.QUOTE_NONNUMERIC)
+        else:
+            print("Test data has not been evaluated yet, won't dump")
+
+    def compare_ground_truth_with_inference(self, true_gender, gender_infered):
+        """'true_gender' and 'infered_gender' should be one of the strings 'u', 'm', 'f'.
+        Displays rows of 'test_data' where inference differed from ground truth."""
+        return self.test_data[
+            (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
+
+    """Methods for parameter tuning"""
+    @classmethod
+    def build_parameter_grid(cls, *args):
+        """Takes one or many lists of parameter values as args which refer to the
+        tuning_params attribute of the class in the given order.
+        Returns the cross-product of these values as key-value pairs.
+        """
+        assert len(args) == len(cls.tuning_params)
+        return [dict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
+
+    def remove_rows_with_unknown_gender(self):
+        self.test_data = self.test_data[self.test_data.gender != 'u']
+        self.test_data.reset_index(inplace=True)
+
+    @staticmethod
+    def build_train_test_splits(df, n_splits, stratified=False, shuffle=True):
+        y = df['gender']
+
+        if stratified is False:
+            kf = KFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
+            return list(kf.split(df))
+        else:
+            skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
+            return list(skf.split(df, y))
 
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
