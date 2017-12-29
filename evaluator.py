@@ -218,6 +218,7 @@ class Evaluator(abc.ABC):
             (self.test_data.gender == true_gender) & (self.test_data.gender_infered == gender_infered)]
 
     """Methods for parameter tuning"""
+
     @classmethod
     def build_parameter_grid(cls, *args):
         """Takes one or many lists of parameter values as args which refer to the
@@ -269,21 +270,6 @@ class Evaluator(abc.ABC):
                                  conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['m', 'm_pred'])
 
         return error_without_unknown
-
-    # def compute_confusion_matrix(self):
-    #     f_f = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'f')])
-    #     f_m = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'm')])
-    #     f_u = len(self.test_data[(self.test_data.gender == 'f') & (self.test_data.gender_infered == 'u')])
-    #     m_f = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'f')])
-    #     m_m = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'm')])
-    #     m_u = len(self.test_data[(self.test_data.gender == 'm') & (self.test_data.gender_infered == 'u')])
-    #     u_f = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'f')])
-    #     u_m = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'm')])
-    #     u_u = len(self.test_data[(self.test_data.gender == 'u') & (self.test_data.gender_infered == 'u')])
-    #
-    #     self.confusion_matrix = pd.DataFrame([[f_f, f_m, f_u], [m_f, m_m, m_u], [u_f, u_m, u_u]],
-    #                                          index=['f', 'm', 'u'],
-    #                                          columns=['f_pred', 'm_pred', 'u_pred'])
 
     """Error metrics from paper on genderizeR; see p.26 and p.27 (Table 2) for an explanation of the errors"""
 
