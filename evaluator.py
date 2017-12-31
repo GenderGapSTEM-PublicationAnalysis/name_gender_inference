@@ -60,11 +60,11 @@ class Evaluator(abc.ABC):
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
                 if return_frame:
-                    # Call with return_frame=True to get the data returned
+                    # TODO: move into dicstring: Call with return_frame=True to get the data returned
                     test_data[expected_columns] = test_data[expected_columns].fillna('')
                     return test_data
                 else:
-                    # Call with default return_frame=False to load data into attribute
+                    # TODO: move into docstring: Call with default return_frame=False to load data into attribute
                     self.test_data = test_data
                     self.test_data[expected_columns] = self.test_data[expected_columns].fillna('')
             else:
@@ -239,16 +239,16 @@ class Evaluator(abc.ABC):
             skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
             return list(skf.split(df, y))
 
-    # def compute_train_test_error(grid_point, train_index, test_index):
-    #     evaluator._translate_api_response(**grid_point)
-    #     conf_matrix_train = evaluator.compute_confusion_matrix(evaluator.test_data.loc[train_index, :])
-    #     conf_matrix_test = evaluator.compute_confusion_matrix(evaluator.test_data.loc[test_index, :])
-    #     error_train = evaluator.build_error_without_unknown(conf_matrix_train)
-    #     error_test = evaluator.build_error_without_unknown(conf_matrix_test)
-    #     print(item.values(), error_train, error_test)
-    #     param_to_error_mapping[(item[param_1], item[param_2])] = (error_train, error_test)
-    #     # print(param_to_error_mapping)
-
+    def compute_train_test_error(self, grid_point, error_func, train_index, test_index):
+        """Tunes gender assignment using parameter 'grid_point' and computes error defined through 'error_func'
+        class instance method on train and test set indices."""
+        self._translate_api_response(**grid_point)
+        conf_matrix_train = self.compute_confusion_matrix(self.test_data.loc[train_index, :])
+        conf_matrix_test = self.compute_confusion_matrix(self.test_data.loc[test_index, :])
+        error_train = error_func(conf_matrix_train)
+        error_test = error_func(conf_matrix_test)
+        print(grid_point.values(), error_train, error_test)
+        return error_train, error_test
 
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
