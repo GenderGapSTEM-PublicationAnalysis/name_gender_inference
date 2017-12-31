@@ -5,6 +5,8 @@ import os
 import sys
 
 import itertools
+from collections import OrderedDict
+
 import pandas as pd
 
 from sklearn.model_selection import KFold, StratifiedKFold
@@ -230,6 +232,7 @@ class Evaluator(abc.ABC):
 
     @staticmethod
     def build_train_test_splits(df, n_splits, stratified=False, shuffle=True):
+        # TODO: check whether to keep shuffle=True
         y = df['gender']
 
         if stratified is False:
@@ -241,15 +244,18 @@ class Evaluator(abc.ABC):
 
     def compute_train_test_error(self, param_values, error_func, train_index, test_index):
         """Compute error on train and test set for certain choice of tuning parameters.
-        :param param_values: key-value pairs of tuning parameter and value
+        :param param_values: tuning parameter-value pairs (dict)
         :param error_func: one of the error functions in this class
         :param train_index: sub-index of attribute 'test_data' which defines the training set
         :param test_index: sub-index of attribute 'test_data' which defines the test set
-        :return: error on training and test set (tuple of floats)
+        :return: error on training and test set for specified 'param_values' (tuple of floats)
 
-        Example (instance 'evaluator' with 'test_data' consisting of 5 rows):
+        Example (instance 'evaluator'):
+        random_list = np.random.rand(len(evaluator.test_data)) < 0.8
+        train_index = evaluator.test_data.index[random_list]
+        test_index = evaluator.test_data.index[~random_list]
         evaluator.compute_train_test_error({'api_count': 1, 'api_probability': 0.5},
-        evaluator.compute_error_unknown, [1,3,5], [2,4])
+        evaluator.compute_error_unknown, train_index, test_index)
         >>> 0.0126196692776 0.00696257615318
         """
         self._translate_api_response(**param_values)
@@ -257,8 +263,48 @@ class Evaluator(abc.ABC):
         conf_matrix_test = self.compute_confusion_matrix(self.test_data.loc[test_index, :])
         error_train = error_func(conf_matrix_train)
         error_test = error_func(conf_matrix_test)
-        print(param_values.values(), error_train, error_test)
+        # print(param_values.values(), error_train, error_test)
         return error_train, error_test
+
+    def tune_params(self, param_grid, error_func, train_index, test_index):
+        """Find parameters from given grid that minimize an error on a training set and return corresponding
+        parameter values and errors on train and test set
+        :param param_grid: list of tuning parameter-value pairs (list of dicts)
+        :param error_func: one of the error functions in this class
+        :param train_index: sub-index of attribute 'test_data' which defines the training set
+        :param test_index: sub-index of attribute 'test_data' which defines the test set
+        :return: error on test, error on training set, parameter values from the grid which minimizes error function
+        on the training set
+
+        Example (instance 'evaluator' with 'test_data' consisting of 5 rows):
+        random_list = np.random.rand(len(evaluator.test_data)) < 0.8
+        train_index = evaluator.test_data.index[random_list]
+        test_index = evaluator.test_data.index[~random_list]
+        param_grid = [{'api_count': 10, 'api_probability': 0.7}, {'api_count': 10, 'api_probability': 0.9},
+                      {'api_count': 100, 'api_probability': 0.7}, {'api_count': 100, 'api_probability': 0.9}]
+        test_error, train_error, best_params = evaluator.tune_params(param_grid, evaluator.compute_error_without_unknown,
+                                                                    train_index, test_index)
+        >>> 0.0397683397683, 0.0434445306439, {'api_probability': 0.5, 'api_count': 50}
+        """
+        param_to_error_mapping = {}
+        for param_values in param_grid:
+            tuning_param_values = tuple(param_values[param] for param in self.tuning_params)
+            error_train, error_test = self.compute_train_test_error(param_values, error_func, train_index, test_index)
+            param_to_error_mapping[tuning_param_values] = (error_train, error_test)
+
+        param_to_error_mapping = OrderedDict(param_to_error_mapping.items(), key=lambda x: x[1][1])
+        param_to_error_mapping = list(param_to_error_mapping.items())
+        best_param_values_and_errors = param_to_error_mapping[0]
+
+        min_train_error = best_param_values_and_errors[1][0]
+        min_test_error = best_param_values_and_errors[1][1]
+        param_min_train_error = dict(zip(self.tuning_params, best_param_values_and_errors[0]))
+        print("minimal train error:", min_train_error, "corresponding test error:", min_test_error)
+        print("params for lowest train error:", param_min_train_error)
+        return min_test_error, min_train_error, param_min_train_error
+
+    def compute_cv_score(self):
+        pass
 
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
