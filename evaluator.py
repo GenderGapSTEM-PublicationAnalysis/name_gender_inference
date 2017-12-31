@@ -49,12 +49,8 @@ class Evaluator(abc.ABC):
                                         self.data_source + '_' + self.gender_evaluator + self.data_suffix
         self.test_data = pd.DataFrame()
         self.api_response = []
-        self.confusion_matrix = None
-        self.error_without_unknown = None
-        self.error_with_unknown = None
-        self.error_unknown = None
-        self.error_gender_bias = None
         self.api_call_completed = False
+        self.confusion_matrix = None
 
     def load_data(self, evaluated=False, return_frame=False):
         from_file = self.file_path_raw_data if not evaluated else self.file_path_evaluated_data
@@ -243,6 +239,17 @@ class Evaluator(abc.ABC):
             skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
             return list(skf.split(df, y))
 
+    # def compute_train_test_error(grid_point, train_index, test_index):
+    #     evaluator._translate_api_response(**grid_point)
+    #     conf_matrix_train = evaluator.compute_confusion_matrix(evaluator.test_data.loc[train_index, :])
+    #     conf_matrix_test = evaluator.compute_confusion_matrix(evaluator.test_data.loc[test_index, :])
+    #     error_train = evaluator.build_error_without_unknown(conf_matrix_train)
+    #     error_test = evaluator.build_error_without_unknown(conf_matrix_test)
+    #     print(item.values(), error_train, error_test)
+    #     param_to_error_mapping[(item[param_1], item[param_2])] = (error_train, error_test)
+    #     # print(param_to_error_mapping)
+
+
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
         f_f = len(df[(df[col_true] == 'f') & (df[col_pred] == 'f')])
@@ -263,7 +270,7 @@ class Evaluator(abc.ABC):
         self.confusion_matrix = self.compute_confusion_matrix(self.test_data)
 
     @staticmethod
-    def build_error_without_unknown(conf_matrix):
+    def compute_error_without_unknown(conf_matrix):
         """Corresponds 'errorCodedWithoutNA' from genderizeR"""
         error_without_unknown = (conf_matrix.loc['f', 'm_pred'] + conf_matrix.loc['m', 'f_pred']) / \
                                 (conf_matrix.loc['f', 'm_pred'] + conf_matrix.loc['m', 'f_pred'] +
@@ -273,40 +280,36 @@ class Evaluator(abc.ABC):
 
     """Error metrics from paper on genderizeR; see p.26 and p.27 (Table 2) for an explanation of the errors"""
 
-    # TODO: implement that confusion matrix needs to be filled
-
-    def compute_error_with_unknown(self):
+    @staticmethod
+    def compute_error_with_unknown(conf_matrix):
         """Corresponds to 'errorCoded' in genderizeR"""
-        true_f_and_m = self.confusion_matrix.loc['f', :].sum() + self.confusion_matrix.loc['m', :].sum()
-        true_pred_f_and_m = self.confusion_matrix.loc['f', 'f_pred'] + self.confusion_matrix.loc['m', 'm_pred']
-        self.error_with_unknown = (true_f_and_m - true_pred_f_and_m) / true_pred_f_and_m
+        true_f_and_m = conf_matrix.loc['f', :].sum() + conf_matrix.loc['m', :].sum()
+        true_pred_f_and_m = conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['m', 'm_pred']
+        error_with_unknown = (true_f_and_m - true_pred_f_and_m) / true_pred_f_and_m
 
-    def compute_error_without_unknown(self):
-        """Corresponds 'errorCodedWithoutNA' from genderizeR"""
-        self.error_without_unknown = (self.confusion_matrix.loc['f', 'm_pred'] +
-                                      self.confusion_matrix.loc['m', 'f_pred']) / \
-                                     (self.confusion_matrix.loc['f', 'm_pred'] + self.confusion_matrix.loc[
-                                         'm', 'f_pred'] +
-                                      self.confusion_matrix.loc['f', 'f_pred'] + self.confusion_matrix.loc[
-                                          'm', 'm_pred'])
+        return error_with_unknown
 
-    def compute_error_unknown(self):
+    @staticmethod
+    def compute_error_unknown(conf_matrix):
         """Corresponds 'naCoded' from genderizeR"""
-        true_f_and_m = self.confusion_matrix.loc['f', :].sum() + self.confusion_matrix.loc['m', :].sum()
-        self.error_unknown = (self.confusion_matrix.loc['f', 'u_pred'] +
-                              self.confusion_matrix.loc['m', 'u_pred']) / true_f_and_m
+        true_f_and_m = conf_matrix.loc['f', :].sum() + conf_matrix.loc['m', :].sum()
+        error_unknown = (conf_matrix.loc['f', 'u_pred'] + conf_matrix.loc['m', 'u_pred']) / true_f_and_m
 
-    def compute_error_gender_bias(self):
+        return error_unknown
+
+    @staticmethod
+    def compute_error_gender_bias(conf_matrix):
         """Corresponds '' from genderizeR"""
-        self.error_gender_bias = (self.confusion_matrix.loc['m', 'f_pred'] +
-                                  self.confusion_matrix.loc['f', 'm_pred']) / \
-                                 (self.confusion_matrix.loc['f', 'f_pred'] + self.confusion_matrix.loc['f', 'm_pred'] +
-                                  self.confusion_matrix.loc['m', 'f_pred'] + self.confusion_matrix.loc['m', 'm_pred'])
+        error_gender_bias = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred']) / \
+                            (conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] +
+                             conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['m', 'm_pred'])
+
+        return error_gender_bias
 
     def compute_all_errors(self):
         self.set_confusion_matrix()
-        self.compute_error_with_unknown()
-        self.compute_error_without_unknown()
-        self.compute_error_unknown()
-        self.compute_error_gender_bias()
-        return [self.error_with_unknown, self.error_without_unknown, self.error_gender_bias, self.error_unknown]
+        error_with_unknown = self.compute_error_with_unknown(self.confusion_matrix)
+        error_without_unknown = self.compute_error_without_unknown(self.confusion_matrix)
+        error_unknown = self.compute_error_unknown(self.confusion_matrix)
+        error_gender_bias = self.compute_error_gender_bias(self.confusion_matrix)
+        return [error_with_unknown, error_without_unknown, error_gender_bias, error_unknown]
