@@ -239,15 +239,25 @@ class Evaluator(abc.ABC):
             skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
             return list(skf.split(df, y))
 
-    def compute_train_test_error(self, grid_point, error_func, train_index, test_index):
-        """Tunes gender assignment using parameter 'grid_point' and computes error defined through 'error_func'
-        class instance method on train and test set indices."""
-        self._translate_api_response(**grid_point)
+    def compute_train_test_error(self, param_values, error_func, train_index, test_index):
+        """Compute error on train and test set for certain choice of tuning parameters.
+        :param param_values: key-value pairs of tuning parameter and value
+        :param error_func: one of the error functions in this class
+        :param train_index: sub-index of attribute 'test_data' which defines the training set
+        :param test_index: sub-index of attribute 'test_data' which defines the test set
+        :return: error on training and test set (tuple of floats)
+
+        Example (instance 'evaluator' with 'test_data' consisting of 5 rows):
+        evaluator.compute_train_test_error({'api_count': 1, 'api_probability': 0.5},
+        evaluator.compute_error_unknown, [1,3,5], [2,4])
+        >>> 0.0126196692776 0.00696257615318
+        """
+        self._translate_api_response(**param_values)
         conf_matrix_train = self.compute_confusion_matrix(self.test_data.loc[train_index, :])
         conf_matrix_test = self.compute_confusion_matrix(self.test_data.loc[test_index, :])
         error_train = error_func(conf_matrix_train)
         error_test = error_func(conf_matrix_test)
-        print(grid_point.values(), error_train, error_test)
+        print(param_values.values(), error_train, error_test)
         return error_train, error_test
 
     @staticmethod
