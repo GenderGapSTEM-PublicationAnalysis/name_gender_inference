@@ -1,14 +1,13 @@
 # TODO: document methods
 import abc
 import csv
+import itertools
 import os
 import sys
-
-import itertools
 from collections import OrderedDict
 
+import numpy as np
 import pandas as pd
-
 from sklearn.model_selection import KFold, StratifiedKFold
 
 from helpers import show_progress
@@ -233,6 +232,7 @@ class Evaluator(abc.ABC):
     @staticmethod
     def build_train_test_splits(df, n_splits, stratified=False, shuffle=True):
         # TODO: check whether to keep shuffle=True
+        # TODO: check whether this should be an inner method of 'compute_cv_score'
         y = df['gender']
 
         if stratified is False:
@@ -303,8 +303,27 @@ class Evaluator(abc.ABC):
         print("params for lowest train error:", param_min_train_error)
         return min_test_error, min_train_error, param_min_train_error
 
-    def compute_cv_score(self):
-        pass
+    def compute_cv_score(self, n_splits, param_grid, error_func, stratified=False, shuffle=True):
+        # TODO: check whether to use shuffle
+        """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
+        'test_data'.
+
+        :param n_splits: number of folds; should be at least 2 (int)
+        :param param_grid: list of list of tuning parameter-value pairs used for 'training' the function (list of dict)
+        :param error_func: one of the error functions in this class
+        :param stratified: Boolean whether to use stratified folds
+        :param shuffle: Whether to shuffle before splitting into batches (Boolean)
+
+        :return: mean error on the test set folds (float)
+        """
+        train_test_splits = self.build_train_test_splits(self.test_data, n_splits=n_splits, stratified=stratified,
+                                                         shuffle=shuffle)
+        nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
+        for train_index, test_index in train_test_splits:
+            print(train_index, test_index)
+            test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index)
+            nfold_errors.append(test_error)
+        return np.mean(nfold_errors)
 
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
