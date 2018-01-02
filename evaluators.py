@@ -22,7 +22,7 @@ class GenderAPIEvaluator(Evaluator):
     api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
     uses_full_name = False
-    tuning_params = ('accuracy', 'samples')
+    tuning_params = tuple('api_' + param for param in ('accuracy', 'samples'))
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -63,6 +63,9 @@ class GenderAPIEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 @register_evaluator
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
@@ -97,6 +100,9 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
@@ -108,7 +114,7 @@ class NamesAPIEvaluator(Evaluator):
     gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
                                'CONFLICT': 'u', 'INDETERMINABLE': 'u'}
     uses_full_name = False
-    tuning_params = ('confidence', )
+    tuning_params = tuple('api_' + param for param in ('confidence',))
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -172,6 +178,9 @@ class NamesAPIEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 @register_evaluator
 class NamesAPIFullEvaluator(NamesAPIEvaluator):
@@ -201,13 +210,16 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 @register_evaluator
 class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
     uses_full_name = False
-    tuning_params = ('scale', )
+    tuning_params = tuple('api_' + param for param in ('scale',))
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -259,6 +271,9 @@ class NamSorEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 @register_evaluator
 class GenderGuesserEvaluator(Evaluator):
@@ -300,6 +315,9 @@ class GenderGuesserEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
 
 @register_evaluator
 class GenderizeIoEvaluator(Evaluator):
@@ -307,7 +325,7 @@ class GenderizeIoEvaluator(Evaluator):
     # api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
     uses_full_name = False
-    tuning_params = ('api_count', 'api_probability')
+    tuning_params = tuple('api_' + param for param in ('count', 'probability'))
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -350,3 +368,8 @@ class GenderizeIoEvaluator(Evaluator):
     @classmethod
     def _fetch_gender_with_full_name(cls, full):
         pass
+
+    def preprocess_data_for_parameter_tuning(self):
+        for col in self.tuning_params:
+            self.test_data[col] = self.test_data[col].replace({'': None})
+            self.test_data[col] = self.test_data[col].astype(float)

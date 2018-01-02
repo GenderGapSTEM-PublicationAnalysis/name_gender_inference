@@ -61,7 +61,7 @@ class Evaluator(abc.ABC):
             if sum([item in test_data.columns for item in expected_columns]) == \
                     len(expected_columns):
                 if return_frame:
-                    # TODO: move into dicstring: Call with return_frame=True to get the data returned
+                    # TODO: move into docstring: Call with return_frame=True to get the data returned
                     test_data[expected_columns] = test_data[expected_columns].fillna('')
                     return test_data
                 else:
@@ -77,7 +77,7 @@ class Evaluator(abc.ABC):
     def fetch_gender(self, save_to_dump=True):
         """Fetches gender predictions, either from dump if present or from API if not
         It relies on the dump file having a particular naming convention consistent with 
-        self.dump_test_data_with_gender_inference_to_file"""
+        self.dump_evaluated_test_data_to_file"""
         # Try opening the dump file, else resort to calling the API
         if os.path.isfile(self.file_path_evaluated_data):
             self.load_data(evaluated=True)
@@ -89,7 +89,7 @@ class Evaluator(abc.ABC):
                 self._translate_api_response()
                 if save_to_dump:
                     print('Saving data to dump file {}'.format(self.file_path_evaluated_data))
-                    self.dump_test_data_with_gender_inference_to_file()
+                    self.dump_evaluated_test_data_to_file()
             else:
                 print('API call did not complete. Check error and try again.')
 
@@ -200,9 +200,9 @@ class Evaluator(abc.ABC):
             for k in self.test_data.columns[:5]:
                 self.test_data.loc[ind, k] = row[k]
         print('Data updated in dump file {}'.format(self.file_path_evaluated_data))
-        self.dump_test_data_with_gender_inference_to_file()
+        self.dump_evaluated_test_data_to_file()
 
-    def dump_test_data_with_gender_inference_to_file(self):
+    def dump_evaluated_test_data_to_file(self):
         if 'gender_infered' in self.test_data.columns:
             self.test_data.to_csv(self.file_path_evaluated_data, index=False, quoting=csv.QUOTE_NONNUMERIC)
         else:
@@ -223,14 +223,14 @@ class Evaluator(abc.ABC):
         Returns the cross-product of these values as key-value pairs.
         """
         assert len(args) == len(cls.tuning_params)
-        return [dict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
+        return [OrderedDict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
 
     def remove_rows_with_unknown_gender(self):
         self.test_data = self.test_data[self.test_data.gender != 'u']
         self.test_data.reset_index(inplace=True)
 
     @staticmethod
-    def build_train_test_splits(df, n_splits, stratified=False, shuffle=True):
+    def build_train_test_splits(df, n_splits, stratified=False, shuffle=False):
         # TODO: check whether to keep shuffle=True
         # TODO: check whether this should be an inner method of 'compute_cv_score'
         y = df['gender']
@@ -242,9 +242,9 @@ class Evaluator(abc.ABC):
             skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
             return list(skf.split(df, y))
 
-    def compute_train_test_error(self, param_values, error_func, train_index, test_index):
+    def compute_train_test_error_for_param_grid(self, param_grid, error_func, train_index, test_index):
         """Compute error on train and test set for certain choice of tuning parameters.
-        :param param_values: tuning parameter-value pairs (dict)
+        :param param_grid: list of tuning parameter-value pairs (list of dict)
         :param error_func: one of the error functions in this class
         :param train_index: sub-index of attribute 'test_data' which defines the training set
         :param test_index: sub-index of attribute 'test_data' which defines the test set
@@ -254,20 +254,30 @@ class Evaluator(abc.ABC):
         random_list = np.random.rand(len(evaluator.test_data)) < 0.8
         train_index = evaluator.test_data.index[random_list]
         test_index = evaluator.test_data.index[~random_list]
-        evaluator.compute_train_test_error({'api_count': 1, 'api_probability': 0.5},
+        evaluator.compute_train_test_error_for_param_grid([
+        {'api_count': 1, 'api_probability': 0.5},
+        {'api_count': 1, 'api_probability': 0.6},
+        {'api_count': 10, 'api_probability': 0.5},
+        {'api_count': 10, 'api_probability': 0.6}],
         evaluator.compute_error_unknown, train_index, test_index)
-        >>> 0.0126196692776 0.00696257615318
+        >>> {(1, 0.5): (0.0503, 0.054), (1, 0.6): (0.027, 0.56), (10, 0.5): (0.1, 0.23), (10, 0.6): (0.013, 0.001)}
         """
-        self._translate_api_response(**param_values)
-        conf_matrix_train = self.compute_confusion_matrix(self.test_data.loc[train_index, :])
-        conf_matrix_test = self.compute_confusion_matrix(self.test_data.loc[test_index, :])
-        error_train = error_func(conf_matrix_train)
-        error_test = error_func(conf_matrix_test)
-        # print(param_values.values(), error_train, error_test)
-        return error_train, error_test
+        param_to_error_mapping = {}
+        for param_values in param_grid:
+            self._translate_api_response(**param_values)
+            # print(self.test_data.gender_infered.value_counts())
+            conf_matrix_train = self.compute_confusion_matrix(self.test_data.loc[train_index, :])
+            conf_matrix_test = self.compute_confusion_matrix(self.test_data.loc[test_index, :])
+            error_train = error_func(conf_matrix_train)
+            error_test = error_func(conf_matrix_test)
+            tuning_param_values = tuple(param_values[param] for param in self.tuning_params)
+
+            # error_train, error_test = self.compute_train_test_error(param_values, error_func, train_index, test_index)
+            param_to_error_mapping[tuning_param_values] = (error_train, error_test)
+        return param_to_error_mapping
 
     def tune_params(self, param_grid, error_func, train_index, test_index):
-        """Find parameters from given grid that minimize an error on a training set and return corresponding
+        """Find tuple of parameter values from 'param_grid' that minimize an error on a training set and return corresponding
         parameter values and errors on train and test set
         :param param_grid: list of tuning parameter-value pairs (list of dicts)
         :param error_func: one of the error functions in this class
@@ -286,14 +296,13 @@ class Evaluator(abc.ABC):
                                                                     train_index, test_index)
         >>> 0.0397683397683, 0.0434445306439, {'api_probability': 0.5, 'api_count': 50}
         """
-        param_to_error_mapping = {}
-        for param_values in param_grid:
-            tuning_param_values = tuple(param_values[param] for param in self.tuning_params)
-            error_train, error_test = self.compute_train_test_error(param_values, error_func, train_index, test_index)
-            param_to_error_mapping[tuning_param_values] = (error_train, error_test)
+        param_to_error_mapping = self.compute_train_test_error_for_param_grid(param_grid, error_func, train_index,
+                                                                              test_index)
 
-        param_to_error_mapping = OrderedDict(param_to_error_mapping.items(), key=lambda x: x[1][1])
-        param_to_error_mapping = list(param_to_error_mapping.items())
+        # print(param_to_error_mapping)
+        param_to_error_mapping = sorted(param_to_error_mapping.items(),
+                                        key=lambda x: x[1][0])  # sort by lowest training error
+        # print(param_to_error_mapping)
         best_param_values_and_errors = param_to_error_mapping[0]
 
         min_train_error = best_param_values_and_errors[1][0]
@@ -303,10 +312,13 @@ class Evaluator(abc.ABC):
         print("params for lowest train error:", param_min_train_error)
         return min_test_error, min_train_error, param_min_train_error
 
-    def compute_cv_score(self, n_splits, param_grid, error_func, stratified=False, shuffle=True):
-        # TODO: check whether to use shuffle
+    @abc.abstractmethod
+    def preprocess_data_for_parameter_tuning(self):
+        pass
+
+    def compute_cv_score(self, n_splits, param_grid, error_func, stratified=True, shuffle=True):
         """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
-        'test_data'.
+        'test_data'. Remove rows for which gender is unknown since 'u' is not a real class.
 
         :param n_splits: number of folds; should be at least 2 (int)
         :param param_grid: list of list of tuning parameter-value pairs used for 'training' the function (list of dict)
@@ -320,7 +332,6 @@ class Evaluator(abc.ABC):
                                                          shuffle=shuffle)
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         for train_index, test_index in train_test_splits:
-            print(train_index, test_index)
             test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index)
             nfold_errors.append(test_error)
         return np.mean(nfold_errors)
@@ -360,7 +371,7 @@ class Evaluator(abc.ABC):
         """Corresponds to 'errorCoded' in genderizeR"""
         true_f_and_m = conf_matrix.loc['f', :].sum() + conf_matrix.loc['m', :].sum()
         true_pred_f_and_m = conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['m', 'm_pred']
-        error_with_unknown = (true_f_and_m - true_pred_f_and_m) / true_pred_f_and_m
+        error_with_unknown = (true_f_and_m - true_pred_f_and_m) / true_f_and_m
 
         return error_with_unknown
 
@@ -388,3 +399,21 @@ class Evaluator(abc.ABC):
         error_unknown = self.compute_error_unknown(self.confusion_matrix)
         error_gender_bias = self.compute_error_gender_bias(self.confusion_matrix)
         return [error_with_unknown, error_without_unknown, error_gender_bias, error_unknown]
+
+    # TODO: check whether we really need the methods below
+    @staticmethod
+    def compute_f_precision(conf_matrix):
+        """('true f')/('true f' + 'false f')"""
+        return conf_matrix.loc['f', 'f_pred'] / (conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['m', 'f_pred'])
+
+    @staticmethod
+    def compute_f_recall(conf_matrix):
+        """('true f')/('true f' + 'false m')"""
+        return conf_matrix.loc['f', 'f_pred'] / (conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['f', 'm_pred'])
+
+    @classmethod
+    def compute_inverse_f1_score(cls, conf_matrix):
+        f_precision = cls.compute_f_precision(conf_matrix)
+        f_recall = cls.compute_f_recall(conf_matrix)
+        f1_score = 2 * f_precision * f_recall / (f_precision + f_recall)
+        return 1 / f1_score
