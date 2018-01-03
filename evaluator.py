@@ -242,6 +242,18 @@ class Evaluator(abc.ABC):
             skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=shuffle)
             return list(skf.split(df, y))
 
+    def compute_error_for_param_grid(self, param_grid, error_func, index):
+        param_to_error_mapping = {}
+        for param_values in param_grid:
+            self._translate_api_response(**param_values)
+            # print(self.test_data.gender_infered.value_counts())
+            conf_matrix = self.compute_confusion_matrix(self.test_data.loc[index, :])
+            error = error_func(conf_matrix)
+            tuning_param_values = tuple(param_values[param] for param in
+                                        self.tuning_params)  # keep only parameter values and get rid of their names
+            param_to_error_mapping[tuning_param_values] = error
+        return param_to_error_mapping
+
     def compute_train_test_error_for_param_grid(self, param_grid, error_func, train_index, test_index):
         """Compute error on train and test set for certain choice of tuning parameters.
         :param param_grid: list of tuning parameter-value pairs (list of dict)
@@ -276,7 +288,7 @@ class Evaluator(abc.ABC):
             param_to_error_mapping[tuning_param_values] = (error_train, error_test)
         return param_to_error_mapping
 
-    def tune_params(self, param_grid, error_func, train_index, test_index):
+    def tune_params(self, param_grid, error_func, train_index, test_index, constraint_func=None, constraint_val=None):
         """Find tuple of parameter values from 'param_grid' that minimize an error on a training set and return corresponding
         parameter values and errors on train and test set
         :param param_grid: list of tuning parameter-value pairs (list of dicts)
@@ -298,6 +310,11 @@ class Evaluator(abc.ABC):
         """
         param_to_error_mapping = self.compute_train_test_error_for_param_grid(param_grid, error_func, train_index,
                                                                               test_index)
+        if constraint_func:
+            # compute constraint error func on test set and restrict to only those param values for which the constraint error is less than 'constraint_val'
+            param_to_constraint_mapping = self.compute_error_for_param_grid(param_grid, constraint_func, test_index)
+            param_to_error_mapping = {k: v for k, v in param_to_error_mapping.items() if
+                                      param_to_constraint_mapping[k] < constraint_val}
 
         # print(param_to_error_mapping)
         param_to_error_mapping = sorted(param_to_error_mapping.items(),
@@ -316,7 +333,8 @@ class Evaluator(abc.ABC):
     def preprocess_data_for_parameter_tuning(self):
         pass
 
-    def compute_cv_score(self, n_splits, param_grid, error_func, stratified=True, shuffle=True):
+    def compute_cv_score(self, n_splits, param_grid, error_func, constraint_func=None, constraint_val=None,
+                         stratified=True, shuffle=True):
         """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
         'test_data'. Remove rows for which gender is unknown since 'u' is not a real class.
 
@@ -332,7 +350,8 @@ class Evaluator(abc.ABC):
                                                          shuffle=shuffle)
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         for train_index, test_index in train_test_splits:
-            test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index)
+            test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
+                                                                    constraint_func, constraint_val)
             nfold_errors.append(test_error)
         return np.mean(nfold_errors)
 
@@ -417,3 +436,16 @@ class Evaluator(abc.ABC):
         f_recall = cls.compute_f_recall(conf_matrix)
         f1_score = 2 * f_precision * f_recall / (f_precision + f_recall)
         return 1 / f1_score
+
+    @staticmethod
+    def compute_weighted_error(conf_matrix, eps=0.1):
+        weighted_error = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + eps * (
+            conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])) / (conf_matrix.loc['f', 'f_pred'] +
+                                                                                 conf_matrix.loc['f', 'm_pred'] +
+                                                                                 conf_matrix.loc['m', 'f_pred'] +
+                                                                                 conf_matrix.loc[
+                                                                                     'm', 'm_pred'] + eps * (
+                                                                                     conf_matrix.loc['m', 'u_pred'] +
+                                                                                     conf_matrix.loc['f', 'u_pred']))
+
+        return weighted_error
