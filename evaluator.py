@@ -35,7 +35,7 @@ class Evaluator(abc.ABC):
     @abc.abstractmethod
     def gender_response_mapping(self):
         """Mapping of gender assignments from the service to 'm', 'f' and 'u'"""
-        return 'Should never reach here'
+        return {}
 
     @property
     @abc.abstractmethod
@@ -110,6 +110,7 @@ class Evaluator(abc.ABC):
         service to 'f', 'm' and 'u'."""
         self.test_data['gender_infered'] = self.test_data['api_gender']
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
+        self.test_data.loc[~self.test_data['gender_infered'].isin(['f', 'm']), 'gender_infered'] = 'u'
 
         if kwargs is not None:
             genders = [('gender_infered', 'm'), ('gender_infered', 'f')]
@@ -438,7 +439,7 @@ class Evaluator(abc.ABC):
         return 1 / f1_score
 
     @staticmethod
-    def compute_weighted_error(conf_matrix, eps=0.1):
+    def compute_weighted_error(conf_matrix, eps=0.3):
         weighted_error = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + eps * (
             conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])) / (conf_matrix.loc['f', 'f_pred'] +
                                                                                  conf_matrix.loc['f', 'm_pred'] +
