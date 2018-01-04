@@ -321,14 +321,17 @@ class Evaluator(abc.ABC):
         param_to_error_mapping = sorted(param_to_error_mapping.items(),
                                         key=lambda x: x[1][0])  # sort by lowest training error
         # print(param_to_error_mapping)
-        best_param_values_and_errors = param_to_error_mapping[0]
+        try:
+            best_param_values_and_errors = param_to_error_mapping[0]
+            min_train_error = best_param_values_and_errors[1][0]
+            min_test_error = best_param_values_and_errors[1][1]
+            param_min_train_error = dict(zip(self.tuning_params, best_param_values_and_errors[0]))
 
-        min_train_error = best_param_values_and_errors[1][0]
-        min_test_error = best_param_values_and_errors[1][1]
-        param_min_train_error = dict(zip(self.tuning_params, best_param_values_and_errors[0]))
-        print("minimal train error:", min_train_error, "corresponding test error:", min_test_error)
-        print("params for lowest train error:", param_min_train_error)
-        return min_test_error, min_train_error, param_min_train_error
+            print("minimal train error:", min_train_error, "corresponding test error:", min_test_error)
+            print("params for lowest train error:", param_min_train_error)
+            return min_test_error, min_train_error, param_min_train_error
+        except IndexError:
+            print("No parameter values satisfied given constraint")
 
     @abc.abstractmethod
     def preprocess_data_for_parameter_tuning(self):
@@ -350,11 +353,14 @@ class Evaluator(abc.ABC):
         train_test_splits = self.build_train_test_splits(self.test_data, n_splits=n_splits, stratified=stratified,
                                                          shuffle=shuffle)
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
-        for train_index, test_index in train_test_splits:
-            test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
-                                                                    constraint_func, constraint_val)
-            nfold_errors.append(test_error)
-        return np.mean(nfold_errors)
+        try:
+            for train_index, test_index in train_test_splits:
+                test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
+                                                                        constraint_func, constraint_val)
+                nfold_errors.append(test_error)
+            return np.mean(nfold_errors)
+        except:
+            print("No parameter values satisfied given constraint")
 
     @staticmethod
     def compute_confusion_matrix(df, col_true='gender', col_pred='gender_infered'):
