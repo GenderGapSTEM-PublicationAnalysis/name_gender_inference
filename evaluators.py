@@ -64,7 +64,11 @@ class GenderAPIEvaluator(Evaluator):
         pass
 
     def preprocess_data_for_parameter_tuning(self):
-        pass
+        for col in self.tuning_params:
+            try:
+                self.test_data[col] = self.test_data[col].astype(int)
+            except:
+                self.test_data[col] = self.test_data[col].astype(float)
 
 
 @register_evaluator
@@ -98,9 +102,6 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 
     @classmethod
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
-        pass
-
-    def preprocess_data_for_parameter_tuning(self):
         pass
 
 
@@ -209,9 +210,6 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
-        pass
-
 
 @register_evaluator
 class NamSorEvaluator(Evaluator):
@@ -271,7 +269,8 @@ class NamSorEvaluator(Evaluator):
         pass
 
     def preprocess_data_for_parameter_tuning(self):
-        pass
+        for col in self.tuning_params:
+            self.test_data[col] = self.test_data[col].astype(float).map(lambda x: abs(x))
 
 
 @register_evaluator
@@ -280,7 +279,7 @@ class GenderGuesserEvaluator(Evaluator):
     gender_evaluator = 'gender_guesser'
     gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f"}
     uses_full_name = False
-    tuning_params = ()
+    tuning_params = ('confidence',)
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -314,7 +313,14 @@ class GenderGuesserEvaluator(Evaluator):
         pass
 
     def preprocess_data_for_parameter_tuning(self):
-        pass
+        """Since this service returns no numerical values on confiedence or similar we interpret the response values
+        nuemrically."""
+        response_to_num = {'male': 1.0, 'female': 1.0, 'mostly_male': 0.75, 'mostly_female': 0.75}
+        self.test_data['confidence'] = 0
+        self.test_data.loc[
+            self.test_data.api_gender.isin(response_to_num.keys()), 'confidence'] = self.test_data[
+            self.test_data.api_gender.isin(response_to_num.keys())].api_gender.map(
+            lambda x: response_to_num[x])
 
 
 @register_evaluator
