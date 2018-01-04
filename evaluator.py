@@ -9,7 +9,7 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold, StratifiedKFold
-
+from sklearn.utils import shuffle
 from helpers import show_progress
 
 
@@ -336,6 +336,9 @@ class Evaluator(abc.ABC):
     @abc.abstractmethod
     def preprocess_data_for_parameter_tuning(self):
         pass
+
+    def shuffle_data(self):
+        self.test_data = shuffle(self.test_data, random_state=1).reset_index()
 
     def compute_cv_score(self, n_splits, param_grid, error_func, constraint_func=None, constraint_val=None,
                          stratified=True, shuffle=True):
