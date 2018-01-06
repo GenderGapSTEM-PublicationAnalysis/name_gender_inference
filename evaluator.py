@@ -226,8 +226,12 @@ class Evaluator(abc.ABC):
         assert len(args) == len(cls.tuning_params)
         return [OrderedDict(zip(cls.tuning_params, param_tuple)) for param_tuple in list(itertools.product(*args))]
 
-    def remove_rows_with_unknown_gender(self):
-        self.test_data = self.test_data[self.test_data.gender != 'u']
+    def remove_rows_with_unknown_gender(self, gender=True, gender_infered=False):
+        if gender:
+            self.test_data = self.test_data[self.test_data.gender != 'u']
+        if gender_infered:
+            self.test_data = self.test_data[
+                (self.test_data.gender_infered == 'f') | (self.test_data.gender_infered == 'm')]
         self.test_data.reset_index(inplace=True)
 
     @staticmethod

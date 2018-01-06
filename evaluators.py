@@ -375,5 +375,5 @@ class GenderizeIoEvaluator(Evaluator):
 
     def preprocess_data_for_parameter_tuning(self):
         for col in self.tuning_params:
-            self.test_data[col] = self.test_data[col].replace({'': None})
+            self.test_data[col] = self.test_data[col].replace({'': 1.0})
             self.test_data[col] = self.test_data[col].astype(float)
