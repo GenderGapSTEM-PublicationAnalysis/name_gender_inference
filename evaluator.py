@@ -365,6 +365,7 @@ class Evaluator(abc.ABC):
                 test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
                                                                         constraint_func, constraint_val)
                 nfold_errors.append(test_error)
+            print("Average test error:", np.mean(nfold_errors))
             return np.mean(nfold_errors)
         except:
             print("No parameter values satisfied given constraint")
@@ -431,7 +432,11 @@ class Evaluator(abc.ABC):
         error_without_unknown = self.compute_error_without_unknown(self.confusion_matrix)
         error_unknown = self.compute_error_unknown(self.confusion_matrix)
         error_gender_bias = self.compute_error_gender_bias(self.confusion_matrix)
-        return [error_with_unknown, error_without_unknown, error_gender_bias, error_unknown]
+        weighted_error = self.compute_weighted_error(self.confusion_matrix)
+        f_precision = self.compute_f_precision(self.confusion_matrix)
+        f_recall = self.compute_f_recall(self.confusion_matrix)
+        return [error_with_unknown, error_without_unknown, error_gender_bias, error_unknown, weighted_error,
+                f_precision, f_recall]
 
     # TODO: check whether we really need the methods below
     @staticmethod
@@ -452,7 +457,7 @@ class Evaluator(abc.ABC):
         return 1 / f1_score
 
     @staticmethod
-    def compute_weighted_error(conf_matrix, eps=0.3):
+    def compute_weighted_error(conf_matrix, eps=0.2):
         weighted_error = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + eps * (
             conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])) / (conf_matrix.loc['f', 'f_pred'] +
                                                                                  conf_matrix.loc['f', 'm_pred'] +
