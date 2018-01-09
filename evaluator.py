@@ -419,8 +419,8 @@ class Evaluator(abc.ABC):
 
     @staticmethod
     def compute_error_gender_bias(conf_matrix):
-        """Corresponds '' from genderizeR"""
-        error_gender_bias = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred']) / \
+        """Corresponds 'errorGenderBias' from genderizeR"""
+        error_gender_bias = (conf_matrix.loc['m', 'f_pred'] - conf_matrix.loc['f', 'm_pred']) / \
                             (conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] +
                              conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['m', 'm_pred'])
 
