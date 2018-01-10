@@ -5,6 +5,8 @@ import itertools
 import os
 import sys
 from collections import OrderedDict
+from operator import and_
+from functools import reduce
 
 import numpy as np
 import pandas as pd
@@ -118,12 +120,11 @@ class Evaluator(abc.ABC):
         self.test_data.loc[~self.test_data['gender_infered'].isin(['f', 'm']), 'gender_infered'] = 'u'
 
         if kwargs is not None:
-            param_to_threshold = [(str(k), v) for k, v in kwargs.items()]
-
-            for t in param_to_threshold:
-                param_name = t[0]
-                param_threshold = t[1]
-                self.test_data.loc[(self.test_data[param_name] < param_threshold), 'gender_infered'] = 'u'
+            # connect all expressions in kwargs with a Boolean and
+            and_mask = reduce(and_,
+                              [(self.test_data[str(param_name)] < param_threshold) for param_name, param_threshold in
+                               kwargs.items()])
+            self.test_data.loc[and_mask, 'gender_infered'] = 'u'
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
