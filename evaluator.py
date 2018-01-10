@@ -119,9 +119,8 @@ class Evaluator(abc.ABC):
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
         self.test_data.loc[~self.test_data['gender_infered'].isin(['f', 'm']), 'gender_infered'] = 'u'
 
-        if kwargs !={}:
+        if kwargs != {}:
             # connect all expressions in kwargs with a Boolean and
-            print(kwargs)
             and_mask = reduce(and_,
                               [(self.test_data[str(param_name)] < param_threshold) for param_name, param_threshold in
                                kwargs.items()])
