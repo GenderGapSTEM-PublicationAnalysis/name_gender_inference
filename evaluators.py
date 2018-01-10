@@ -273,6 +273,7 @@ class NamSorEvaluator(Evaluator):
             self.test_data[col] = self.test_data[col].astype(float).map(lambda x: abs(x))
 
 
+# TODO: instantiate like this: "d = gender.Detector(case_sensitive=False)". Then method "title" can be removed.
 @register_evaluator
 class GenderGuesserEvaluator(Evaluator):
     """# Python wrapper of Joerg Michael's C-program `gender`"""

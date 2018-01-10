@@ -106,20 +106,24 @@ class Evaluator(abc.ABC):
             self.api_call_completed = False
 
     def _translate_api_response(self, **kwargs):
-        """Create new column 'gender_infered' in self.test_data which translates gender assignments from the
-        service to 'f', 'm' and 'u'."""
+        """Create new column 'gender_infered' in self.test_data which translates gender assignments in the column
+        'api_gender' of the attribute 'test_data' to 'f' and 'm' using the mapping from the class attribute
+        'gender_response_mapping' and stores them in a new column 'gender_infered'.
+        If no keyword arguments are provided then all other response values are translated to 'u'.
+        If keyword arguments of the form 'param_name=param_threshold' are provided then 'gender_infered' is set to
+        'u' if the value in column 'param_name' is less than 'param_threshold'.
+        """
         self.test_data['gender_infered'] = self.test_data['api_gender']
         self.test_data.replace({'gender_infered': self.gender_response_mapping}, inplace=True)
         self.test_data.loc[~self.test_data['gender_infered'].isin(['f', 'm']), 'gender_infered'] = 'u'
 
         if kwargs is not None:
-            genders = [('gender_infered', 'm'), ('gender_infered', 'f')]
-            thresholds = [(str(k), v) for k, v in kwargs.items()]
+            param_to_threshold = [(str(k), v) for k, v in kwargs.items()]
 
-            for g in genders:
-                for t in thresholds:
-                    self.test_data.loc[
-                        ((self.test_data[g[0]] == g[1]) & (self.test_data[t[0]] < t[1])), 'gender_infered'] = 'u'
+            for t in param_to_threshold:
+                param_name = t[0]
+                param_threshold = t[1]
+                self.test_data.loc[(self.test_data[param_name] < param_threshold), 'gender_infered'] = 'u'
 
     def _fetch_gender_from_api(self):
         """Fetches gender assignments from an API or Python module."""
