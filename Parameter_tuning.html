@@ -11843,7 +11843,7 @@ div#notebook {
   &#34;&#34;&#34;, FutureWarning)
 /Users/helena.mihaljevic-br/.virtualenvs/name-based-inference/lib/python3.5/site-packages/matplotlib/__init__.py:800: MatplotlibDeprecationWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
   mplDeprecation)
-/Users/helena.mihaljevic-br/.virtualenvs/name-based-inference/lib/python3.5/site-packages/IPython/core/magics/pylab.py:160: UserWarning: pylab import has clobbered these variables: [&#39;shuffle&#39;, &#39;style&#39;]
+/Users/helena.mihaljevic-br/.virtualenvs/name-based-inference/lib/python3.5/site-packages/IPython/core/magics/pylab.py:160: UserWarning: pylab import has clobbered these variables: [&#39;style&#39;, &#39;shuffle&#39;]
 `%matplotlib` prevents importing * from pylab and numpy
   &#34;\n`%matplotlib` prevents importing * from pylab and numpy&#34;
 </pre>
@@ -11942,26 +11942,6 @@ div#notebook {
   </thead>
   <tbody>
     <tr>
-      <th>names_api</th>
-      <td>0.237997</td>
-      <td>0.050161</td>
-      <td>0.010549</td>
-      <td>0.197755</td>
-      <td>0.094789</td>
-      <td>0.918308</td>
-      <td>0.945140</td>
-    </tr>
-    <tr>
-      <th>genderize_io</th>
-      <td>0.150432</td>
-      <td>0.058925</td>
-      <td>0.025253</td>
-      <td>0.097237</td>
-      <td>0.078770</td>
-      <td>0.886715</td>
-      <td>0.951381</td>
-    </tr>
-    <tr>
       <th>gender_guesser</th>
       <td>0.229361</td>
       <td>0.035243</td>
@@ -11972,14 +11952,14 @@ div#notebook {
       <td>0.956274</td>
     </tr>
     <tr>
-      <th>namsor</th>
-      <td>0.135924</td>
-      <td>0.051384</td>
-      <td>0.010049</td>
-      <td>0.089119</td>
-      <td>0.069590</td>
-      <td>0.911184</td>
-      <td>0.938453</td>
+      <th>names_api</th>
+      <td>0.237997</td>
+      <td>0.050161</td>
+      <td>0.010549</td>
+      <td>0.197755</td>
+      <td>0.094789</td>
+      <td>0.918308</td>
+      <td>0.945140</td>
     </tr>
     <tr>
       <th>gender_api</th>
@@ -11992,14 +11972,24 @@ div#notebook {
       <td>0.902350</td>
     </tr>
     <tr>
-      <th>gender_api_full</th>
-      <td>0.204145</td>
-      <td>0.077108</td>
-      <td>-0.019027</td>
-      <td>0.137651</td>
-      <td>0.105659</td>
-      <td>0.911043</td>
-      <td>0.860870</td>
+      <th>namsor</th>
+      <td>0.135924</td>
+      <td>0.051384</td>
+      <td>0.010049</td>
+      <td>0.089119</td>
+      <td>0.069590</td>
+      <td>0.911184</td>
+      <td>0.938453</td>
+    </tr>
+    <tr>
+      <th>genderize_io</th>
+      <td>0.150432</td>
+      <td>0.058925</td>
+      <td>0.025253</td>
+      <td>0.097237</td>
+      <td>0.078770</td>
+      <td>0.886715</td>
+      <td>0.951381</td>
     </tr>
     <tr>
       <th>names_api_full</th>
@@ -12010,6 +12000,16 @@ div#notebook {
       <td>0.075921</td>
       <td>0.927865</td>
       <td>0.947150</td>
+    </tr>
+    <tr>
+      <th>gender_api_full</th>
+      <td>0.204145</td>
+      <td>0.077108</td>
+      <td>-0.019027</td>
+      <td>0.137651</td>
+      <td>0.105659</td>
+      <td>0.911043</td>
+      <td>0.860870</td>
     </tr>
   </tbody>
 </table>
@@ -13957,9 +13957,133 @@ SVLlLPBIkiRJkiRV7v8B1rfuDhqMrFwAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Example from scikit-learn docstring</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">ParameterSampler</span>
+<span class="kn">from</span> <span class="nn">scipy.stats.distributions</span> <span class="k">import</span> <span class="n">expon</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">expon</span><span class="p">()}</span>
+<span class="n">param_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ParameterSampler</span><span class="p">(</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">rounded_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">param_list</span><span class="p">]</span>
+
+<span class="n">rounded_list</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;a&#39;: 1, &#39;b&#39;: 0.89856000000000003},
+ {&#39;a&#39;: 1, &#39;b&#39;: 0.92322300000000002},
+ {&#39;a&#39;: 2, &#39;b&#39;: 1.8789640000000001},
+ {&#39;a&#39;: 2, &#39;b&#39;: 1.0381590000000001}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Do the same for our context</span>
+<span class="k">def</span> <span class="nf">sample_params_from_distribution</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">tuning_params</span><span class="p">):</span>
+        <span class="n">param_grid</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">test_data</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="n">param_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ParameterSampler</span><span class="p">(</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="o">**</span><span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">tuning_params</span><span class="p">)))</span>
+    <span class="n">rounded_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">param_list</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">rounded_list</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">REGISTERED_EVALUATORS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">s</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">eval_name</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">gender_evaluator</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">evaluated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">preprocess_data_for_parameter_tuning</span><span class="p">()</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">_translate_api_response</span><span class="p">()</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">remove_rows_with_unknown_gender</span><span class="p">(</span><span class="n">gender</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">sample_params_from_distribution</span><span class="p">(</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9249},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 8496},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 23277},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 3281},
+ {&#39;api_accuracy&#39;: 51, &#39;api_samples&#39;: 16800},
+ {&#39;api_accuracy&#39;: 65, &#39;api_samples&#39;: 38223},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5178},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 2917}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_grid_for_all_services</span><span class="p">(</span><span class="n">max_grid_points</span><span class="p">):</span>
@@ -13970,9 +14094,12 @@ SVLlLPBIkiRJkiRV7v8B1rfuDhqMrFwAAAAASUVORK5CYII=
         <span class="n">evaluator</span><span class="o">.</span><span class="n">preprocess_data_for_parameter_tuning</span><span class="p">()</span>
         <span class="n">evaluator</span><span class="o">.</span><span class="n">_translate_api_response</span><span class="p">()</span>
         <span class="n">evaluator</span><span class="o">.</span><span class="n">remove_rows_with_unknown_gender</span><span class="p">(</span><span class="n">gender</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gender_infered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">grid_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">compute_equal_frequency_binning</span><span class="p">(</span><span class="n">evaluator</span><span class="o">.</span><span class="n">test_data</span><span class="p">[</span><span class="n">param</span><span class="p">],</span> <span class="n">max_grid_points</span><span class="p">)</span> 
-                      <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">evaluator</span><span class="o">.</span><span class="n">tuning_params</span><span class="p">)]</span>
-        <span class="n">service_to_grid_range</span><span class="p">[</span><span class="n">evaluator</span><span class="o">.</span><span class="n">gender_evaluator</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_range</span>
+        
+        <span class="n">service_to_grid_range</span><span class="p">[</span><span class="n">evaluator</span><span class="o">.</span><span class="n">gender_evaluator</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_params_from_distribution</span><span class="p">(</span><span class="n">evaluator</span><span class="p">)</span>
+            
+        <span class="c1">#grid_range = [compute_equal_frequency_binning(evaluator.test_data[param], max_grid_points) </span>
+        <span class="c1">#              for param in list(evaluator.tuning_params)]</span>
+        <span class="c1">#service_to_grid_range[evaluator.gender_evaluator] = grid_range</span>
         
     <span class="k">return</span> <span class="n">service_to_grid_range</span>
 </pre></div>
@@ -13984,7 +14111,7 @@ SVLlLPBIkiRJkiRV7v8B1rfuDhqMrFwAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">check_density_of_grids</span><span class="p">(</span><span class="n">grids</span><span class="p">):</span>
@@ -14002,7 +14129,7 @@ SVLlLPBIkiRJkiRV7v8B1rfuDhqMrFwAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_30</span> <span class="o">=</span> <span class="n">build_grid_for_all_services</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
@@ -14016,101 +14143,7 @@ SVLlLPBIkiRJkiRV7v8B1rfuDhqMrFwAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">check_density_of_grids</span><span class="p">(</span><span class="n">grid_30</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Service name: names_api
-1. tuning parameter: 19
-Service name: genderize_io
-1. tuning parameter: 30
-2. tuning parameter: 10
-Service name: gender_guesser
-1. tuning parameter: 2
-Service name: namsor
-1. tuning parameter: 10
-Service name: gender_api
-1. tuning parameter: 14
-2. tuning parameter: 31
-Service name: gender_api_full
-1. tuning parameter: 15
-2. tuning parameter: 31
-Service name: names_api_full
-1. tuning parameter: 19
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">check_density_of_grids</span><span class="p">(</span><span class="n">grid_20</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Service name: names_api
-1. tuning parameter: 14
-Service name: genderize_io
-1. tuning parameter: 21
-2. tuning parameter: 8
-Service name: gender_guesser
-1. tuning parameter: 2
-Service name: namsor
-1. tuning parameter: 7
-Service name: gender_api
-1. tuning parameter: 11
-2. tuning parameter: 21
-Service name: gender_api_full
-1. tuning parameter: 11
-2. tuning parameter: 21
-Service name: names_api_full
-1. tuning parameter: 14
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_20</span><span class="p">[</span><span class="s1">&#39;gender_api&#39;</span><span class="p">]</span>
@@ -14126,34 +14159,1193 @@ Service name: names_api_full
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[[0, 49.999000000000002, 64.0, 75.0, 84.0, 91.0, 95.0, 96.0, 97.0, 98.0, 99.0],
- [0,
-  2.9990000000000001,
-  18.0,
-  82.0,
-  255.0,
-  580.0,
-  1208.0,
-  2064.0,
-  3053.0,
-  4788.0,
-  7068.25,
-  10383.0,
-  14681.0,
-  20555.0,
-  27559.0,
-  37520.0,
-  48855.0,
-  60103.0,
-  82448.0,
-  121922.0,
-  179732.75]]</pre>
+<pre>[{&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 11557},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 12224},
+ {&#39;api_accuracy&#39;: 89, &#39;api_samples&#39;: 5646},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9099},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 339},
+ {&#39;api_accuracy&#39;: 56, &#39;api_samples&#39;: 1175},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 4712},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 513},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 219085},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 1687},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1290},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 29790},
+ {&#39;api_accuracy&#39;: 76, &#39;api_samples&#39;: 2954},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 9994},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 247084},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 8},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 97659},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 77620},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 88317},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 97659},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 381770},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 2134},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 174998},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 8},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 44533},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 7223},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1407},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 19521},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 63161},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 410},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 23025},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 15483},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 79421},
+ {&#39;api_accuracy&#39;: 57, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 150413},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2060},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 57688},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 197},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 72},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 71, &#39;api_samples&#39;: 2704},
+ {&#39;api_accuracy&#39;: 80, &#39;api_samples&#39;: 34211},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 21213},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 3447},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 61, &#39;api_samples&#39;: 29276},
+ {&#39;api_accuracy&#39;: 93, &#39;api_samples&#39;: 166},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 4931},
+ {&#39;api_accuracy&#39;: 57, &#39;api_samples&#39;: 3844},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 4747},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 257},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 20480},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 22398},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 22},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 3028},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 66153},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 56140},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 21206},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 15804},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 23370},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 75562},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 22131},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 1526},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 68146},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 34244},
+ {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 46478},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 37625},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 1593},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1154},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 20859},
+ {&#39;api_accuracy&#39;: 89, &#39;api_samples&#39;: 1140},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 557},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 289},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 63411},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5438},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 4482},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 4931},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 218},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 785},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 285},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 32295},
+ {&#39;api_accuracy&#39;: 78, &#39;api_samples&#39;: 161059},
+ {&#39;api_accuracy&#39;: 68, &#39;api_samples&#39;: 3853},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 12236},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 44146},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 16},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 219029},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 8229},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 59951},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 218896},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 9700},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 6},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 80},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4482},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 612},
+ {&#39;api_accuracy&#39;: 61, &#39;api_samples&#39;: 522},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 262},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 34244},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 2416},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 6843},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 3419},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 375},
+ {&#39;api_accuracy&#39;: 67, &#39;api_samples&#39;: 13520},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 42632},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 90, &#39;api_samples&#39;: 140},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 15804},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 4787},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 631},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5129},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1071},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 2010},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5129},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1305},
+ {&#39;api_accuracy&#39;: 87, &#39;api_samples&#39;: 41},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 18089},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 3705},
+ {&#39;api_accuracy&#39;: 87, &#39;api_samples&#39;: 15804},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 23939},
+ {&#39;api_accuracy&#39;: 75, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 67, &#39;api_samples&#39;: 24473},
+ {&#39;api_accuracy&#39;: 86, &#39;api_samples&#39;: 15483},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 10383},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 41180},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 20},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 137},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 12836},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 2068},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1825},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 3815},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 219085},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 462},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 87},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 104026},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 20},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 33708},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 1103},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4367},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2313},
+ {&#39;api_accuracy&#39;: 89, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 77461},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 44374},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 30423},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 64},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 409},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 211741},
+ {&#39;api_accuracy&#39;: 79, &#39;api_samples&#39;: 89983},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 230},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1563},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 30423},
+ {&#39;api_accuracy&#39;: 84, &#39;api_samples&#39;: 788},
+ {&#39;api_accuracy&#39;: 56, &#39;api_samples&#39;: 84333},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 72416},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 35769},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 677},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 14894},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 59951},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 78},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 7063},
+ {&#39;api_accuracy&#39;: 69, &#39;api_samples&#39;: 172},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 56062},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 13804},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1593},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 10398},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 44635},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 66957},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 25751},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 36641},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 129177},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 41104},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 14},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 55857},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 609},
+ {&#39;api_accuracy&#39;: 80, &#39;api_samples&#39;: 917},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 257742},
+ {&#39;api_accuracy&#39;: 54, &#39;api_samples&#39;: 41},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 62},
+ {&#39;api_accuracy&#39;: 71, &#39;api_samples&#39;: 1999},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 3415},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 51469},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 211741},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 15778},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 868},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 2926},
+ {&#39;api_accuracy&#39;: 76, &#39;api_samples&#39;: 666},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 17},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2898},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4881},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 3962},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1984},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 39610},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 35986},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 8826},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 3},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 2064},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 6301},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9763},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 8},
+ {&#39;api_accuracy&#39;: 68, &#39;api_samples&#39;: 1423},
+ {&#39;api_accuracy&#39;: 72, &#39;api_samples&#39;: 75562},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1871},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 3026},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 15227},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 146529},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 3253},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 360},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 6643},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2122},
+ {&#39;api_accuracy&#39;: 87, &#39;api_samples&#39;: 620},
+ {&#39;api_accuracy&#39;: 50, &#39;api_samples&#39;: 785},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 16261},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 12521},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 58988},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 50597},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 20561},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 1028},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 56062},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 3420},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 16868},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 805},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 6558},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 23025},
+ {&#39;api_accuracy&#39;: 60, &#39;api_samples&#39;: 42667},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 8},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 647},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 226},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1570},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 67797},
+ {&#39;api_accuracy&#39;: 66, &#39;api_samples&#39;: 9},
+ {&#39;api_accuracy&#39;: 80, &#39;api_samples&#39;: 244},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 5},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1593},
+ {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 2967},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5160},
+ {&#39;api_accuracy&#39;: 82, &#39;api_samples&#39;: 239},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 52},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 81},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 542},
+ {&#39;api_accuracy&#39;: 76, &#39;api_samples&#39;: 163699},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 55857},
+ {&#39;api_accuracy&#39;: 93, &#39;api_samples&#39;: 44635},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 58501},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 13},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 3415},
+ {&#39;api_accuracy&#39;: 70, &#39;api_samples&#39;: 6371},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 7676},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 8961},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 289},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 59529},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1650},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 66},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 8033},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9874},
+ {&#39;api_accuracy&#39;: 93, &#39;api_samples&#39;: 88317},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5958},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 9982},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 211741},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 172},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 211741},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 53987},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 54216},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 165},
+ {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 14121},
+ {&#39;api_accuracy&#39;: 58, &#39;api_samples&#39;: 149544},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 44677},
+ {&#39;api_accuracy&#39;: 68, &#39;api_samples&#39;: 17232},
+ {&#39;api_accuracy&#39;: 70, &#39;api_samples&#39;: 28935},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 44635},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 46},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 129177},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 11199},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5614},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2927},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 3897},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 390},
+ {&#39;api_accuracy&#39;: 93, &#39;api_samples&#39;: 987},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 161},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 84719},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 31198},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 55264},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 14},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 6027},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 8180},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 78, &#39;api_samples&#39;: 44635},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 2665},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 29424},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 4252},
+ {&#39;api_accuracy&#39;: 94, &#39;api_samples&#39;: 14486},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 44635},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 56},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 42667},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 381770},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 64, &#39;api_samples&#39;: 37520},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 131879},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 14894},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 247706},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 781},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 229},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 234},
+ {&#39;api_accuracy&#39;: 85, &#39;api_samples&#39;: 179},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 3},
+ {&#39;api_accuracy&#39;: 75, &#39;api_samples&#39;: 613},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 11557},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 34244},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 35201},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 16868},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 381770},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 4116},
+ {&#39;api_accuracy&#39;: 66, &#39;api_samples&#39;: 22131},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 243243},
+ {&#39;api_accuracy&#39;: 95, &#39;api_samples&#39;: 25872},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4747},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 14883},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 10819},
+ {&#39;api_accuracy&#39;: 88, &#39;api_samples&#39;: 52588},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 19676},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 240857},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 84719},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 597},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 1776},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 5},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 184558},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 15804},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1712},
+ {&#39;api_accuracy&#39;: 79, &#39;api_samples&#39;: 381770},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 226836},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 8},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 113},
+ {&#39;api_accuracy&#39;: 91, &#39;api_samples&#39;: 21502},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 55041},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 2163},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 35201},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 2334},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 58988},
+ {&#39;api_accuracy&#39;: 72, &#39;api_samples&#39;: 401},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 6149},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 53006},
+ {&#39;api_accuracy&#39;: 56, &#39;api_samples&#39;: 1754},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 163073},
+ {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 15},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 172},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 453},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 37066},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 15},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 35201},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 47},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 21206},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 145540},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 55},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 68888},
+ {&#39;api_accuracy&#39;: 71, &#39;api_samples&#39;: 12383},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 129177},
+ {&#39;api_accuracy&#39;: 87, &#39;api_samples&#39;: 2146},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 47},
+ {&#39;api_accuracy&#39;: 75, &#39;api_samples&#39;: 277},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 140},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4981},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 5457},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 139211},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 257742},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 4},
+ {&#39;api_accuracy&#39;: 76, &#39;api_samples&#39;: 207},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 2586},
+ {&#39;api_accuracy&#39;: 92, &#39;api_samples&#39;: 211741},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 22398},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 25357},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 41104},
+ {&#39;api_accuracy&#39;: 97, &#39;api_samples&#39;: 76726},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 9779},
+ {&#39;api_accuracy&#39;: 71, &#39;api_samples&#39;: 55},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 9},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 1288},
+ {&#39;api_accuracy&#39;: 60, &#39;api_samples&#39;: 23025},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 958},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 50597},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 14163},
+ {&#39;api_accuracy&#39;: 81, &#39;api_samples&#39;: 28},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 95042},
+ {&#39;api_accuracy&#39;: 100, &#39;api_samples&#39;: 8019},
+ {&#39;api_accuracy&#39;: 99, &#39;api_samples&#39;: 15100},
+ {&#39;api_accuracy&#39;: 96, &#39;api_samples&#39;: 6521},
+ {&#39;api_accuracy&#39;: 98, &#39;api_samples&#39;: 454}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">color_codes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">grid_20</span><span class="p">[</span><span class="s1">&#39;gender_api&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>api_accuracy</th>
+      <th>api_samples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>91</td>
+      <td>11557</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>99</td>
+      <td>12224</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>89</td>
+      <td>5646</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>99</td>
+      <td>9099</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>99</td>
+      <td>339</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;api_accuracy&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;api_samples&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+hMFHmWW3/gAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;api_accuracy&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;api_samples&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAGoCAYAAAA991BSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMS4xLCBo
+dHRwOi8vbWF0cGxvdGxpYi5vcmcvAOZPmwAAIABJREFUeJzt3XucW1W99/FPkpnJ3DLDtE0ptGCB
+tgsFSluQu7RglQcREUFRBD3iFRFBOepRUC4HzlEfBT2oHAURUVQUxNsjgtwLwkFoC9Qjq62AUCjM
+TDvt3NrMTCbPHzsznWl3MtmZ7Eyy9/f9evXVyc7Kzlp7J/nttfa6RDKZDCIiIkEXneoMiIiIlIMC
+noiIhIICnoiIhIICnoiIhIICnoiIhELNVGdgKnR09BTdNbWtrZGurv5SZqeiBL18EPwyBr18EPwy
+Flu+ZDIR8SE7gaEankc1NbGpzoKvgl4+CH4Zg14+CH4Zg16+qaKAJyIioRDKJk0RkUrwwOqXXbe/
++y37lzkn4aAanoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIIC
+noiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiI
+hIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhIICnoiIhELNVGdARCToHlj98lRn
+QVANT0REQkIBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEB
+T0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkEBT0REQkELwIqIlIgWeq1squGJiEgo
+KOCJiEgoKOCJiEgoKOCJiEgoqNOKiIhH6pxSnRTwRCT0cgWwZYtmlzkn4icFPJEQqLQf9FLlx2tN
+y+/9S2WLZDKZqc5D2XV09BRd6CfXb6Knd3spszNOri9kqb54E+0/0VxfUPlK9cPhd3ndFFrGsabq
+h7iY41BM+apN0Mv47rfsT0dHj+fXJZOJiA/ZCYxQBjwREQkf9dIUEZFQUMATEZFQUMATEZFQUMAT
+EZFQUMATEZFQUMATEZFQUMATEZFQUMATEZFQ8HVqMWPMTOBJ4C3AEHATkAHWAOdZa4eNMZcCJ2Wf
+v9Ba+7gxZt5k0/pZLhERqT6+1fCMMbXA94Ft2U1XA5dYa98ERIBTjDFLgKXA4cB7ge+WIq1fZRIR
+kerlZw3vG8B/A1/MPj4EeDD7953AWwEL3G2tzQAvGmNqjDHJEqS9I1/GhobSmZqaWAmKKCJSUQqe
+SzPAv4M5j4EvAc8Y8y9Ah7X2LmPMSMCLZIMVQA/QCrQAm8a8dGT7ZNPm1dXV77lMI5LJRFGTulaL
+oJcPgl/GoJcPgl/GYsuXTCYKTjuZ38FKlu8Y+FXDOwfIGGOWA4uAm4GZY55PAFuA7uzfO28fnmRa
+ERGRcXy5h2etPdZau9RauwxYDXwAuNMYsyyb5ERgBfAIcIIxJmqM2RuIWms7gVWTTCsiIjJOOReA
+vQi43hhTB/wduM1amzbGrAAexQm+55UibdlKJCIiVSOU6+FNZgFY3TuofkEvY9DLB8Ev4yTu4RXc
+aWUyv4OVLN8x0MBzEREJBQU8EREJBQU8EREJhXJ2WpEQufHGH/Doow8Ti9Xw6U9/lje84cBxzz/8
+8EPcdNMNxGIxTjrpHbzjHaeSyWQ49dS3MWfOXgAceOBCPvGJT3H33Xfyi1/8lGjUSXvqqaf7mne3
+vI21bp3lmmv+L9FolLq6Oi655HKmTZsOwPDwMJ/73IW86U3H8s53+ptPEfFGAU9KztpnWb16JT/4
+wY957bXXuOSSz3PDDTePPj80NMS1117N9dffTENDA+ee+2GOOeZY+vv7WbBgf77+9WvG7e+73/0W
+P/nJL2loaOSss97Nm9/8VlpaWnzJe668jQQ0gG9/+5t85jOfY/58w29+czu33PJjzj//swBcf/11
+9PR0+5K3naUG02ztTdHaHCdeG8gZMwIj17ly254aTLOxs4/0YFrntcQU8CrEH//4e1aseID+/n62
+bNnChz70EZYtezOrVj3JD37wPWKxGHvuOZvPf/5iUqntfPWrV9Lb20NnZwfvetd7OPXU0/nUpz5G
+W9s0uru7ueiiz/Of/3kFsVgNw8PDXHrpley++yyuvfYann56NQBvecv/4T3veR9XXXUZtbW1vPrq
+RrZs2cwXvvAVjNmf0057O6973Vzmzt2HT3/6otG8fv7zF9Lfv2OWhrlz9+Vf//XfRh8//fRq3vjG
+I4hEIsyaNYt0eoiuri7a2toAeOGF55k9e6/RoLVw4cGsXr2KTGaYzs52zj//48TjcT796c+y995z
+2W+/+fT29hKLxchkMkQiETZt6uS//uubXH75f447jmed9W4WLlzE888/R0tLC5dd9h80NDSMPv+D
+H3yPZ59dw8DA0Oi2a675LrW1tXnzdvzxy0fTX3bZfzBjxgwA0uk0dXVxAO6//x4ikQiHH35ksR+D
+gqSHh7n1vvWsWtvB5u4U01riLF6Q5Izj5xGL6i5FJcl1rk5fti+3PfDcuO2L5s8gAzy1rpPNPSmm
+JXReS00Br4Js27aNa675Llu2dPHRj36QY45Zyte+dhXXXXcDbW3TuP766/jjH3+PMa9n+fK3snTp
+8XR2dvCpT31stJlv+fITWLr0OG6//Ze8/vUH8MlPXsBTT62ir6+XRx5ZwcaNr/CDH9xEOp3m3HM/
+zCGHvBGAWbP24POfv5j777+T3/3u13zuc1+ivf01brzxp7S27jYun1//+rfylqOvr3fcaxobm+jr
+6x0NeH19fTQ3N+/y/F577c1ZZ32I449fzlNPreaKK77CDTfczD777MeHP3w2DQ0NHHvscSQSCSCx
+S7AD2L59O29964ksWrSE733v2/z2t7fz3veeNfr8xz72ybxdvnPlbayRYPfMM0/x61//ku9853qe
+e249f/7zXVx55df40Y+uz3t8JuvW+9ZzzxMbRh9v6k6NPj5z+QJf31u8yXWu7ItbeKm9d9z2e598
+edxrdV5LTwGvgixatIRoNMq0adNJJFro7Oxg06ZOvvxlp/aUSqV44xsP58gjj+aXv/wZDz54P42N
+TQwN7ait7L336wB4+9tP4ZZbfsxFF51PU1MzH//4efzzn89z8MGLiEQi1NTUcMABB/HCC88BMH++
+AWDWrFkMDAwA0Nq62y7BDiau4TU1NdPf3zf6uL+/j+bmxJjnm1yeb2b//d9ALOY04Rx88CI6OztY
+t24tjz76ML/61e9oaGjgiiu+zH333TOuxjVWTU0NixYtAeDAAw/mscceGff8RDW8XHnb2b333s3N
+N9/I17/+Ldra2vj5z2+mo6OdT3/6E7z66kZqamqZNWtPjjjiKNd8Fis1mGbV2g7X51at7eS0pfuV
+9P2kePnO1csdva7b3YycVzVvTp4CXgWx9lkANm/eRF9fH8nkTGbOnMlXv3o1zc3NPPzwgzQ0NPKL
+X/yUAw9cyKmnns7KlU/w6KMPj+4jmm36ePjhBzn44MWcc87H+POf/8Qtt/yYpUuP549//B1nnPF+
+hoaGWLPmaU488e3AX4hEdh2rGc3RjDJRDe+ggw7muuv+i/e972za29sZHs6w2247AufcufuwYcNL
+dHdvpaGhkdWrV/G+953NjTf+gNbWVt7//g+ybt1aZs7cnUQiQTweJx6PE4vFaGublvce2dDQEOvW
+rWX+/AU888xT7LPP+AAwUQ0vV97GuuuuP/Lb3/6aa6/9Pi0tzlzln/zkBaPP//CH32f69OklD3YA
+W3tTbO5OuT7X1bOdrb0p5pT8XaUY+c7VsIch3yPndWZbY4ly5nhg9cssWzS7pPusdAp4FWTz5k1c
+cMG59Pb2ctFFXyAWi3HBBf/K5z53AZlMhsbGJr785cuJRCJcc83Xuffeu2lubiYWi43Wykbsv/8b
+uPLKS/nxj3/I8PAw55//WYzZn1WrnuTjH/8Qg4ODHH/8cozZv+Tl2H//17Nw4SI+/vEPkclk+Oxn
+vwDA3Xf/iW3b+jnllHfxqU99hs9+9nyGh4c56aR3kEzO5Kyz/oV///cv8+ijjxCLxbj44suYNWsP
+TjnlXXzykx+mpqaW2bPn8La3nZzzHh7ALbf8mNdee5Xdd5/FRz96rqe819TUuObt+eef4/bbf8ln
+PvM5vvWtb7D77rP40pc+B8DixYfw4Q9/fPIHrgCtzXGmtcTZ5PJD2paop7U5XpZ8yMTynatopPCg
+p/NaOppazCO/pjT64x9/zz//+QLnnnt+yfftRbVM2TQ0NMR1113L+ed/Ztz2008/mVtuuY14PPcP
+RLWUMZef3bN23H2hEcsPncOZyxdUffkKUS1lzHWu9prZPO4eXj4j57UQXqYW+9Wfn80EsYaX7xio
+hidV68wzz544UQCdcfw8wLm309WznbZEPYsXzBjdLpUj17na0Utzx/ZF86dne2lu0nn1iWp4HlXL
+lWWxgl4+CE4Zc43tCkr58qm2MnodhxerqyU9MOi5o4pqeKrhiQRSvDZW8o4M4o9c58pte7w2RnJG
+U1UF9Gqh0YwiIhIKCngiIhIKCngiIhIKCngiIiEUxA4rE1HAExGRUFDAExGRUFDAExGRUFDAExGR
+UFDAExGRUFDAExGRUFDAExGRUFDAExGRUFDAExGRUFDAExGRUFDAExGRUPBtPTxjTAy4HjBABvgE
+UAv8AViXTXadtfZWY8ylwEnAEHChtfZxY8w84Kbsa9cA51lrh72k9atsIiJSffys4Z0MYK09GrgE
+uAo4BLjaWrss++9WY8wSYClwOPBe4LvZ118NXGKtfRMQAU7xktbHcomISBXyrYZnrf2NMeYP2Yev
+A7bgBDxjjDkFp5Z3IXAMcLe1NgO8aIypMcYks2kfzL7+TuCtgPWQ9g6/yiYiItXHt4AHYK0dMsb8
+GDgVOB2YDdxgrX3SGHMxcClOINw05mU9QCsQyQa2sdtaPKTNqa2tkZqaWNHlSiYTRb+2GgS9fBD8
+Mga9fBD8Mvpdvsn+DlYjXwMegLX2g8aYLwD/AxxlrX05+9QdwLXAb4GxZzaBEwSHXbZ1e0ibU1dX
+v/eCZCWTCTo6eop+faULevkg+GUMevkg+GUstnxeguRkfgcrWb5j4Ns9PGPM2caYL2Yf9uMEpV8b
+Yw7Lbnsz8CTwCHCCMSZqjNkbiFprO4FVxphl2bQnAis8phURERnlZw3v18CPjDEP4fTOvBB4CbjW
+GDMIvAp8zFrbbYxZATyKE4DPy77+IuB6Y0wd8HfgNmttutC0PpZLRESqUCSTyUycKmA6OnqKLrSa
+Uqpf0MsY9PJB8Ms4iSbNSKFpJ/M7WMnyHQMNPBcRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQ
+wBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMR
+kVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQ
+wBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVBQwBMRkVCo8WvHxpgYcD1ggAzwCWA7cFP28Rrg
+PGvtsDHmUuAkYAi40Fr7uDFm3mTT+lU2ERGpPn7W8E4GsNYeDVwCXAVcDVxirX0TEAFOMcYsAZYC
+hwPvBb6bff2k0vpYLhERqUK+1fCstb8xxvwh+/B1wBZgOfBgdtudwFsBC9xtrc0ALxpjaowxSeCQ
+Saa9I1fe2toaqamJFV22ZDJR9GurQdDLB8EvY9DLB8Evo9/lm+zvYDXyLeABWGuHjDE/Bk4FTgfe
+kg1WAD1AK9ACbBrzspHtkUmmzamrq7/oMiWTCTo6eop+faULevkg+GUMevkg+GUstnxeguRkfgcr
+Wb5j4HunFWvtB4EFOPfzGsY8lcCp9XVn/955+/Ak04qIiIzyLeAZY842xnwx+7AfJyg9YYxZlt12
+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
+"
+>
 </div>
 
 </div>
@@ -14172,7 +15364,7 @@ Service name: names_api_full
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Wrapper around some methods to make tuning with different error functions a one-liner</span>
@@ -14193,8 +15385,9 @@ Service name: names_api_full
 
         <span class="n">evaluator</span> <span class="o">=</span> <span class="n">prepare_for_tuning</span><span class="p">(</span><span class="n">evaluator</span><span class="p">)</span>
 
-        <span class="n">grid_range</span> <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="n">evaluator_name</span><span class="p">]</span>
-        <span class="n">grid</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">build_parameter_grid</span><span class="p">(</span><span class="o">*</span><span class="n">grid_range</span><span class="p">)</span>
+        <span class="c1">#grid_range = grids[evaluator_name]</span>
+        <span class="c1">#grid = evaluator.build_parameter_grid(*grid_range)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">grids</span><span class="p">[</span><span class="n">evaluator_name</span><span class="p">]</span>
         <span class="n">mean_test_error</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">compute_cv_score</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">error_func</span><span class="o">=</span><span class="n">error_func</span><span class="p">,</span> 
                                                     <span class="n">constraint_func</span><span class="o">=</span><span class="n">constraint_func</span><span class="p">,</span> <span class="n">constraint_val</span><span class="o">=</span><span class="n">constraint_val</span><span class="p">)</span>
         <span class="n">service_to_test_error</span><span class="p">[</span><span class="n">evaluator_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_test_error</span>
@@ -14216,7 +15409,7 @@ Service name: names_api_full
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">error_with_unknown</span> <span class="o">=</span> <span class="n">tune</span><span class="p">(</span><span class="n">Evaluator</span><span class="o">.</span><span class="n">compute_error_with_unknown</span><span class="p">,</span> <span class="n">grid_20</span><span class="p">)</span>
@@ -14238,87 +15431,87 @@ Service name: names_api_full
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>gender_api
 minimal train error: 0.0870222414165 corresponding test error: 0.0854184641933
-params for lowest train error: {&#39;api_accuracy&#39;: 64.0, &#39;api_samples&#39;: 0}
+params for lowest train error: {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 15}
 minimal train error: 0.0870034542314 corresponding test error: 0.0854922279793
-params for lowest train error: {&#39;api_accuracy&#39;: 64.0, &#39;api_samples&#39;: 0}
+params for lowest train error: {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 15}
 minimal train error: 0.0865716753022 corresponding test error: 0.087219343696
-params for lowest train error: {&#39;api_accuracy&#39;: 64.0, &#39;api_samples&#39;: 0}
-minimal train error: 0.0861398963731 corresponding test error: 0.0889464594128
-params for lowest train error: {&#39;api_accuracy&#39;: 64.0, &#39;api_samples&#39;: 0}
+params for lowest train error: {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 15}
+minimal train error: 0.0861398963731 corresponding test error: 0.0898100172712
+params for lowest train error: {&#39;api_accuracy&#39;: 54, &#39;api_samples&#39;: 41}
 minimal train error: 0.0867688322901 corresponding test error: 0.0864304235091
-params for lowest train error: {&#39;api_accuracy&#39;: 64.0, &#39;api_samples&#39;: 0}
-Average test error: 0.0867013837581
+params for lowest train error: {&#39;api_accuracy&#39;: 52, &#39;api_samples&#39;: 15}
+Average test error: 0.0868740953298
 gender_api_full
 minimal train error: 0.204059598359 corresponding test error: 0.204486626402
-params for lowest train error: {&#39;api_accuracy&#39;: 0, &#39;api_samples&#39;: 5041.0}
+params for lowest train error: {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 8}
 minimal train error: 0.20207253886 corresponding test error: 0.212435233161
-params for lowest train error: {&#39;api_accuracy&#39;: 0, &#39;api_samples&#39;: 5041.0}
+params for lowest train error: {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 8}
 minimal train error: 0.204015544041 corresponding test error: 0.204663212435
-params for lowest train error: {&#39;api_accuracy&#39;: 0, &#39;api_samples&#39;: 5041.0}
+params for lowest train error: {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 8}
 minimal train error: 0.206390328152 corresponding test error: 0.195164075993
-params for lowest train error: {&#39;api_accuracy&#39;: 0, &#39;api_samples&#39;: 5041.0}
+params for lowest train error: {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 8}
 minimal train error: 0.204187351608 corresponding test error: 0.203975799481
-params for lowest train error: {&#39;api_accuracy&#39;: 0, &#39;api_samples&#39;: 5041.0}
+params for lowest train error: {&#39;api_accuracy&#39;: 53, &#39;api_samples&#39;: 8}
 Average test error: 0.204144989494
 names_api
-minimal train error: 0.242712157201 corresponding test error: 0.219154443486
-params for lowest train error: {&#39;api_confidence&#39;: 0.43099999999999999}
-minimal train error: 0.236614853195 corresponding test error: 0.243523316062
-params for lowest train error: {&#39;api_confidence&#39;: 0.43099999999999999}
-minimal train error: 0.237262521589 corresponding test error: 0.240932642487
-params for lowest train error: {&#39;api_confidence&#39;: 0.43099999999999999}
-minimal train error: 0.235751295337 corresponding test error: 0.246977547496
-params for lowest train error: {&#39;api_confidence&#39;: 0.43099999999999999}
-minimal train error: 0.237642995899 corresponding test error: 0.23941227312
-params for lowest train error: {&#39;api_confidence&#39;: 0.43099999999999999}
-Average test error: 0.23800004453
+minimal train error: 0.26106672425 corresponding test error: 0.244176013805
+params for lowest train error: {&#39;api_confidence&#39;: 0.77188900000000005}
+minimal train error: 0.257340241796 corresponding test error: 0.259067357513
+params for lowest train error: {&#39;api_confidence&#39;: 0.77188900000000005}
+minimal train error: 0.257556131261 corresponding test error: 0.258203799655
+params for lowest train error: {&#39;api_confidence&#39;: 0.77188900000000005}
+minimal train error: 0.254749568221 corresponding test error: 0.269430051813
+params for lowest train error: {&#39;api_confidence&#39;: 0.77188900000000005}
+minimal train error: 0.257716382474 corresponding test error: 0.257562662057
+params for lowest train error: {&#39;api_confidence&#39;: 0.77188900000000005}
+Average test error: 0.257687976969
 names_api_full
-minimal train error: 0.189160008637 corresponding test error: 0.177739430544
-params for lowest train error: {&#39;api_confidence&#39;: 0.57850000000000001}
-minimal train error: 0.184801381693 corresponding test error: 0.195164075993
-params for lowest train error: {&#39;api_confidence&#39;: 0.57850000000000001}
-minimal train error: 0.185664939551 corresponding test error: 0.19170984456
-params for lowest train error: {&#39;api_confidence&#39;: 0.57850000000000001}
-minimal train error: 0.186528497409 corresponding test error: 0.188255613126
-params for lowest train error: {&#39;api_confidence&#39;: 0.57850000000000001}
-minimal train error: 0.188214979495 corresponding test error: 0.181503889369
-params for lowest train error: {&#39;api_confidence&#39;: 0.57850000000000001}
-Average test error: 0.186874570718
+minimal train error: 0.230835672641 corresponding test error: 0.221742881795
+params for lowest train error: {&#39;api_confidence&#39;: 0.80042000000000002}
+minimal train error: 0.230354058722 corresponding test error: 0.22366148532
+params for lowest train error: {&#39;api_confidence&#39;: 0.80042000000000002}
+minimal train error: 0.227547495682 corresponding test error: 0.234887737478
+params for lowest train error: {&#39;api_confidence&#39;: 0.80042000000000002}
+minimal train error: 0.225820379965 corresponding test error: 0.241796200345
+params for lowest train error: {&#39;api_confidence&#39;: 0.80042000000000002}
+minimal train error: 0.230520181308 corresponding test error: 0.222990492653
+params for lowest train error: {&#39;api_confidence&#39;: 0.80042000000000002}
+Average test error: 0.229015759518
 namsor
-minimal train error: 0.136903476571 corresponding test error: 0.132010353753
-params for lowest train error: {&#39;api_scale&#39;: 0.109}
-minimal train error: 0.136658031088 corresponding test error: 0.13298791019
-params for lowest train error: {&#39;api_scale&#39;: 0.109}
-minimal train error: 0.133203799655 corresponding test error: 0.146804835924
-params for lowest train error: {&#39;api_scale&#39;: 0.109}
-minimal train error: 0.135146804836 corresponding test error: 0.139032815199
-params for lowest train error: {&#39;api_scale&#39;: 0.109}
-minimal train error: 0.137707748759 corresponding test error: 0.128781331029
-params for lowest train error: {&#39;api_scale&#39;: 0.109}
-Average test error: 0.135923449219
+minimal train error: 0.172101058087 corresponding test error: 0.16393442623
+params for lowest train error: {&#39;api_scale&#39;: 0.46000000000000002}
+minimal train error: 0.170768566494 corresponding test error: 0.169257340242
+params for lowest train error: {&#39;api_scale&#39;: 0.46000000000000002}
+minimal train error: 0.166666666667 corresponding test error: 0.185664939551
+params for lowest train error: {&#39;api_scale&#39;: 0.46000000000000002}
+minimal train error: 0.171200345423 corresponding test error: 0.167530224525
+params for lowest train error: {&#39;api_scale&#39;: 0.46000000000000002}
+minimal train error: 0.171595078783 corresponding test error: 0.165946413137
+params for lowest train error: {&#39;api_scale&#39;: 0.46000000000000002}
+Average test error: 0.170466668737
 gender_guesser
-minimal train error: 0.230187864392 corresponding test error: 0.226056945643
-params for lowest train error: {&#39;confidence&#39;: 0.749}
-minimal train error: 0.229058721934 corresponding test error: 0.230569948187
-params for lowest train error: {&#39;confidence&#39;: 0.749}
-minimal train error: 0.225172711572 corresponding test error: 0.246113989637
-params for lowest train error: {&#39;confidence&#39;: 0.749}
-minimal train error: 0.227115716753 corresponding test error: 0.238341968912
-params for lowest train error: {&#39;confidence&#39;: 0.749}
-minimal train error: 0.235268724369 corresponding test error: 0.205704407952
-params for lowest train error: {&#39;confidence&#39;: 0.749}
-Average test error: 0.229357452066
+minimal train error: 0.272295400561 corresponding test error: 0.264883520276
+params for lowest train error: {&#39;confidence&#39;: 1.0}
+minimal train error: 0.27115716753 corresponding test error: 0.269430051813
+params for lowest train error: {&#39;confidence&#39;: 1.0}
+minimal train error: 0.267271157168 corresponding test error: 0.284974093264
+params for lowest train error: {&#39;confidence&#39;: 1.0}
+minimal train error: 0.267702936097 corresponding test error: 0.283246977547
+params for lowest train error: {&#39;confidence&#39;: 1.0}
+minimal train error: 0.275631340384 corresponding test error: 0.251512532411
+params for lowest train error: {&#39;confidence&#39;: 1.0}
+Average test error: 0.270809435063
 genderize_io
 minimal train error: 0.150507449795 corresponding test error: 0.150129421915
-params for lowest train error: {&#39;api_count&#39;: 39.0, &#39;api_probability&#39;: 0}
+params for lowest train error: {&#39;api_probability&#39;: 0.55000000000000004, &#39;api_count&#39;: 2.0}
 minimal train error: 0.15133851468 corresponding test error: 0.146804835924
-params for lowest train error: {&#39;api_count&#39;: 39.0, &#39;api_probability&#39;: 0}
+params for lowest train error: {&#39;api_probability&#39;: 0.55000000000000004, &#39;api_count&#39;: 2.0}
 minimal train error: 0.148100172712 corresponding test error: 0.1597582038
-params for lowest train error: {&#39;api_count&#39;: 39.0, &#39;api_probability&#39;: 0}
+params for lowest train error: {&#39;api_probability&#39;: 0.55000000000000004, &#39;api_count&#39;: 2.0}
 minimal train error: 0.150043177893 corresponding test error: 0.151986183074
-params for lowest train error: {&#39;api_count&#39;: 39.0, &#39;api_probability&#39;: 0}
+params for lowest train error: {&#39;api_probability&#39;: 0.55000000000000004, &#39;api_count&#39;: 2.0}
 minimal train error: 0.152169220807 corresponding test error: 0.143474503025
-params for lowest train error: {&#39;api_count&#39;: 39.0, &#39;api_probability&#39;: 0}
+params for lowest train error: {&#39;api_probability&#39;: 0.55000000000000004, &#39;api_count&#39;: 2.0}
 Average test error: 0.150430629548
 </pre>
 </div>
