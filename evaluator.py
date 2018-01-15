@@ -326,21 +326,18 @@ class Evaluator(abc.ABC):
             param_to_error_mapping = {k: v for k, v in param_to_error_mapping.items() if
                                       param_to_constraint_mapping[k] < constraint_val}
 
-        # print(param_to_error_mapping)
         param_to_error_mapping = sorted(param_to_error_mapping.items(),
                                         key=lambda x: x[1][0])  # sort by lowest training error
-        # print(param_to_error_mapping)
         try:
             best_param_values_and_errors = param_to_error_mapping[0]
             min_train_error = best_param_values_and_errors[1][0]
             min_test_error = best_param_values_and_errors[1][1]
             param_min_train_error = dict(zip(self.tuning_params, best_param_values_and_errors[0]))
 
-            print("minimal train error:", min_train_error, "corresponding test error:", min_test_error)
-            print("params for lowest train error:", param_min_train_error)
             return min_test_error, min_train_error, param_min_train_error
         except IndexError:
             print("No parameter values satisfied given constraint")
+            return 1, None, None  # Error 1 is higher than any value expected
 
     @abc.abstractmethod
     def preprocess_data_for_parameter_tuning(self):
@@ -350,7 +347,7 @@ class Evaluator(abc.ABC):
         self.test_data = shuffle(self.test_data, random_state=1).reset_index()
 
     def compute_cv_score(self, n_splits, param_grid, error_func, constraint_func=None, constraint_val=None,
-                         stratified=True, shuffle=True):
+                         stratified=True, shuffle=False, verbose=False):
         """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
         'test_data'. Remove rows for which gender is unknown since 'u' is not a real class.
 
@@ -369,8 +366,12 @@ class Evaluator(abc.ABC):
             for train_index, test_index in train_test_splits:
                 test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
                                                                         constraint_func, constraint_val)
+                if verbose:
+                    print("minimal train error:", train_error, "corresponding test error:", test_error)
+                    print("params for lowest train error:", best_params)
                 nfold_errors.append(test_error)
-            print("Average test error:", np.mean(nfold_errors))
+            if verbose:
+                print("Average test error:", np.mean(nfold_errors))
             return np.mean(nfold_errors)
         except:
             print("No parameter values satisfied given constraint")
@@ -464,12 +465,14 @@ class Evaluator(abc.ABC):
     @staticmethod
     def compute_weighted_error(conf_matrix, eps=0.2):
         weighted_error = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + eps * (
-            conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])) / (conf_matrix.loc['f', 'f_pred'] +
-                                                                                 conf_matrix.loc['f', 'm_pred'] +
-                                                                                 conf_matrix.loc['m', 'f_pred'] +
-                                                                                 conf_matrix.loc[
-                                                                                     'm', 'm_pred'] + eps * (
-                                                                                     conf_matrix.loc['m', 'u_pred'] +
-                                                                                     conf_matrix.loc['f', 'u_pred']))
+                conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])) / (conf_matrix.loc['f', 'f_pred'] +
+                                                                                     conf_matrix.loc['f', 'm_pred'] +
+                                                                                     conf_matrix.loc['m', 'f_pred'] +
+                                                                                     conf_matrix.loc[
+                                                                                         'm', 'm_pred'] + eps * (
+                                                                                             conf_matrix.loc[
+                                                                                                 'm', 'u_pred'] +
+                                                                                             conf_matrix.loc[
+                                                                                                 'f', 'u_pred']))
 
         return weighted_error
