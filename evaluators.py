@@ -22,7 +22,7 @@ class GenderAPIEvaluator(Evaluator):
     api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', 'female': 'f'}
     uses_full_name = False
-    tuning_params = tuple('api_' + param for param in ('accuracy', 'samples'))
+    tuning_params = ['api_' + param for param in ('accuracy', 'samples')]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -63,7 +63,7 @@ class GenderAPIEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
+    def preprocess_tuning_params(self):
         for col in self.tuning_params:
             try:
                 self.test_data[col] = self.test_data[col].astype(int)
@@ -114,7 +114,7 @@ class NamesAPIEvaluator(Evaluator):
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
     gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f'}
     uses_full_name = False
-    tuning_params = tuple('api_' + param for param in ('confidence',))
+    tuning_params = ['api_confidence']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -178,7 +178,7 @@ class NamesAPIEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
+    def preprocess_tuning_params(self):
         pass
 
 
@@ -216,7 +216,7 @@ class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f'}
     uses_full_name = False
-    tuning_params = tuple('api_' + param for param in ('scale',))
+    tuning_params = ['api_scale']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -268,7 +268,7 @@ class NamSorEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
+    def preprocess_tuning_params(self):
         for col in self.tuning_params:
             self.test_data[col] = self.test_data[col].astype(float).map(lambda x: abs(x))
 
@@ -280,7 +280,7 @@ class GenderGuesserEvaluator(Evaluator):
     gender_evaluator = 'gender_guesser'
     gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f"}
     uses_full_name = False
-    tuning_params = ('confidence',)
+    tuning_params = ['api_confidence']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -313,13 +313,13 @@ class GenderGuesserEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
-        """Since this service returns no numerical values on confiedence or similar we interpret the response values
+    def preprocess_tuning_params(self):
+        """Since this service returns no numerical values on confidence or similar we interpret the response values
         nuemrically."""
         response_to_num = {'male': 1.0, 'female': 1.0, 'mostly_male': 0.75, 'mostly_female': 0.75}
-        self.test_data['confidence'] = 0
+        self.test_data['api_confidence'] = 0
         self.test_data.loc[
-            self.test_data.api_gender.isin(response_to_num.keys()), 'confidence'] = self.test_data[
+            self.test_data.api_gender.isin(response_to_num.keys()), 'api_confidence'] = self.test_data[
             self.test_data.api_gender.isin(response_to_num.keys())].api_gender.map(
             lambda x: response_to_num[x])
 
@@ -330,7 +330,7 @@ class GenderizeIoEvaluator(Evaluator):
     # api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f"}
     uses_full_name = False
-    tuning_params = tuple('api_' + param for param in ('count', 'probability'))
+    tuning_params = ['api_' + param for param in ['count', 'probability']]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -374,7 +374,7 @@ class GenderizeIoEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
-    def preprocess_data_for_parameter_tuning(self):
+    def preprocess_tuning_params(self):
         for col in self.tuning_params:
             self.test_data[col] = self.test_data[col].replace({'': 1.0})
             self.test_data[col] = self.test_data[col].astype(float)
