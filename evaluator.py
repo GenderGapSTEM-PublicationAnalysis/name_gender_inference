@@ -312,13 +312,13 @@ class Evaluator(abc.ABC):
 
     """Methods for parameter tuning"""
 
-    def compute_k_fold_cv_score(self, n_splits, param_grid, error_func, constraint_func=None, constraint_val=None,
+    def compute_k_fold_cv_score(self, n_splits, param_range, error_func, constraint_func=None, constraint_val=None,
                                 stratified=True, verbose=False):
         """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
         'test_data'. Remove rows for which gender is unknown since 'u' is not a real class.
 
         :param n_splits: number of folds; should be at least 2 (int)
-        :param param_grid: list of list of tuning parameter-value pairs used for 'training' the function (list of dict)
+        :param param_range: list of tuning parameter-value pairs used for 'training' the function (list of dict)
         :param error_func: one of the error functions in this class
         :param stratified: Boolean whether to use stratified folds
         :param constraint_func: constraint function
@@ -330,7 +330,7 @@ class Evaluator(abc.ABC):
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         try:
             for train_index, test_index in train_test_splits:
-                test_error, train_error, best_params = self.tune_params(param_grid, error_func, train_index, test_index,
+                test_error, train_error, best_params = self.tune_params(param_range, error_func, train_index, test_index,
                                                                         constraint_func, constraint_val)
                 if verbose:
                     print("minimal train error:", train_error, "corresponding test error:", test_error)
