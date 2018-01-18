@@ -20,8 +20,9 @@ class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
     api_key = API_KEYS[gender_evaluator]
-    gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
+    gender_response_mapping = {'male': 'm', 'female': 'f'}
     uses_full_name = False
+    tuning_params = ['api_' + param for param in ('accuracy', 'samples')]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -61,6 +62,13 @@ class GenderAPIEvaluator(Evaluator):
     @classmethod
     def _fetch_gender_with_full_name(cls, full):
         pass
+
+    def preprocess_tuning_params(self):
+        for col in self.tuning_params:
+            try:
+                self.test_data[col] = self.test_data[col].astype(int)
+            except:
+                self.test_data[col] = self.test_data[col].astype(float)
 
 
 @register_evaluator
@@ -104,9 +112,9 @@ class NamesAPIEvaluator(Evaluator):
     gender_evaluator = 'names_api'
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
-    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f', 'UNKNOWN': 'u', 'NEUTRAL': 'u',
-                               'CONFLICT': 'u', 'INDETERMINABLE': 'u'}
+    gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f'}
     uses_full_name = False
+    tuning_params = ['api_confidence']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -170,6 +178,9 @@ class NamesAPIEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_tuning_params(self):
+        pass
+
 
 @register_evaluator
 class NamesAPIFullEvaluator(NamesAPIEvaluator):
@@ -203,8 +214,9 @@ class NamesAPIFullEvaluator(NamesAPIEvaluator):
 @register_evaluator
 class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
-    gender_response_mapping = {'male': 'm', 'female': 'f', 'unknown': 'u'}
+    gender_response_mapping = {'male': 'm', 'female': 'f'}
     uses_full_name = False
+    tuning_params = ['api_scale']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -256,14 +268,19 @@ class NamSorEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_tuning_params(self):
+        for col in self.tuning_params:
+            self.test_data[col] = self.test_data[col].astype(float).map(lambda x: abs(x))
 
+
+# TODO: instantiate like this: "d = gender.Detector(case_sensitive=False)". Then method "title" can be removed.
 @register_evaluator
 class GenderGuesserEvaluator(Evaluator):
     """# Python wrapper of Joerg Michael's C-program `gender`"""
     gender_evaluator = 'gender_guesser'
-    gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f", "unknown": "u",
-                               "andy": "u"}
+    gender_response_mapping = {'male': 'm', "female": "f", "mostly_male": "m", "mostly_female": "f"}
     uses_full_name = False
+    tuning_params = ['api_confidence']
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -296,13 +313,24 @@ class GenderGuesserEvaluator(Evaluator):
     def _fetch_gender_with_full_name(cls, full):
         pass
 
+    def preprocess_tuning_params(self):
+        """Since this service returns no numerical values on confidence or similar we interpret the response values
+        nuemrically."""
+        response_to_num = {'male': 1.0, 'female': 1.0, 'mostly_male': 0.75, 'mostly_female': 0.75}
+        self.test_data['api_confidence'] = 0
+        self.test_data.loc[
+            self.test_data.api_gender.isin(response_to_num.keys()), 'api_confidence'] = self.test_data[
+            self.test_data.api_gender.isin(response_to_num.keys())].api_gender.map(
+            lambda x: response_to_num[x])
+
 
 @register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
     # api_key = API_KEYS[gender_evaluator]
-    gender_response_mapping = {'male': 'm', "female": "f", None: "u"}
+    gender_response_mapping = {'male': 'm', "female": "f"}
     uses_full_name = False
+    tuning_params = ['api_' + param for param in ['count', 'probability']]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
@@ -345,3 +373,8 @@ class GenderizeIoEvaluator(Evaluator):
     @classmethod
     def _fetch_gender_with_full_name(cls, full):
         pass
+
+    def preprocess_tuning_params(self):
+        for col in self.tuning_params:
+            self.test_data[col] = self.test_data[col].replace({'': 1.0})
+            self.test_data[col] = self.test_data[col].astype(float)

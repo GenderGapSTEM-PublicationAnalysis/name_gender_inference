@@ -1,4 +1,5 @@
 import sys
+import pandas as pd
 
 
 def clean_name_part(df, name_part="middle_name"):
@@ -50,3 +51,15 @@ def show_progress(row_index):
     if row_index % 100 == 0:
         sys.stdout.write('{}...'.format(row_index))
         sys.stdout.flush()
+
+
+# TODO: remove in the end, probably not required
+def compute_equal_frequency_binning(param_values, k):
+    """Takes a list of values (e.g. of a tuning parameter) and an integer k, and returns the lower
+    quantile boundaries for k quantiles. Corresponds to equal-frequency binning. Take 0 always into results."""
+    bins = pd.qcut(param_values, k, duplicates='drop')
+    left_boundaries = [0]
+
+    for b in bins:
+        left_boundaries.append(b.left)
+    return sorted(list(set(left_boundaries)))
