@@ -443,7 +443,6 @@ class Evaluator(abc.ABC):
         param_to_error_mapping = {}
         for param_values in param_range:
             self._translate_api_response(**param_values)
-            # print(self.test_data.gender_infered.value_counts())
             conf_matrix = self.compute_confusion_matrix(self.test_data.loc[index, :])
             error = error_func(conf_matrix)
             tuning_param_values = tuple(param_values[param] for param in
@@ -469,7 +468,10 @@ class Evaluator(abc.ABC):
         {'api_count': 10, 'api_probability': 0.5},
         {'api_count': 10, 'api_probability': 0.6}],
         evaluator.compute_error_unknown, train_index, test_index)
-        >>> {(1, 0.5): (0.0503, 0.054), (1, 0.6): (0.027, 0.56), (10, 0.5): (0.1, 0.23), (10, 0.6): (0.013, 0.001)}
+        >>> {(1, 0.5): (0.097258485639686684, 0.097152428810720268),
+        (1, 0.6): (0.097258485639686684, 0.097152428810720268),
+        (10, 0.5): (0.097258485639686684, 0.097152428810720268),
+        (10, 0.6): (0.10204525674499565, 0.098827470686767172)}
         """
         param_to_error_mapping = {}
         for param_values in param_range:
