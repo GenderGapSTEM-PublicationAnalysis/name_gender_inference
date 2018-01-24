@@ -330,7 +330,7 @@ class GenderizeIoEvaluator(Evaluator):
     # api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f"}
     uses_full_name = False
-    tuning_params = ['api_' + param for param in ['count', 'probability']]
+    tuning_params = ['api_' + param for param in ['probability', 'count']]
 
     def __init__(self, data_source):
         Evaluator.__init__(self, data_source)
