@@ -297,8 +297,8 @@ class Evaluator(abc.ABC):
         numer = (conf_matrix.loc['m', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + eps * (
                 conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred']))
         denom = (conf_matrix.loc['f', 'f_pred'] + conf_matrix.loc['f', 'm_pred'] + conf_matrix.loc['m', 'f_pred'] +
-                 conf_matrix.loc['m', 'm_pred'] +
-                 conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred'])
+                 conf_matrix.loc['m', 'm_pred'] + eps * (
+                         conf_matrix.loc['m', 'u_pred'] + conf_matrix.loc['f', 'u_pred']))
         return numer / denom
 
     def compute_all_errors(self):
@@ -330,8 +330,7 @@ class Evaluator(abc.ABC):
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         try:
             for train_index, test_index in train_test_splits:
-                test_error, train_error, best_params = self.tune_params(param_range, error_func, train_index,
-                                                                        test_index,
+                test_error, train_error, best_params = self.tune_params(param_range, error_func, train_index, test_index,
                                                                         constraint_func, constraint_val)
                 if verbose:
                     print("minimal train error:", train_error, "corresponding test error:", test_error)
