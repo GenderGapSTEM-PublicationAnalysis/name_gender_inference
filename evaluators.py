@@ -108,8 +108,8 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
 @register_evaluator
-class NamesAPIEvaluator(Evaluator):
-    gender_evaluator = 'names_api'
+class NameAPIEvaluator(Evaluator):
+    gender_evaluator = 'name_api'
     api_key = API_KEYS[gender_evaluator]
     url = "http://rc50-api.nameapi.org/rest/v5.0/genderizer/persongenderizer?apiKey="
     gender_response_mapping = {'MALE': 'm', 'FEMALE': 'f'}
@@ -138,7 +138,7 @@ class NamesAPIEvaluator(Evaluator):
             }
 
         query = build_json(name)
-        url = NamesAPIEvaluator.url + NamesAPIEvaluator.api_key
+        url = NameAPIEvaluator.url + NameAPIEvaluator.api_key
         resp = requests.post(url, json=query)
         resp.raise_for_status()
         return resp.json()
@@ -183,8 +183,8 @@ class NamesAPIEvaluator(Evaluator):
 
 
 @register_evaluator
-class NamesAPIFullEvaluator(NamesAPIEvaluator):
-    gender_evaluator = 'names_api_full'
+class NameAPIFullEvaluator(NameAPIEvaluator):
+    gender_evaluator = 'name_api_full'
     uses_full_name = True
 
     def __init__(self, data_source):
