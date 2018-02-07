@@ -12,12 +12,13 @@ from sklearn.model_selection import ParameterSampler
 from sklearn.utils import shuffle
 
 from helpers import show_progress
+from __init__ import DIR_PATH
 
 
 class Evaluator(abc.ABC):
     """Constant class-level properties; same for all inheriting classes"""
-    raw_data_prefix = 'test_data/raw_data/test_data_'
-    data_suffix = '.csv'
+    test_data_dir = DIR_PATH + '/test_data/'
+    test_data_suffix = '.csv'
     api_gender_key_name = 'gender'  # change this in inheriting class if API response denotes the gender differently
 
     @property
@@ -45,10 +46,8 @@ class Evaluator(abc.ABC):
         return ()
 
     def __init__(self, data_source):
-        self.data_source = data_source
-        self.file_path_raw_data = self.raw_data_prefix + self.data_source + self.data_suffix
-        self.file_path_evaluated_data = 'test_data/' + self.gender_evaluator + '/test_data_' + \
-                                        self.data_source + '_' + self.gender_evaluator + self.data_suffix
+        self.file_path_raw_data = self.test_data_dir + 'raw_data/' + data_source + self.test_data_suffix
+        self.file_path_evaluated_data = self.test_data_dir + self.gender_evaluator + '/' + data_source + '_' + self.gender_evaluator + self.test_data_suffix
         self.test_data = pd.DataFrame()
         self.api_response = []
         self.api_call_completed = False
@@ -330,7 +329,8 @@ class Evaluator(abc.ABC):
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         try:
             for train_index, test_index in train_test_splits:
-                test_error, train_error, best_params = self.tune_params(param_range, error_func, train_index, test_index,
+                test_error, train_error, best_params = self.tune_params(param_range, error_func, train_index,
+                                                                        test_index,
                                                                         constraint_func, constraint_val)
                 if verbose:
                     print("minimal train error:", train_error, "corresponding test error:", test_error)

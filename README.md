@@ -26,27 +26,35 @@ On an evaluator object, the following actions can be performed:
 To initialize an evaluator object, you need to provide the 'name' of a data source.
 The functions for loading and storing data use a naming convention for data source files; see `Evaluator.__init__`.
 
-For instance, to query the service <genderize.io> with all names from the data set 'genderizeR',
+For instance, to query the service <genderize.io> with all names from the data set 'genderize_r_authors',
 instantiate an object and load the file as follows:
 
 ```python
 from evaluators import GenderizeIoEvaluator
 
-evaluator = GenderizeIoEvaluator('genderizeR')
+evaluator = GenderizeIoEvaluator('genderize_r_authors')
 evaluator.load_data()
 ```
-This will load the file `test_data/raw_data/test_data_genderizeR.csv` that contains raw data from the 'genderizeR'
+This will load the file `test_data/raw_data/genderize_r_authors.csv` that contains the corresponding raw
  data set as a `pandas DataFrame` into the attribute `evaluator.test_data`.
  The method `Evaluator.dump_evaluated_test_data_to_file` can then be used to store evaluations of
- this data source as `test_data/genderize_io/test_data_genderizeR_genderize_io.csv`. Once a data source has been
+ this data source as `test_data/genderize_io/genderize_r_authors_genderize_io.csv`. Once a data source has been
  evaluated, one can load the file with evaluations by providing the option `evaluated=True` to the load function.
 
 The naming convention expects all data files to be in the directory `test_data`.
 Therein, the folder `raw_data` contains files with test data that can be used to evaluate a service,
 and each other directory contains the evaluated files per service.
 
+Currently, the following data sources are available [TODO: provide descriptions and links]:
 
-## How to fetch gender from a service
+* `genderize_r_authors`:
+* `genderize_r_titles`:
+* `wos`:
+* `pubmed`:
+* `zbmath`:
+* `all`:
+
+## Fetch gender from a service
 
 Use the method `Evaluator.fetch_gender` to query the chosen service:
 
@@ -54,7 +62,7 @@ Use the method `Evaluator.fetch_gender` to query the chosen service:
 ```python
 from evaluators import GenderizeIoEvaluator
 
-evaluator = GenderizeIoEvaluator('genderizeR')
+evaluator = GenderizeIoEvaluator('genderize_r_authors')
 evaluator.load_data()
 evaluator.fetch_gender()
 
