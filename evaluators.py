@@ -7,7 +7,7 @@ import requests
 from genderize import Genderize, GenderizeException
 from hammock import Hammock as NamsorAPI
 
-from api_keys import API_KEYS
+from config import API_KEYS
 from evaluator import Evaluator
 from helpers import memoize, register_evaluator
 
