@@ -11,8 +11,8 @@ from sklearn.model_selection import KFold, StratifiedKFold
 from sklearn.model_selection import ParameterSampler
 from sklearn.utils import shuffle
 
+from config import DIR_PATH
 from helpers import show_progress
-from __init__ import DIR_PATH
 
 
 class Evaluator(abc.ABC):
