@@ -35,7 +35,6 @@ class GenderAPIEvaluator(Evaluator):
 
     @classmethod
     def _fetch_gender_with_first_last(cls, first, last):
-        # Call API only with first name only
         api_resp = cls._call_api(first)
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
@@ -88,7 +87,6 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 
     @classmethod
     def _fetch_gender_with_full_name(cls, full):
-        # Calls API with full name
         api_resp = cls._call_api(full)
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
@@ -164,7 +162,6 @@ class NameAPIEvaluator(Evaluator):
             else:
                 # if usage of middle name leads to female or male then take assignment with highest samples
                 api_resp = max(api_resps, key=lambda x: x['confidence'])
-                # API call succeeded if no excepting here
             return api_resp
         except requests.exceptions.HTTPError as e:
             print("Bad HTTP status code:", e)
@@ -189,10 +186,8 @@ class NameAPIFullEvaluator(NameAPIEvaluator):
 
     @classmethod
     def _fetch_gender_with_full_name(cls, full):
-        # Calls API with full name
         try:
             api_resp = cls._call_api(full)
-            # API call succeeded if no excepting here
             return api_resp
         except requests.exceptions.HTTPError as e:
             print("Bad HTTP status code:", e)
@@ -285,24 +280,22 @@ class GenderGuesserEvaluator(Evaluator):
     @staticmethod
     @memoize
     def _call_api(n):
-        return gender.Detector().get_gender(n)
+        return gender.Detector(case_sensitive=False).get_gender(n)
 
     @classmethod
     def _fetch_gender_with_first_last(cls, first, last):
-        # Call API only with first name with capital letter
-        name = first.title()
-        api_resp = {'gender': cls._call_api(name)}
+        api_resp = {'gender': cls._call_api(first)}
         return api_resp
 
     @classmethod
     def _fetch_gender_with_first_mid_last(cls, first, mid, last):
         # If middle name, connect first with '-', else search with first name only
-        name = first.title() + '-' + mid.title()
+        name = first + '-' + mid
         g = cls._call_api(name)
         if g != 'unknown':
             api_resp = {'gender': g}
         else:
-            name = first.title()
+            name = first
             api_resp = {'gender': cls._call_api(name)}
         return api_resp
 
@@ -336,13 +329,10 @@ class GenderizeIoEvaluator(Evaluator):
     @memoize
     def _call_api(name):
         return Genderize(api_key=GenderizeIoEvaluator.api_key).get((name,))[0]
-        # use below to test changes in code without calling the API: returns dummy response
-        # return {'name': 'Hans-Joachim', 'probability': 1.0, 'gender': 'male', 'count': 1}
 
     @classmethod
     def _fetch_gender_with_first_last(cls, first, last):
         try:
-            # Call API only with first name only
             api_resp = cls._call_api(first)
             return api_resp
         except GenderizeException as e:
