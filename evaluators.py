@@ -1,18 +1,15 @@
-# TODO: check error messages when catching exceptions before publishing code
 import json
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 import gender_guesser.detector as gender
 import requests
-from urllib.request import urlopen
-
-from urllib.parse import urlencode
 from genderize import Genderize, GenderizeException
 from hammock import Hammock as NamsorAPI
 
+from api_keys import API_KEYS
 from evaluator import Evaluator
 from helpers import memoize, register_evaluator
-
-from api_keys import API_KEYS
 
 
 @register_evaluator
