@@ -2,9 +2,12 @@ appnope==0.1.0
 bleach==2.1.1
 certifi==2017.11.5
 chardet==3.0.4
+configobj==5.0.6
+cycler==0.10.0
 decorator==4.1.2
 docopt==0.6.2
 entrypoints==0.2.3
+future==0.16.0
 gender-guesser==0.4.0
 Genderize==0.1.5
 hammock==0.2.4
@@ -22,7 +25,9 @@ jupyter-client==5.1.0
 jupyter-console==5.2.0
 jupyter-core==4.4.0
 MarkupSafe==1.0
+matplotlib==2.1.1
 mistune==0.8.1
+mpltools==0.2.0
 nbconvert==5.3.1
 nbformat==4.4.0
 notebook==5.2.1
@@ -36,6 +41,7 @@ pipreqs==0.4.9
 prompt-toolkit==1.0.15
 ptyprocess==0.5.2
 Pygments==2.2.0
+pyparsing==2.2.0
 python-dateutil==2.6.1
 pytz==2017.3
 pyzmq==16.0.3
@@ -43,7 +49,7 @@ qtconsole==4.3.1
 requests==2.18.4
 scikit-learn==0.19.1
 scipy==1.0.0
-SexMachine==0.1.1
+seaborn==0.8.1
 simplegeneric==0.8.1
 six==1.11.0
 sklearn==0.0
@@ -56,4 +62,7 @@ wcwidth==0.1.7
 webencodings==0.5.1
 widgetsnbextension==3.0.8
 xlrd==1.1.0
+XlsxWriter==1.0.2
+xlwt==1.3.0
+xlwt-future==0.8.0
 yarg==0.1.9
