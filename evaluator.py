@@ -1,9 +1,9 @@
 import abc
 import csv
-import os
 import sys
 from functools import reduce
 from operator import and_
+from os.path import join, isfile
 
 import numpy as np
 import pandas as pd
@@ -17,8 +17,7 @@ from helpers import show_progress
 
 class Evaluator(abc.ABC):
     """Constant class-level properties; same for all inheriting classes"""
-    test_data_dir = DIR_PATH + '/test_data/'
-    test_data_suffix = '.csv'
+    test_data_dir = join(DIR_PATH, 'test_data')
     api_gender_key_name = 'gender'  # change this in inheriting class if API response denotes the gender differently
 
     @property
@@ -46,8 +45,9 @@ class Evaluator(abc.ABC):
         return ()
 
     def __init__(self, data_source):
-        self.file_path_raw_data = self.test_data_dir + 'raw_data/' + data_source + self.test_data_suffix
-        self.file_path_evaluated_data = self.test_data_dir + self.gender_evaluator + '/' + data_source + '_' + self.gender_evaluator + self.test_data_suffix
+        self.file_path_raw_data = join(self.test_data_dir, 'raw_data', data_source + '.csv')
+        self.file_path_evaluated_data = join(self.test_data_dir, self.gender_evaluator,
+                                             data_source + '_' + self.gender_evaluator + '.csv')
         self.test_data = pd.DataFrame()
         self.api_response = []
         self.api_call_completed = False
@@ -85,7 +85,7 @@ class Evaluator(abc.ABC):
     def fetch_gender(self, save_to_dump=True):
         """Fetch gender predictions from dump file at path 'file_path_evaluated_data' if present or from API if not.
         """
-        if os.path.isfile(self.file_path_evaluated_data):
+        if isfile(self.file_path_evaluated_data):
             self.load_data(evaluated=True)
             print('Reading data from dump file {}'.format(self.file_path_evaluated_data))
         else:
