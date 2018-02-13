@@ -1,5 +1,6 @@
-# README #
+# Evaluation of name-based gender inference methods #
 
+# README #
 
 ## What is this repository for? ##
 
