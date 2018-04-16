@@ -7,5 +7,5 @@ setup(name='name_gender_inference',
       url='https://github.com/GenderGapSTEM-PublicationAnalysis/name-gender-inference',
       author='Helena Mihaljević and Lucia Santamaría',
       license='MIT',
-      packages=['name-gender-inference'],
+      packages=['name_gender_inference'],
       zip_safe=False)
