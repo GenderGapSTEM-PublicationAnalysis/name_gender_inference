@@ -7,9 +7,9 @@ import requests
 from genderize import Genderize, GenderizeException
 from hammock import Hammock as NamsorAPI
 
-from config import API_KEYS
-from evaluator import Evaluator
-from helpers import memoize, register_evaluator
+from name_gender_inference.config import API_KEYS
+from name_gender_inference.evaluator import Evaluator
+from name_gender_inference.helpers import memoize, register_evaluator
 
 
 @register_evaluator
