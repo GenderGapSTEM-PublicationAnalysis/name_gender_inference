@@ -9,10 +9,9 @@ from hammock import Hammock as NamsorAPI
 
 from name_gender_inference.config import API_KEYS
 from name_gender_inference.evaluator import Evaluator
-from name_gender_inference.helpers import memoize, register_evaluator
+from name_gender_inference.helpers import memoize
 
 
-@register_evaluator
 class GenderAPIEvaluator(Evaluator):
     """This implementation is for using name pieces"""
     gender_evaluator = 'gender_api'
@@ -67,7 +66,6 @@ class GenderAPIEvaluator(Evaluator):
                 self.test_data[col] = self.test_data[col].astype(float)
 
 
-@register_evaluator
 class GenderAPIFullEvaluator(GenderAPIEvaluator):
     """This implementation is for full_name"""
     gender_evaluator = 'gender_api_full'
@@ -102,7 +100,6 @@ class GenderAPIFullEvaluator(GenderAPIEvaluator):
 
 # Used this blog post: https://juliensalinas.com/en/REST_API_fetching_go_golang_vs_python/
 # linked from the API's website: https://www.nameapi.org/en/developer/downloads/
-@register_evaluator
 class NameAPIEvaluator(Evaluator):
     gender_evaluator = 'name_api'
     api_key = API_KEYS[gender_evaluator]
@@ -176,7 +173,6 @@ class NameAPIEvaluator(Evaluator):
         pass
 
 
-@register_evaluator
 class NameAPIFullEvaluator(NameAPIEvaluator):
     gender_evaluator = 'name_api_full'
     uses_full_name = True
@@ -203,7 +199,6 @@ class NameAPIFullEvaluator(NameAPIEvaluator):
         pass
 
 
-@register_evaluator
 class NamSorEvaluator(Evaluator):
     gender_evaluator = 'namsor'
     gender_response_mapping = {'male': 'm', 'female': 'f'}
@@ -265,8 +260,6 @@ class NamSorEvaluator(Evaluator):
             self.test_data[col] = self.test_data[col].astype(float).map(lambda x: abs(x))
 
 
-# TODO: instantiate like this: "d = gender.Detector(case_sensitive=False)". Then method "title" can be removed.
-@register_evaluator
 class GenderGuesserEvaluator(Evaluator):
     """# Python wrapper of Joerg Michael's C-program `gender`"""
     gender_evaluator = 'gender_guesser'
@@ -314,7 +307,6 @@ class GenderGuesserEvaluator(Evaluator):
             lambda x: response_to_num[x])
 
 
-@register_evaluator
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
     # api_key = API_KEYS[gender_evaluator]

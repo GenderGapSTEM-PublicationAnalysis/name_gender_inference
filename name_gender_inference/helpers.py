@@ -15,15 +15,6 @@ class memoize:
             return self.memoized[args]
 
 
-# Taken from http://scottlobdell.me/2015/08/using-decorators-python-automatic-registration/
-REGISTERED_EVALUATORS = []
-
-
-def register_evaluator(cls):
-    REGISTERED_EVALUATORS.append(cls)
-    return cls
-
-
 def show_progress(row_index):
     """Shows a progress bar"""
     if row_index % 100 == 0:
