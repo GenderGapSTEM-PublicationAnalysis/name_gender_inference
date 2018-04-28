@@ -7,12 +7,11 @@ from os.path import join, isfile
 
 import numpy as np
 import pandas as pd
+from name_gender_inference.config import DIR_PATH
+from name_gender_inference.helpers import show_progress
 from sklearn.model_selection import KFold, StratifiedKFold
 from sklearn.model_selection import ParameterSampler
 from sklearn.utils import shuffle
-
-from name_gender_inference.config import DIR_PATH
-from name_gender_inference.helpers import show_progress
 
 
 class Evaluator(abc.ABC):
@@ -44,14 +43,18 @@ class Evaluator(abc.ABC):
         """Attributes in the API response that can be used for model tuning, e.g. 'probability' or 'count'"""
         return ()
 
-    def __init__(self, data_source):
-        self.file_path_raw_data = join(self.test_data_dir, 'raw_data', data_source + '.csv')
-        self.file_path_evaluated_data = join(self.test_data_dir, self.gender_evaluator,
-                                             data_source + '_' + self.gender_evaluator + '.csv')
+    def __init__(self, data_source=None):
+        self.file_path_raw_data = ''
+        self.file_path_evaluated_data = ''
         self.test_data = pd.DataFrame()
         self.api_response = []
         self.api_call_completed = False
         self.confusion_matrix = None
+
+        if data_source is not None:
+            self.file_path_raw_data = join(self.test_data_dir, 'raw_data', data_source + '.csv')
+            self.file_path_evaluated_data = join(self.test_data_dir, self.gender_evaluator,
+                                                 data_source + '_' + self.gender_evaluator + '.csv')
 
     def load_data(self, evaluated=False, return_frame=False):
         """Load data with names and gender assignments from a CSV file.
