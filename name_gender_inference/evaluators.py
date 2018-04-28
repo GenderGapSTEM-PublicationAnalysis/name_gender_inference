@@ -309,7 +309,7 @@ class GenderGuesserEvaluator(Evaluator):
 
 class GenderizeIoEvaluator(Evaluator):
     gender_evaluator = 'genderize_io'
-    # api_key = API_KEYS[gender_evaluator]
+    api_key = API_KEYS[gender_evaluator]
     gender_response_mapping = {'male': 'm', "female": "f"}
     uses_full_name = False
     tuning_params = ['api_' + param for param in ['probability', 'count']]
