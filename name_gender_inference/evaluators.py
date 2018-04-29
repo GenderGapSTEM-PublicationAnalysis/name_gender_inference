@@ -6,7 +6,6 @@ import gender_guesser.detector as gender
 import requests
 from genderize import Genderize, GenderizeException
 from hammock import Hammock as NamsorAPI
-
 from name_gender_inference.config import API_KEYS
 from name_gender_inference.evaluator import Evaluator
 from name_gender_inference.helpers import memoize
@@ -48,8 +47,11 @@ class GenderAPIEvaluator(Evaluator):
         if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
             # If no gender with both names, try first only
             api_resp = cls._call_api(first)
+        elif 'male' in api_resp_genders and 'female' in api_resp_genders:
+            # if both male and female among responses
+            api_resp = cls._call_api(first)
         else:
-            # if usage of middle name leads to female or male then take assignment with highest samples
+            # if middle name leads to either female or male (+ unknown) then take assignment with highest samples
             api_resp = max(api_resps, key=lambda x: x['samples'])
         # API call succeeded if no 'errmsg' in json response, else return None and print data
         return api_resp if 'errmsg' not in api_resp else print('\n', api_resp)
@@ -156,8 +158,11 @@ class NameAPIEvaluator(Evaluator):
             if 'MALE' not in api_resp_genders and 'FEMALE' not in api_resp_genders:
                 # If no gender with both names, try first only
                 api_resp = cls._call_api(first)
+            elif 'MALE' in api_resp_genders and 'FEMALE' in api_resp_genders:
+                # if both male and female among responses
+                api_resp = cls._call_api(first)
             else:
-                # if usage of middle name leads to female or male then take assignment with highest samples
+                # if middle name leads to either female or male (+ unknown) then take assignment with highest samples
                 api_resp = max(api_resps, key=lambda x: x['confidence'])
             return api_resp
         except requests.exceptions.HTTPError as e:
@@ -241,9 +246,11 @@ class NamSorEvaluator(Evaluator):
         if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
             # If no gender with both names is found, use first name only
             api_resp = cls._call_api((first, last))
+        elif 'male' in api_resp_genders and 'female' in api_resp_genders:
+            # if both male and female among responses
+            api_resp = cls._call_api(first, last)
         else:
-            # if usage of middle name leads to female or male then take response with highest confidence
-            # confidence in NamSor is absolute value of scale
+            # if middle name leads to either female or male (+ unknown) then take response with value of scale
             api_resp = max(api_resps, key=lambda x: abs(x['scale']))
         if 'id' in api_resp:
             api_resp.pop('id')
@@ -341,8 +348,11 @@ class GenderizeIoEvaluator(Evaluator):
             if 'male' not in api_resp_genders and 'female' not in api_resp_genders:
                 # If no gender with both names, try first only
                 api_resp = cls._call_api(first)
+            elif 'male' in api_resp_genders and 'female' in api_resp_genders:
+                # if both male and female among responses
+                api_resp = cls._call_api(first)
             else:
-                # if usage of middle name leads to female or male then take assignment with highest samples
+                # if middle name leads to either female or male (plus unknown) then take assignment with highest samples
                 # Unknown names have no 'count'
                 api_resp = max([ap for ap in api_resps if 'count' in ap], key=lambda x: x['count'])
             return api_resp
@@ -355,5 +365,6 @@ class GenderizeIoEvaluator(Evaluator):
 
     def preprocess_tuning_params(self):
         for col in self.tuning_params:
-            self.test_data[col] = self.test_data[col].replace({'': 1.0})
+            self.test_data[col].fillna(value=0, inplace=True)
+            # self.test_data[col] = self.test_data[col].replace({'': 1.0})
             self.test_data[col] = self.test_data[col].astype(float)
