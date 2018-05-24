@@ -314,7 +314,8 @@ class Evaluator(abc.ABC):
 
     """Methods for parameter tuning"""
 
-    def compute_k_fold_cv_score(self, n_splits, param_range, error_func, constraint_func=None, constraint_val=None,
+    def compute_k_fold_cv_score(self, n_splits, param_range, error_func, random_state=1, constraint_func=None,
+                                constraint_val=None,
                                 stratified=True, verbose=False):
         """Compute cross validation score using 'n_splits' randomly chosen train-test splits of the dataframe
         'test_data'. Remove rows for which gender is unknown since 'u' is not a real class.
@@ -328,7 +329,8 @@ class Evaluator(abc.ABC):
         :param verbose: set to 'True' if you want to see prints (Boolean)
         :return: mean error on the test set folds (float)
         """
-        train_test_splits = self.build_train_test_splits(self.test_data, n_splits=n_splits, stratified=stratified)
+        train_test_splits = self.build_train_test_splits(self.test_data, n_splits=n_splits, random_state=random_state,
+                                                         stratified=stratified)
         nfold_errors = []  # errors on each of the k test sets for the optimal function on corresponding train set
         try:
             for train_index, test_index in train_test_splits:
@@ -432,14 +434,14 @@ class Evaluator(abc.ABC):
         self.test_data.reset_index(inplace=True)
 
     @staticmethod
-    def build_train_test_splits(df, n_splits, stratified=False):
+    def build_train_test_splits(df, n_splits, random_state=1, stratified=False):
         y = df['gender']
 
         if stratified is False:
-            kf = KFold(n_splits=n_splits, random_state=1, shuffle=False)
+            kf = KFold(n_splits=n_splits, random_state=random_state, shuffle=False)
             return list(kf.split(df))
         else:
-            skf = StratifiedKFold(n_splits=n_splits, random_state=1, shuffle=False)
+            skf = StratifiedKFold(n_splits=n_splits, random_state=random_state, shuffle=False)
             return list(skf.split(df, y))
 
     def compute_error_for_param_range(self, param_range, error_func, index):
